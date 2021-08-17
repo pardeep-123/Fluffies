@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="homeVM"
+            type="com.puppypedia.ui.main.ui.home.HomeVM" />
+
+    </data>
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.main.ui.home.HomeActivity">
+
+    <FrameLayout
+        android:id="@+id/frame_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/btm_navigation"
+        />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/btm_navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bottom_nav_corner_5dp"
+        app:itemIconTint="@color/tab_color"
+        android:layout_alignParentBottom="true"
+        app:itemTextAppearanceActive="@style/BottomNavigationViewActive"
+        app:itemTextAppearanceInactive="@style/BottomNavigationViewInActive"
+        android:fitsSystemWindows="true"
+        android:textAlignment="center"
+        app:itemIconSize="@dimen/_18sdp"
+        app:labelVisibilityMode="labeled"
+        app:menu="@menu/bottom_nav_menu"
+        />
+</RelativeLayout>
+
+</layout>

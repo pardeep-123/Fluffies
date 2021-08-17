@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/home"
+        android:title="@string/home"
+        android:icon="@drawable/home"/>
+
+    <item
+        android:id="@+id/favorites"
+        android:title="@string/search"
+        android:icon="@drawable/img_favoritr"/>
+
+    <item
+        android:id="@+id/myspecials"
+        android:title="@string/calender"
+        android:icon="@drawable/special"/>
+
+    <item
+        android:id="@+id/settings"
+        android:title="@string/account"
+        android:icon="@drawable/settings"/>
+</menu>

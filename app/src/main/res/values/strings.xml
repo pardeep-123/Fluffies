@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">PuppyPedia</string>
+    <string name="image">Image</string>
+    <string name="welcome_back">Welcome Back!</string>
+    <string name="please_sign_into_your_account">Please sign into your account!</string>
+    <string name="email">Email</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="password">Password</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up"><u>Sign Up</u></string>
+    <string name="don_t_have_an_account">Don\'t have an account?</string>
+    <string name="name">Name</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="enter_confirm_password">Enter Confirm Password</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="forgot_password">Forgot Password?</string>
+    <string name="forgot_pass">Forgot Password</string>
+    <string name="please_fill_your_register_email_we_will_send_a_four_digit_code_on_there">Please fill your register Email, we will send a four digit code on there</string>
+    <string name="submit">Submit</string>
+    <string name="sign_i"><u>Sign In</u></string>
+    <string name="sign_u">Sign Up</string>
+    <string name="account">Account</string>
+    <string name="home">Home</string>
+    <string name="search">Search</string>
+    <string name="calender">Calender</string>
+</resources>
