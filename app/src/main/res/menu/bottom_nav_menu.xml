@@ -3,20 +3,21 @@
     <item
         android:id="@+id/home"
         android:title="@string/home"
-        android:icon="@drawable/home"/>
+        android:icon="@drawable/homeunactive"/>
 
     <item
         android:id="@+id/favorites"
         android:title="@string/search"
-        android:icon="@drawable/img_favoritr"/>
+        android:icon="@drawable/searchactive"/>
 
     <item
         android:id="@+id/myspecials"
         android:title="@string/calender"
-        android:icon="@drawable/special"/>
+        android:icon="@drawable/cal"/>
 
     <item
         android:id="@+id/settings"
         android:title="@string/account"
-        android:icon="@drawable/settings"/>
+        android:icon="@drawable/accountactive"/>
+
 </menu>

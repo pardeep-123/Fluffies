@@ -28,7 +28,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bottom_nav_corner_5dp"
-        app:itemIconTint="@color/tab_color"
         android:layout_alignParentBottom="true"
         app:itemTextAppearanceActive="@style/BottomNavigationViewActive"
         app:itemTextAppearanceInactive="@style/BottomNavigationViewInActive"

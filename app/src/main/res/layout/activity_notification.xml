@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="notificationVM"
+            type="com.puppypedia.ui.main.ui.notification.NotificationVM" />
+
+    </data>
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.main.ui.notification.NotificationActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_no_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <ImageView
+            android:layout_width="@dimen/_150sdp"
+            android:layout_height="@dimen/_200sdp"
+            android:layout_gravity="center"
+            android:layout_marginTop="150dp"
+            android:background="@drawable/no_notification"
+            android:contentDescription="@string/image" />
+
+        <TextView
+            android:id="@+id/no_notification"
+           style="@style/WrapTextView"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp20"
+            android:fontFamily="@font/opensans_bold"
+            android:text="@string/no_notifications_yet"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_14sdp" />
+
+        <TextView
+            android:id="@+id/tv_no_notification"
+            style="@style/WrapTextView"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/dp10"
+            android:text="@string/you_don_t_have_any_notification_right"
+            android:textColor="@color/grey" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_notifications"
+        setRecyclerAdapter="@{notificationVM.adapterNotification}"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dp20"
+        android:layout_marginEnd="@dimen/dp20"
+        android:orientation="vertical"
+        android:visibility="gone"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+</LinearLayout>
+
+
+</layout>
