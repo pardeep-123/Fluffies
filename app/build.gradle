@@ -59,6 +59,8 @@ dependencies {
 
     //roundedImageView
     implementation 'com.makeramen:roundedimageview:2.3.0'
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+
 
     //upload image
     implementation 'com.yanzhenjie:album:2.1.3'

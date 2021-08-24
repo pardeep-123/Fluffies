@@ -29,4 +29,21 @@
     <string name="calender">Calender</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pet_detail">Pet Detail</string>
+    <string name="rony">Rony</string>
+    <string name="gender">Gender</string>
+    <string name="male">Male</string>
+    <string name="weight">Weight</string>
+    <string name="_120_lbs">120 lbs</string>
+    <string name="age">Age</string>
+    <string name="_01_yr">01 Yr</string>
+    <string name="breed">Breed</string>
+    <string name="profile">Profile</string>
+    <string name="change_password">Change Password</string>
+    <string name="my_pet_profile">My Pets Profile</string>
+    <string name="golden_retriever">Golden Retriever</string>
+    <string name="dummY_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis felis porttitor, molestie nunc in, pretium </string>
+    <string name="edit_pet_profile">Edit Pet Profile</string>
+    <string name="your_pet_profile_nupdated_successfully">Your Pet Profile\nupdated Successfully!</string>
+
 </resources>

@@ -9,18 +9,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PuppyPedia">
-        <activity android:name=".ui.main.ui.notification.NotificationActivity"></activity>
-        <activity android:name=".ui.main.ui.home.HomeActivity" />
-        <activity android:name=".ui.auth.forgotpassword.ForgotPasswordActivity" />
-        <activity android:name=".ui.auth.signup.SignUpActivity" />
-        <activity android:name=".ui.auth.login.LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.main.ui.changepassword.ChangePasswordActivity"></activity>
+        <activity android:name=".ui.main.ui.editprofile.EditProfileActivity" />
+        <activity android:name=".ui.main.ui.profile.ProfileActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.main.ui.editpetprofile.EditPetProfileActivity" />
+        <activity android:name=".ui.main.ui.mypetprofile.MyPetProfileActivity" />
+        <activity android:name=".ui.main.ui.notification.NotificationActivity" />
+        <activity android:name=".ui.main.ui.home.HomeActivity" />
+        <activity android:name=".ui.auth.forgotpassword.ForgotPasswordActivity" />
+        <activity android:name=".ui.auth.signup.SignUpActivity" />
+        <activity android:name=".ui.auth.login.LoginActivity" />
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
