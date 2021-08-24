@@ -3,12 +3,12 @@
     <item
         android:id="@+id/home"
         android:title="@string/home"
-        android:icon="@drawable/homeunactive"/>
+        android:icon="@drawable/home"/>
 
     <item
         android:id="@+id/favorites"
         android:title="@string/search"
-        android:icon="@drawable/searchactive"/>
+        android:icon="@drawable/serach"/>
 
     <item
         android:id="@+id/myspecials"
@@ -18,6 +18,6 @@
     <item
         android:id="@+id/settings"
         android:title="@string/account"
-        android:icon="@drawable/accountactive"/>
+        android:icon="@drawable/user"/>
 
 </menu>

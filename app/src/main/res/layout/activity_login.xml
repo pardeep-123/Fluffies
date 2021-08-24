@@ -62,14 +62,14 @@
 
                 <EditText
                     style="@style/MatchEditText"
-                    android:background="@drawable/bg_edit_text"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:background="@drawable/bg_edit_text"
                     android:hint="@string/enter_email"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:text="@{loginVM.email}"
                     android:imeOptions="actionNext"
                     android:inputType="textEmailAddress"
-                    android:paddingEnd="@dimen/_10sdp"/>
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@{loginVM.email}" />
 
                 <TextView
                     style="@style/WrapTextView"

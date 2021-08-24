@@ -16,12 +16,15 @@
     android:layout_height="match_parent"
     tools:context=".ui.main.ui.home.HomeActivity">
 
+
     <FrameLayout
         android:id="@+id/frame_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@+id/btm_navigation"
         />
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/btm_navigation"
