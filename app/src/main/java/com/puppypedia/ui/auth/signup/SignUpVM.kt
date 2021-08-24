@@ -6,6 +6,7 @@ import android.view.View
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.puppypedia.ui.main.ui.home.HomeActivity
+import com.puppypedia.ui.main.ui.petdetail.YourPetDetailActivity
 
 class SignUpVM: ViewModel() {
 
@@ -24,7 +25,7 @@ class SignUpVM: ViewModel() {
 
                 "btnSignIn" -> {
 
-                    (v.context as Activity).startActivity(Intent(v.context, HomeActivity ::class.java))
+                    (v.context as Activity).startActivity(Intent(v.context, YourPetDetailActivity ::class.java))
 
                 }
             }

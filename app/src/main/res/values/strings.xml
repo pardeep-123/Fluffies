@@ -23,12 +23,15 @@
     <string name="submit">Submit</string>
     <string name="sign_i"><u>Sign In</u></string>
     <string name="sign_u">Sign Up</string>
+    <string name="your_pet_detail">Your Pet Detail</string>
     <string name="account">Account</string>
     <string name="home">Home</string>
     <string name="search">Search</string>
+    <string name="notifications">Notifications</string>
     <string name="calender">Calender</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
     <string name="pet_detail">Pet Detail</string>
     <string name="rony">Rony</string>
     <string name="gender">Gender</string>
@@ -45,5 +48,12 @@
     <string name="dummY_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis felis porttitor, molestie nunc in, pretium </string>
     <string name="edit_pet_profile">Edit Pet Profile</string>
     <string name="your_pet_profile_nupdated_successfully">Your Pet Profile\nupdated Successfully!</string>
+
+    <string name="view_all"><u>View All</u></string>
+    <string name="feeding">Feeding</string>
+    <string name="about_pet">About Pet</string>
+    <string name="add_new">Add New</string>
+    <string name="later">Later</string>
+    <string name="your_pet_detail_added_successfully_do_you_want_another_dog">Your pet detail added successfully!! Do you want another dog?</string>
 
 </resources>

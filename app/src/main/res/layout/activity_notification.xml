@@ -16,7 +16,8 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.main.ui.notification.NotificationActivity">
-
+<include
+    layout="@layout/auth_toolbar"/>
     <LinearLayout
         android:id="@+id/ll_no_notifications"
         android:layout_width="match_parent"
@@ -28,7 +29,7 @@
             android:layout_width="@dimen/_150sdp"
             android:layout_height="@dimen/_200sdp"
             android:layout_gravity="center"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="100dp"
             android:background="@drawable/no_notification"
             android:contentDescription="@string/image" />
 
@@ -54,7 +55,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_notifications"
-        setRecyclerAdapter="@{notificationVM.adapterNotification}"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="@dimen/dp20"
