@@ -11,22 +11,26 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
 import com.puppypedia.R
+import com.puppypedia.databinding.ActivityYourPetDetailBinding
 import com.puppypedia.ui.main.ui.home.HomeActivity
-import kotlinx.android.synthetic.main.activity_your_pet_detail.*
-import kotlinx.android.synthetic.main.auth_toolbar.*
+
 
 class YourPetDetailActivity : AppCompatActivity() {
+
+    lateinit var binding: ActivityYourPetDetailBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_your_pet_detail)
+        binding = ActivityYourPetDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            iv_back.setOnClickListener {
+            binding.tb.ivBack.setOnClickListener {
                 onBackPressed()
             }
 
-        tv_title.text = getString(R.string.your_pet_detail)
+       binding.tb.tvTitle .text = getString(R.string.your_pet_detail)
 
-        btnPetDetail.setOnClickListener {
+        binding.btnPetDetail.setOnClickListener {
             dialogAddPet()
 
         }

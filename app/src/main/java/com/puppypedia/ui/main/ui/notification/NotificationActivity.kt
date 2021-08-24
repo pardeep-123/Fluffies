@@ -7,8 +7,6 @@ import androidx.activity.viewModels
 import com.puppypedia.R
 import com.puppypedia.common_adapters.NotificationAdapter
 import com.puppypedia.databinding.ActivityNotificationBinding
-import kotlinx.android.synthetic.main.activity_notification.*
-import kotlinx.android.synthetic.main.auth_toolbar.*
 
 class NotificationActivity : AppCompatActivity() {
 
@@ -21,20 +19,20 @@ class NotificationActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setAdapter()
-            iv_back.setOnClickListener {
+           binding.tb.ivBack.setOnClickListener {
                 onBackPressed()
             }
-        tv_title.text= getString(R.string.notifications)
+        binding.tb.tvTitle.text= getString(R.string.notifications)
 
 
-        ll_no_notifications.setOnClickListener {
-            rv_notifications.visibility = View.VISIBLE
-            ll_no_notifications.visibility = View.GONE
+        binding.llNoNotifications.setOnClickListener {
+           binding. rvNotifications.visibility = View.VISIBLE
+            binding.llNoNotifications.visibility = View.GONE
         }
         binding.notificationVM = notificationVM
     }
     fun setAdapter(){
         val notificationAdapter = NotificationAdapter(this)
-        rv_notifications.adapter = notificationAdapter
+        binding.rvNotifications.adapter = notificationAdapter
     }
 }

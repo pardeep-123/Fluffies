@@ -2,10 +2,8 @@ package com.puppypedia.common_adapters
 
 import android.content.Context
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puppypedia.R
 import com.puppypedia.databinding.ItemStatusBinding
 import de.hdodenhof.circleimageview.CircleImageView
 

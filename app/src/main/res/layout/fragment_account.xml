@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@drawable/bg_half"
     android:orientation="vertical"
     tools:context=".ui.fragments.AccountFragment">
 
@@ -26,7 +27,8 @@
                 android:id="@+id/signin_text"
                 style="@style/WrapTextView"
                 android:layout_centerInParent="true"
-                android:text="Account" />
+                android:text="Account"
+                android:textSize="@dimen/_14sdp" />
 
 
         </RelativeLayout>
@@ -35,50 +37,277 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:orientation="vertical">
-            <RelativeLayout
+
+            <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:padding="@dimen/_10sdp"
-                android:orientation="vertical">
+                android:elevation="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_image"
-                    android:layout_width="@dimen/_80sdp"
-                    android:layout_height="@dimen/_80sdp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:contentDescription="@string/image"
-                    android:src="@drawable/profile" />
-
-                <TextView
-                    android:id="@+id/name"
-                    android:layout_below="@id/profile_image"
-                    style="@style/WrapTextView"
-                    android:layout_centerHorizontal="true"
-                    android:textSize="@dimen/_14sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:text="John Marker" />
-
-                <TextView
-                    android:id="@+id/tvPhoneNo"
-                    style="@style/TextRegularFont"
-                    android:layout_width="wrap_content"
+                <RelativeLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/name"
-                    android:layout_centerHorizontal="true"
-                    android:text="johnmarker@gmail.com"
-                    android:textSize="@dimen/_12sdp" />
+                    android:orientation="vertical"
+                    android:padding="@dimen/_10sdp">
 
-            </RelativeLayout>
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/civProfile"
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/profile" />
 
+                    <TextView
+                        android:id="@+id/name"
+                        style="@style/WrapTextView"
+                        android:layout_below="@id/civProfile"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:text="John Marker"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        android:id="@+id/tvPhoneNo"
+                        style="@style/TextRegularFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/name"
+                        android:layout_centerHorizontal="true"
+                        android:text="johnmarker@gmail.com"
+                        android:textSize="@dimen/_12sdp" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/rlNotification"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10">
+
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_toStartOf="@id/sc_switch"
+                        android:text="@string/notifications" />
+
+                    <androidx.appcompat.widget.SwitchCompat
+                        android:id="@+id/sc_switch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:checked="true"
+                        android:thumb="@drawable/notification_thumb_selector"
+                        app:track="@drawable/notification_track_selector" />
+
+                </RelativeLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/rlMyPets"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10">
+
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_toStartOf="@id/ivArrow1"
+                        android:text="@string/my_pets_profile" />
+
+                    <ImageView
+                        android:id="@+id/ivArrow1"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/leftbluearrow" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/rlChangePassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10">
+
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_toStartOf="@id/ivArrow2"
+                        android:text="@string/change_password" />
+
+                    <ImageView
+                        android:id="@+id/ivArrow2"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/leftbluearrow" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/rlAboutUs"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10">
+
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_toStartOf="@id/ivArrow3"
+                        android:text="@string/about_us" />
+
+                    <ImageView
+                        android:id="@+id/ivArrow3"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/leftbluearrow" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/rlTermsCondition"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10">
+
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_toStartOf="@id/ivArrow4"
+                        android:text="@string/terms_conditions" />
+
+                    <ImageView
+                        android:id="@+id/ivArrow4"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/leftbluearrow" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:id="@+id/rlPrivacyPolicy"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10">
+
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_toStartOf="@id/ivArrow5"
+                        android:text="Privacy Policy" />
+
+                    <ImageView
+                        android:id="@+id/ivArrow5"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/leftbluearrow" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnLogout"
+                style="@style/ButtonMatch"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:background="@drawable/button_bg_10dp"
+                android:contentDescription="@string/image"
+                android:text="@string/logout" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

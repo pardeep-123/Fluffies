@@ -14,7 +14,6 @@ import com.puppypedia.ui.fragments.AccountFragment
 import com.puppypedia.ui.fragments.CalenderFragment
 import com.puppypedia.ui.fragments.HomeFragment
 import com.puppypedia.ui.fragments.SearchFragment
-import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
@@ -30,7 +29,7 @@ class HomeActivity : AppCompatActivity() {
 
         openFragment(HomeFragment())
 
-        btm_navigation.setOnNavigationItemSelectedListener {
+        binding.btmNavigation.setOnNavigationItemSelectedListener {
 
             when (it.itemId) {
                 R.id.home -> openFragment(HomeFragment())

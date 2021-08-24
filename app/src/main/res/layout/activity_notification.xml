@@ -17,6 +17,7 @@
     android:orientation="vertical"
     tools:context=".ui.main.ui.notification.NotificationActivity">
 <include
+    android:id="@+id/tb"
     layout="@layout/auth_toolbar"/>
     <LinearLayout
         android:id="@+id/ll_no_notifications"

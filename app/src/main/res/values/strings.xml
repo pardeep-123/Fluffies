@@ -55,5 +55,16 @@
     <string name="add_new">Add New</string>
     <string name="later">Later</string>
     <string name="your_pet_detail_added_successfully_do_you_want_another_dog">Your pet detail added successfully!! Do you want another dog?</string>
+    <string name="alert">Alert</string>
+    <string name="permissionRequired">Permission Required</string>
+    <string name="ok">Ok</string>
+    <string name="cancel">Cancel</string>
+    <string name="openSettings">Open Settings</string>
+    <string name="my_pets_profile">My Pets Profile</string>
+    <string name="about_us">About Us</string>
+    <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
+    <string name="logout">Logout</string>
+    <string name="privacy_police">Privacy Police</string>
+    <string name="update">Update</string>
 
 </resources>
