@@ -1,9 +1,11 @@
 package com.puppypedia.ui.main.ui.profile
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.puppypedia.R
 import com.puppypedia.databinding.ActivityProfileBinding
+import com.puppypedia.ui.main.ui.editpetprofile.EditPetProfileActivity
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -18,5 +20,9 @@ class ProfileActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.tb.tvTitle.text = getString(R.string.profile)
+
+        binding.btnEditProfile.setOnClickListener {
+            startActivity(Intent(this,EditPetProfileActivity::class.java))
+        }
     }
 }
