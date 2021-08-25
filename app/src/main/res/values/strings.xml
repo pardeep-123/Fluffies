@@ -48,6 +48,7 @@
     <string name="dummY_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis felis porttitor, molestie nunc in, pretium </string>
     <string name="edit_pet_profile">Edit Pet Profile</string>
     <string name="your_pet_profile_nupdated_successfully">Your Pet Profile\nupdated Successfully!</string>
+    <string name="your_appointment_updated_successfully">Your appointment\nupdated Successfully!</string>
 
     <string name="view_all"><u>View All</u></string>
     <string name="feeding">Feeding</string>
@@ -66,5 +67,18 @@
     <string name="logout">Logout</string>
     <string name="privacy_police">Privacy Police</string>
     <string name="update">Update</string>
+    <string name="add_remainder">Add Remainder</string>
+    <string name="weight_chart">Weight Chart</string>
+    <string name="statistics">Statistics</string>
+    <string name="add_weight">Add Weight</string>
+    <string name="date">Date</string>
+    <string name="time">Time</string>
+    <string name="day">Day</string>
+    <string name="month">Month</string>
+    <string name="year">Year</string>
+    <string name="about_weight">About Weight</string>
+    <string name="choose_your_dog">Choose your dog</string>
+    <string name="remainder">Remainder</string>
+    <string name="done">Done</string>
 
 </resources>

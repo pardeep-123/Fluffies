@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
     tools:context=".ui.fragments.CalenderFragment">
 
 
@@ -23,14 +24,41 @@
 
 
             <TextView
-                android:id="@+id/signin_text"
                 style="@style/WrapTextView"
                 android:layout_centerInParent="true"
-                android:textSize="@dimen/_14sdp"
-                android:text="Calender" />
+                android:text="@string/calender"
+                android:textSize="@dimen/_14sdp" />
 
+
+            <ImageView
+                android:id="@+id/ivAdd"
+                android:layout_width="@dimen/_17sdp"
+                android:layout_height="@dimen/_17sdp"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:contentDescription="@string/image"
+                android:src="@drawable/plis" />
 
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
+
+    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+        android:id="@+id/eventCalender"
+        android:layout_width="fill_parent"
+        android:layout_height="@dimen/_180sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        app:compactCalendarBackgroundColor="@color/white"
+        app:compactCalendarCurrentDayBackgroundColor="@android:color/transparent"
+        app:compactCalendarCurrentDayTextColor="@color/theme_Color"
+        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/albumColorPrimary"
+        app:compactCalendarCurrentSelectedDayTextColor="@color/white"
+        app:compactCalendarDisplayOtherMonthDays="false"
+        app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
+        app:compactCalendarTargetHeight="@dimen/_180sdp"
+        app:compactCalendarTextColor="@color/black"
+        app:compactCalendarTextSize="@dimen/_10sdp" />
 </LinearLayout>

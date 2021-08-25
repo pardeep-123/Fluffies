@@ -73,7 +73,7 @@
                 android:layout_marginTop="@dimen/_60sdp"
                 android:layout_marginStart="@dimen/_10sdp"
                 android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/button_bg_10dp"
+                android:background="@drawable/bg_sky_blue_10dp"
                 android:contentDescription="@string/image"
                 android:text="Update" />
         </LinearLayout>

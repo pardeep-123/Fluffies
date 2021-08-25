@@ -79,9 +79,10 @@
                             android:layout_height="match_parent"
                             android:background="@null" />
 
+
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/_8sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_10sdp"
@@ -108,9 +109,10 @@
                             android:layout_height="match_parent"
                             android:background="@null" />
 
+
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/_8sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_10sdp"
@@ -144,13 +146,15 @@
                             android:layout_height="match_parent"
                             android:background="@null" />
 
+
                         <ImageView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
+                            android:layout_width="@dimen/_8sdp"
+                            android:layout_height="@dimen/_8sdp"
                             android:layout_alignParentEnd="true"
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:src="@drawable/downaero" />
+
 
                     </RelativeLayout>
 
@@ -201,7 +205,7 @@
                 android:id="@+id/btnUpdate"
                 style="@style/ButtonMatch"
                 android:layout_margin="@dimen/_20sdp"
-                android:background="@drawable/button_bg_10dp"
+                android:background="@drawable/bg_sky_blue_10dp"
                 android:contentDescription="@string/image"
                 android:text="@string/update" />
 

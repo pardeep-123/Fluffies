@@ -166,7 +166,7 @@
                 android:id="@+id/BtnEdit"
                 style="@style/ButtonMatch"
                 android:layout_margin="@dimen/_10sdp"
-                android:background="@drawable/button_bg_10dp"
+                android:background="@drawable/bg_sky_blue_10dp"
                 android:contentDescription="@string/image"
                 android:text="@string/edit_pet_profile" />
         </LinearLayout>

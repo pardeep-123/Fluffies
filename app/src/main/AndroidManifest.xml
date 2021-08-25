@@ -9,27 +9,58 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PuppyPedia">
-        <activity android:name=".ui.main.ui.addremainder.AddRemainderActivity"></activity>
-        <activity android:name=".ui.main.ui.category_detail.CategoryDetailActivity" />
-        <activity android:name=".ui.main.ui.about_us.AboutUsActivity" />
-        <activity android:name=".ui.main.ui.changepassword.ChangePasswordActivity" />
-        <activity android:name=".ui.main.ui.editprofile.EditProfileActivity" />
-        <activity android:name=".ui.main.ui.profile.ProfileActivity" />
-        <activity android:name=".ui.main.ui.petdetail.YourPetDetailActivity" />
-        <activity android:name=".ui.main.ui.notification.NotificationActivity" />
-        <activity android:name=".ui.main.ui.home.HomeActivity" />
-        <activity android:name=".ui.auth.forgotpassword.ForgotPasswordActivity" />
-        <activity android:name=".ui.auth.signup.SignUpActivity" />
-        <activity android:name=".ui.auth.login.LoginActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".ui.main.ui.weight_chart.WeightChartActivity"></activity>
+        <activity
+            android:name=".ui.main.ui.addremainder.AddRemainderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.category_detail.CategoryDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.about_us.AboutUsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.changepassword.ChangePasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.editprofile.EditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.profile.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.petdetail.YourPetDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.notification.NotificationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.home.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.auth.forgotpassword.ForgotPasswordActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.auth.signup.SignUpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.auth.login.LoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.main.ui.editpetprofile.EditPetProfileActivity" />
-        <activity android:name=".ui.main.ui.mypetprofile.MyPetProfileActivity" />
+        <activity
+            android:name=".ui.main.ui.editpetprofile.EditPetProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.main.ui.mypetprofile.MyPetProfileActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

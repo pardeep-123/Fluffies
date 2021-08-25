@@ -19,7 +19,6 @@ class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding
     private val homeVM : HomeVM by viewModels()
 
-    private val loginVM : LoginVM by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 

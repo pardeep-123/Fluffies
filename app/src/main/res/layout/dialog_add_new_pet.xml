@@ -39,7 +39,7 @@
         <Button
             android:id="@+id/Add"
             style="@style/ButtonMatch"
-            android:background="@drawable/button_bg_10dp"
+            android:background="@drawable/bg_sky_blue_10dp"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -48,7 +48,7 @@
         <Button
             android:id="@+id/later"
             style="@style/ButtonMatch"
-            android:background="@drawable/button_bg_10dp"
+            android:background="@drawable/bg_sky_blue_10dp"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

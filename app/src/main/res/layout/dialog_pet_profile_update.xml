@@ -31,7 +31,7 @@
         android:layout_height="@dimen/_30sdp"
         android:layout_marginTop="@dimen/_20sdp"
         android:layout_gravity="center"
-        android:background="@drawable/button_bg_10dp"
+        android:background="@drawable/bg_sky_blue_10dp"
         android:contentDescription="@string/image"
         android:text="Done" />
 

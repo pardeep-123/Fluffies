@@ -31,7 +31,10 @@ class EditPetProfileActivity : AppCompatActivity() {
             onBackPressed()
         }
         binding.tb.tvTitle.text = getString(R.string.edit_pet_profile)
+
+
         binding.btnUpdate.setOnClickListener {
+
             val dialog = Dialog(this)
             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             val view = DialogPetProfileUpdateBinding.inflate(layoutInflater)
@@ -59,10 +62,10 @@ class EditPetProfileActivity : AppCompatActivity() {
     }
 
 
-    private fun setSpinnerGender(){
-        val arrayList = arrayListOf("Gender","Male","Female")
+    private fun setSpinnerGender() {
+        val arrayList = arrayListOf("Gender", "Male", "Female")
 
-        val adapterGender = ArrayAdapter(this,R.layout.item_spinner,R.id.tvSpinner,arrayList)
+        val adapterGender = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         binding.spinnerGender.adapter = adapterGender
 
         binding.spinnerGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -102,10 +105,10 @@ class EditPetProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun setSpinnerAge(){
-        val arrayList = arrayListOf("Age","1 yr","2 yr")
+    private fun setSpinnerAge() {
+        val arrayList = arrayListOf("Age", "1 yr", "2 yr")
 
-        val adapterAge = ArrayAdapter(this,R.layout.item_spinner,R.id.tvSpinner,arrayList)
+        val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         binding.spinnerAge.adapter = adapterAge
 
         binding.spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -145,10 +148,10 @@ class EditPetProfileActivity : AppCompatActivity() {
         }
     }
 
-    private fun setSpinnerWeight(){
-        val arrayList = arrayListOf("Weight","1 lbs","2 lbs")
+    private fun setSpinnerWeight() {
+        val arrayList = arrayListOf("Weight", "1 lbs", "2 lbs")
 
-        val adapterWeight = ArrayAdapter(this,R.layout.item_spinner,R.id.tvSpinner,arrayList)
+        val adapterWeight = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         binding.spinnerWeight.adapter = adapterWeight
 
         binding.spinnerWeight.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
