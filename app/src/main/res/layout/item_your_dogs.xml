@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_marginBottom="@dimen/_8sdp">
 
 
@@ -9,8 +10,10 @@
         android:id="@+id/ivDog"
         android:layout_width="@dimen/_25sdp"
         android:layout_height="@dimen/_25sdp"
+        app:civ_border_color="@color/theme_Color"
+        app:civ_border_width="@dimen/_1sdp"
         android:layout_centerVertical="true"
-        android:src="@drawable/dog_profile" />
+        android:src="@drawable/dogsimg" />
 
     <TextView
         android:id="@+id/tvDogName"
@@ -29,5 +32,5 @@
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/image"
-        android:src="@drawable/dot2" />
+        android:src="@drawable/ic_dot_unselect" />
 </RelativeLayout>

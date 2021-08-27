@@ -4,6 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginStart="@dimen/_20sdp"
+    android:layout_marginEnd="@dimen/_20sdp"
     android:fillViewport="true"
     tools:context=".ui.fragments.WeightFragment">
 
@@ -13,13 +15,13 @@
         android:orientation="vertical">
 
         <LinearLayout
-            android:padding="@dimen/_10sdp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_above="@id/btnAddWeight"
             android:layout_alignParentTop="true"
             android:background="@drawable/bg_light_sky_blue_10dp"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="@dimen/_10sdp">
 
 
             <LinearLayout

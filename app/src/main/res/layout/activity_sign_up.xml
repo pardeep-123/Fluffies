@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -11,165 +11,158 @@
 
     </data>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/white"
-    tools:context=".ui.auth.signup.SignUpActivity">
-
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fillViewport="true"
-        >
+        android:background="@color/white"
+        android:orientation="vertical"
+        tools:context=".ui.auth.signup.SignUpActivity">
 
-        <LinearLayout
-            android:background="@drawable/bg"
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:paddingStart="@dimen/_20sdp"
-            android:paddingEnd="@dimen/_20sdp"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:src="@drawable/logo"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/_80sdp"
-                android:contentDescription="@string/image" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/sign_u"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:fontFamily="@font/courgette_regular"
-                android:textSize="@dimen/_20sdp"
-                android:textColor="@color/theme_Color"
-                />
-
-
-            <TextView
-                style="@style/WrapTextView"
-                android:text="@string/name"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:textSize="@dimen/_14sdp"
-                />
-
-            <EditText
-                style="@style/MatchEditText"
-                android:background="@drawable/bg_edit_text"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:hint="@string/enter_name"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="@{signUpVM.name}"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:paddingEnd="@dimen/_10sdp"/>
-            <TextView
-                style="@style/WrapTextView"
-                android:text="@string/email"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_14sdp"
-                />
-
-            <EditText
-                style="@style/MatchEditText"
-                android:background="@drawable/bg_edit_text"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:hint="@string/enter_email"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="@{signUpVM.email}"
-                android:imeOptions="actionNext"
-                android:inputType="textEmailAddress"
-                android:paddingEnd="@dimen/_10sdp"/>
-
-            <TextView
-                style="@style/WrapTextView"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/password"
-                android:textSize="@dimen/_14sdp" />
-
-            <EditText
-                style="@style/MatchEditText"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/enter_password"
-                android:imeOptions="actionNext"
-                android:text="@{signUpVM.password}"
-                android:inputType="textPassword"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp" />
-
-            <TextView
-                style="@style/WrapTextView"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:text="@string/confirm_password"
-                android:textSize="@dimen/_14sdp" />
-
-            <EditText
-                style="@style/MatchEditText"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/enter_confirm_password"
-                android:imeOptions="actionNext"
-                android:inputType="textPassword"
-                android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:text="@{signUpVM.confirmPassword}" />
-
-
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/login"
-                style="@style/ButtonMatch"
-                android:layout_marginTop="@dimen/_20sdp"
-                android:background="@drawable/bg_sky_blue_10dp"
-                android:contentDescription="@string/image"
-                android:onClick="@{(view)-> signUpVM.onClick(view,`btnSignIn`)}"
-                android:text="Sign Up" />
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
-                android:id="@+id/llSignUp"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginBottom="@dimen/_10sdp"
-                android:layout_marginTop="@dimen/_20sdp"
-                >
+                android:background="@drawable/bg"
+                android:orientation="vertical"
+                android:paddingStart="@dimen/_20sdp"
+                android:paddingEnd="@dimen/_20sdp">
 
-                <TextView
-                    style="@style/WrapTextView"
-                    android:textSize="@dimen/_10sdp"
+                <ImageView
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_100sdp"
                     android:layout_gravity="center"
-                    android:layout_marginBottom="@dimen/dp5"
-                    android:text="@string/already_have_an_account"
-                    />
+                    android:layout_marginTop="@dimen/_80sdp"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/logo" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:fontFamily="@font/courgette_regular"
+                    android:text="@string/sign_u"
+                    android:textColor="@color/theme_Color"
+                    android:textSize="@dimen/_20sdp" />
+
 
                 <TextView
                     style="@style/WrapTextView"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:text="@string/name"
+                    android:textSize="@dimen/_14sdp" />
+
+                <EditText
+                    style="@style/MatchEditText"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:hint="@string/enter_name"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@{signUpVM.name}" />
+
+                <TextView
+                    style="@style/WrapTextView"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/email"
+                    android:textSize="@dimen/_14sdp" />
+
+                <EditText
+                    style="@style/MatchEditText"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:hint="@string/enter_email"
+                    android:imeOptions="actionNext"
+                    android:inputType="textEmailAddress"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@{signUpVM.email}" />
+
+                <TextView
+                    style="@style/WrapTextView"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/password"
+                    android:textSize="@dimen/_14sdp" />
+
+                <EditText
+                    style="@style/MatchEditText"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:hint="@string/enter_password"
+                    android:imeOptions="actionNext"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@{signUpVM.password}" />
+
+                <TextView
+                    style="@style/WrapTextView"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:text="@string/confirm_password"
+                    android:textSize="@dimen/_14sdp" />
+
+                <EditText
+                    style="@style/MatchEditText"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@drawable/bg_edit_text"
+                    android:hint="@string/enter_confirm_password"
+                    android:imeOptions="actionDone"
+                    android:inputType="textPassword"
+                    android:paddingStart="@dimen/_10sdp"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@{signUpVM.confirmPassword}" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/login"
+                    style="@style/ButtonMatch"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:background="@drawable/bg_sky_blue_10dp"
+                    android:contentDescription="@string/image"
+                    android:onClick="@{(view)-> signUpVM.onClick(view,`btnSignIn`)}"
+                    android:text="Sign Up" />
+
+                <LinearLayout
+                    android:id="@+id/llSignUp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="@dimen/dp5"
-                    android:layout_marginBottom="@dimen/dp5"
-                    android:text="@string/sign_i"
-                    android:onClick="@{(view)->signUpVM.onClick(view,`SignIn`)}"
-                    android:textSize="@dimen/_10sdp"
-                    android:textColor="@color/theme_Color" />
+                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginBottom="@dimen/_10sdp">
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_gravity="center"
+                        android:layout_marginBottom="@dimen/dp5"
+                        android:text="@string/already_have_an_account"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginStart="@dimen/dp5"
+                        android:layout_marginBottom="@dimen/dp5"
+                        android:onClick="@{(view)->signUpVM.onClick(view,`SignIn`)}"
+                        android:text="@string/sign_i"
+                        android:textColor="@color/theme_Color"
+                        android:textSize="@dimen/_10sdp" />
+
+                </LinearLayout>
+
 
             </LinearLayout>
 
 
-
-        </LinearLayout>
-
-
-    </androidx.core.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
 
 
-
-</LinearLayout>
+    </LinearLayout>
 
 </layout>

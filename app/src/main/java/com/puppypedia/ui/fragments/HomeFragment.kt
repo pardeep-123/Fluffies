@@ -23,6 +23,7 @@ import com.puppypedia.databinding.FragmentHomeBinding
 import com.puppypedia.model.DogsModel
 import com.puppypedia.model.HomeImageModel
 import com.puppypedia.model.ServicesModel
+import com.puppypedia.ui.main.ui.category.CategoryActivity
 import com.puppypedia.ui.main.ui.category_detail.CategoryDetailActivity
 import com.puppypedia.ui.main.ui.notification.NotificationActivity
 import com.puppypedia.ui.main.ui.weight_chart.WeightChartActivity
@@ -45,8 +46,7 @@ class HomeFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentHomeBinding.inflate(layoutInflater)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -65,6 +65,10 @@ class HomeFragment : Fragment() {
         snapHelper.attachToRecyclerView(binding.rcDetailsImg)
 
 
+        clicksHandle()
+    }
+
+    private fun clicksHandle() {
         binding.rlNotification.setOnClickListener {
             startActivity(Intent(requireContext(), NotificationActivity::class.java))
         }
@@ -72,9 +76,13 @@ class HomeFragment : Fragment() {
         binding.rlChoosePet.setOnClickListener {
             myPopupWindow?.showAsDropDown(it, 40, 40)
         }
+
+        binding.tvViewAll.setOnClickListener {
+            startActivity(Intent(requireContext(), CategoryActivity::class.java))
+        }
     }
 
-    fun setService() {
+    private fun setService() {
         val arrayList = ArrayList<ServicesModel>()
         arrayList.add(ServicesModel(R.drawable.icon1, "Feeding", true))
         arrayList.add(ServicesModel(R.drawable.icon3, "Weight Chart", false))
@@ -113,14 +121,14 @@ class HomeFragment : Fragment() {
 
 
         val arrayList = ArrayList<DogsModel>()
-        arrayList.add(DogsModel(R.drawable.dog_profile, "Rony", true))
+        arrayList.add(DogsModel(R.drawable.dogsimg, "Rony", true))
         arrayList.add(DogsModel(R.drawable.dog_img, "Rocky", false))
 
         val dogsAdapter = DogsAdapter(arrayList)
         rvDogs.adapter = dogsAdapter
 
 
-        dogsAdapter.onItemSelected = {dogModel ->
+        dogsAdapter.onItemSelected = { dogModel ->
             myPopupWindow?.dismiss()
         }
 

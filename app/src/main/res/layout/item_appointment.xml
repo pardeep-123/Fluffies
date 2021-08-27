@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:background="@drawable/bg_light_grray_10dp"
+    android:padding="@dimen/_5sdp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_centerVertical="true"
+        android:layout_marginStart="@dimen/_10sdp"
+        android:layout_toStartOf="@+id/llSwitch"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvName"
+            style="@style/TextRegularFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_bold"
+            android:lines="1"
+            android:text="Canine Parvovirus"
+            android:textColor="@color/theme_Color" />
+
+        <TextView
+            android:id="@+id/tvDesc"
+            style="@style/TextRegularFont"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/opensans_bold"
+            android:lines="1"
+            android:text="Dog-Rocky At 10 am" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llSwitch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_centerVertical="true"
+        android:layout_marginEnd="@dimen/_10sdp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvMonth"
+            style="@style/TextRegularFont"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="@dimen/_9sdp"
+            android:text="@string/remainder" />
+
+
+        <androidx.appcompat.widget.SwitchCompat
+            android:id="@+id/swReminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:checked="true"
+            android:thumb="@drawable/notification_thumb_selector"
+            app:track="@drawable/notification_track_selector" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>

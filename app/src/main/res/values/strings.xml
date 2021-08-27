@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PuppyPedia</string>
+    <string name="app_name">Puppypedia</string>
     <string name="image">Image</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="please_sign_into_your_account">Please sign into your account!</string>
@@ -33,7 +33,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
     <string name="pet_detail">Pet Detail</string>
-    <string name="rony">Rony</string>
+    <string name="rony"><u>Rony</u></string>
     <string name="gender">Gender</string>
     <string name="male">Male</string>
     <string name="weight">Weight</string>
@@ -65,9 +65,9 @@
     <string name="about_us">About Us</string>
     <string name="terms_conditions"><![CDATA[Terms & Conditions]]></string>
     <string name="logout">Logout</string>
-    <string name="privacy_police">Privacy Police</string>
+    <string name="privacy_police">Privacy Policy</string>
     <string name="update">Update</string>
-    <string name="add_remainder">Add Remainder</string>
+    <string name="add_remainder">Add Reminder</string>
     <string name="weight_chart">Weight Chart</string>
     <string name="statistics">Statistics</string>
     <string name="add_weight">Add Weight</string>
@@ -78,7 +78,24 @@
     <string name="year">Year</string>
     <string name="about_weight">About Weight</string>
     <string name="choose_your_dog">Choose your dog</string>
-    <string name="remainder">Remainder</string>
+    <string name="remainder">Reminder</string>
     <string name="done">Done</string>
-
+    <string name="category">Category</string>
+    <string name="vaccine_date">Vaccine Date</string>
+    <string name="selected_date">Selected Date</string>
+    <string name="appointments">Appointments</string>
+    <string name="no_appointment_yet">No Appointment Yet!!</string>
+    <string name="tap_plus_button">Tap Plus + Button Add New Appointment</string>
+    <string name="remainder_date">Remainder Date</string>
+    <string name="best_pet_care_here">Best Pet Care Here!!</string>
+    <string name="home_essential">Home Essential</string>
+    <string name="logout_desc">Do you want to logout?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="confirm_new_password">Confirm New Password</string>
+    <string name="weight_of_dog">Weight of Dog</string>
+    <string name="lbs">lbs</string>
+    <string name="save">Save</string>
 </resources>

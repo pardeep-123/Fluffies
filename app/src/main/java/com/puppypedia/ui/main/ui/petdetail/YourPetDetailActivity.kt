@@ -67,6 +67,7 @@ class YourPetDetailActivity : AppCompatActivity() {
         btnLater.setOnClickListener {
             startActivity(Intent(this,HomeActivity::class.java))
             dialog.dismiss()
+            finishAffinity()
         }
     }
 

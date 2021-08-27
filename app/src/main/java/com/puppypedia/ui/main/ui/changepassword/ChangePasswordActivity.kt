@@ -14,10 +14,17 @@ class ChangePasswordActivity : AppCompatActivity() {
         binding = ActivityChangePasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        binding.tb.tvTitle.text = getString(R.string.change_password)
+        clicksHandle()
+    }
+
+    private fun clicksHandle() {
         binding.tb.ivBack.setOnClickListener {
             onBackPressed()
         }
+        binding.btnSave.setOnClickListener {
+            onBackPressed()
+        }
 
-        binding.tb.tvTitle.text = getString(R.string.change_password)
     }
 }

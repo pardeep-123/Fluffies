@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import com.puppypedia.R
 import com.puppypedia.databinding.FragmentAccountBinding
+import com.puppypedia.dialogius.LogoutDialog
 import com.puppypedia.ui.main.ui.about_us.AboutUsActivity
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordActivity
 import com.puppypedia.ui.main.ui.mypetprofile.MyPetProfileActivity
@@ -65,7 +66,8 @@ class AccountFragment : Fragment() {
         }
 
         binding.btnLogout.setOnClickListener {
-
+            val dialog = LogoutDialog()
+            dialog.show(requireActivity().supportFragmentManager,"logoutDialog")
         }
     }
 

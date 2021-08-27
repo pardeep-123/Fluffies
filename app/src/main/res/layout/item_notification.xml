@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_layout_radius"
-    android:layout_marginBottom="@dimen/_5sdp">
+    android:layout_marginBottom="@dimen/_5sdp"
+    android:background="@drawable/bg_layout_radius">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,11 +14,10 @@
 
         <com.makeramen.roundedimageview.RoundedImageView
             android:id="@+id/rivProfile"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="@dimen/_50sdp"
             android:layout_gravity="center"
-            android:src="@drawable/profile"
-            />
+            android:src="@drawable/profile" />
 
 
         <LinearLayout
@@ -37,10 +36,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentStart="true"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_toStartOf="@id/tvDate"
                     android:lines="1"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:text="John Markus" />
+                    android:text="John Markus"
+                    android:textSize="@dimen/_10sdp" />
 
 
                 <TextView
@@ -52,7 +52,7 @@
                     android:lines="1"
                     android:text="10:00 AM"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_8sdp" />
+                    android:textSize="@dimen/_7sdp" />
 
 
             </RelativeLayout>
@@ -64,7 +64,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_3sdp"
                 android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry."
-                android:textSize="@dimen/_10sdp" />
+                android:textSize="@dimen/_9sdp" />
 
 
         </LinearLayout>

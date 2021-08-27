@@ -5,6 +5,8 @@
     android:layout_height="match_parent"
     android:fillViewport="true"
     android:background="@color/white"
+    android:paddingStart="@dimen/_20sdp"
+    android:paddingEnd="@dimen/_20sdp"
     tools:context=".ui.fragments.StatisticsFragment">
 
     <LinearLayout

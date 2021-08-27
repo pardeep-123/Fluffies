@@ -84,7 +84,7 @@ class AddRemainderActivity : AppCompatActivity() {
                 binding.edtTime.setText(
                     AppUtils.dateInString(
                         myCalendar.timeInMillis,
-                        "hh:mm:a"
+                        "hh:mm a"
                     )
                 )
 

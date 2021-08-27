@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.puppypedia">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,7 +13,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PuppyPedia">
-        <activity android:name=".ui.main.ui.weight_chart.WeightChartActivity"></activity>
+        <activity
+            android:name=".ui.main.ui.add_weight.AddWeightActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.main.ui.category.CategoryActivity"
+            android:exported="true" />
+        <activity android:name=".ui.main.ui.weight_chart.WeightChartActivity" />
         <activity
             android:name=".ui.main.ui.addremainder.AddRemainderActivity"
             android:screenOrientation="portrait" />
@@ -47,7 +57,8 @@
             android:name=".ui.auth.login.LoginActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".ui.main.SplashActivity"
+            android:exported="true"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -61,6 +72,16 @@
         <activity
             android:name=".ui.main.ui.mypetprofile.MyPetProfileActivity"
             android:screenOrientation="portrait" />
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
     </application>
 
 </manifest>

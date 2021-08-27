@@ -14,23 +14,29 @@ class LoginVM : ViewModel() {
     var email: ObservableField<String> = ObservableField("")
     var password: ObservableField<String> = ObservableField("")
 
-    fun onClick(v : View , s : String ){
-        when (s){
+    fun onClick(v: View, s: String) {
+        when (s) {
 
             "btnSignIn" -> {
 
-                (v.context as Activity).startActivity(Intent(v.context,HomeActivity::class.java))
-        }
+                (v.context as Activity).startActivity(Intent(v.context, HomeActivity::class.java))
+                (v.context as Activity).finishAffinity()
+            }
 
             "btnForgot" -> {
-                (v.context as Activity).startActivity(Intent(v.context,ForgotPasswordActivity::class.java))
+                (v.context as Activity).startActivity(
+                    Intent(
+                        v.context,
+                        ForgotPasswordActivity::class.java
+                    )
+                )
 
 
             }
             "SignUp" -> {
 
-                (v.context as Activity).startActivity(Intent(v.context,SignUpActivity::class.java))
+                (v.context as Activity).startActivity(Intent(v.context, SignUpActivity::class.java))
             }
-    }
+        }
     }
 }

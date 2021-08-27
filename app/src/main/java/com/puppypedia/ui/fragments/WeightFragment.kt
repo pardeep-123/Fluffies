@@ -1,5 +1,6 @@
 package com.puppypedia.ui.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import com.puppypedia.R
 import com.puppypedia.common_adapters.WeightAdapter
 import com.puppypedia.databinding.FragmentWeightBinding
+import com.puppypedia.ui.main.ui.add_weight.AddWeightActivity
 
 
 class WeightFragment : Fragment() {
@@ -32,7 +34,7 @@ class WeightFragment : Fragment() {
         binding.rvWeight.adapter = weightAdapter
 
         binding.btnAddWeight.setOnClickListener {
-
+            startActivity(Intent(requireContext(), AddWeightActivity::class.java))
         }
     }
 }

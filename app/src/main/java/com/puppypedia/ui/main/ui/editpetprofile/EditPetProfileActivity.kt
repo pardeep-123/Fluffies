@@ -17,16 +17,30 @@ import androidx.core.content.ContextCompat
 import com.puppypedia.R
 import com.puppypedia.databinding.ActivityEditPetProfileBinding
 import com.puppypedia.databinding.DialogPetProfileUpdateBinding
+import com.puppypedia.utils.helper.ImagePickerUtility
 
-class EditPetProfileActivity : AppCompatActivity() {
+class EditPetProfileActivity : ImagePickerUtility() {
 
     lateinit var binding: ActivityEditPetProfileBinding
+
+
+    override fun selectedImage(imagePath: String?, code: Int) {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityEditPetProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        clicksHandle()
+
+        setSpinnerGender()
+        setSpinnerAge()
+        setSpinnerWeight()
+    }
+
+    private fun clicksHandle() {
         binding.tb.ivBack.setOnClickListener {
             onBackPressed()
         }
@@ -34,31 +48,34 @@ class EditPetProfileActivity : AppCompatActivity() {
 
 
         binding.btnUpdate.setOnClickListener {
-
-            val dialog = Dialog(this)
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-            val view = DialogPetProfileUpdateBinding.inflate(layoutInflater)
-            dialog.setContentView(view.root)
-            dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-            dialog.window!!.setLayout(
-                WindowManager.LayoutParams.WRAP_CONTENT,
-                WindowManager.LayoutParams.WRAP_CONTENT
-            )
-            dialog.setCancelable(true)
-            dialog.setCanceledOnTouchOutside(true)
-            dialog.window!!.setGravity(Gravity.CENTER)
-            dialog.show()
-
-            val done = dialog.findViewById<Button>(R.id.done)
-            done.setOnClickListener {
-                finish()
-                dialog.dismiss()
-            }
+            updateSuccessfully()
         }
 
-        setSpinnerGender()
-        setSpinnerAge()
-        setSpinnerWeight()
+        binding.rivPet.setOnClickListener {
+            getImage(this, 0)
+        }
+    }
+
+    private fun updateSuccessfully() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        val view = DialogPetProfileUpdateBinding.inflate(layoutInflater)
+        dialog.setContentView(view.root)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.window!!.setLayout(
+            WindowManager.LayoutParams.WRAP_CONTENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(true)
+        dialog.window!!.setGravity(Gravity.CENTER)
+        dialog.show()
+
+        val done = dialog.findViewById<Button>(R.id.done)
+        done.setOnClickListener {
+            finish()
+            dialog.dismiss()
+        }
     }
 
 
@@ -67,6 +84,8 @@ class EditPetProfileActivity : AppCompatActivity() {
 
         val adapterGender = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         binding.spinnerGender.adapter = adapterGender
+
+        binding.spinnerGender.setSelection(1)
 
         binding.spinnerGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -111,6 +130,8 @@ class EditPetProfileActivity : AppCompatActivity() {
         val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         binding.spinnerAge.adapter = adapterAge
 
+        binding.spinnerAge.setSelection(1)
+
         binding.spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
 
@@ -153,6 +174,8 @@ class EditPetProfileActivity : AppCompatActivity() {
 
         val adapterWeight = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         binding.spinnerWeight.adapter = adapterWeight
+
+        binding.spinnerWeight.setSelection(1)
 
         binding.spinnerWeight.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {

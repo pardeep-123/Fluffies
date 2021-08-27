@@ -2,6 +2,7 @@ package com.puppypedia.common_adapters
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.puppypedia.R
 import com.puppypedia.databinding.ItemYourDogsBinding
@@ -36,9 +37,9 @@ class DogsAdapter(var arrayList: ArrayList<DogsModel>) :
             val dogModel = arrayList[pos]
 
             if (dogModel.isSelected) {
-                ivCheck.setImageResource(R.drawable.dot1)
+                ivCheck.setImageDrawable(ContextCompat.getDrawable(ivCheck.context,R.drawable.ic_dot_unselect))
             } else {
-                ivCheck.setImageResource(R.drawable.dot2)
+                ivCheck.setImageDrawable(ContextCompat.getDrawable(ivCheck.context,R.drawable.ic_dot_select))
             }
 
 

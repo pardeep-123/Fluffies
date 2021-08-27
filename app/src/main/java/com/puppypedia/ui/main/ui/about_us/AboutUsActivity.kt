@@ -8,7 +8,7 @@ import com.puppypedia.utils.helper.AppConstant
 
 //************************0 -> About Us**********************
 //************************1 -> Terms & Conditions**********************
-//************************2 -> Privacy Police**********************
+//************************2 -> Privacy Policy**********************
 
 class AboutUsActivity : AppCompatActivity() {
 

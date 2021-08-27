@@ -23,7 +23,7 @@
             android:orientation="vertical">
 
             <com.makeramen.roundedimageview.RoundedImageView
-                android:id="@+id/riv_pet"
+                android:id="@+id/rivPet"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -39,12 +39,13 @@
 
             <EditText
                 style="@style/MatchEditText"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@drawable/bg_edit_text"
                 android:hint="@string/enter_name"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:paddingStart="@dimen/_10sdp"
+                android:text="Rocky"
                 android:paddingEnd="@dimen/_10sdp" />
 
 
@@ -70,7 +71,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text">
 
                         <Spinner
@@ -100,7 +101,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text">
 
                         <Spinner
@@ -137,7 +138,7 @@
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text">
 
                         <Spinner
@@ -169,8 +170,9 @@
                         style="@style/MatchEditText"
                         android:background="@drawable/bg_edit_text"
                         android:hint="@string/breed"
+                        android:text="Golden Retriever"
                         android:imeOptions="actionDone"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:inputType="textEmailAddress"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_10sdp" />
@@ -192,13 +194,14 @@
                 android:gravity="start|top"
                 android:hint="@string/about_pet"
                 android:imeOptions="actionDone"
-                android:inputType="textEmailAddress"
-                android:layout_marginTop="@dimen/_10sdp"
+                android:inputType="textMultiLine"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:maxHeight="@dimen/_100sdp"
                 android:minHeight="@dimen/_100sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
+                android:text="@string/dummY_text"
                 android:textColorHint="@color/black" />
 
             <androidx.appcompat.widget.AppCompatButton

@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     tools:context=".ui.fragments.CalenderFragment">
 
@@ -32,11 +33,12 @@
 
             <ImageView
                 android:id="@+id/ivAdd"
-                android:layout_width="@dimen/_17sdp"
-                android:layout_height="@dimen/_17sdp"
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_25sdp"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
+                android:padding="@dimen/_5sdp"
                 android:contentDescription="@string/image"
                 android:src="@drawable/plis" />
 
@@ -44,21 +46,194 @@
 
     </androidx.appcompat.widget.Toolbar>
 
-    <com.github.sundeepk.compactcalendarview.CompactCalendarView
-        android:id="@+id/eventCalender"
-        android:layout_width="fill_parent"
-        android:layout_height="@dimen/_180sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        app:compactCalendarBackgroundColor="@color/white"
-        app:compactCalendarCurrentDayBackgroundColor="@android:color/transparent"
-        app:compactCalendarCurrentDayTextColor="@color/theme_Color"
-        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/albumColorPrimary"
-        app:compactCalendarCurrentSelectedDayTextColor="@color/white"
-        app:compactCalendarDisplayOtherMonthDays="false"
-        app:compactCalendarShouldSelectFirstDayOfMonthOnScroll="true"
-        app:compactCalendarTargetHeight="@dimen/_180sdp"
-        app:compactCalendarTextColor="@color/black"
-        app:compactCalendarTextSize="@dimen/_10sdp" />
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_half"
+            android:orientation="vertical"
+            android:paddingStart="@dimen/_10sdp"
+            android:paddingEnd="@dimen/_10sdp">
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                app:cardCornerRadius="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:id="@+id/ivBackCal"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_gravity="start"
+                            android:contentDescription="@string/image"
+                            android:src="@drawable/blackleftaero" />
+
+
+                        <TextView
+                            android:id="@+id/tvMonth"
+                            style="@style/WrapTextView"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="@font/opensans_bold"
+                            android:gravity="center"
+                            android:text="@string/month" />
+
+                        <ImageView
+                            android:id="@+id/ivNextCal"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:layout_gravity="end"
+                            android:contentDescription="@string/image"
+                            android:src="@drawable/blackrightaero" />
+
+
+                    </LinearLayout>
+
+                    <com.github.sundeepk.compactcalendarview.CompactCalendarView
+                        android:id="@+id/compactCalendarView"
+                        android:layout_width="fill_parent"
+                        android:layout_height="250dp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        app:compactCalendarBackgroundColor="@color/white"
+                        app:compactCalendarCurrentDayBackgroundColor="@color/light_sky_blue"
+                        app:compactCalendarCurrentSelectedDayBackgroundColor="@color/theme_Color"
+                        app:compactCalendarCurrentSelectedDayTextColor="@color/white"
+                        app:compactCalendarMultiEventIndicatorColor="@color/theme_Color"
+                        app:compactCalendarTargetHeight="250dp"
+                        app:compactCalendarTextColor="@color/black"
+                        app:compactCalendarTextSize="12sp" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:gravity="center_vertical|end"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/ic_dot_select" />
+
+                <TextView
+                    style="@style/WrapTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:gravity="center"
+                    android:text="@string/selected_date"
+                    android:textSize="@dimen/_9sdp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_5sdp"
+                    android:layout_height="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/ic_dot_select" />
+
+                <TextView
+                    style="@style/WrapTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:fontFamily="@font/opensans_regular"
+                    android:gravity="center"
+                    android:text="@string/remainder_date"
+                    android:textSize="@dimen/_9sdp" />
+
+            </LinearLayout>
+
+            <TextView
+                style="@style/WrapTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:fontFamily="@font/opensans_bold"
+                android:gravity="center"
+                android:text="@string/appointments" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/llNoAppointment"
+                    android:layout_width="match_parent"
+                    android:layout_height="150dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/box"
+                        android:contentDescription="@string/image" />
+
+                    <TextView
+                        style="@style/TextRegularFont"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/dp10"
+                        android:fontFamily="@font/opensans_bold"
+                        android:text="@string/no_appointment_yet" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvAppointments"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                <TextView
+                    style="@style/TextRegularFont"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:fontFamily="@font/opensans_bold"
+                    android:gravity="center_horizontal"
+                    android:text="@string/tap_plus_button"
+                    android:textColor="@color/lightGrayA3A3A3"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
 </LinearLayout>

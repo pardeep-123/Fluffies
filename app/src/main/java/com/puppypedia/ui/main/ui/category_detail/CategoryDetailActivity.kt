@@ -17,11 +17,17 @@ class CategoryDetailActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         binding.tb.tvTitle.setTextColor(getColor(R.color.white))
+        binding.tb.ivBack.setImageResource(R.drawable.arrow_back_white)
 
         val heading = intent.getStringExtra(AppConstant.HEADING)
 
         if (heading != null){
-            binding.tb.tvTitle.text = heading
+            if(heading == "Essential"){
+                binding.tb.tvTitle.text = getString(R.string.home_essential)
+            }else{
+                binding.tb.tvTitle.text = heading
+            }
+
         }
 
         binding.tb.ivBack.setOnClickListener {
