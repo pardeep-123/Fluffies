@@ -18,25 +18,38 @@ import androidx.core.content.ContextCompat
 import com.puppypedia.R
 import com.puppypedia.databinding.ActivityYourPetDetailBinding
 import com.puppypedia.ui.main.ui.home.HomeActivity
+import com.puppypedia.utils.helper.ImagePickerUtility
 
 
-class YourPetDetailActivity : AppCompatActivity() {
+class YourPetDetailActivity : ImagePickerUtility() {
 
     lateinit var binding: ActivityYourPetDetailBinding
+
+    override fun selectedImage(imagePath: String?, code: Int) {
+
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityYourPetDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        binding.tb.tvTitle.text = getString(R.string.your_pet_detail)
+        clicksHandle()
+
         setSpinnerAge()
         setSpinnerGender()
         setSpinnerWeight()
+    }
 
-            binding.tb.ivBack.setOnClickListener {
-                onBackPressed()
-            }
+    private fun clicksHandle() {
+        binding.tb.ivBack.setOnClickListener {
+            onBackPressed()
+        }
 
-       binding.tb.tvTitle .text = getString(R.string.your_pet_detail)
+        binding.ivCamera.setOnClickListener {
+            getImage(this, 0)
+        }
 
         binding.btnPetDetail.setOnClickListener {
             dialogAddPet()
@@ -44,7 +57,7 @@ class YourPetDetailActivity : AppCompatActivity() {
         }
     }
 
-    fun dialogAddPet(){
+    fun dialogAddPet() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_add_new_pet)
@@ -65,7 +78,7 @@ class YourPetDetailActivity : AppCompatActivity() {
             dialog.dismiss()
         }
         btnLater.setOnClickListener {
-            startActivity(Intent(this,HomeActivity::class.java))
+            startActivity(Intent(this, HomeActivity::class.java))
             dialog.dismiss()
             finishAffinity()
         }

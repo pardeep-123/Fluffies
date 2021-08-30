@@ -11,60 +11,62 @@
 
     </data>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.main.ui.notification.NotificationActivity">
-<include
-    android:id="@+id/tb"
-    layout="@layout/auth_toolbar"/>
     <LinearLayout
-        android:id="@+id/ll_no_notifications"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="visible">
+        tools:context=".ui.main.ui.notification.NotificationActivity">
 
-        <ImageView
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_gravity="center"
-            android:layout_marginTop="100dp"
-            android:background="@drawable/no_notification"
-            android:contentDescription="@string/image" />
+        <include
+            android:id="@+id/tb"
+            layout="@layout/auth_toolbar" />
 
-        <TextView
-            android:id="@+id/no_notification"
-           style="@style/WrapTextView"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp20"
-            android:fontFamily="@font/opensans_bold"
-            android:text="@string/no_notifications_yet"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp" />
+        <LinearLayout
+            android:id="@+id/ll_no_notifications"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="visible">
 
-        <TextView
-            android:id="@+id/tv_no_notification"
-            style="@style/WrapTextView"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/dp10"
-            android:text="@string/you_don_t_have_any_notification_right"
-            android:textColor="@color/grey" />
+            <ImageView
+                android:layout_width="@dimen/_150sdp"
+                android:layout_height="@dimen/_200sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="100dp"
+                android:background="@drawable/no_notification"
+                android:contentDescription="@string/image" />
+
+            <TextView
+                android:id="@+id/no_notification"
+                style="@style/WrapTextView"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp20"
+                android:fontFamily="@font/opensans_bold"
+                android:text="@string/no_notifications_yet"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                android:id="@+id/tv_no_notification"
+                style="@style/WrapTextView"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/dp10"
+                android:text="@string/you_don_t_have_any_notification_right"
+                android:textColor="@color/grey" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_notifications"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="@dimen/dp20"
+            android:layout_marginEnd="@dimen/dp20"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
     </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_notifications"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="@dimen/dp20"
-        android:layout_marginEnd="@dimen/dp20"
-        android:orientation="vertical"
-        android:visibility="gone"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-</LinearLayout>
 
 
 </layout>

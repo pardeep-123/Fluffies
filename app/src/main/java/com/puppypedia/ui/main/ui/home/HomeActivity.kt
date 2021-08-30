@@ -24,22 +24,13 @@ class HomeActivity : AppCompatActivity() {
         setContentView(binding.root)
         binding.homeVM = homeVM
 
-        openFragment(HomeFragment())
+        setHomeFragment()
         clicksHandle()
     }
 
     private fun clicksHandle() {
         binding.llHome.setOnClickListener {
-            if (currentFragment() !is HomeFragment) {
-                openFragment(HomeFragment())
-
-                setViews(
-                    R.drawable.home_active, R.drawable.search_unactive,
-                    R.drawable.cal_unactive, R.drawable.acc_unactive,
-                    R.color.black, R.color.lightGrayA3A3A3,
-                    R.color.lightGrayA3A3A3, R.color.lightGrayA3A3A3
-                )
-            }
+            setHomeFragment()
         }
 
         binding.llSearch.setOnClickListener {
@@ -83,6 +74,20 @@ class HomeActivity : AppCompatActivity() {
 
     }
 
+
+    private fun setHomeFragment() {
+        if (currentFragment() !is HomeFragment) {
+            openFragment(HomeFragment())
+
+            setViews(
+                R.drawable.home_active, R.drawable.search_unactive,
+                R.drawable.cal_unactive, R.drawable.acc_unactive,
+                R.color.black, R.color.lightGrayA3A3A3,
+                R.color.lightGrayA3A3A3, R.color.lightGrayA3A3A3
+            )
+        }
+    }
+
     private fun currentFragment(): Fragment? {
         return supportFragmentManager.findFragmentById(R.id.frame_main)
     }
@@ -107,5 +112,13 @@ class HomeActivity : AppCompatActivity() {
         binding.tvSearch.setTextColor(getColor(searchTextColor))
         binding.tvCalendar.setTextColor(getColor(calTextColor))
         binding.tvAccount.setTextColor(getColor(accTextColor))
+    }
+
+    override fun onBackPressed() {
+        if (currentFragment() !is HomeFragment) {
+            setHomeFragment()
+        } else {
+            super.onBackPressed()
+        }
     }
 }

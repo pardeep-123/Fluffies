@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".ui.main.ui.profile.ProfileActivity">
 
     <include
@@ -13,7 +12,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/btnEditProfile"
+        android:layout_below="@id/tb">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -27,16 +28,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="fitXY"
-                android:src="@drawable/dog_img"
+                android:scaleType="centerCrop"
+                android:src="@drawable/profile_pic"
                 app:riv_corner_radius="@dimen/_5sdp" />
 
             <TextView
                 style="@style/WrapTextView"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/name"
-                android:textColor="@color/theme_Color"
-                />
+                android:textColor="@color/theme_Color" />
 
             <TextView
                 style="@style/WrapTextView"
@@ -58,17 +58,19 @@
                 android:text="jhonson@gmail.com"
                 android:textSize="@dimen/_13sdp" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnEditProfile"
-                style="@style/ButtonMatch"
-                android:layout_marginTop="@dimen/_150sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/bg_sky_blue_10dp"
-                android:contentDescription="@string/image"
-                android:text="Edit Profile" />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnEditProfile"
+        style="@style/ButtonMatch"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/bg_sky_blue_10dp"
+        android:contentDescription="@string/image"
+        android:text="@string/edit_profile" />
+
+</RelativeLayout>

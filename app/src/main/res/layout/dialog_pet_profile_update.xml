@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@drawable/bg_white_corners_10dp"
     android:orientation="vertical"
     android:paddingStart="@dimen/_40sdp"
-    android:paddingEnd="@dimen/_40sdp"
     android:paddingTop="@dimen/_20sdp"
-    android:paddingBottom="@dimen/_20sdp"
-    android:layout_height="wrap_content">
+    android:paddingEnd="@dimen/_40sdp"
+    android:paddingBottom="@dimen/_20sdp">
 
     <ImageView
         android:layout_width="@dimen/_40sdp"
         android:layout_height="@dimen/_40sdp"
-        android:src="@drawable/yes"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_gravity="center"/>
+        android:src="@drawable/yes" />
 
     <TextView
-       style="@style/WrapTextView"
-        android:text="@string/your_pet_profile_nupdated_successfully"
-        android:gravity="center"
+        style="@style/WrapTextView"
+        android:layout_gravity="center"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_gravity="center"/>
+        android:gravity="center"
+        android:text="@string/your_pet_profile_nupdated_successfully" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/done"
         style="@style/ButtonMatch"
         android:layout_width="@dimen/_150sdp"
         android:layout_height="@dimen/_30sdp"
-        android:layout_marginTop="@dimen/_20sdp"
         android:layout_gravity="center"
+        android:layout_marginTop="@dimen/_20sdp"
         android:background="@drawable/bg_sky_blue_10dp"
         android:contentDescription="@string/image"
         android:text="Done" />

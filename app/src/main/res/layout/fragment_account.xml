@@ -86,8 +86,8 @@
                         android:layout_below="@id/name"
                         android:layout_centerHorizontal="true"
                         android:text="johnmarker@gmail.com"
-                        android:textSize="@dimen/_12sdp"
-                        android:textColor="@color/grey"/>
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_12sdp" />
 
                 </RelativeLayout>
 

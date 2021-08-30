@@ -98,4 +98,6 @@
     <string name="weight_of_dog">Weight of Dog</string>
     <string name="lbs">lbs</string>
     <string name="save">Save</string>
+    <string name="remember">Remember</string>
+    <string name="edit_profile">Edit Profile</string>
 </resources>

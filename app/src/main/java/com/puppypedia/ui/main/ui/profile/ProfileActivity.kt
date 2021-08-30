@@ -1,11 +1,11 @@
 package com.puppypedia.ui.main.ui.profile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.puppypedia.R
 import com.puppypedia.databinding.ActivityProfileBinding
-import com.puppypedia.ui.main.ui.editpetprofile.EditPetProfileActivity
+import com.puppypedia.ui.main.ui.editprofile.EditProfileActivity
 
 class ProfileActivity : AppCompatActivity() {
 
@@ -22,7 +22,7 @@ class ProfileActivity : AppCompatActivity() {
         binding.tb.tvTitle.text = getString(R.string.profile)
 
         binding.btnEditProfile.setOnClickListener {
-            startActivity(Intent(this,EditPetProfileActivity::class.java))
+            startActivity(Intent(this, EditProfileActivity::class.java))
         }
     }
 }

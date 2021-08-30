@@ -139,9 +139,9 @@
 
                 <TextView
                     style="@style/WrapTextView"
-                    android:fontFamily="@font/opensans_bold"
                     android:layout_alignParentStart="true"
                     android:layout_centerVertical="true"
+                    android:fontFamily="@font/opensans_bold"
                     android:text="Category" />
 
                 <TextView
@@ -151,9 +151,9 @@
                     android:layout_height="match_parent"
                     android:layout_alignParentEnd="true"
                     android:layout_centerVertical="true"
+                    android:fontFamily="@font/opensans_bold"
                     android:gravity="center"
                     android:text="@string/view_all"
-                    android:fontFamily="@font/opensans_bold"
                     android:textSize="@dimen/_8sdp" />
 
 

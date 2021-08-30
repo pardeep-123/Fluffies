@@ -9,17 +9,17 @@
         android:layout_width="@dimen/dp20"
         android:layout_height="@dimen/dp20"
         android:layout_marginStart="@dimen/dp15"
+        android:contentDescription="@string/image"
         android:src="@drawable/back_arrow"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/image" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/tv_title"
         style="@style/WrapTextView"
         android:layout_centerInParent="true"
-        android:text="Home"
+        android:text=""
         android:textSize="@dimen/_14sdp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

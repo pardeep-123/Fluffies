@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
     android:background="@color/white"
+    android:fillViewport="true"
     android:paddingStart="@dimen/_20sdp"
     android:paddingEnd="@dimen/_20sdp"
     tools:context=".ui.fragments.StatisticsFragment">
@@ -73,7 +73,7 @@
             android:layout_marginTop="@dimen/_10sdp"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/dummY_text"
-            android:textSize="@dimen/_10sdp"/>
+            android:textSize="@dimen/_10sdp" />
     </LinearLayout>
 
 </androidx.core.widget.NestedScrollView>

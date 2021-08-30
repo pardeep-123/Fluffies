@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@drawable/bg_half"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:background="@drawable/bg_half"
     tools:context=".ui.main.ui.editprofile.EditProfileActivity">
 
     <include
@@ -14,7 +13,9 @@
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_above="@id/btnUpdate"
+        android:layout_below="@id/tb">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -23,60 +24,74 @@
             android:layout_marginEnd="@dimen/_20sdp"
             android:orientation="vertical">
 
-            <com.makeramen.roundedimageview.RoundedImageView
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:scaleType="center"
-                android:src="@drawable/img"
-                app:riv_corner_radius="@dimen/_5sdp" />
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/rivProfile"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:alpha="0.6"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile_pic"
+                    app:riv_corner_radius="@dimen/_5sdp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_centerInParent="true"
+                    android:contentDescription="@string/image"
+                    android:src="@drawable/camera" />
+            </RelativeLayout>
 
             <TextView
                 style="@style/WrapTextView"
-                android:text="@string/name"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:textSize="@dimen/_14sdp"
-                />
+                android:text="@string/name"
+                android:textSize="@dimen/_14sdp" />
 
             <EditText
                 style="@style/MatchEditText"
-                android:background="@drawable/bg_edit_text"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_edit_text"
                 android:hint="@string/enter_name"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="Rony"
                 android:imeOptions="actionNext"
                 android:inputType="text"
-                android:paddingEnd="@dimen/_10sdp"/>
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="Jonson" />
 
             <TextView
                 style="@style/WrapTextView"
-                android:text="@string/email"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:textSize="@dimen/_14sdp"
-                />
+                android:text="@string/email"
+                android:textSize="@dimen/_14sdp" />
 
             <EditText
                 style="@style/MatchEditText"
-                android:background="@drawable/bg_edit_text"
                 android:layout_marginTop="@dimen/_10sdp"
+                android:background="@drawable/bg_edit_text"
                 android:hint="@string/enter_email"
-                android:paddingStart="@dimen/_10sdp"
-                android:text="jhonson@gmail.com"
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
-                android:paddingEnd="@dimen/_10sdp"/>
+                android:paddingStart="@dimen/_10sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="jonson@gmail.com" />
 
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnEditProfile"
-                style="@style/ButtonMatch"
-                android:layout_marginTop="@dimen/_60sdp"
-                android:layout_marginStart="@dimen/_10sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/bg_sky_blue_10dp"
-                android:contentDescription="@string/image"
-                android:text="Update" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-        </LinearLayout>
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnUpdate"
+        style="@style/ButtonMatch"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_25sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginEnd="@dimen/_25sdp"
+        android:layout_marginBottom="@dimen/_10sdp"
+        android:background="@drawable/bg_sky_blue_10dp"
+        android:contentDescription="@string/image"
+        android:text="@string/update" />
+</RelativeLayout>

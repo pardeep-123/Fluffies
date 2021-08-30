@@ -45,8 +45,8 @@
                 android:imeOptions="actionDone"
                 android:inputType="textEmailAddress"
                 android:paddingStart="@dimen/_10sdp"
-                android:text="Rocky"
-                android:paddingEnd="@dimen/_10sdp" />
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="Rocky" />
 
 
             <LinearLayout
@@ -168,14 +168,14 @@
 
                     <EditText
                         style="@style/MatchEditText"
+                        android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text"
                         android:hint="@string/breed"
-                        android:text="Golden Retriever"
                         android:imeOptions="actionDone"
-                        android:layout_marginTop="@dimen/_5sdp"
                         android:inputType="textEmailAddress"
                         android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp" />
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:text="Golden Retriever" />
 
 
                 </LinearLayout>
@@ -190,12 +190,12 @@
             <EditText
                 style="@style/MatchEditText"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
                 android:background="@drawable/bg_edit_text"
                 android:gravity="start|top"
                 android:hint="@string/about_pet"
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
-                android:layout_marginTop="@dimen/_5sdp"
                 android:maxHeight="@dimen/_100sdp"
                 android:minHeight="@dimen/_100sdp"
                 android:paddingStart="@dimen/_10sdp"

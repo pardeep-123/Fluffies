@@ -88,12 +88,24 @@
                 android:layout_marginTop="@dimen/_10sdp"
                 android:orientation="horizontal">
 
+                <CheckBox
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/tvForgotPassword"
+                    android:paddingStart="@dimen/_3sdp"
+                    android:text="@string/remember"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/opensans_semibold"
+                    android:textSize="@dimen/_10sdp"
+                    tools:ignore="RtlSymmetry" />
 
                 <TextView
-                    android:id="@+id/forgot_passs"
+                    android:id="@+id/tvForgotPassword"
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
-                    android:layout_centerInParent="true"
+                    android:layout_centerVertical="true"
                     android:onClick="@{(view)-> loginVM.onClick(view,`btnForgot`)}"
                     android:text="@string/forgot_password"
                     android:textColor="@color/grey"
