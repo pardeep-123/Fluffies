@@ -171,7 +171,7 @@
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text"
                         android:hint="@string/breed"
-                        android:imeOptions="actionDone"
+                        android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_10sdp"
@@ -201,8 +201,7 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingTop="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:text="@string/dummY_text"
-                android:textColorHint="@color/black" />
+                android:text="@string/dummY_text" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpdate"

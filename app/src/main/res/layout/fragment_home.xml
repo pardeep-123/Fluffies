@@ -47,8 +47,8 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <ImageView
-                    android:layout_width="@dimen/_8sdp"
-                    android:layout_height="@dimen/_8sdp"
+                    android:layout_width="@dimen/_5sdp"
+                    android:layout_height="@dimen/_5sdp"
                     android:layout_marginStart="@dimen/_5sdp"
                     android:layout_marginTop="@dimen/_13sdp"
                     android:layout_toEndOf="@id/tv_choose_dog"
@@ -154,7 +154,7 @@
                     android:fontFamily="@font/opensans_bold"
                     android:gravity="center"
                     android:text="@string/view_all"
-                    android:textSize="@dimen/_8sdp" />
+                    android:textSize="@dimen/_10sdp" />
 
 
             </RelativeLayout>

@@ -46,7 +46,7 @@ class DogsAdapter(var arrayList: ArrayList<DogsModel>) :
             ivDog.setImageResource(dogModel.dogImage)
             tvDogName.text = dogModel.dogName
 
-            ivCheck.setOnClickListener {
+            itemView.setOnClickListener {
                 arrayList.forEachIndexed { index, dogsModel ->
                     dogsModel.isSelected = index == pos
 

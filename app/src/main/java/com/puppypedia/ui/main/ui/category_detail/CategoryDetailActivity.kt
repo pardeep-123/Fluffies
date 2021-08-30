@@ -23,7 +23,7 @@ class CategoryDetailActivity : AppCompatActivity() {
 
         if (heading != null){
             if(heading == "Essential"){
-                binding.tb.tvTitle.text = getString(R.string.home_essential)
+                binding.tb.tvTitle.text = getString(R.string.house_essential)
             }else{
                 binding.tb.tvTitle.text = heading
             }

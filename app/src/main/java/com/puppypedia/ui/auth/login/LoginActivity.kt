@@ -2,6 +2,8 @@ package com.puppypedia.ui.auth.login
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.method.HideReturnsTransformationMethod
+import android.text.method.PasswordTransformationMethod
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import com.puppypedia.R
@@ -19,5 +21,16 @@ class LoginActivity : AppCompatActivity() {
 
         binding.loginVM = loginVM
 
+        passwordShowHide()
+    }
+
+    private fun passwordShowHide() {
+        binding.cbPassword.setOnCheckedChangeListener { compoundButton, boolean ->
+            if (boolean) {
+                binding.edtPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+            } else {
+                binding.edtPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+            }
+        }
     }
 }

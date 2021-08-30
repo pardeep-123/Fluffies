@@ -42,11 +42,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     android:fontFamily="@font/courgette_regular"
                     android:text="@string/sign_u"
                     android:textColor="@color/theme_Color"
-                    android:textSize="@dimen/_20sdp" />
+                    android:textSize="@dimen/_18sdp" />
 
 
                 <TextView
@@ -89,16 +89,36 @@
                     android:text="@string/password"
                     android:textSize="@dimen/_14sdp" />
 
-                <EditText
-                    style="@style/MatchEditText"
+                <RelativeLayout
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/enter_password"
-                    android:imeOptions="actionNext"
-                    android:inputType="textPassword"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:text="@{signUpVM.password}" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:background="@drawable/bg_edit_text">
+
+                    <EditText
+                        android:id="@+id/edtPassword"
+                        style="@style/MatchEditText"
+                        android:background="@drawable/bg_edit_text"
+                        android:hint="@string/enter_password"
+                        android:imeOptions="actionNext"
+                        android:importantForAutofill="no"
+                        android:inputType="textPassword"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:text="@{signUpVM.password}" />
+
+                    <CheckBox
+                        android:id="@+id/cbPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:button="@drawable/bg_password_show_hide" />
+
+                </RelativeLayout>
+
+
 
                 <TextView
                     style="@style/WrapTextView"
@@ -106,16 +126,36 @@
                     android:text="@string/confirm_password"
                     android:textSize="@dimen/_14sdp" />
 
-                <EditText
-                    style="@style/MatchEditText"
+
+
+                <RelativeLayout
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/enter_confirm_password"
-                    android:imeOptions="actionDone"
-                    android:inputType="textPassword"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:text="@{signUpVM.confirmPassword}" />
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:background="@drawable/bg_edit_text">
+
+                    <EditText
+                        android:id="@+id/edtConfirmPass"
+                        style="@style/MatchEditText"
+                        android:background="@drawable/bg_edit_text"
+                        android:hint="@string/enter_confirm_password"
+                        android:imeOptions="actionDone"
+                        android:inputType="textPassword"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:text="@{signUpVM.confirmPassword}" />
+
+                    <CheckBox
+                        android:id="@+id/cbConfirmPassPassword"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:button="@drawable/bg_password_show_hide" />
+
+                </RelativeLayout>
+
 
 
                 <androidx.appcompat.widget.AppCompatButton
@@ -132,7 +172,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_25sdp"
+                    android:layout_marginTop="@dimen/_40sdp"
                     android:layout_marginBottom="@dimen/_10sdp">
 
                     <TextView

@@ -58,7 +58,7 @@
                 <TextView
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
-                    android:text="@string/rony" />
+                    android:text="Rony" />
 
 
             </RelativeLayout>
@@ -152,12 +152,14 @@
 
             </RelativeLayout>
 
-            <EditText
-                style="@style/MatchEditText"
+            <TextView
+               android:layout_width="match_parent"
+                android:fontFamily="@font/opensans_regular"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_edit_text_10dp"
-                android:hint="@string/dummY_text"
+                android:text="@string/dummY_text"
+                android:textColor="@color/black"
                 android:maxHeight="@dimen/_70sdp"
                 android:minHeight="@dimen/_70sdp"
                 android:padding="@dimen/_10sdp"

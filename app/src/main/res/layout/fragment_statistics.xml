@@ -5,8 +5,6 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     android:fillViewport="true"
-    android:paddingStart="@dimen/_20sdp"
-    android:paddingEnd="@dimen/_20sdp"
     tools:context=".ui.fragments.StatisticsFragment">
 
     <LinearLayout
@@ -14,17 +12,46 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <com.github.mikephil.charting.charts.LineChart
-            android:id="@+id/lineChat"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_200sdp"
-            android:layout_gravity="center" />
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:orientation="horizontal">
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:fontFamily="@font/opensans_regular"
+                android:rotation="270"
+                android:text="@string/weight"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp" />
+
+
+            <com.github.mikephil.charting.charts.LineChart
+                android:id="@+id/lineChat"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center" />
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:fontFamily="@font/opensans_regular"
+            android:text="@string/date"
+            android:textColor="@color/black"
+            android:textSize="@dimen/_10sdp" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_28sdp"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:background="@drawable/bg_light_grray_10dp"
             android:weightSum="3">
 
@@ -62,7 +89,9 @@
         <TextView
             style="@style/WrapTextView"
             android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:text="@string/about_weight"
             android:textColor="@color/theme_Color"
             android:textSize="@dimen/_15sdp" />
@@ -70,7 +99,9 @@
         <TextView
             style="@style/WrapTextView"
             android:layout_width="match_parent"
+            android:layout_marginStart="@dimen/_20sdp"
             android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/dummY_text"
             android:textSize="@dimen/_10sdp" />

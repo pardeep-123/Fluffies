@@ -41,43 +41,79 @@
                 android:orientation="horizontal"
                 android:weightSum="2">
 
-                <EditText
-                    android:id="@+id/edtDate"
-                    style="@style/MatchEditText"
+
+                <RelativeLayout
                     android:layout_width="0dp"
+                    android:layout_height="@dimen/_35sdp"
                     android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_edit_text"
-                    android:clickable="false"
-                    android:drawableEnd="@drawable/downaero"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:focusable="false"
-                    android:hint="@string/date"
-                    android:imeOptions="actionDone"
-                    android:inputType="date"
-                    android:longClickable="false"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:textColorHint="@color/black" />
+                    android:background="@drawable/bg_edit_text">
 
-                <EditText
-                    android:id="@+id/edtTime"
-                    style="@style/MatchEditText"
+                    <EditText
+                        android:id="@+id/edtDate"
+                        style="@style/MatchEditText"
+                        android:layout_width="match_parent"
+                        android:background="@drawable/bg_edit_text"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="@string/date"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="date"
+                        android:longClickable="false"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:textColorHint="@color/black" />
+
+
+                    <ImageView
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/downaero" />
+
+                </RelativeLayout>
+
+
+                <RelativeLayout
                     android:layout_width="0dp"
-                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_weight="1"
-                    android:background="@drawable/bg_edit_text"
-                    android:clickable="false"
-                    android:drawableEnd="@drawable/downaero"
-                    android:drawablePadding="@dimen/_8sdp"
-                    android:focusable="false"
-                    android:hint="@string/time"
-                    android:imeOptions="actionDone"
-                    android:inputType="text"
-                    android:longClickable="false"
-                    android:paddingStart="@dimen/_10sdp"
-                    android:paddingEnd="@dimen/_10sdp"
-                    android:textColorHint="@color/black" />
+                    android:background="@drawable/bg_edit_text">
+
+                    <EditText
+                        android:id="@+id/edtTime"
+                        style="@style/MatchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:background="@drawable/bg_edit_text"
+                        android:clickable="false"
+                        android:focusable="false"
+                        android:hint="@string/time"
+                        android:imeOptions="actionDone"
+                        android:importantForAutofill="no"
+                        android:inputType="text"
+                        android:longClickable="false"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:textColorHint="@color/black" />
+
+
+                    <ImageView
+                        android:layout_width="@dimen/_8sdp"
+                        android:layout_height="@dimen/_8sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/downaero" />
+
+                </RelativeLayout>
+
             </LinearLayout>
 
             <TextView

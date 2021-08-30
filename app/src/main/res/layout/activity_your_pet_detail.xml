@@ -165,7 +165,8 @@
                         android:imeOptions="actionDone"
                         android:inputType="textEmailAddress"
                         android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp" />
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:textColorHint="@color/black" />
 
 
                 </LinearLayout>

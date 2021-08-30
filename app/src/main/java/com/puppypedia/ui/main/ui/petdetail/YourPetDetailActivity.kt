@@ -4,7 +4,6 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -101,26 +100,7 @@ class YourPetDetailActivity : ImagePickerUtility() {
                 pos: Int,
                 id: Long
             ) {
-                val view = (parent?.getChildAt(0) as View)
-                val tvSpinner = view.findViewById<TextView>(R.id.tvSpinner)
-                /*tvSpinner.setPadding(0, 0, 0, 0)*/
 
-                if (pos == 0) {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@YourPetDetailActivity,
-                            R.color.lightGrayA3A3A3
-                        )
-                    )
-                } else {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@YourPetDetailActivity,
-                            R.color.black
-                        )
-                    )
-
-                }
 
             }
 
@@ -144,26 +124,7 @@ class YourPetDetailActivity : ImagePickerUtility() {
                 pos: Int,
                 id: Long
             ) {
-                val view = (parent?.getChildAt(0) as View)
-                val tvSpinner = view.findViewById<TextView>(R.id.tvSpinner)
-                /*tvSpinner.setPadding(0, 0, 0, 0)*/
 
-                if (pos == 0) {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@YourPetDetailActivity,
-                            R.color.lightGrayA3A3A3
-                        )
-                    )
-                } else {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@YourPetDetailActivity,
-                            R.color.black
-                        )
-                    )
-
-                }
 
             }
 
@@ -187,26 +148,7 @@ class YourPetDetailActivity : ImagePickerUtility() {
                 pos: Int,
                 id: Long
             ) {
-                val view = (parent?.getChildAt(0) as View)
-                val tvSpinner = view.findViewById<TextView>(R.id.tvSpinner)
-                /*tvSpinner.setPadding(0, 0, 0, 0)*/
 
-                if (pos == 0) {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@YourPetDetailActivity,
-                            R.color.lightGrayA3A3A3
-                        )
-                    )
-                } else {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@YourPetDetailActivity,
-                            R.color.black
-                        )
-                    )
-
-                }
 
             }
 

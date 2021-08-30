@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../../../../layout/custom_preview.xml" value="0.15989583333333332" />
+        <entry key="app/src/main/res/drawable/bg_check_boxx.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_edit_text_10dp.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_edit_text_white.xml" value="0.1609375" />
@@ -10,21 +12,28 @@
         <entry key="app/src/main/res/drawable/bg_layout_radius_colored.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_light_grray_10dp.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_light_sky_blue_10dp.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/bg_password_show_hide.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_radio_box.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_sky_blue_10dp.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_white_corners_10dp.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bottom_nav_corner_5dp.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/ic_check_box_filled_24.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/ic_check_box_unfilled_24.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/ic_eye_visibility_24.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/ic_eye_visibility_off_24.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/password_hide.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/password_show.xml" value="0.1609375" />
         <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.13796296296296295" />
         <entry key="app/src/main/res/layout/activity_add_remainder.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_add_weight.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_category_detail.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/activity_edit_pet_profile.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/activity_edit_pet_profile.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_home.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/activity_login.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.12777777777777777" />
         <entry key="app/src/main/res/layout/activity_my_pet_profile.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.14479166666666668" />
@@ -51,7 +60,7 @@
         <entry key="app/src/main/res/layout/item_spinner.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/item_status.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/item_weight.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/item_your_dogs.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/item_your_dogs.xml" value="0.14" />
         <entry key="app/src/main/res/layout/popup.xml" value="0.1" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/xml/file_paths.xml" value="0.14479166666666668" />

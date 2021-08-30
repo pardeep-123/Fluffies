@@ -48,7 +48,7 @@
     <string name="dummY_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus quis felis porttitor, molestie nunc in, pretium </string>
     <string name="edit_pet_profile">Edit Pet Profile</string>
     <string name="your_pet_profile_nupdated_successfully">Your Pet Profile\nupdated Successfully!</string>
-    <string name="your_appointment_updated_successfully">Your appointment\nupdated Successfully!</string>
+    <string name="your_appointment_updated_successfully">Your Appointment\nupdated Successfully!</string>
 
     <string name="view_all"><u>View All</u></string>
     <string name="feeding">Feeding</string>
@@ -88,7 +88,7 @@
     <string name="tap_plus_button">Tap Plus + Button Add New Appointment</string>
     <string name="remainder_date">Remainder Date</string>
     <string name="best_pet_care_here">Best Pet Care Here!!</string>
-    <string name="home_essential">Home Essential</string>
+    <string name="house_essential">House Essential</string>
     <string name="logout_desc">Do you want to logout?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
@@ -98,6 +98,6 @@
     <string name="weight_of_dog">Weight of Dog</string>
     <string name="lbs">lbs</string>
     <string name="save">Save</string>
-    <string name="remember">Remember</string>
+    <string name="remember">Remember me</string>
     <string name="edit_profile">Edit Profile</string>
 </resources>
