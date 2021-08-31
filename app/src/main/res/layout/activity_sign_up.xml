@@ -42,7 +42,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
                     android:fontFamily="@font/courgette_regular"
                     android:text="@string/sign_u"
                     android:textColor="@color/theme_Color"
@@ -90,14 +90,16 @@
                     android:textSize="@dimen/_14sdp" />
 
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/bg_edit_text">
 
                     <EditText
                         android:id="@+id/edtPassword"
                         style="@style/MatchEditText"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/cbPassword"
                         android:background="@drawable/bg_edit_text"
                         android:hint="@string/enter_password"
                         android:imeOptions="actionNext"
@@ -119,7 +121,6 @@
                 </RelativeLayout>
 
 
-
                 <TextView
                     style="@style/WrapTextView"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -127,16 +128,17 @@
                     android:textSize="@dimen/_14sdp" />
 
 
-
                 <RelativeLayout
-                    android:layout_marginTop="@dimen/_5sdp"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/bg_edit_text">
 
                     <EditText
                         android:id="@+id/edtConfirmPass"
                         style="@style/MatchEditText"
+                        android:layout_alignParentStart="true"
+                        android:layout_toStartOf="@+id/cbConfirmPassPassword"
                         android:background="@drawable/bg_edit_text"
                         android:hint="@string/enter_confirm_password"
                         android:imeOptions="actionDone"
@@ -155,7 +157,6 @@
                         android:button="@drawable/bg_password_show_hide" />
 
                 </RelativeLayout>
-
 
 
                 <androidx.appcompat.widget.AppCompatButton

@@ -80,6 +80,8 @@
                 <EditText
                     android:id="@+id/edtPassword"
                     style="@style/MatchEditText"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/cbPassword"
                     android:background="@android:color/transparent"
                     android:hint="@string/enter_password"
                     android:imeOptions="actionDone"
@@ -116,9 +118,9 @@
                     android:fontFamily="@font/opensans_semibold"
                     android:paddingStart="@dimen/_3sdp"
                     android:text="@string/remember"
-                    android:textColor="@color/black"
-                    android:textSize="@dimen/_10sdp"
-                    tools:ignore="RtlSymmetry" />
+                    tools:ignore="RtlSymmetry"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/_10sdp"/>
 
                 <TextView
                     android:id="@+id/tvForgotPassword"

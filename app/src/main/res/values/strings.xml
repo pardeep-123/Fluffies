@@ -55,10 +55,10 @@
     <string name="about_pet">About Pet</string>
     <string name="add_new">Add New</string>
     <string name="later">Later</string>
-    <string name="your_pet_detail_added_successfully_do_you_want_another_dog">Your pet detail added successfully!! Do you want another dog?</string>
+    <string name="pet_detail_added_successfully">Your pet detail added successfully!! \nDo you want to add another dog?</string>
     <string name="alert">Alert</string>
     <string name="permissionRequired">Permission Required</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="cancel">Cancel</string>
     <string name="openSettings">Open Settings</string>
     <string name="my_pets_profile">My Pets Profile</string>
@@ -86,7 +86,7 @@
     <string name="appointments">Appointments</string>
     <string name="no_appointment_yet">No Appointment Yet!!</string>
     <string name="tap_plus_button">Tap Plus + Button Add New Appointment</string>
-    <string name="remainder_date">Remainder Date</string>
+    <string name="remainder_date">Reminder Date</string>
     <string name="best_pet_care_here">Best Pet Care Here!!</string>
     <string name="house_essential">House Essential</string>
     <string name="logout_desc">Do you want to logout?</string>

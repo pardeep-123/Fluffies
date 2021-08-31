@@ -27,8 +27,8 @@
 
     <ImageView
         android:id="@+id/ivCheck"
-        android:layout_width="@dimen/_12sdp"
-        android:layout_height="@dimen/_12sdp"
+        android:layout_width="@dimen/_13sdp"
+        android:layout_height="@dimen/_13sdp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
         android:contentDescription="@string/image"

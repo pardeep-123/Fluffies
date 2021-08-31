@@ -14,6 +14,7 @@ import android.widget.ArrayAdapter
 import android.widget.Button
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import com.puppypedia.R
 import com.puppypedia.databinding.ActivityYourPetDetailBinding
 import com.puppypedia.ui.main.ui.home.HomeActivity
@@ -100,7 +101,11 @@ class YourPetDetailActivity : ImagePickerUtility() {
                 pos: Int,
                 id: Long
             ) {
-
+                val v = (parent?.getChildAt(0) as View)
+                val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                tvSpinner.typeface = ResourcesCompat.getFont(
+                    this@YourPetDetailActivity, R.font.opensans_semibold)
 
             }
 
@@ -124,7 +129,11 @@ class YourPetDetailActivity : ImagePickerUtility() {
                 pos: Int,
                 id: Long
             ) {
-
+                val v = (parent?.getChildAt(0) as View)
+                val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                tvSpinner.typeface = ResourcesCompat.getFont(
+                    this@YourPetDetailActivity, R.font.opensans_semibold)
 
             }
 
@@ -148,7 +157,11 @@ class YourPetDetailActivity : ImagePickerUtility() {
                 pos: Int,
                 id: Long
             ) {
-
+                val v = (parent?.getChildAt(0) as View)
+                val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                tvSpinner.typeface = ResourcesCompat.getFont(
+                    this@YourPetDetailActivity, R.font.opensans_semibold)
 
             }
 
