@@ -100,4 +100,25 @@
     <string name="save">Save</string>
     <string name="remember">Remember me</string>
     <string name="edit_profile">Edit Profile</string>
+    <string name="session_expired">Session Expired</string>
+    <string name="unable_to_connect_server">Unable to connect to server.</string>
+    <string name="error_">Error</string>
+    <string name="retry">Retry</string>
+
+
+    ///////////////////////////////////////////////////////////////////////////////////
+    <string name="no_internet">Please check your internet connection.</string>
+    <string name="error_name">Please enter name</string>
+    <string name="error_email">Please enter email</string>
+    <string name="error_validemail">Please enter valid email</string>
+    <string name="error_password">Please enter password</string>
+    <string name="error_password_length">Password length should be atleast 6 digit.</string>
+    <string name="error_new_password">Please enter new password</string>
+    <string name="error_cpassword">Please confirm password</string>
+    <string name="error_password_not_matched">Passwords should be matched.</string>
+    <string name="cardname_missing_message">Please enter card name</string>
+    <string name="cardnumber_missing_message">Please enter card number</string>
+    <string name="invalid_card_message">Please enter valid card number</string>
+    <string name="about">Please enter about you pet</string>
+    <string name="error_breed">Please enter breed</string>
 </resources>

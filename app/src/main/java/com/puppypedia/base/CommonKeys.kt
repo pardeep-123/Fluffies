@@ -10,11 +10,6 @@ object CommonKeys {
     const val Socket_Image_Url = ""
     const val BASE_IMAGE_PROFILE = ""
 
-
-
-
-
-
     //preferences
     const val DEVICE_ID = "deviceID"
     const val FIREBASE_FCM_TOKEN = "firebase_fcm_token"

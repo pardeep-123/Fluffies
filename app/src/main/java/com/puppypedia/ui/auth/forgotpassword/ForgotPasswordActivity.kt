@@ -1,23 +1,27 @@
 package com.puppypedia.ui.auth.forgotpassword
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.activity.viewModels
+import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import com.puppypedia.R
-import com.puppypedia.databinding.ActivityForgotPasswordBinding
+import kotlinx.android.synthetic.main.activity_forgot_password.*
 
-class ForgotPasswordActivity : AppCompatActivity() {
 
-    lateinit var  binding: ActivityForgotPasswordBinding
-    private  val forgotPasswordVM : ForgotPasswordVM by viewModels()
+class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_forgot_password)
 
-        binding= ActivityForgotPasswordBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        btnSubmit.setOnClickListener(this)
 
-        binding.forgotVM = forgotPasswordVM
+    }
 
+    override fun onClick(v: View?) {
+        when (v?.id) {
+            R.id.btnSubmit -> {
+                finish()
+            }
+        }
     }
 }
