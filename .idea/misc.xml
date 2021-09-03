@@ -24,7 +24,7 @@
         <entry key="app/src/main/res/drawable/loader.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/password_hide.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/password_show.xml" value="0.1609375" />
-        <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.13796296296296295" />
+        <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_add_remainder.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_add_weight.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.18" />
@@ -49,7 +49,7 @@
         <entry key="app/src/main/res/layout/dialog_logout.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_pet_profile_update.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.18489583333333334" />
-        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14479166666666668" />

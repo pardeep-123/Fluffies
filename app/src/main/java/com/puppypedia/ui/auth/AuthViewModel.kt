@@ -42,49 +42,6 @@ class AuthViewModel : ViewModel() {
 
     /*
 
-      @SuppressLint("CheckResult")
-      fun getAboutUsAPI(
-          activity: Activity, showLoader: Boolean
-
-      ) {
-          restApiInterface.aboutUs()
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
-              .subscribe(
-                  { mResponse.value = RestObservable.success(it) },
-                  { mResponse.value = RestObservable.error(activity, it) }
-              )
-      }
-
-      @SuppressLint("CheckResult")
-      fun getTerms(
-          activity: Activity, showLoader: Boolean) {
-          restApiInterface.terms()
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
-              .subscribe(
-                  { mResponse.value = RestObservable.success(it) },
-                  { mResponse.value = RestObservable.error(activity, it) }
-              )
-      }
-
-
-      @SuppressLint("CheckResult")
-      fun getPrivacy(
-          activity: Activity, showLoader: Boolean
-
-      ) {
-          restApiInterface.privacy()
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
-              .subscribe(
-                  { mResponse.value = RestObservable.success(it) },
-                  { mResponse.value = RestObservable.error(activity, it) }
-              )
-      }
 
 
       @SuppressLint("CheckResult")

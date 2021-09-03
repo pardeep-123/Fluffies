@@ -5,11 +5,9 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.main.ui.petdetail.YourPetDetailActivity">
-
     <include
         android:id="@+id/tb"
         layout="@layout/auth_toolbar" />
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -57,7 +55,7 @@
                 android:fontFamily="@font/opensans_semibold"
                 android:hint="@string/name"
                 android:imeOptions="actionDone"
-                android:inputType="textEmailAddress"
+                android:inputType="text"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:textColorHint="@color/black" />
@@ -101,28 +99,41 @@
                     </RelativeLayout>
 
 
-                    <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
+                    <EditText
+                        android:id="@+id/etweight"
+                        style="@style/MatchEditText"
                         android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/bg_edit_text">
+                        android:background="@drawable/bg_edit_text"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:hint="@string/weight"
+                        android:imeOptions="actionNext"
 
-                        <Spinner
-                            android:id="@+id/spinnerWeight"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@null" />
+                        android:inputType="number"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:textColorHint="@color/black" />
+                    <!-- <RelativeLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="@dimen/_35sdp"
+                         android:layout_marginTop="@dimen/_10sdp"
+                         android:background="@drawable/bg_edit_text">
+
+                         <Spinner
+                             android:id="@+id/spinnerWeight"
+                             android:layout_width="match_parent"
+                             android:layout_height="match_parent"
+                             android:background="@null" />
 
 
-                        <ImageView
-                            android:layout_width="@dimen/_8sdp"
-                            android:layout_height="@dimen/_8sdp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:src="@drawable/downaero" />
+                         <ImageView
+                             android:layout_width="@dimen/_8sdp"
+                             android:layout_height="@dimen/_8sdp"
+                             android:layout_alignParentEnd="true"
+                             android:layout_centerVertical="true"
+                             android:layout_marginEnd="@dimen/_10sdp"
+                             android:src="@drawable/downaero" />
 
-                    </RelativeLayout>
+                     </RelativeLayout>-->
 
                 </LinearLayout>
 
@@ -166,7 +177,7 @@
                         android:fontFamily="@font/opensans_semibold"
                         android:hint="@string/breed"
                         android:imeOptions="actionNext"
-                        android:inputType="textEmailAddress"
+                        android:inputType="text"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_10sdp"
                         android:textColorHint="@color/black" />

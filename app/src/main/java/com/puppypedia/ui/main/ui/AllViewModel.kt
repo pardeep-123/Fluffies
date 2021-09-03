@@ -31,4 +31,80 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    @SuppressLint("CheckResult")
+    fun getAboutUsAPI(
+        activity: Activity, showLoader: Boolean
+
+    ) {
+        restApiInterface.aboutUs()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun getPrivacyPolicyAPI(
+        activity: Activity, showLoader: Boolean
+
+    ) {
+        restApiInterface.privacypolicy()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun getTermsAPI(
+        activity: Activity, showLoader: Boolean
+
+    ) {
+        restApiInterface.terms()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun getNotificationListAPI(
+        activity: Activity, showLoader: Boolean
+
+    ) {
+        restApiInterface.notiListing()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    /*  @SuppressLint("CheckResult")
+      fun notiOnOffProfile(activity: Activity, showLoader: Boolean, map: HashMap<String, String>) {
+          restApiInterface.NotificationOnOff(map)
+              .subscribeOn(Schedulers.io())
+              .observeOn(AndroidSchedulers.mainThread())
+              .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+              .subscribe(
+                  { mResponse.value = RestObservable.success(it) },
+                  { mResponse.value = RestObservable.error(activity, it) }
+              )
+      }*/
+
 }

@@ -1,7 +1,6 @@
 package com.puppypedia.ui.main.ui.petdetail
 
 import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
@@ -14,6 +13,7 @@ import android.widget.*
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 
@@ -28,18 +28,19 @@ import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
+import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_your_pet_detail.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
-import okhttp3.MediaType.Companion.toMediaTypeOrNull
-import okhttp3.MultipartBody
-import okhttp3.RequestBody.Companion.asRequestBody
-import java.io.File
+
 
 class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
 
     private lateinit var mValidationClass: ValidationsClass
+    var Image_URL = ""
+
+    private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
+    var firstimage = ""
 
     var gender = ""
     var image = ""
@@ -63,7 +64,7 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
         clicksHandle()
         setSpinnerAge()
         setSpinnerGender()
-        setSpinnerWeight()
+        //  setSpinnerWeight()
     }
 
     private fun clicksHandle() {
@@ -72,12 +73,16 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
         }
 
         ivCamera.setOnClickListener {
-            callImagePicker(this)
+            //   callImagePicker(this)
         }
-
         btSubmit.setOnClickListener {
-
             callSignupApi()
+        }
+        ivCamera.setOnClickListener {
+            mAlbumFiles = java.util.ArrayList()
+            mAlbumFiles.clear()
+            selectImage()
+
         }
     }
 
@@ -168,7 +173,7 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
         }
     }
 
-    private fun setSpinnerWeight() {
+    /* private fun setSpinnerWeight() {
 
         val adapterWeight =
             ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, weightArrayList)
@@ -188,7 +193,7 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
                 weight = pos
                 val v = (parent?.getChildAt(0) as View)
                 val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
-                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                *//*tvSpinner.setPadding(0, 0, 0, 0)*//*
                 tvSpinner.typeface = ResourcesCompat.getFont(
                     this@YourPetDetailActivity, R.font.opensans_semibold
                 )
@@ -196,7 +201,7 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
             }
 
         }
-    }
+    }*/
 
 
     private fun isValid(): Boolean {
@@ -216,10 +221,12 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
             Helper.showErrorAlert(this, "Please select gender")
         else if (age == 0)
             Helper.showErrorAlert(this, "Please select age")
-        else if (weight == 0)
-            Helper.showErrorAlert(this, "Please select weight")
+        /*   else if (weight == 0)
+            Helper.showErrorAlert(this, "Please select weight")*/
         else if (mValidationClass.checkStringNull(about))
             Helper.showErrorAlert(this, resources.getString(R.string.about))
+        else if (mValidationClass.checkStringNull(breed))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
         else if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
         else
@@ -231,18 +238,32 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
         if (isValid()) {
             val name = etName.text.toString().trim()
             val breed = etbreed.text.toString().trim()
+            val weight = etweight.text.toString().trim()
             val about = etAbout.text.toString().trim()
             val map = HashMap<String, String>()
             map["name"] = name
             map["gender"] = if (gender.equals("1")) "0" else "1"
             map["age"] = ageArrayList[age]
-            map["weight"] = weightArrayList[weight]
+            map["weight"] = weight
             map["about"] = about
-            // map["breed"] = breed
+            map["breed"] = breed
             map["image"] = "hgjjjjjjg"
             viewModel.apiAddPuppy(this, true, map)
             viewModel.mResponse.observe(this, this)
         }
+    }
+
+    private fun selectImage() {
+        Album.image(this).singleChoice().camera(true).columnCount(4).widget(
+            Widget.newDarkBuilder(this).title(getString(R.string.app_name)).build()
+        )
+            .onResult { result ->
+                mAlbumFiles.addAll(result)
+
+                Glide.with(this).load(result[0].path).into(civPetProfile)
+                Image_URL = result[0].path
+            }.onCancel {
+            }.start()
     }
 
     override fun onChanged(it: RestObservable?) {
@@ -279,44 +300,44 @@ class YourPetDetailActivity : ImagePickerUtility(), Observer<RestObservable> {
         }
     }
 
-    fun multipartImageGet(): MultipartBody.Part {
-        val imageFile: MultipartBody.Part
-        val options = Tiny.FileCompressOptions()
-        val result =
-            Tiny.getInstance().source(image).asFile().withOptions(options)
-                .compressSync()
-        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
-        imageFile =
-            MultipartBody.Part.createFormData(
-                "image",
-                System.currentTimeMillis().toString() + ".jpg",
-                fileReqBody
-            )
-        return imageFile
 
-    }
-
-    private fun callImagePicker(context: Context) {
-        Album.image(context)
-            .singleChoice()
-            .camera(true)
-            .columnCount(4)
-            .widget(
-                Widget.newDarkBuilder(context)
-                    .title(context.getString(R.string.app_name))
-                    .build()
-            )
-            .onResult { result ->
-                image = result[0].path
-            }
-            .onCancel {
-                Toast.makeText(context, "Error", Toast.LENGTH_LONG)
-                    .show()
-            }
-            .start()
-    }
-
+//  /*  fun multipartImageGet(): MultipartBody.Part {
+//        val imageFile: MultipartBody.Part
+//        val options = Tiny.FileCompressOptions()
+//        val result =
+//            Tiny.getInstance().source(image).asFile().withOptions(options)
+//                .compressSync()
+//        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
+//        imageFile =
+//            MultipartBody.Part.createFormData(
+//                "image",
+//                System.currentTimeMillis().toString() + ".jpg",
+//                fileReqBody
+//            )
+//        return imageFile
+//
+//    }
+//
+//    private fun callImagePicker(context: Context) {
+//        Album.image(context)
+//            .singleChoice()
+//            .camera(true)
+//            .columnCount(4)
+//            .widget(
+//                Widget.newDarkBuilder(context)
+//                    .title(context.getString(R.string.app_name))
+//                    .build()
+//            )
+//            .onResult { result ->
+//                image = result[0].path
+//            }
+//            .onCancel {
+//                Toast.makeText(context, "Error", Toast.LENGTH_LONG)
+//                    .show()
+//            }
+//            .start()
+//    }
+//*/
 
 }
-
 

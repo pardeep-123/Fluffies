@@ -16,7 +16,7 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/tv_title"
+            android:id="@+id/tvText"
             style="@style/TextRegularFont"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"

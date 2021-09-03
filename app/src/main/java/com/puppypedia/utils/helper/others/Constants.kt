@@ -13,14 +13,14 @@ class Constants {
         val AuthKey = "Authorization"
         const val TYPE_USER = "1"
         const val ITEM_DETAILS = "items_details"
-        const val TermsCondition = "termsAndConditions"
+
         const val SignUp = BASE_URL + "signUp"
         const val Login = BASE_URL + "login"
         const val AddPuppies = BASE_URL + "add_puppies"
-
-
-        const val Terms = BASE_URL + "termConditions"
-        const val Privacy = BASE_URL + "privacyPolicy"
+        const val AboutUs = BASE_URL + "about"
+        const val Terms = BASE_URL + "terms"
+        const val Privacy = BASE_URL + "privacy_policy"
+        const val NotificationListing = BASE_URL + "notificationListing"
 
         const val ForgotPassword = BASE_URL + "forgotPassword"
         const val Profile = BASE_URL + "profile"
@@ -46,7 +46,7 @@ class Constants {
         const val GetProfile = BASE_URL + "getProfile"
         const val EditProfile = BASE_URL + "editProfile"
         const val ChangePassword = BASE_URL + "changePassword"
-        const val AboutUs = BASE_URL + "aboutUs"
+
         const val PrivacyPolicy = BASE_URL + "privacyPolicy"
         const val FaqList = BASE_URL + "getFaqList"
         const val HelpList = BASE_URL + "getHelpList"

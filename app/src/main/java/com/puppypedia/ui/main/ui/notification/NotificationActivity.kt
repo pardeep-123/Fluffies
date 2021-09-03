@@ -1,38 +1,67 @@
 package com.puppypedia.ui.main.ui.notification
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProviders
+import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.NotificationAdapter
-import com.puppypedia.databinding.ActivityNotificationBinding
+import com.puppypedia.restApi.RestObservable
+import com.puppypedia.ui.main.ui.AllViewModel
+import com.puppypedia.utils.helper.others.Helper
+import kotlinx.android.synthetic.main.activity_notification.*
+import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
-class NotificationActivity : AppCompatActivity() {
-
-    lateinit var  binding: ActivityNotificationBinding
-    private val notificationVM : NotificationVM by viewModels()
+class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
+    private val viewModel: AllViewModel
+            by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityNotificationBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_notification)
 
-        setAdapter()
-           binding.tb.ivBack.setOnClickListener {
-                onBackPressed()
-            }
-        binding.tb.tvTitle.text= getString(R.string.notifications)
-
-
-        binding.llNoNotifications.setOnClickListener {
-           binding. rvNotifications.visibility = View.VISIBLE
-            binding.llNoNotifications.visibility = View.GONE
+        tb.iv_back.setOnClickListener {
+            onBackPressed()
         }
-        binding.notificationVM = notificationVM
+        tb.tv_title.text = getString(R.string.notifications)
+
+
+        ll_no_notifications.setOnClickListener {
+            rv_notifications.visibility = View.VISIBLE
+            ll_no_notifications.visibility = View.GONE
+        }
+        callApi()
     }
-    fun setAdapter(){
+
+    fun setAdapter() {
         val notificationAdapter = NotificationAdapter(this)
-        binding.rvNotifications.adapter = notificationAdapter
+        rv_notifications.adapter = notificationAdapter
     }
+
+    fun callApi() {
+        viewModel.getNotificationListAPI(this, true)
+        viewModel.mResponse.observe(this, this)
+    }
+
+    override fun onChanged(it: RestObservable?) {
+        when {
+            it!!.status == Status.SUCCESS -> {
+                if (it.data is NotificationResponse) {
+                    val aboutResponse: NotificationResponse = it.data
+                    setAdapter()
+                }
+            }
+            it.status == Status.ERROR -> {
+                if (it.data != null) {
+                    Helper.showErrorAlert(this, it.data as String)
+                } else {
+                    Helper.showErrorAlert(this, it.error.toString())
+                }
+            }
+        }
+    }
+
+
 }
