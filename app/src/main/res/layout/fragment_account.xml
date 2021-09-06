@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/bg_half"
     android:orientation="vertical"
-    tools:context=".ui.fragments.AccountFragment">
+    tools:context=".ui.fragments.accountFragment.AccountFragment">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbMain"
@@ -17,11 +17,9 @@
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp">
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
 
             <TextView
                 android:id="@+id/signin_text"
@@ -112,11 +110,11 @@
                         android:layout_alignParentStart="true"
                         android:layout_centerVertical="true"
                         android:layout_marginStart="@dimen/_8sdp"
-                        android:layout_toStartOf="@id/sc_switch"
+                        android:layout_toStartOf="@id/sw_switch"
                         android:text="@string/notifications" />
 
                     <androidx.appcompat.widget.SwitchCompat
-                        android:id="@+id/sc_switch"
+                        android:id="@+id/sw_switch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"

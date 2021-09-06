@@ -21,6 +21,7 @@ class Constants {
         const val Terms = BASE_URL + "terms"
         const val Privacy = BASE_URL + "privacy_policy"
         const val NotificationListing = BASE_URL + "notificationListing"
+        const val NotificationOnOff = BASE_URL + "notification_on_off"
 
         const val ForgotPassword = BASE_URL + "forgotPassword"
         const val Profile = BASE_URL + "profile"
@@ -32,7 +33,6 @@ class Constants {
         const val productDetail = BASE_URL + "user/productDetail"
         const val CartDetail = BASE_URL + "cartDetail"
         const val GuestCartDetail = BASE_URL + "guestCartDetail"
-        const val NotificationOnOff = BASE_URL + "NotificationOnOff"
         const val ExtraNotificationOnOff = BASE_URL + "extraNotificationOnOff"
         const val GetBlogList = BASE_URL + "getBlogList"
         const val AddToCart = BASE_URL + "addToCart"

@@ -95,16 +95,16 @@ class AllViewModel : ViewModel() {
     }
 
 
-    /*  @SuppressLint("CheckResult")
-      fun notiOnOffProfile(activity: Activity, showLoader: Boolean, map: HashMap<String, String>) {
-          restApiInterface.NotificationOnOff(map)
-              .subscribeOn(Schedulers.io())
-              .observeOn(AndroidSchedulers.mainThread())
-              .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
-              .subscribe(
-                  { mResponse.value = RestObservable.success(it) },
-                  { mResponse.value = RestObservable.error(activity, it) }
-              )
-      }*/
+    @SuppressLint("CheckResult")
+    fun apiNotiOnOff(activity: Activity, status: String, showLoader: Boolean) {
+        restApiInterface.notiOnOff(status)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
 
 }

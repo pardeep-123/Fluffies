@@ -1,4 +1,4 @@
-package com.puppypedia.ui.fragments
+package com.puppypedia.ui.fragments.accountFragment
 
 import android.content.Intent
 import android.os.Bundle
@@ -9,7 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.last.manager.restApi.Status
-import com.puppypedia.databinding.FragmentAccountBinding
+import com.puppypedia.R
 import com.puppypedia.dialogius.LogoutDialog
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
@@ -20,20 +20,24 @@ import com.puppypedia.ui.main.ui.mypetprofile.MyPetProfileActivity
 import com.puppypedia.ui.main.ui.profile.ProfileActivity
 import com.puppypedia.utils.helper.AppConstant
 import com.puppypedia.utils.helper.others.Helper
+import kotlinx.android.synthetic.main.fragment_account.*
 
 
 class AccountFragment : Fragment(), Observer<RestObservable> {
+    lateinit var v: View
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
-    lateinit var binding: FragmentAccountBinding
 
+    var status = 0
+
+    var isFirst = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        binding = FragmentAccountBinding.inflate(inflater, container, false)
-        return binding.root
+        v = inflater.inflate(R.layout.fragment_account, container, false)
+        return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,53 +48,54 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
 
     private fun clicksHandle() {
 
-        binding.civProfile.setOnClickListener {
+        civProfile.setOnClickListener {
             startActivity(Intent(requireContext(), ProfileActivity::class.java))
         }
 
-        binding.rlMyPets.setOnClickListener {
+        rlMyPets.setOnClickListener {
             startActivity(Intent(requireContext(), MyPetProfileActivity::class.java))
         }
 
-        binding.rlChangePassword.setOnClickListener {
+        rlChangePassword.setOnClickListener {
             startActivity(Intent(requireContext(), ChangePasswordActivity::class.java))
         }
 
-        binding.rlAboutUs.setOnClickListener {
+        rlAboutUs.setOnClickListener {
             startActivity(Intent(requireContext(), AboutUsActivity::class.java))
         }
 
-        binding.rlTermsCondition.setOnClickListener {
+        rlTermsCondition.setOnClickListener {
             val intent = Intent(requireContext(), AboutUsActivity::class.java)
-            intent.putExtra(AppConstant.HEADING,1)
+            intent.putExtra(AppConstant.HEADING, 1)
             startActivity(intent)
         }
 
-        binding.rlPrivacyPolicy.setOnClickListener {
+        rlPrivacyPolicy.setOnClickListener {
             val intent = Intent(requireContext(), AboutUsActivity::class.java)
             intent.putExtra(AppConstant.HEADING, 2)
             startActivity(intent)
         }
 
-        binding.btnLogout.setOnClickListener {
+        btnLogout.setOnClickListener {
             val dialog = LogoutDialog()
             dialog.show(requireActivity().supportFragmentManager, "logoutDialog")
         }
 
-        /* binding.sc_switch.setOnCheckedChangeListener { buttonView, isChecked ->
-             guestMessage = if (isChecked) {+
-                 1
-             } else {
-                 0
-             }
-             if (isFirst) {
-                 val param = HashMap<String, String>()
-                 param[GlobalVariables.PARAMS.NotificationSetting.guestMessages] = guestMessage.toString()
-                 setNotification(param)
-             }
-         }*/
+        sw_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            status = if (isChecked) {
+                +
+                1
 
+            } else {
+                0
+            }
 
+        }
+    }
+
+    fun api(status: String) {
+        viewModel.apiNotiOnOff(requireActivity(), status, true)
+        viewModel.mResponse.observe(requireActivity(), this)
     }
 
 
@@ -99,7 +104,6 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is NotificationOnOffModel) {
                     val aboutResponse: NotificationOnOffModel = it.data
-
                 }
             }
             it.status == Status.ERROR -> {

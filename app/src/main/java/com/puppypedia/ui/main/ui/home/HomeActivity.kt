@@ -8,10 +8,10 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.puppypedia.R
 import com.puppypedia.databinding.ActivityHomeBinding
-import com.puppypedia.ui.fragments.AccountFragment
 import com.puppypedia.ui.fragments.CalenderFragment
 import com.puppypedia.ui.fragments.HomeFragment
 import com.puppypedia.ui.fragments.SearchFragment
+import com.puppypedia.ui.fragments.accountFragment.AccountFragment
 
 class HomeActivity : AppCompatActivity() {
     lateinit var binding: ActivityHomeBinding

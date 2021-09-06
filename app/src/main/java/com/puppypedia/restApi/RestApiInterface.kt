@@ -2,15 +2,13 @@ package com.puppypedia.restApi
 
 import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
+import com.puppypedia.ui.commomModel.NotificationOnOffModel
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
 import com.puppypedia.ui.main.ui.notification.NotificationResponse
 import com.puppypedia.ui.main.ui.petdetail.PetDetailResponse
 import com.puppypedia.utils.helper.others.Constants
 import io.reactivex.Observable
-import retrofit2.http.FieldMap
-import retrofit2.http.FormUrlEncoded
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 import java.util.*
 
 
@@ -48,6 +46,11 @@ interface RestApiInterface {
     @GET(Constants.NotificationListing)
     fun notiListing(): Observable<NotificationResponse>
 
+    @FormUrlEncoded
+    @POST(Constants.NotificationOnOff)
+    fun notiOnOff(
+        @Field("status") status: String
+    ): Observable<NotificationOnOffModel>
 
     /*   @Multipart
        @POST(Constants.AddPuppies)
