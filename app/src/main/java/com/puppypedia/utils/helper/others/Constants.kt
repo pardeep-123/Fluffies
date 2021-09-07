@@ -22,9 +22,12 @@ class Constants {
         const val Privacy = BASE_URL + "privacy_policy"
         const val NotificationListing = BASE_URL + "notificationListing"
         const val NotificationOnOff = BASE_URL + "notification_on_off"
+        const val ChangePassword = BASE_URL + "changePassword"
+        const val Profile = BASE_URL + "profile"
+        const val EditProfile = BASE_URL + "edit_profile"
 
         const val ForgotPassword = BASE_URL + "forgotPassword"
-        const val Profile = BASE_URL + "profile"
+
         const val HomePageListing = BASE_URL + "homePageListing"
         const val HomePageSkipListing = BASE_URL + "guest/homePageListing"
         const val RestaurantDetail = BASE_URL + "restaurantDetail"
@@ -44,8 +47,7 @@ class Constants {
         const val FilterListing = BASE_URL + "filterListing"
         const val FilterGuestListing = BASE_URL + "guest/filterListing"
         const val GetProfile = BASE_URL + "getProfile"
-        const val EditProfile = BASE_URL + "editProfile"
-        const val ChangePassword = BASE_URL + "changePassword"
+
 
         const val PrivacyPolicy = BASE_URL + "privacyPolicy"
         const val FaqList = BASE_URL + "getFaqList"

@@ -4,8 +4,11 @@ import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
+import com.puppypedia.ui.main.ui.changepassword.ChangePasswordResponse
+import com.puppypedia.ui.main.ui.editprofile.EditProfileResponse
 import com.puppypedia.ui.main.ui.notification.NotificationResponse
 import com.puppypedia.ui.main.ui.petdetail.PetDetailResponse
+import com.puppypedia.ui.main.ui.profile.ProfileResponse
 import com.puppypedia.utils.helper.others.Constants
 import io.reactivex.Observable
 import retrofit2.http.*
@@ -51,6 +54,21 @@ interface RestApiInterface {
     fun notiOnOff(
         @Field("status") status: String
     ): Observable<NotificationOnOffModel>
+
+    @FormUrlEncoded
+    @POST(Constants.ChangePassword)
+    fun changePassword(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<ChangePasswordResponse>
+
+    @GET(Constants.Profile)
+    fun apiProfile(): Observable<ProfileResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.EditProfile)
+    fun editProfile(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<EditProfileResponse>
 
     /*   @Multipart
        @POST(Constants.AddPuppies)

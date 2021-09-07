@@ -28,7 +28,7 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
 
-    var status = 0
+    var status = "0"
 
     var isFirst = false
     override fun onCreateView(
@@ -83,13 +83,13 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
 
         sw_switch.setOnCheckedChangeListener { buttonView, isChecked ->
             status = if (isChecked) {
-                +
-                1
+
+                "1"
 
             } else {
-                0
+                " 0"
             }
-
+            api(status)
         }
     }
 

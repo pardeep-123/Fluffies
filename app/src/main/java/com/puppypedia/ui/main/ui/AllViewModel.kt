@@ -107,4 +107,45 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    @SuppressLint("CheckResult")
+    fun changePasswordApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+
+    ) {
+        restApiInterface.changePassword(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getProfile(activity: Activity, showLoader: Boolean) {
+        restApiInterface.apiProfile()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun editProfileApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+    ) {
+        restApiInterface.editProfile(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
 }

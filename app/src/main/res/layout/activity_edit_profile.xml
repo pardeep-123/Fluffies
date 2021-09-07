@@ -39,6 +39,7 @@
                     app:riv_corner_radius="@dimen/_5sdp" />
 
                 <ImageView
+                    android:id="@+id/ivCamera"
                     android:layout_width="@dimen/_40sdp"
                     android:layout_height="@dimen/_40sdp"
                     android:layout_centerInParent="true"
@@ -53,6 +54,7 @@
                 android:textSize="@dimen/_14sdp" />
 
             <EditText
+                android:id="@+id/etName"
                 style="@style/MatchEditText"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_edit_text"
@@ -70,6 +72,7 @@
                 android:textSize="@dimen/_14sdp" />
 
             <EditText
+                android:id="@+id/etEmail"
                 style="@style/MatchEditText"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_edit_text"

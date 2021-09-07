@@ -25,6 +25,7 @@
 
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivProfileImg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -39,6 +40,7 @@
                 android:textColor="@color/theme_Color" />
 
             <TextView
+                android:id="@+id/tvName"
                 style="@style/WrapTextView"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="Jhonson Marker"
@@ -53,6 +55,7 @@
                 />
 
             <TextView
+                android:id="@+id/tvEmail"
                 style="@style/WrapTextView"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="jhonson@gmail.com"
