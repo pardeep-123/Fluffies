@@ -23,7 +23,6 @@
             android:layout_marginEnd="@dimen/_20sdp"
             android:orientation="vertical">
 
-
             <com.makeramen.roundedimageview.RoundedImageView
                 android:id="@+id/ivProfileImg"
                 android:layout_width="match_parent"
@@ -50,9 +49,7 @@
                 style="@style/WrapTextView"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/email"
-                android:textColor="@color/theme_Color"
-
-                />
+                android:textColor="@color/theme_Color" />
 
             <TextView
                 android:id="@+id/tvEmail"
@@ -60,7 +57,6 @@
                 android:layout_marginTop="@dimen/_5sdp"
                 android:text="jhonson@gmail.com"
                 android:textSize="@dimen/_13sdp" />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

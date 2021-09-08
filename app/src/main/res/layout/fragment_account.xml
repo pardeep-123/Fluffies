@@ -67,7 +67,7 @@
                         android:src="@drawable/profile" />
 
                     <TextView
-                        android:id="@+id/name"
+                        android:id="@+id/tvname"
                         style="@style/WrapTextView"
                         android:layout_below="@id/civProfile"
                         android:layout_centerHorizontal="true"
@@ -77,11 +77,11 @@
                         android:textSize="@dimen/_14sdp" />
 
                     <TextView
-                        android:id="@+id/tvPhoneNo"
+                        android:id="@+id/tvEmail"
                         style="@style/TextRegularFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/name"
+                        android:layout_below="@id/tvname"
                         android:layout_centerHorizontal="true"
                         android:text="johnmarker@gmail.com"
                         android:textColor="@color/grey"

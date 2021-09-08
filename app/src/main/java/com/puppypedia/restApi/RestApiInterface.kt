@@ -2,6 +2,8 @@ package com.puppypedia.restApi
 
 import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
+import com.puppypedia.ui.commomModel.ImageUploadResponse
+import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordResponse
@@ -11,6 +13,8 @@ import com.puppypedia.ui.main.ui.petdetail.PetDetailResponse
 import com.puppypedia.ui.main.ui.profile.ProfileResponse
 import com.puppypedia.utils.helper.others.Constants
 import io.reactivex.Observable
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.http.*
 import java.util.*
 
@@ -22,6 +26,13 @@ interface RestApiInterface {
     fun signUp(
         @FieldMap map: HashMap<String, String>
     ): Observable<SignUpResponse>
+
+    @Multipart
+    @POST(Constants.FileUpload)
+    fun fileUpload(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part
+    ): Observable<ImageUploadResponse>
 
     @FormUrlEncoded
     @POST(Constants.Login)
@@ -63,6 +74,10 @@ interface RestApiInterface {
 
     @GET(Constants.Profile)
     fun apiProfile(): Observable<ProfileResponse>
+
+
+    @GET(Constants.Logout)
+    fun apiLogout(): Observable<LogoutResponse>
 
     @FormUrlEncoded
     @POST(Constants.EditProfile)

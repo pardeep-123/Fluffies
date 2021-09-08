@@ -16,7 +16,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/btnUpdate"
         android:layout_below="@id/tb">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -28,7 +27,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
                 android:layout_marginTop="@dimen/_10sdp">
-
                 <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/rivProfile"
                     android:layout_width="match_parent"
@@ -46,13 +44,11 @@
                     android:contentDescription="@string/image"
                     android:src="@drawable/camera" />
             </RelativeLayout>
-
             <TextView
                 style="@style/WrapTextView"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:text="@string/name"
                 android:textSize="@dimen/_14sdp" />
-
             <EditText
                 android:id="@+id/etName"
                 style="@style/MatchEditText"
@@ -64,13 +60,11 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:text="Jonson" />
-
             <TextView
                 style="@style/WrapTextView"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:text="@string/email"
                 android:textSize="@dimen/_14sdp" />
-
             <EditText
                 android:id="@+id/etEmail"
                 style="@style/MatchEditText"
@@ -82,10 +76,8 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 android:text="jonson@gmail.com" />
-
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnUpdate"
         style="@style/ButtonMatch"

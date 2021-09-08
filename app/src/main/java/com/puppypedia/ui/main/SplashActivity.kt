@@ -7,6 +7,8 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.puppypedia.R
 import com.puppypedia.ui.auth.login.LoginActivity
+import com.puppypedia.ui.main.ui.home.HomeActivity
+import com.puppypedia.utils.helper.sharedPref.SharedPrefUtil
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -14,8 +16,13 @@ class SplashActivity : AppCompatActivity() {
         setContentView(R.layout.activity_splash)
 
         Handler(Looper.getMainLooper()).postDelayed({
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+
+            if (SharedPrefUtil.getInstance().authToken.isEmpty()) {
+                startActivity(Intent(this, LoginActivity::class.java))
+            } else {
+                startActivity(Intent(this, HomeActivity::class.java))
+            }
+
             finish()
         }, 3000)
     }

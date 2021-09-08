@@ -49,7 +49,7 @@
         <entry key="app/src/main/res/layout/dialog_logout.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_pet_profile_update.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.18489583333333334" />
-        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_account.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14479166666666668" />

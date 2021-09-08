@@ -37,22 +37,19 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         context = this
         tb.tv_title.text = getString(R.string.edit_profile)
         clicksHandle()
-/*
 
-        firstimage=intent.getStringExtra("image").toString()
-        name.setText(intent.getStringExtra("name").toString())
-        email.setText(intent.getStringExtra("email").toString())
-      //  Log.e("editprofile", "" + intent.getStringExtra("email") + intent.getStringExtra("name"))
-        Glide.with(this).load(intent.getStringExtra("image").toString()).placeholder(R.drawable.profile_pic).into(rivProfile)
-*/
-
+        firstimage = intent.getStringExtra("image").toString()
+        etName.setText(intent.getStringExtra("name").toString())
+        etEmail.setText(intent.getStringExtra("email").toString())
+        //  Log.e("editprofile", "" + intent.getStringExtra("email") + intent.getStringExtra("name"))
+        Glide.with(this).load(intent.getStringExtra("image").toString())
+            .placeholder(R.drawable.profile_pic).into(rivProfile)
     }
 
     private fun clicksHandle() {
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
-
         btnUpdate.setOnClickListener {
             CallApiEDitProfile()
         }
@@ -61,7 +58,6 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             mAlbumFiles = ArrayList()
             mAlbumFiles.clear()
             selectImage()
-
         }
     }
 
