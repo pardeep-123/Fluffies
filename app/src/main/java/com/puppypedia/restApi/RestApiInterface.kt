@@ -2,12 +2,14 @@ package com.puppypedia.restApi
 
 import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
+import com.puppypedia.ui.commomModel.CommonModel
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordResponse
 import com.puppypedia.ui.main.ui.editprofile.EditProfileResponse
+import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
 import com.puppypedia.ui.main.ui.notification.NotificationResponse
 import com.puppypedia.ui.main.ui.petdetail.PetDetailResponse
 import com.puppypedia.ui.main.ui.profile.ProfileResponse
@@ -16,7 +18,6 @@ import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
-import java.util.*
 
 
 interface RestApiInterface {
@@ -75,6 +76,9 @@ interface RestApiInterface {
     @GET(Constants.Profile)
     fun apiProfile(): Observable<ProfileResponse>
 
+    @GET(Constants.GetPetProfile)
+    fun apiPetProfile(): Observable<PetProfileResponse>
+
 
     @GET(Constants.Logout)
     fun apiLogout(): Observable<LogoutResponse>
@@ -84,6 +88,13 @@ interface RestApiInterface {
     fun editProfile(
         @FieldMap map: HashMap<String, String>
     ): Observable<EditProfileResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.ForgotPassword)
+    fun apiforgotPassword(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<CommonModel>
+
 
     /*   @Multipart
        @POST(Constants.AddPuppies)

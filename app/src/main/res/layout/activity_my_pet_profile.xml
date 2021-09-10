@@ -32,6 +32,7 @@
 
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/ivImg"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_150sdp"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -56,6 +57,7 @@
                     android:textColor="@color/theme_Color" />
 
                 <TextView
+                    android:id="@+id/tvName"
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
                     android:text="Rony" />
@@ -75,6 +77,7 @@
                     android:textColor="@color/theme_Color" />
 
                 <TextView
+                    android:id="@+id/tvGender"
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
                     android:text="@string/male" />
@@ -94,6 +97,7 @@
                     android:textColor="@color/theme_Color" />
 
                 <TextView
+                    android:id="@+id/tvWeight"
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
                     android:text="@string/_120_lbs" />
@@ -113,6 +117,7 @@
                     android:textColor="@color/theme_Color" />
 
                 <TextView
+                    android:id="@+id/tvAge"
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
                     android:text="@string/_01_yr" />
@@ -132,6 +137,7 @@
                     android:textColor="@color/theme_Color" />
 
                 <TextView
+                    android:id="@+id/tvBreed"
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
                     android:text="@string/golden_retriever" />
@@ -153,7 +159,8 @@
             </RelativeLayout>
 
             <TextView
-               android:layout_width="match_parent"
+                android:id="@+id/tvAbout"
+                android:layout_width="match_parent"
                 android:fontFamily="@font/opensans_regular"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"

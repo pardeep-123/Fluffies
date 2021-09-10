@@ -3,6 +3,7 @@
     package="com.puppypedia">
 
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
@@ -75,6 +76,19 @@
         <activity
             android:name=".ui.main.ui.mypetprofile.MyPetProfileActivity"
             android:screenOrientation="portrait" />
+
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <!--
+Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorPrimary" /> <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
+
 
         <provider
             android:name="androidx.core.content.FileProvider"

@@ -4,10 +4,13 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
@@ -24,24 +27,21 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClickListener {
     private lateinit var mValidationClass: ValidationsClass
+    var token = ""
     private val viewModel: AuthViewModel
             by lazy { ViewModelProviders.of(this).get(AuthViewModel::class.java) }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
-
         mValidationClass = ValidationsClass.getInstance()
+        getFirebaseToken()
         SharedPrefUtil.init(this)
         passwordShowHide()
-
         tvForgotPassword.setOnClickListener(this)
         btnSignIn.setOnClickListener(this)
         llSignUp.setOnClickListener(this)
 
-
     }
-
     private fun passwordShowHide() {
         cbPassword.setOnCheckedChangeListener { compoundButton, boolean ->
             if (boolean) {
@@ -53,8 +53,6 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
             }
         }
     }
-
-
     private fun isValid(): Boolean {
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString().trim()
@@ -71,7 +69,6 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
             check = true
         return check
     }
-
     fun callLoginApi() {
         if (isValid()) {
             val email = etEmail.text.toString().trim()
@@ -80,13 +77,11 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
             map["email"] = email
             map["password"] = password
             map["device_type"] = Constants.Device_Type
-            map["device_token"] = "z"
+            map["device_token"] = token
             viewModel.loginApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }
-
     }
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -118,7 +113,6 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
             }
         }
     }
-
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.tvForgotPassword -> {
@@ -131,6 +125,18 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                 startActivity(Intent(this, SignUpActivity::class.java))
             }
         }
+    }
+
+    private fun getFirebaseToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("Login", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            // Get new FCM registration token
+            token = task.result.toString()
+            Log.e("Fetching FCM ", token!!)
+        })
     }
 
 }

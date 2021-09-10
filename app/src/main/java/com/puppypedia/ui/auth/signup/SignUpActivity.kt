@@ -4,11 +4,14 @@ import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
+import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
@@ -34,6 +37,7 @@ import java.io.File
 
 class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
     private var image = ""
+    var token = ""
     private var mAlbumFiles = ArrayList<AlbumFile>()
     private val viewModel: AuthViewModel by lazy { ViewModelProvider(this).get(AuthViewModel::class.java) }
     private lateinit var mValidationClass: ValidationsClass
@@ -41,6 +45,7 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_up)
+        getFirebaseToken()
         SharedPrefUtil.init(this)
         passwordShowHide()
         mValidationClass = ValidationsClass.getInstance()
@@ -161,7 +166,7 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
                     map["confirmPassword"] = confirmPassword
                     map["image"] = it.data.body[0].image
                     map["deviceType"] = Constants.Device_Type
-                    map["deviceToken"] = "z"
+                    map["deviceToken"] = token
                     viewModel.signUpApi(this, true, map)
 
                 }
@@ -218,5 +223,15 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
             .start()
     }
 
-
+    private fun getFirebaseToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("Login", "Fetching FCM registration token failed", task.exception)
+                return@OnCompleteListener
+            }
+            // Get new FCM registration token
+            token = task.result.toString()
+            Log.e("Fetching FCM ", token!!)
+        })
+    }
 }

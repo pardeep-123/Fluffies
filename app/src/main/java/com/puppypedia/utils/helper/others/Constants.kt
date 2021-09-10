@@ -27,9 +27,9 @@ class Constants {
         const val NotificationOnOff = BASE_URL + "notification_on_off"
         const val ChangePassword = BASE_URL + "changePassword"
         const val Profile = BASE_URL + "profile"
+        const val GetPetProfile = BASE_URL + "get_pets"
         const val EditProfile = BASE_URL + "edit_profile"
         const val Logout = BASE_URL + "logout"
-
         const val ForgotPassword = BASE_URL + "forgotPassword"
 
         const val HomePageListing = BASE_URL + "homePageListing"

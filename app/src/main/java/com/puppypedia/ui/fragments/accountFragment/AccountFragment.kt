@@ -98,12 +98,10 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
         viewModel.apiNotiOnOff(requireActivity(), status, true)
         viewModel.mResponse.observe(requireActivity(), this)
     }
-
     fun apiLogout() {
         viewModel.getLogout(requireActivity(), true)
         viewModel.mResponse.observe(requireActivity(), this)
     }
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -117,7 +115,6 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
                     SharedPrefUtil.getInstance().clear()
                     startActivity(Intent(activity, LoginActivity::class.java))
                     activity?.finishAffinity()
-
                 }
             }
             it.status == Status.ERROR -> {
@@ -129,7 +126,6 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
             }
         }
     }
-
     private fun logoutDialog() {
         dialog = Dialog(requireContext())
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)

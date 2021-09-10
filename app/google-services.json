@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "41130870940",
+    "project_id": "puppypedia",
+    "storage_bucket": "puppypedia.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:41130870940:android:02f9f4f75f49268285c559",
+        "android_client_info": {
+          "package_name": "com.puppypedia"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41130870940-3uok5s7o73rj4aagqmr4ev191i8he1ah.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.puppypedia",
+            "certificate_hash": "2550fec7877fa32129fea276cb07406e1f7f9d97"
+          }
+        },
+        {
+          "client_id": "41130870940-6iattal37hfj6q2jsfs1qcvp5se5dcp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8kXOQmjDhvK5dk7PY-jtU61Qpai9k1oI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41130870940-6iattal37hfj6q2jsfs1qcvp5se5dcp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

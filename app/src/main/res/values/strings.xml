@@ -105,8 +105,7 @@
     <string name="error_">Error</string>
     <string name="retry">Retry</string>
 
-
-    ///////////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////////////
     <string name="no_internet">Please check your internet connection.</string>
     <string name="error_name">Please enter name</string>
     <string name="error_email">Please enter email</string>
