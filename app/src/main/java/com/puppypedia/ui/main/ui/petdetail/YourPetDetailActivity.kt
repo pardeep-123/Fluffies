@@ -51,7 +51,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     var image = ""
     var age = 0
     var weight = 0
-    val ageArrayList = arrayListOf("Age", "1 yr", "2 yr")
+    val ageArrayList = ArrayList<String>()
     val weightArrayList = arrayListOf("Weight", "1 lbs", "2 lbs")
 
     private val viewModel: AllViewModel
@@ -64,6 +64,9 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         setContentView(R.layout.activity_your_pet_detail)
         mValidationClass = ValidationsClass.getInstance()
         SharedPrefUtil.init(this)
+        for (i in 1 until 60) {
+            ageArrayList.add(i.toString() + "yr")
+        }
         tb.tv_title.text = getString(R.string.your_pet_detail)
         clicksHandle()
         setSpinnerAge()

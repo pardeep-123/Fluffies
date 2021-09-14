@@ -6,8 +6,10 @@ import com.puppypedia.ui.commomModel.CommonModel
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
+import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordResponse
+import com.puppypedia.ui.main.ui.editpetprofile.EditPetResponse
 import com.puppypedia.ui.main.ui.editprofile.EditProfileResponse
 import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
 import com.puppypedia.ui.main.ui.notification.NotificationResponse
@@ -79,6 +81,9 @@ interface RestApiInterface {
     @GET(Constants.GetPetProfile)
     fun apiPetProfile(): Observable<PetProfileResponse>
 
+    @GET(Constants.HomeApi)
+    fun apiHome(): Observable<HomeFragmentResponse>
+
 
     @GET(Constants.Logout)
     fun apiLogout(): Observable<LogoutResponse>
@@ -88,6 +93,14 @@ interface RestApiInterface {
     fun editProfile(
         @FieldMap map: HashMap<String, String>
     ): Observable<EditProfileResponse>
+
+
+    @FormUrlEncoded
+    @POST(Constants.EditPetProfile)
+    fun editPetProfile(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<EditPetResponse>
+
 
     @FormUrlEncoded
     @POST(Constants.ForgotPassword)

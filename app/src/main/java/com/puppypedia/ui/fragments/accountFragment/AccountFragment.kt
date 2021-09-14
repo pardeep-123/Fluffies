@@ -42,15 +42,11 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
     ): View? {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_account, container, false)
-
-/*
-        tvname.text = getPrefrence(Constants.name,"")
-        tvEmail.text = getPrefrence(Constants.name,"")
+        // tvname.text = getPrefrence(Constants.name,"")
+/*        tvEmail.text = getPrefrence(Constants.name,"")
         Glide.with(this@DrawerActivity).load(getPrefrence(Constants.image,""))
             .placeholder(R.drawable.placehoder)
             .into(civProfile)*/
-
-
         return v
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

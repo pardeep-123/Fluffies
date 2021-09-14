@@ -166,6 +166,18 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    @SuppressLint("CheckResult")
+    fun getHomeDetails(activity: Activity, showLoader: Boolean) {
+        restApiInterface.apiHome()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
 
     @SuppressLint("CheckResult")
     fun editProfileApi(
@@ -198,6 +210,21 @@ class AllViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun apiForgot(activity: Activity, showLoader: Boolean, map: HashMap<String, String>) {
         restApiInterface.apiforgotPassword(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun editPetProfileApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+    ) {
+        restApiInterface.editPetProfile(map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

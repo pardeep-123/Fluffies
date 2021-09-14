@@ -6,26 +6,26 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import com.bumptech.glide.Glide
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.StatusAdapter
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.editpetprofile.EditPetProfileActivity
-import com.puppypedia.utils.helper.others.Constants
+import com.puppypedia.utils.helper.others.Constants.Companion.PET_IMAGE_URL
+import com.puppypedia.utils.helper.others.Constants.Companion.gender
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.activity_my_pet_profile.*
+import kotlinx.android.synthetic.main.activity_my_pet_profile.view.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
+
 
 class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     lateinit var adapter: StatusAdapter
-    var name = ""
-    var gender = ""
-    var weight = ""
-    var age = ""
-    var breed = ""
-    var about = ""
-    var image = ""
+
+    var selectedpos = ""
+    var aboutResponse: PetProfileResponse? = null
     lateinit var context: Context
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
@@ -35,17 +35,12 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         setContentView(R.layout.activity_my_pet_profile)
         clickHandle()
         context = this
-        val arrayList = ArrayList<Int>()
-        arrayList.add(R.drawable.petprofile)
-        arrayList.add(R.drawable.petprofile_one)
-        arrayList.add(R.drawable.plusbg)
+
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
         tb.tv_title.text = getString(R.string.my_pet_profile)
 
-        adapter = StatusAdapter(this, arrayList)
-        rv_status.adapter = adapter
 
     }
 
@@ -57,16 +52,9 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     fun clickHandle() {
         BtnEdit.setOnClickListener {
             val i = Intent(context, EditPetProfileActivity::class.java)
-            i.putExtra("gender", gender)
-            i.putExtra("name", name)
-            i.putExtra("weight", weight)
-            i.putExtra("age", age)
-            i.putExtra("breed", breed)
-            i.putExtra("about", about)
-            i.putExtra("image", Constants.USER_IMAGE_URL + image)
+            i.putExtra("aboutResponse", aboutResponse)
+            i.putExtra("selectedpos", selectedpos)
             startActivity(i)
-
-
             //   startActivity(Intent(this,EditPetProfileActivity::class.java))
         }
 
@@ -81,7 +69,11 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         when {
             liveData!!.status == Status.SUCCESS -> {
                 if (liveData.data is PetProfileResponse) {
-                    val aboutResponse: PetProfileResponse = liveData.data
+                    aboutResponse = liveData.data
+
+                    adapter = StatusAdapter(this, aboutResponse!!, this@MyPetProfileActivity)
+                    rv_status.adapter = adapter
+                    petDetails(0)
 
                 }
             }
@@ -93,5 +85,19 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 }
             }
         }
+    }
+
+    fun petDetails(position: Int) {
+        selectedpos = position.toString()
+        Glide.with(context).load(PET_IMAGE_URL + aboutResponse!!.body[position].image)
+            .placeholder(R.drawable.profile_pic).into(ivImg)
+        tvName.setText(aboutResponse!!.body[position].name)
+        tvGender.setText(gender(aboutResponse!!.body[position].gender))
+        tvWeight.setText(aboutResponse!!.body[position].weight.toString())
+        tvAge.setText(aboutResponse!!.body[position].age.toString())
+        tvBreed.setText(aboutResponse!!.body[position].breed)
+        tvAbout.setText(aboutResponse!!.body[position].about)
+
+
     }
 }

@@ -2,45 +2,54 @@ package com.puppypedia.common_adapters
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puppypedia.databinding.ItemStatusBinding
+import com.bumptech.glide.Glide
+import com.puppypedia.R
+import com.puppypedia.ui.main.ui.mypetprofile.MyPetProfileActivity
+import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
+import com.puppypedia.utils.helper.others.Constants.Companion.PET_IMAGE_URL
 import de.hdodenhof.circleimageview.CircleImageView
 
-class StatusAdapter(var context: Context, var arrayList: ArrayList<Int>) :
+import kotlinx.android.synthetic.main.item_status.view.*
+
+class StatusAdapter(
+    var context: Context,
+    var arrayList: PetProfileResponse,
+    var myPetProfileActivity: MyPetProfileActivity
+) :
     RecyclerView.Adapter<StatusAdapter.StatusViewHolder>() {
 
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatusViewHolder {
-
-        val view = ItemStatusBinding.inflate( LayoutInflater.from(context),parent,false)
-//        val view = LayoutInflater.from(context).inflate(R.layout.item_status, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.item_status, parent, false)
         return StatusViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: StatusViewHolder, position: Int) {
-        holder.bind(position)
-    }
 
-    /*override fun getItemViewType(position: Int): Int {
-        if (arrayList.size-1 == 0){
+        if (position == arrayList.body.size) {
+            Glide.with(context).load(R.drawable.plusbg)
+                .into(holder.itemView.civPet)
+        } else {
+            Glide.with(context).load(PET_IMAGE_URL + arrayList.body[position].image)
+                .placeholder(R.drawable.profile_pic).into(holder.itemView.civPet)
+        }
+
+        holder.itemView.setOnClickListener {
+            if (position == arrayList.body.size) {
+            } else {
+                myPetProfileActivity.petDetails(position)
+            }
 
         }
-    }*/
+    }
 
     override fun getItemCount(): Int {
-        return arrayList.size
+        return arrayList.body.size + 1
     }
 
-   inner class StatusViewHolder(itemView: ItemStatusBinding) : RecyclerView.ViewHolder(itemView.root) {
-        val civPet:CircleImageView = itemView.civPet
-
-
-        fun bind(pos:Int){
-            civPet.setImageResource(arrayList[pos])
-        }
+    inner class StatusViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val civPet: CircleImageView = itemView.civPet
     }
-
 }

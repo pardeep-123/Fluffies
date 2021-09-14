@@ -1,38 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.main.ui.home.HomeActivity">
 
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
-
-        <variable
-            name="homeVM"
-            type="com.puppypedia.ui.main.ui.home.HomeVM" />
-
-    </data>
-
-    <RelativeLayout
+    <FrameLayout
+        android:id="@+id/frame_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white"
-        tools:context=".ui.main.ui.home.HomeActivity">
+        android:layout_above="@+id/llBottom" />
 
 
-        <FrameLayout
-            android:id="@+id/frame_main"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/llBottom" />
-
-
-        <LinearLayout
-            android:id="@+id/llBottom"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_48sdp"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/bottom_nav_corner_5dp"
-            android:orientation="horizontal"
-            android:weightSum="4">
+    <LinearLayout
+        android:id="@+id/llBottom"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_48sdp"
+        android:layout_alignParentBottom="true"
+        android:background="@drawable/bottom_nav_corner_5dp"
+        android:orientation="horizontal"
+        android:weightSum="4">
 
             <LinearLayout
                 android:id="@+id/llHome"
@@ -141,4 +130,3 @@
         </LinearLayout>
     </RelativeLayout>
 
-</layout>

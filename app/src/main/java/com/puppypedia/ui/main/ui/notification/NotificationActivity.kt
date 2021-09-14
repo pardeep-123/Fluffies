@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.auth_toolbar.view.*
 class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
-
+    var list: ArrayList<NotificationResponse>? = null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)

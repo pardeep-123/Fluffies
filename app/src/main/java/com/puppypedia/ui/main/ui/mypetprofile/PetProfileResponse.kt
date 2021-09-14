@@ -1,12 +1,14 @@
 package com.puppypedia.ui.main.ui.mypetprofile
 
+import java.io.Serializable
+
 
 data class PetProfileResponse(
     val success: Int, // 1
     val code: Int, // 200
     val msg: String, // Pets list get successfully
     val body: List<Body>
-) {
+) : Serializable {
     data class Body(
         val id: Int, // 17
         val userid: Int, // 13
@@ -21,5 +23,5 @@ data class PetProfileResponse(
         val about: String, // sdfvs
         val createdAt: String, // 2021-08-17T09:51:18.000Z
         val updatedAt: String // 2021-08-17T09:51:18.000Z
-    )
+    ) : Serializable
 }

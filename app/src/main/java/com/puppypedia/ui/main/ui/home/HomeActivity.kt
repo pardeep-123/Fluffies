@@ -1,39 +1,35 @@
 package com.puppypedia.ui.main.ui.home
 
 import android.os.Bundle
-import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.puppypedia.R
-import com.puppypedia.databinding.ActivityHomeBinding
 import com.puppypedia.ui.fragments.CalenderFragment
-import com.puppypedia.ui.fragments.HomeFragment
 import com.puppypedia.ui.fragments.SearchFragment
 import com.puppypedia.ui.fragments.accountFragment.AccountFragment
+import com.puppypedia.ui.fragments.home.HomeFragment
+import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
-    lateinit var binding: ActivityHomeBinding
-    private val homeVM: HomeVM by viewModels()
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        binding = ActivityHomeBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-        binding.homeVM = homeVM
+        setContentView(R.layout.activity_home)
+        /* binding = ActivityHomeBinding.inflate(layoutInflater)
+         setContentView(binding.root)
+         binding.homeVM = homeVM*/
 
         setHomeFragment()
         clicksHandle()
     }
 
     private fun clicksHandle() {
-        binding.llHome.setOnClickListener {
+        llHome.setOnClickListener {
             setHomeFragment()
         }
 
-        binding.llSearch.setOnClickListener {
+        llSearch.setOnClickListener {
             if (currentFragment() !is SearchFragment) {
                 openFragment(SearchFragment())
 
@@ -46,10 +42,9 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        binding.llCalendar.setOnClickListener {
+        llCalendar.setOnClickListener {
             if (currentFragment() !is CalenderFragment) {
                 openFragment(CalenderFragment())
-
                 setViews(
                     R.drawable.home_unactive, R.drawable.search_unactive,
                     R.drawable.cal_active, R.drawable.acc_unactive,
@@ -59,7 +54,7 @@ class HomeActivity : AppCompatActivity() {
             }
         }
 
-        binding.llAccount.setOnClickListener {
+        llAccount.setOnClickListener {
             if (currentFragment() !is AccountFragment) {
                 openFragment(AccountFragment())
 
@@ -100,18 +95,19 @@ class HomeActivity : AppCompatActivity() {
     }
 
     private fun setViews(
-        ivHome: Int, ivSearch: Int, ivCal: Int, ivAcc: Int,
+        ivHom: Int, ivSrch: Int, ivCal: Int, ivAcc: Int,
         homeTextColor: Int, searchTextColor: Int, calTextColor: Int, accTextColor: Int
     ) {
-        binding.ivHome.setImageResource(ivHome)
-        binding.ivSearch.setImageResource(ivSearch)
-        binding.ivCalendar.setImageResource(ivCal)
-        binding.ivAccount.setImageResource(ivAcc)
+        ivHome.setImageResource(ivHom)
+        ivSearch.setImageResource(ivSrch)
+        ivCalendar.setImageResource(ivCal)
+        ivAccount.setImageResource(ivAcc)
 
-        binding.tvHome.setTextColor(getColor(homeTextColor))
-        binding.tvSearch.setTextColor(getColor(searchTextColor))
-        binding.tvCalendar.setTextColor(getColor(calTextColor))
-        binding.tvAccount.setTextColor(getColor(accTextColor))
+
+        tvHome.setTextColor(getColor(homeTextColor))
+        tvSearch.setTextColor(getColor(searchTextColor))
+        tvCalendar.setTextColor(getColor(calTextColor))
+        tvAccount.setTextColor(getColor(accTextColor))
     }
 
     override fun onBackPressed() {

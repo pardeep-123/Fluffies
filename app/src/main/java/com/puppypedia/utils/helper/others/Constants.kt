@@ -29,10 +29,17 @@ class Constants {
         const val Profile = BASE_URL + "profile"
         const val GetPetProfile = BASE_URL + "get_pets"
         const val EditProfile = BASE_URL + "edit_profile"
+        const val EditPetProfile = BASE_URL + "edit_pet"
         const val Logout = BASE_URL + "logout"
         const val ForgotPassword = BASE_URL + "forgotPassword"
-
         const val HomePageListing = BASE_URL + "homePageListing"
-
+        const val HomeApi = BASE_URL + "home_api"
+        fun gender(value: Int): String {
+            if (value == 0) {
+                return "Male"
+            } else {
+                return "Female"
+            }
+        }
     }
 }
