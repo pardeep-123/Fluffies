@@ -8,34 +8,31 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.puppypedia.R
-import com.puppypedia.databinding.ActivityWeightChartBinding
 import com.puppypedia.ui.fragments.StatisticsFragment
-import com.puppypedia.ui.fragments.WeightFragment
+import com.puppypedia.ui.fragments.weight.WeightFragment
+import kotlinx.android.synthetic.main.activity_weight_chart.*
+import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
 class WeightChartActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityWeightChartBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityWeightChartBinding.inflate(layoutInflater)
-        setContentView(binding.root)
-
+        setContentView(R.layout.activity_weight_chart)
         clicksHandle()
         openFragment(WeightFragment())
     }
 
     private fun clicksHandle() {
-        binding.tb.tvTitle.text = getString(R.string.weight_chart)
-        binding.tb.ivBack.setOnClickListener {
+        tb.tv_title.text = getString(R.string.weight_chart)
+        tb.iv_back.setOnClickListener {
             onBackPressed()
         }
 
-        binding.btnWeight.setOnClickListener {
+        btnWeight.setOnClickListener {
             weightBtnClick()
         }
 
-        binding.btnStatistics.setOnClickListener {
+        btnStatistics.setOnClickListener {
             statisticsBtnClick()
         }
 
@@ -43,10 +40,10 @@ class WeightChartActivity : AppCompatActivity() {
     }
 
     private fun weightBtnClick() {
-        binding.btnWeight.background = ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
-        binding.btnStatistics.setBackgroundColor(Color.TRANSPARENT)
-        binding.btnWeight.setTextColor(ContextCompat.getColor(this, R.color.white))
-        binding.btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.black))
+        btnWeight.background = ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
+        btnStatistics.setBackgroundColor(Color.TRANSPARENT)
+        btnWeight.setTextColor(ContextCompat.getColor(this, R.color.white))
+        btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         if (currentFragment() !is WeightFragment) {
             openFragment(WeightFragment())
@@ -54,11 +51,11 @@ class WeightChartActivity : AppCompatActivity() {
     }
 
     private fun statisticsBtnClick() {
-        binding.btnStatistics.background =
+        btnStatistics.background =
             ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
-        binding.btnWeight.setBackgroundColor(Color.TRANSPARENT)
-        binding.btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.white))
-        binding.btnWeight.setTextColor(ContextCompat.getColor(this, R.color.black))
+        btnWeight.setBackgroundColor(Color.TRANSPARENT)
+        btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.white))
+        btnWeight.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         if (currentFragment() !is StatisticsFragment) {
             openFragment(StatisticsFragment())

@@ -91,6 +91,8 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                         SharedPrefUtil.getInstance().saveAuthToken(registerResponse.body.authKey)
                         // SharedPrefUtil.getInstance().saveUserId(registerResponse.body.id.toString())
                         SharedPrefUtil.getInstance().saveEmail(registerResponse.body.email)
+                        SharedPrefUtil.getInstance().saveImage(registerResponse.body.image)
+                        SharedPrefUtil.getInstance().saveName(registerResponse.body.name)
                         SharedPrefUtil.getInstance().isLogin = true
                         //  sharedPref.setSKIP(false)
                         MyApplication.instance!!.setString(

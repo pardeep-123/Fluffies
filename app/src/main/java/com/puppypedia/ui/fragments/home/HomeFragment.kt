@@ -24,11 +24,12 @@ import com.puppypedia.model.HomeImageModel
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.category.CategoryActivity
+import com.puppypedia.ui.main.ui.category_detail.CategoryDetailActivity
 import com.puppypedia.ui.main.ui.notification.NotificationActivity
+import com.puppypedia.ui.main.ui.weight_chart.WeightChartActivity
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.fragment_home.*
 import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
-
 
 class HomeFragment : Fragment(), Observer<RestObservable> {
     lateinit var v: View
@@ -36,14 +37,13 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
     var aboutResponse: HomeFragmentResponse? = null
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
-    lateinit var serviceAdapter: ServicesAdapter
+    var serviceAdapter: ServicesAdapter? = null
     var datalist: ArrayList<HomeImageModel> = ArrayList<HomeImageModel>()
     private var myPopupWindow: PopupWindow? = null
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_home, container, false)
         apihome()
         return v
@@ -51,21 +51,17 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //  setService()
         setPopUpWindow()
-/*        val indicator = view.findViewById<ScrollingPagerIndicator>(R.id.indicator)
-        datalist.add(HomeImageModel(R.drawable.dogsimg))
-        datalist.add(HomeImageModel(R.drawable.dogsimg))
-        datalist.add(HomeImageModel(R.drawable.dogsimg))
-
-        val ad = HomeAdapter(datalist)
-        rc_details_img.adapter = ad
-        indicator.attachToRecyclerView(rc_details_img)
-        val snapHelper: SnapHelper = PagerSnapHelper()
-        snapHelper.attachToRecyclerView(rc_details_img)*/
         clicksHandle()
-    }
+        /*  if (servicesModel.service != "Weight Chart") {
+              val intent = Intent(requireContext(), CategoryDetailActivity::class.java)
+              intent.putExtra(AppConstant.HEADING, servicesModel.service)
+              startActivity(intent)
+          } else {
+              startActivity(Intent(requireContext(), WeightChartActivity::class.java))
+          }*/
 
+    }
     private fun clicksHandle() {
         rl_notification.setOnClickListener {
             startActivity(Intent(requireContext(), NotificationActivity::class.java))
@@ -76,45 +72,17 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
         tvViewAll.setOnClickListener {
             val i = Intent(context, CategoryActivity::class.java)
             i.putExtra("aboutResponse", aboutResponse)
-            i.putExtra("selectedpos", selectedpos)
             startActivity(i)
-
-
             // startActivity(Intent(requireContext(), CategoryActivity::class.java))
         }
     }
-
-    /*    private fun setService() {
-            val arrayList = ArrayList<ServicesModel>()
-            arrayList.add(ServicesModel(R.drawable.icon1, "Feeding", true))
-            arrayList.add(ServicesModel(R.drawable.icon3, "Weight Chart", false))
-            arrayList.add(ServicesModel(R.drawable.icon5, "Training", false))
-            arrayList.add(ServicesModel(R.drawable.icon7, "Medical/Health", false))
-            arrayList.add(ServicesModel(R.drawable.icon9, "Essential", false))
-            arrayList.add(ServicesModel(R.drawable.icon11, "Grooming/Cosmetics", false))
-            serviceAdapter = ServicesAdapter(arrayList)
-            rc_services.adapter = serviceAdapter
-            serviceAdapter.onItemClick = { servicesModel ->
-                if (servicesModel.service != "Weight Chart") {
-                    val intent = Intent(requireContext(), CategoryDetailActivity::class.java)
-                    intent.putExtra(AppConstant.HEADING, servicesModel.service)
-                    startActivity(intent)
-                } else {
-                    startActivity(Intent(requireContext(), WeightChartActivity::class.java))
-                }
-            }
-        }*/
     private fun setPopUpWindow() {
         val inflater =
             activity?.applicationContext?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.popup, null)
         myPopupWindow = PopupWindow(
-            view,
-            800,
-            RelativeLayout.LayoutParams.WRAP_CONTENT,
-            true
+            view, 800, RelativeLayout.LayoutParams.WRAP_CONTENT, true
         )
-
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
         val arrayList = ArrayList<DogsModel>()
         arrayList.add(DogsModel(R.drawable.dogsimg, "Rony", true))
@@ -125,26 +93,36 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             myPopupWindow?.dismiss()
         }
     }
-
     fun apihome() {
         viewModel.getHomeDetails(requireActivity(), true)
         viewModel.mResponse.observe(requireActivity(), this)
     }
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
-                    val aboutResponse: HomeFragmentResponse = it.data
-                    serviceAdapter = ServicesAdapter(this, aboutResponse)
+                    aboutResponse = it.data
+//////////////////////////////////  CATEGORIES ADAPTER
+                    serviceAdapter = ServicesAdapter(requireContext(), aboutResponse!!)
                     rc_services.adapter = serviceAdapter
+///////////////////////////////////////// show category detail
+                    serviceAdapter!!.onItemClick = { pos: Int ->
+                        if (pos == 1) {
+                            startActivity(Intent(requireContext(), WeightChartActivity::class.java))
+                        } else {
+                            val intent =
+                                Intent(requireContext(), CategoryDetailActivity::class.java)
+                            intent.putExtra("data", aboutResponse!!.body.category[pos])
+                            startActivity(intent)
+                        }
+                    }
+/////////////////////////////////////// Banneer Adapter with Indigator
                     val indicator = view?.findViewById<ScrollingPagerIndicator>(R.id.indicator)
-                    val homeAdapter = HomeAdapter(this, aboutResponse)
+                    val homeAdapter = HomeAdapter(this, aboutResponse!!)
                     rc_details_img.adapter = homeAdapter
                     indicator?.attachToRecyclerView(rc_details_img)
                     val snapHelper: SnapHelper = PagerSnapHelper()
                     snapHelper.attachToRecyclerView(rc_details_img)
-
                 }
             }
             it.status == Status.ERROR -> {
@@ -156,13 +134,4 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             }
         }
     }
-    /*fun petDetails(position: Int) {
-        selectedpos=position.toString()
-        Glide.with(this).load(Constants.BASE_URL + aboutResponse!!.body.category[position].image)
-            .placeholder(R.drawable.profile_pic).into(ivImg)
-        tvName.setText(aboutResponse!!.body.category[position].name)
-
-    }*/
-
-
 }

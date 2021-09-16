@@ -234,4 +234,32 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    @SuppressLint("CheckResult")
+    fun addPetWeightApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+    ) {
+        restApiInterface.apiAddPetWeight(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    @SuppressLint("CheckResult")
+    fun getWeightApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+    ) {
+        restApiInterface.apiGetPetWeight(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
 }

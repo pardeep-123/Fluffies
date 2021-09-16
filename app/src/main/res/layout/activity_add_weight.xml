@@ -57,7 +57,6 @@
                 android:text="@string/lbs"
                 android:textColor="@color/theme_Color"
                 android:textSize="@dimen/_15sdp" />
-
         </LinearLayout>
 
         <RelativeLayout
@@ -141,7 +140,6 @@
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:contentDescription="@string/image"
                 android:src="@drawable/downaero" />
-
         </RelativeLayout>
 
     </LinearLayout>

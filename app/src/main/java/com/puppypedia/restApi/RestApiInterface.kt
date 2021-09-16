@@ -109,6 +109,19 @@ interface RestApiInterface {
     ): Observable<CommonModel>
 
 
+    @FormUrlEncoded
+    @POST(Constants.AddWeightChart)
+    fun apiAddPetWeight(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<CommonModel>
+
+    @FormUrlEncoded
+    @POST(Constants.GetWeight)
+    fun apiGetPetWeight(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<CommonModel>
+
+
     /*   @Multipart
        @POST(Constants.AddPuppies)
        fun addPuppy(

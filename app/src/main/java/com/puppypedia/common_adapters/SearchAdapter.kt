@@ -13,38 +13,42 @@ import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import kotlinx.android.synthetic.main.item_services.view.*
 
 
-class ServicesAdapter(
+class SearchAdapter(
     var context: Context,
-    var datalist: HomeFragmentResponse
+    var datalist: ArrayList<HomeFragmentResponse.Body.Category>
 ) :
-    RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
-    var onItemClick: ((pos: Int) -> Unit)? = null
+    RecyclerView.Adapter<SearchAdapter.ServicesViewHolder>() {
+    //    var onItemClick: ((pos: Int) -> Unit)? = null
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): ServicesAdapter.ServicesViewHolder {
+    ): SearchAdapter.ServicesViewHolder {
         val v: View =
             LayoutInflater.from(parent.context).inflate(R.layout.item_services, parent, false)
         return ServicesViewHolder(v)
     }
 
-    override fun onBindViewHolder(holder: ServicesAdapter.ServicesViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: SearchAdapter.ServicesViewHolder, position: Int) {
         // holder.onBind(position)
         Glide.with(context)
-            .load("http://202.164.42.227:7700" + datalist.body.category[position].image)
+            .load("http://202.164.42.227:7700" + datalist[position].image)
             .placeholder(R.drawable.icon3).into(holder.itemView.ivService)
-        holder.itemView.tv_service.setText(datalist.body.category.get(position).name)
+        holder.itemView.tv_service.setText(datalist.get(position).name)
 
-        holder.itemView.setOnClickListener {
-            onItemClick?.invoke(position)
-        }
+        /*     holder.itemView.setOnClickListener {
+                 onItemClick?.invoke(position)
+             }*/
+
     }
+
     override fun getItemCount(): Int {
-        return datalist.body.category.size
+        return datalist.size
     }
+
     inner class ServicesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var img: ImageView = itemView.findViewById(R.id.ivService)
         var tv: TextView = itemView.findViewById(R.id.tv_service)
+
 //        fun onBind(pos: Int) {
 //           val serviceModel = datalist[pos]
 //            img.setImageResource(datalist[pos].img)
@@ -64,5 +68,4 @@ class ServicesAdapter(
 //        }
 
     }
-
 }

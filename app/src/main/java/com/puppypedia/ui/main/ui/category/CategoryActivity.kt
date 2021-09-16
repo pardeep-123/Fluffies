@@ -3,6 +3,7 @@ package com.puppypedia.ui.main.ui.category
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.puppypedia.R
+import com.puppypedia.common_adapters.ServicesAdapter
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import kotlinx.android.synthetic.main.activity_category.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
@@ -10,25 +11,24 @@ import kotlinx.android.synthetic.main.auth_toolbar.view.*
 class CategoryActivity : AppCompatActivity() {
     var data: HomeFragmentResponse? = null
     var poz = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category)
         tb.tv_title.text = getString(R.string.category)
         clicksHandle()
+        data = (intent.getSerializableExtra("aboutResponse") as HomeFragmentResponse)
+        //poz= intent.getStringExtra("selectedpos")!!.toInt()
 
-        /*  data= (intent.getSerializableExtra("aboutResponse")as HomeFragmentResponse)
-          poz= intent.getStringExtra("selectedpos")!!.toInt()
-          etName.setText(data!!.body.category[poz].name)
-          etAbout.setText(data!!.body.category[poz].image )*/
+        var serviceAdapter = ServicesAdapter(this, data!!)
+        rvCategory.adapter = serviceAdapter
         // setCategoryAdapter()
     }
-
     private fun clicksHandle() {
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
     }
-
 /*    private fun setCategoryAdapter() {
         val arrayList = ArrayList<ServicesModel>()
         arrayList.add(ServicesModel(R.drawable.icon1, "Feeding", true))

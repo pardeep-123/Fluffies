@@ -65,9 +65,8 @@
                         android:layout_marginTop="@dimen/_15sdp"
                         android:contentDescription="@string/image"
                         android:src="@drawable/profile" />
-
                     <TextView
-                        android:id="@+id/tvname"
+                        android:id="@+id/tvName"
                         style="@style/WrapTextView"
                         android:layout_below="@id/civProfile"
                         android:layout_centerHorizontal="true"
@@ -75,36 +74,29 @@
                         android:text="John Marker"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/_14sdp" />
-
                     <TextView
                         android:id="@+id/tvEmail"
                         style="@style/TextRegularFont"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/tvname"
+                        android:layout_below="@id/tvName"
                         android:layout_centerHorizontal="true"
                         android:text="johnmarker@gmail.com"
                         android:textColor="@color/grey"
                         android:textSize="@dimen/_12sdp" />
-
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 app:cardUseCompatPadding="true">
-
                 <RelativeLayout
                     android:id="@+id/rlNotification"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:paddingStart="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10">
-
-
                     <TextView
                         style="@style/WrapTextView"
                         android:layout_alignParentStart="true"
@@ -112,7 +104,6 @@
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_toStartOf="@id/sw_switch"
                         android:text="@string/notifications" />
-
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/sw_switch"
                         android:layout_width="wrap_content"
@@ -123,25 +114,19 @@
                         android:checked="true"
                         android:thumb="@drawable/notification_thumb_selector"
                         app:track="@drawable/notification_track_selector" />
-
                 </RelativeLayout>
-
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:cardUseCompatPadding="true">
-
                 <RelativeLayout
                     android:id="@+id/rlMyPets"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:paddingStart="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10">
-
-
                     <TextView
                         style="@style/WrapTextView"
                         android:layout_alignParentStart="true"
@@ -149,7 +134,6 @@
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_toStartOf="@id/ivArrow1"
                         android:text="@string/my_pets_profile" />
-
                     <ImageView
                         android:id="@+id/ivArrow1"
                         android:layout_width="@dimen/_12sdp"
@@ -161,21 +145,17 @@
                         android:src="@drawable/leftbluearrow" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:cardUseCompatPadding="true">
-
                 <RelativeLayout
                     android:id="@+id/rlChangePassword"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:paddingStart="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10">
-
-
                     <TextView
                         style="@style/WrapTextView"
                         android:layout_alignParentStart="true"
@@ -183,7 +163,6 @@
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_toStartOf="@id/ivArrow2"
                         android:text="@string/change_password" />
-
                     <ImageView
                         android:id="@+id/ivArrow2"
                         android:layout_width="@dimen/_12sdp"
@@ -195,21 +174,17 @@
                         android:src="@drawable/leftbluearrow" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_5sdp"
                 app:cardUseCompatPadding="true">
-
                 <RelativeLayout
                     android:id="@+id/rlAboutUs"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_40sdp"
                     android:paddingStart="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10">
-
-
                     <TextView
                         style="@style/WrapTextView"
                         android:layout_alignParentStart="true"

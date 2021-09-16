@@ -33,6 +33,8 @@ class Constants {
         const val Logout = BASE_URL + "logout"
         const val ForgotPassword = BASE_URL + "forgotPassword"
         const val HomePageListing = BASE_URL + "homePageListing"
+        const val AddWeightChart = BASE_URL + "add_weight_chart"
+        const val GetWeight = BASE_URL + "get_weight"
         const val HomeApi = BASE_URL + "home_api"
         fun gender(value: Int): String {
             if (value == 0) {

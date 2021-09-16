@@ -121,4 +121,6 @@
     <string name="about">Please enter about you pet</string>
     <string name="error_breed">Please enter breed</string>
     <string name="error_weight">Please enter weight</string>
+    <string name="error_date">Please enter date</string>
+    <string name="error_time">Please enter time</string>
 </resources>

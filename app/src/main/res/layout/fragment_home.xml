@@ -80,7 +80,6 @@
                     android:contentDescription="@string/image" />
 
             </RelativeLayout>
-
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 

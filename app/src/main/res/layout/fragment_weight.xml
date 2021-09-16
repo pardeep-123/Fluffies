@@ -7,7 +7,7 @@
     android:layout_marginStart="@dimen/_20sdp"
     android:layout_marginEnd="@dimen/_20sdp"
     android:fillViewport="true"
-    tools:context=".ui.fragments.WeightFragment">
+    tools:context=".ui.fragments.weight.WeightFragment">
 
     <RelativeLayout
         android:layout_marginTop="@dimen/_5sdp"

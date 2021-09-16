@@ -43,6 +43,7 @@
             app:cardUseCompatPadding="true">
 
             <TextView
+                android:id="@+id/tvDescription"
                 style="@style/TextRegularFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
