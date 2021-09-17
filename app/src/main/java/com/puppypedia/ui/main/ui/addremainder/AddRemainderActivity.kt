@@ -4,23 +4,18 @@ import android.app.DatePickerDialog
 import android.app.Dialog
 import android.app.TimePickerDialog
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Gravity
-import android.view.View
 import android.view.Window
 import android.view.WindowManager
-import android.widget.*
-import androidx.core.content.ContextCompat
+import androidx.appcompat.app.AppCompatActivity
 import com.puppypedia.R
 import com.puppypedia.common_adapters.DogsAdapter
 import com.puppypedia.databinding.ActivityAddRemainderBinding
 import com.puppypedia.databinding.DialogAppointmentBinding
 import com.puppypedia.model.DogsModel
-import com.puppypedia.ui.main.ui.home.HomeActivity
 import com.puppypedia.utils.helper.AppUtils
 import java.util.*
 import kotlin.collections.ArrayList
@@ -47,8 +42,8 @@ class AddRemainderActivity : AppCompatActivity() {
         arrayList.add(DogsModel(R.drawable.dog_profile, "Rony", true))
         arrayList.add(DogsModel(R.drawable.dog_img, "Rocky", false))
 
-        dogsAdapter = DogsAdapter(arrayList)
-        binding.rvDogs.adapter = dogsAdapter
+        /* dogsAdapter = DogsAdapter(requireContext(), arrayList)
+         binding.rvDogs.adapter = dogsAdapter*/
     }
 
     private fun clicksHandle() {

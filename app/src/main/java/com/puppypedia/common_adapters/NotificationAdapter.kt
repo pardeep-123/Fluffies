@@ -14,8 +14,7 @@ class NotificationAdapter (var context: Context) :
     RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
     override fun onCreateViewHolder(
-        parent: ViewGroup,
-        viewType: Int
+        parent: ViewGroup, viewType: Int
     ): NotificationAdapter.NotificationViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_notification, parent, false)
         return NotificationViewHolder(view)
@@ -24,11 +23,9 @@ class NotificationAdapter (var context: Context) :
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         holder.onbind(position)
     }
-
     override fun getItemCount(): Int {
         return 5
     }
-
     inner class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.tvName
         val tvDescription: TextView = itemView.tvDescription

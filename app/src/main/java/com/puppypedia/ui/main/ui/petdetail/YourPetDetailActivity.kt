@@ -1,5 +1,4 @@
 package com.puppypedia.ui.main.ui.petdetail
-
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -37,28 +36,17 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
-
-
 class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
-
     private lateinit var mValidationClass: ValidationsClass
-    var Image_URL = ""
-
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
-    var firstimage = ""
-
     var gender = ""
     var image = ""
     var age = 0
     var weight = 0
     val ageArrayList = ArrayList<String>()
-    val weightArrayList = arrayListOf("Weight", "1 lbs", "2 lbs")
 
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
-
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pet_detail)
@@ -78,7 +66,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
-
         ivCamera.setOnClickListener {
             //   callImagePicker(this)
         }
@@ -144,23 +131,16 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 tvSpinner.typeface = ResourcesCompat.getFont(
                     this@YourPetDetailActivity, R.font.opensans_semibold
                 )
-
             }
-
         }
     }
 
     private fun setSpinnerAge() {
-
-
         val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
         spinnerAge.adapter = adapterAge
 
         spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -174,9 +154,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 tvSpinner.typeface = ResourcesCompat.getFont(
                     this@YourPetDetailActivity, R.font.opensans_semibold
                 )
-
             }
-
         }
     }
 
@@ -206,17 +184,15 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             Helper.showErrorAlert(this, resources.getString(R.string.about))
         else if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
-        else if (mValidationClass.checkStringNull(breed))
+        else /*if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
-        else
+        else*/
             check = true
         return check
     }
 
     private fun callSignupApi() {
         if (isValid()) {
-
-
             val map = HashMap<String, RequestBody>()
             map["folder"] = mValidationClass.createPartFromString("pets")
             viewModel.imageUpload(this, true, map, multipartImageGet())
@@ -231,16 +207,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is PetDetailResponse) {
                     val registerResponse: PetDetailResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
-                        /*  SharedPrefUtil.getInstance().saveImage(registerResponse.body.image)
-                          SharedPrefUtil.getInstance().saveUserId(registerResponse.body.id.toString())
-                          SharedPrefUtil.getInstance().saveEmail(registerResponse.body.about)
-                          SharedPrefUtil.getInstance().saveName(registerResponse.body.name)
-                          SharedPrefUtil.getInstance().saveName(registerResponse.body.breed)
-
-                          SharedPrefUtil.getInstance().isLogin = true*/
-/*
-                        MyApplication.instance!!.setString(Constants.AuthKey, registerResponse.body.authKey
-                        )*/
                         dialogAddPet()
 
                     } else {

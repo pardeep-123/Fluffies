@@ -29,6 +29,7 @@ public class SharedPrefUtil {
     public static final String BADGE = "badge";
     public static final String NOTIFY = "notify";
     public static final String NOTIFY_ICON = "notifyIcon";
+    public static final String PET_ID = "petId";
     public static final String LATITUDE = "latitude";
     public static final String LONGITUDE = "longitude";
     public static final String LOCATON = "location";
@@ -539,6 +540,17 @@ public class SharedPrefUtil {
     public boolean getNotifyIcon() {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         return mSharedPreferences.getBoolean(NOTIFY_ICON, true);
+    }
+
+    public void savePetId(String value) {
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(PET_ID, value);
+        mEditor.apply();
+    }
+
+    public String getPetId() {
+        mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(PET_ID, "");
     }
 
     public void saveBadge(int badge) {

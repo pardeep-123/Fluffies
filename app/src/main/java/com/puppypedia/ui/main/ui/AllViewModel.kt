@@ -250,9 +250,9 @@ class AllViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun getWeightApi(
-        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+        activity: Activity, id: String, showLoader: Boolean
     ) {
-        restApiInterface.apiGetPetWeight(map)
+        restApiInterface.apiGetPetWeight(id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -261,5 +261,21 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
+
+
+    @SuppressLint("CheckResult")
+    fun addPetChartApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+    ) {
+        restApiInterface.apiPetChart(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
 
 }

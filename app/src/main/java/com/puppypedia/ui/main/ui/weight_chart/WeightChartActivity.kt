@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.puppypedia.R
-import com.puppypedia.ui.fragments.StatisticsFragment
+import com.puppypedia.ui.fragments.statistics.StatisticsFragment
 import com.puppypedia.ui.fragments.weight.WeightFragment
 import kotlinx.android.synthetic.main.activity_weight_chart.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*

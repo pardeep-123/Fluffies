@@ -41,7 +41,7 @@
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_weight_chart.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/activity_your_pet_detail.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_your_pet_detail.xml" value="0.18" />
         <entry key="app/src/main/res/layout/auth_toolbar.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/camera_gallery_popup.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_add_new_pet.xml" value="0.25" />
@@ -60,9 +60,9 @@
         <entry key="app/src/main/res/layout/item_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_notification.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/item_services.xml" value="0.21" />
-        <entry key="app/src/main/res/layout/item_spinner.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/item_spinner.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_status.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/item_weight.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/item_weight.xml" value="0.21" />
         <entry key="app/src/main/res/layout/item_your_dogs.xml" value="0.25" />
         <entry key="app/src/main/res/layout/popup.xml" value="0.18" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14479166666666668" />

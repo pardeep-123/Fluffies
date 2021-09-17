@@ -35,7 +35,8 @@ data class HomeFragmentResponse(
         data class Pet(
             val id: Int, // 36
             val name: String, // qqqqqq
-            val image: String // /assets/images/pets/1631509343152-file.jpg
+            val image: String, // /assets/images/pets/1631509343152-file.jpg
+            var selected: Boolean // /assets/images/pets/1631509343152-file.jpg
         ) : Serializable
     }
 }

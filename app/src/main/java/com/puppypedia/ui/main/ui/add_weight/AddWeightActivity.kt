@@ -4,8 +4,7 @@ import android.app.DatePickerDialog
 import android.app.TimePickerDialog
 import android.content.Context
 import android.os.Bundle
-import android.view.View
-import android.widget.*
+import android.widget.EditText
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -16,11 +15,12 @@ import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.utils.helper.AppUtils
 import com.puppypedia.utils.helper.others.Helper
+import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
 import kotlinx.android.synthetic.main.activity_add_weight.*
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import java.util.*
+import kotlin.collections.set
 
 
 class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
@@ -32,14 +32,15 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
     private lateinit var time: TimePickerDialog.OnTimeSetListener
     val ageArrayList = ArrayList<String>()
     var age = 0
-
+    lateinit var sharedPrefUtil: SharedPrefUtil
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_weight)
+        sharedPrefUtil = SharedPrefUtil(this)
         mValidationClass = ValidationsClass.getInstance()
         tb.tv_title.text = getString(R.string.add_weight)
         clicksHandle()
-        setSpinnerAge()
+        // setSpinnerAge()
         for (i in 1 until 60) {
             ageArrayList.add(i.toString() + "yr")
         }
@@ -51,19 +52,15 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
         np.setMaxValue(60)
         np.setWrapSelectorWheel(true)
 
-        /*       binding.np.setOnValueChangedListener { picker, oldVal, newVal ->
-                   val et = binding.np.getChildAt(0) as EditText
-                   et.setTextColor(ContextCompat.getColor(this, R.color.theme_Color))
-               }*/
-
-
+        np.setOnValueChangedListener { picker, oldVal, newVal ->
+            val et = np.getChildAt(0) as EditText
+            et.setTextColor(ContextCompat.getColor(this, R.color.theme_Color))
+        }
     }
-
     private fun clicksHandle() {
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
-
         tvDate.setOnClickListener {
             date =
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
@@ -73,7 +70,7 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
                     tvDate.setText(
                         AppUtils.dateInString(
                             myCalendar.timeInMillis,
-                            "dd-MMM-yyyy"
+                            "yyyy-MM-dd"
                         )
                     )
                 }
@@ -89,7 +86,7 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
                 tvTime.setText(
                     AppUtils.dateInString(
                         myCalendar.timeInMillis,
-                        "hh:mm a"
+                        "hh:mm:ss a"
                     )
                 )
 
@@ -103,27 +100,42 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
             callApi()
         }
     }
+    /*   private fun setSpinnerAge() {
+           val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
+           spinnerAge.adapter = adapterAge
 
-    private fun setSpinnerAge() {
-
-        val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
-        spinnerAge.adapter = adapterAge
-
-        spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
+           spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+               override fun onNothingSelected(parent: AdapterView<*>?) {}
+               override fun onItemSelected(
+                   parent: AdapterView<*>?,
+                   view: View?,
+                   pos: Int,
+                   id: Long) {
+                   age = pos
+                   val v = (parent?.getChildAt(0) as View)
+                   val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+                   *//*tvSpinner.setPadding(0, 0, 0, 0)*//*
+                tvSpinner.typeface = ResourcesCompat.getFont(
+                    this@AddWeightActivity, R.font.opensans_semibold)
             }
+        }
+    }*/
 
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                pos: Int,
-                id: Long
-            ) {
-                val v = (parent?.getChildAt(0) as View)
-                val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
-                /*tvSpinner.setPadding(0, 0, 0, 0)*/
-
+    /* private fun setSpinnerAge() {
+          val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
+          spinnerAge.adapter = adapterAge
+          spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+              override fun onNothingSelected(parent: AdapterView<*>?) {}
+              override fun onItemSelected(
+                  parent: AdapterView<*>?,
+                  view: View?,
+                  pos: Int,
+                  id: Long) {
+                  val v = (parent?.getChildAt(0) as View)
+                  val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+            *//*tvSpinner.setPadding(0, 0, 0, 0)*//*
+                tvSpinner.typeface = ResourcesCompat.getFont(
+                    this@AddWeightActivity, R.font.opensans_regular)
                 if (pos == 0) {
                     tvSpinner.setTextColor(
                         ContextCompat.getColor(
@@ -135,28 +147,22 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
                     tvSpinner.setTextColor(
                         ContextCompat.getColor(
                             this@AddWeightActivity,
-                            R.color.black
+                            R.color.black,
                         )
                     )
-
                 }
-
             }
-
         }
-    }
+    }*/
 
     private fun datePicker(context: Context) {
         val datePicker = DatePickerDialog(
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
             myCalendar[Calendar.DAY_OF_MONTH]
         )
-
         /* datePicker.datePicker.minDate = System.currentTimeMillis() - 1000*/
-
         datePicker.show()
     }
-
     private fun timePicker(context: Context) {
         TimePickerDialog(
             context,
@@ -166,17 +172,16 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
             false
         ).show()
     }
-
     private fun isValid(): Boolean {
         val date = tvDate.text.toString().trim()
         val time = tvTime.text.toString().trim()
         var check = false
         if (mValidationClass.checkStringNull(date))
             Helper.showErrorAlert(this, resources.getString(R.string.error_date))
-        /*  else if (mValidationClass.checkStringNull(time))
-                Helper.showErrorAlert(this, resources.getString(R.string.error_time))
-                else if (age == 0)
-            Helper.showErrorAlert(this, "Please select age")*/
+        else if (mValidationClass.checkStringNull(time))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_time))
+        /*     else if (age == 0)
+         Helper.showErrorAlert(this, "Please select age")*/
         else
             check = true
         return check
@@ -186,19 +191,20 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
         if (isValid()) {
             val date = tvDate.text.toString().trim()
             val time = tvTime.text.toString().trim()
+            val age = etAge.text.toString().trim()
+            var weight = number_picker.value.toString() + " " + np.value + " lbs"
             val map = HashMap<String, String>()
+
+            map["petid"] = sharedPrefUtil.petId.toString()
             map["date"] = date
             map["time"] = time
+            map["weight"] = weight
+            map["age"] = age
 
             viewModel.addPetWeightApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }
     }
-
-    /*  fun api(){
-          viewModel.addPetWeightApi(this, true,map)
-          viewModel.mResponse.observe(this, this)
-      }*/
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {

@@ -1,5 +1,6 @@
 package com.puppypedia.ui.fragments.home
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -19,7 +20,6 @@ import com.puppypedia.R
 import com.puppypedia.common_adapters.DogsAdapter
 import com.puppypedia.common_adapters.HomeAdapter
 import com.puppypedia.common_adapters.ServicesAdapter
-import com.puppypedia.model.DogsModel
 import com.puppypedia.model.HomeImageModel
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
@@ -35,6 +35,7 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
     lateinit var v: View
     var selectedpos = ""
     var aboutResponse: HomeFragmentResponse? = null
+    var arrayList = ArrayList<HomeFragmentResponse.Body.Pet>()
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     var serviceAdapter: ServicesAdapter? = null
@@ -60,7 +61,6 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
           } else {
               startActivity(Intent(requireContext(), WeightChartActivity::class.java))
           }*/
-
     }
     private fun clicksHandle() {
         rl_notification.setOnClickListener {
@@ -76,6 +76,8 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             // startActivity(Intent(requireContext(), CategoryActivity::class.java))
         }
     }
+
+    @SuppressLint("InflateParams")
     private fun setPopUpWindow() {
         val inflater =
             activity?.applicationContext?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
@@ -84,10 +86,7 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             view, 800, RelativeLayout.LayoutParams.WRAP_CONTENT, true
         )
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
-        val arrayList = ArrayList<DogsModel>()
-        arrayList.add(DogsModel(R.drawable.dogsimg, "Rony", true))
-        arrayList.add(DogsModel(R.drawable.dog_img, "Rocky", false))
-        val dogsAdapter = DogsAdapter(arrayList)
+        val dogsAdapter = DogsAdapter(requireContext(), arrayList)
         rvDogs.adapter = dogsAdapter
         dogsAdapter.onItemSelected = { dogModel ->
             myPopupWindow?.dismiss()
@@ -102,6 +101,7 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
                     aboutResponse = it.data
+                    arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
 //////////////////////////////////  CATEGORIES ADAPTER
                     serviceAdapter = ServicesAdapter(requireContext(), aboutResponse!!)
                     rc_services.adapter = serviceAdapter
