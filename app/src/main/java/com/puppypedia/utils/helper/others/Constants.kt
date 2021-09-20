@@ -3,8 +3,8 @@ package com.puppypedia.utils.helper.others
 class Constants {
     companion object {
         const val BASE_URL = "http://202.164.42.227:7700/api/"
-        const val USER_IMAGE_URL = "http://202.164.42.227:7700/assets/images/users/"
-        const val PET_IMAGE_URL = "http://202.164.42.227:7700/assets/images/pets/"
+        const val IMAGE_URL = "http://202.164.42.227:7700"
+        const val PET_IMAGE_URL = "http://202.164.42.227:7700/"
 
         val success_code = 200
         val errorCode = 403

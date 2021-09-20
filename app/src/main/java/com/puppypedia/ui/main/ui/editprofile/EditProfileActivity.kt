@@ -11,6 +11,7 @@ import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
+import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
@@ -42,7 +43,7 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         etName.setText(intent.getStringExtra("name").toString())
         etEmail.setText(intent.getStringExtra("email").toString())
         //  Log.e("editprofile", "" + intent.getStringExtra("email") + intent.getStringExtra("name"))
-        Glide.with(this).load(intent.getStringExtra("image").toString())
+        Glide.with(this).load(Constants.IMAGE_URL + intent.getStringExtra("image").toString())
             .placeholder(R.drawable.profile_pic).into(rivProfile)
     }
 

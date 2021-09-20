@@ -17,26 +17,27 @@ data class HomeFragmentResponse(
         val category: List<Category>,
         @SerializedName("Pets")
         val pets: List<Pet>,
-        val notificationsCount: Int // 0
+        val notificationsCount: Int // 6
     ) : Serializable {
         data class Banner(
             val id: Int, // 2
-            val description: String, // drgerg
-            val image: String // 16501566-be31-4673-9102-395aeddaa92d.jpg
+            val description: String, // vaccinations will shield our pets from are dangerous, potentially deadly, and, thankfully, mostly preventable.
+            val image: String // /assets/images/banners/9acf375e-1610-44fe-ad48-4ef17d8e6adf.jpeg
         ) : Serializable
 
         data class Category(
             val id: Int, // 2
             val name: String, // Toys and Chews
-            val image: String,
+            val image: String, // /assets/images/categories/d0f4af69-903f-4a52-896e-3065617997e4.png
+            val description: String, // <p>qwdasddfasd</p>
             val status: Int // 1
         ) : Serializable
 
         data class Pet(
             val id: Int, // 36
             val name: String, // qqqqqq
-            val image: String, // /assets/images/pets/1631509343152-file.jpg
-            var selected: Boolean // /assets/images/pets/1631509343152-file.jpg
+            var selected: Boolean, // /assets/images/pets/1631509343152-file.jpg
+            val image: String // /assets/images/pets/1631509343152-file.jpg
         ) : Serializable
     }
 }

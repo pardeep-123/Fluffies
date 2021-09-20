@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.15989583333333332" />
+        <entry key="../../../../layout/custom_preview.xml" value="0.2" />
         <entry key="app/src/main/res/drawable/bg_check_boxx.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_edit_text_10dp.xml" value="0.1609375" />
@@ -24,6 +25,7 @@
         <entry key="app/src/main/res/drawable/loader.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/password_hide.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/password_show.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/place_holder.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.17" />
         <entry key="app/src/main/res/layout/activity_add_remainder.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_add_weight.xml" value="0.18" />
@@ -51,9 +53,9 @@
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_weight.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/guest_dialog.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/item_appointment.xml" value="0.14479166666666668" />

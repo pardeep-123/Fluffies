@@ -19,6 +19,7 @@
             android:layout_height="@dimen/_220sdp">
 
             <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/img"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:scaleType="centerCrop"
@@ -43,7 +44,7 @@
             app:cardUseCompatPadding="true">
 
             <TextView
-                android:id="@+id/tvDescription"
+                android:id="@+id/tv_description"
                 style="@style/TextRegularFont"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -30,7 +30,7 @@
                 android:layout_marginStart="@dimen/_10sdp">
 
                 <com.makeramen.roundedimageview.RoundedImageView
-                    android:id="@+id/iv"
+                    android:id="@+id/ivDogImg"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
@@ -42,7 +42,7 @@
                     style="@style/WrapTextView"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_toEndOf="@id/iv"
+                    android:layout_toEndOf="@id/ivDogImg"
                     android:text="@string/rony"
                     android:textSize="@dimen/_10sdp" />
 

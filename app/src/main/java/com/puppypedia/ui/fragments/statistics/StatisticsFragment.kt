@@ -22,7 +22,6 @@ import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.fragment_statistics.*
 
-
 class StatisticsFragment : Fragment(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
@@ -30,20 +29,17 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
     lateinit var x: ArrayList<Entry>
     lateinit var y: ArrayList<String>
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_statistics, container, false)
-
         return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         clicksHandle()
         setGraph()
     }
@@ -79,8 +75,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             btnMonth.setBackgroundColor(Color.TRANSPARENT)
         }
     }
-
-
     private fun setGraph() {
         x = ArrayList()
         y = ArrayList()
@@ -104,7 +98,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         val l: Legend = lineChat.getLegend()
         l.form = Legend.LegendForm.LINE
 
-
         x.add(Entry(0F, 1.2f))
         x.add(Entry(10F, 1.5F))
         x.add(Entry(15F, 1.1F))
@@ -121,7 +114,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         y.add("D")
         y.add("E")
 
-
         val set1 = LineDataSet(x, "")
         set1.setColor(requireContext().getColor(R.color.theme_Color))
         set1.lineWidth = 1.5f
@@ -129,7 +121,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         val data = LineData(set1)
         lineChat.setData(data)
         lineChat.invalidate()
-
     }
 
     /* fun apiChart() {
@@ -153,5 +144,4 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             }
         }
     }
-
 }

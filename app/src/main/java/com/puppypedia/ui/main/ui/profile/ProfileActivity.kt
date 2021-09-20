@@ -38,7 +38,7 @@ class ProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             val i = Intent(context, EditProfileActivity::class.java)
             i.putExtra("email", email)
             i.putExtra("name", name)
-            i.putExtra("image", Constants.USER_IMAGE_URL + image)
+            i.putExtra("image", Constants.IMAGE_URL + image)
             startActivity(i)
         }
     }
@@ -58,7 +58,7 @@ class ProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     SharedPrefUtil.getInstance().saveAuthToken(aboutResponse.body.authKey)
                     tvEmail.setText(liveData.data.body.email)
                     tvName.setText(liveData.data.body.name)
-                    Glide.with(context).load(liveData.data.body.image)
+                    Glide.with(context).load(Constants.IMAGE_URL + liveData.data.body.image)
                         .placeholder(R.drawable.profile_pic).into(ivProfileImg)
                     email = liveData.data.body.email
                     name = liveData.data.body.name

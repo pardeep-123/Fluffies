@@ -1,8 +1,8 @@
 package com.puppypedia.restApi
 
+import com.puppypedia.ui.auth.forgotpassword.ForgotPasswordResponse
 import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
-import com.puppypedia.ui.commomModel.CommonModel
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
@@ -109,7 +109,7 @@ interface RestApiInterface {
     @POST(Constants.ForgotPassword)
     fun apiforgotPassword(
         @FieldMap map: HashMap<String, String>
-    ): Observable<CommonModel>
+    ): Observable<ForgotPasswordResponse>
 
 
     @FormUrlEncoded

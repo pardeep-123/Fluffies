@@ -15,10 +15,11 @@ import kotlinx.android.synthetic.main.item_services.view.*
 
 class ServicesAdapter(
     var context: Context,
-    var datalist: HomeFragmentResponse
+    var datalist: HomeFragmentResponse,
+    var clickCallBack: ClickCallBack
 ) :
     RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
-    var onItemClick: ((pos: Int) -> Unit)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -36,7 +37,7 @@ class ServicesAdapter(
         holder.itemView.tv_service.setText(datalist.body.category.get(position).name)
 
         holder.itemView.setOnClickListener {
-            onItemClick?.invoke(position)
+            clickCallBack.onItemClick(position, "cat")
         }
     }
     override fun getItemCount(): Int {
@@ -64,5 +65,6 @@ class ServicesAdapter(
 //        }
 
     }
+
 
 }

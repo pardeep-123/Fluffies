@@ -25,6 +25,7 @@ import com.puppypedia.ui.main.ui.mypetprofile.MyPetProfileActivity
 import com.puppypedia.ui.main.ui.profile.ProfileActivity
 import com.puppypedia.utils.helper.AppConstant
 import com.puppypedia.utils.helper.MyApplication
+import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.SharedPrefUtil.NAME
@@ -51,7 +52,7 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
         // v.tvEmail.text = MyApplication.instance!!.getString(EMAIL)
         v.tvName.text = sharedPrefUtil.name
         v.tvEmail.text = sharedPrefUtil.email
-        Glide.with(this).load(sharedPrefUtil.image)
+        Glide.with(this).load(Constants.IMAGE_URL + sharedPrefUtil.image)
             .placeholder(R.drawable.profile).into(v.civProfile)
         return v
     }

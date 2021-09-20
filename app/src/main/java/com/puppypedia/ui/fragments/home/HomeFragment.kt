@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.SnapHelper
 import com.last.manager.restApi.Status
 import com.puppypedia.R
+import com.puppypedia.common_adapters.ClickCallBack
 import com.puppypedia.common_adapters.DogsAdapter
 import com.puppypedia.common_adapters.HomeAdapter
 import com.puppypedia.common_adapters.ServicesAdapter
@@ -28,12 +29,14 @@ import com.puppypedia.ui.main.ui.category_detail.CategoryDetailActivity
 import com.puppypedia.ui.main.ui.notification.NotificationActivity
 import com.puppypedia.ui.main.ui.weight_chart.WeightChartActivity
 import com.puppypedia.utils.helper.others.Helper
+import com.puppypedia.utils.helper.others.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_home.*
 import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
 
-class HomeFragment : Fragment(), Observer<RestObservable> {
+class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
     lateinit var v: View
     var selectedpos = ""
+
     var aboutResponse: HomeFragmentResponse? = null
     var arrayList = ArrayList<HomeFragmentResponse.Body.Pet>()
     private val viewModel: AllViewModel
@@ -52,8 +55,8 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setPopUpWindow()
         clicksHandle()
+
         /*  if (servicesModel.service != "Weight Chart") {
               val intent = Intent(requireContext(), CategoryDetailActivity::class.java)
               intent.putExtra(AppConstant.HEADING, servicesModel.service)
@@ -86,11 +89,9 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             view, 800, RelativeLayout.LayoutParams.WRAP_CONTENT, true
         )
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
-        val dogsAdapter = DogsAdapter(requireContext(), arrayList)
-        rvDogs.adapter = dogsAdapter
-        dogsAdapter.onItemSelected = { dogModel ->
-            myPopupWindow?.dismiss()
-        }
+        rvDogs.adapter = DogsAdapter(requireContext(), arrayList, this)
+
+
     }
     fun apihome() {
         viewModel.getHomeDetails(requireActivity(), true)
@@ -101,11 +102,14 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
                     aboutResponse = it.data
+                    rc_services.adapter = ServicesAdapter(requireContext(), aboutResponse!!, this)
+
                     arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
+                    setPopUpWindow()
+
 //////////////////////////////////  CATEGORIES ADAPTER
-                    serviceAdapter = ServicesAdapter(requireContext(), aboutResponse!!)
-                    rc_services.adapter = serviceAdapter
-///////////////////////////////////////// show category detail
+
+/*///////////////////////////////////////// show category detail
                     serviceAdapter!!.onItemClick = { pos: Int ->
                         if (pos == 1) {
                             startActivity(Intent(requireContext(), WeightChartActivity::class.java))
@@ -115,7 +119,7 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
                             intent.putExtra("data", aboutResponse!!.body.category[pos])
                             startActivity(intent)
                         }
-                    }
+                    }*/
 /////////////////////////////////////// Banneer Adapter with Indigator
                     val indicator = view?.findViewById<ScrollingPagerIndicator>(R.id.indicator)
                     val homeAdapter = HomeAdapter(this, aboutResponse!!)
@@ -134,4 +138,26 @@ class HomeFragment : Fragment(), Observer<RestObservable> {
             }
         }
     }
+
+    override fun onItemClick(pos: Int, value: String) {
+        when (value) {
+            "cat" -> {
+                if (aboutResponse!!.body.category[pos].name == "Weight Chart") {
+                    startActivity(Intent(requireContext(), WeightChartActivity::class.java))
+                } else {
+                    val intent =
+                        Intent(requireContext(), CategoryDetailActivity::class.java)
+                    intent.putExtra("data", aboutResponse!!.body.category[pos])
+                    startActivity(intent)
+                }
+            }
+            "pet" -> {
+                SharedPrefUtil.getInstance().savePetId(arrayList[pos].id.toString())
+                myPopupWindow?.dismiss()
+
+            }
+        }
+    }
 }
+
+

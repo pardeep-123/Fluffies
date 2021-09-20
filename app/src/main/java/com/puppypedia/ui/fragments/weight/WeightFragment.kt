@@ -40,24 +40,20 @@ class WeightFragment : Fragment(), Observer<RestObservable> {
         sharedPrefUtil = SharedPrefUtil(requireContext())
         return v
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         btnAddWeight.setOnClickListener {
             startActivity(Intent(requireContext(), AddWeightActivity::class.java))
         }
     }
-
     override fun onResume() {
         super.onResume()
         apiWeightChart()
     }
-
     fun apiWeightChart() {
         viewModel.getWeightApi(requireActivity(), sharedPrefUtil.petId, true)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {

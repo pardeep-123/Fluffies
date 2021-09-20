@@ -3,14 +3,12 @@ package com.puppypedia.ui.auth.forgotpassword
 import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
-import com.puppypedia.ui.commomModel.CommonModel
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
@@ -31,15 +29,13 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener,
         mValidationClass = ValidationsClass.getInstance()
         btnSubmit.setOnClickListener(this)
     }
-
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.btnSubmit -> {
-                //    callApi()
+                  callApi()
             }
         }
     }
-
     private fun isValid(): Boolean {
         val email = etEmail.text.toString().trim()
         var check = false
@@ -65,16 +61,11 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener,
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
-                if (it.data is CommonModel) {
-                    val aboutResponse: CommonModel = it.data
+                if (it.data is ForgotPasswordResponse) {
+                    val aboutResponse: ForgotPasswordResponse = it.data
                     if (aboutResponse.code == Constants.success_code) {
-                        Toast.makeText(
-                            context,
-                            "Mail has been sent to your registered email.",
-                            Toast.LENGTH_LONG
-                        )
                         finish()
-
+                        // finishAffinity()
                     } else {
                         Helper.showErrorAlert(this, aboutResponse.code as String)
                     }
