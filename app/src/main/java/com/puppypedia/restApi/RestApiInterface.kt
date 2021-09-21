@@ -104,6 +104,12 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<EditPetResponse>
 
+    @Multipart
+    @POST(Constants.EditPetProfile)
+    fun editPetProfileWithImage(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part
+    ): Observable<EditPetResponse>
 
     @FormUrlEncoded
     @POST(Constants.ForgotPassword)
@@ -127,6 +133,14 @@ interface RestApiInterface {
     @FormUrlEncoded
     @POST(Constants.GetStatsData)
     fun apiPetChart(
+        @Field("datetype") datetype: String,
+        @Field("petid") petid: String
+    ): Observable<StatisticsResponse>
+
+
+    @FormUrlEncoded
+    @POST(Constants.AddReminder)
+    fun apiAddReminder(
         @FieldMap map: HashMap<String, String>
     ): Observable<StatisticsResponse>
 

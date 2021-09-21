@@ -29,15 +29,29 @@ import com.puppypedia.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.etAbout
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.etName
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.spinnerAge
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.spinnerGender
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.tb
+import kotlinx.android.synthetic.main.activity_your_pet_detail.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     private lateinit var mValidationClass: ValidationsClass
     var firstimage = ""
-
+    val ageArrayList = ArrayList<String>()
+    var age = 0
+    var gender = 0
     var poz = 0
     var data: PetProfileResponse? = null
     lateinit var context: Context
@@ -50,6 +64,10 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         context = this
         clicksHandle()
         mValidationClass = ValidationsClass.getInstance()
+        ageArrayList.add("Age")
+        for (i in 0 until 60) {
+            ageArrayList.add((i + 1).toString() + "yr")
+        }
         setSpinnerGender()
         setSpinnerAge()
         data = (intent.getSerializableExtra("aboutResponse") as PetProfileResponse)
@@ -59,8 +77,15 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         etName.setText(data!!.body[poz].name)
         etAbout.setText(data!!.body[poz].about)
         etBreed.setText(data!!.body[poz].breed)
-        //  etWeight.setText(data!!.body[poz].weight )
-
+        etWeight.setText(data!!.body[poz].weight.toString())
+        spinnerGender.setSelection(
+            if (data!!.body[poz].gender == 0) {
+                1
+            } else {
+                2
+            }
+        )
+        spinnerAge.setSelection(data!!.body[poz].age)
 
     }
 
@@ -125,7 +150,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         val adapterGender = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         spinnerGender.adapter = adapterGender
 
-        spinnerGender.setSelection(1)
+
 
         spinnerGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -157,14 +182,17 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                         )
                     )
                 }
+                gender = pos
             }
         }
     }
+
     private fun setSpinnerAge() {
-        val arrayList = arrayListOf("Age", "1 yr", "2 yr")
-        val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
+
+        val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
         spinnerAge.adapter = adapterAge
-        spinnerAge.setSelection(1)
+
+
         spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
@@ -194,6 +222,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     )
 
                 }
+                age = pos
 
             }
 
@@ -227,15 +256,54 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             val weight = etWeight.text.toString().trim()
             val breed = etBreed.text.toString().trim()
             val map = HashMap<String, String>()
+            map["petid"] = data!!.body[poz].id.toString()
             map["name"] = name
             map["weight"] = weight
             map["about"] = about
             map["breed"] = breed
-            map["image"] = "zczzxcxzcxzc"
+            map["age"] = age.toString()
+            map["gender"] = gender.toString()
 
             viewModel.editPetProfileApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }
+    }
+
+    private fun apiEditPetProfileWithImage() {
+        if (isValid()) {
+            val name = etName.text.toString().trim()
+            val about = etAbout.text.toString().trim()
+            val weight = etWeight.text.toString().trim()
+            val breed = etBreed.text.toString().trim()
+            val map = HashMap<String, RequestBody>()
+            /* map["petid"] = data!!.body[poz].id.toString()
+             map["name"] = name
+             map["weight"] = weight
+             map["about"] = about
+             map["breed"] = breed
+             map["age"] = age.toString()
+             map["gender"] = gender.toString()*/
+
+            viewModel.editPetProfileWithImageApi(this, true, map, multipartImageGet())
+            viewModel.mResponse.observe(this, this)
+        }
+    }
+
+    fun multipartImageGet(): MultipartBody.Part {
+        val imageFile: MultipartBody.Part
+        val options = Tiny.FileCompressOptions()
+        val result =
+            Tiny.getInstance().source(firstimage).asFile().withOptions(options)
+                .compressSync()
+        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
+        imageFile =
+            MultipartBody.Part.createFormData(
+                "image",
+                System.currentTimeMillis().toString() + ".jpg",
+                fileReqBody
+            )
+        return imageFile
+
     }
 
     override fun onChanged(it: RestObservable?) {
@@ -264,50 +332,4 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             }
         }
     }
-/*
-   private fun setSpinnerWeight() {
-        val arrayList = arrayListOf("Weight", "1 lbs", "2 lbs")
-
-        val adapterWeight = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
-        spinnerWeight.adapter = adapterWeight
-
-        spinnerWeight.setSelection(1)
-
-        spinnerWeight.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                pos: Int,
-                id: Long
-            ) {
-                val view = (parent?.getChildAt(0) as View)
-                val tvSpinner = view.findViewById<TextView>(R.id.tvSpinner)
-                */
-/*tvSpinner.setPadding(0, 0, 0, 0)*//*
-
-                if (pos == 0) {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@EditPetProfileActivity,
-                            R.color.lightGrayA3A3A3
-                        )
-                    )
-                } else {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@EditPetProfileActivity,
-                            R.color.black
-                        )
-                    )
-
-                }
-
-            }
-
-        }
-    }*/
 }

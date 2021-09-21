@@ -42,7 +42,7 @@ class CategoryActivity : AppCompatActivity(), ClickCallBack {
                 } else {
                     startActivity(
                         Intent(this, CategoryDetailActivity::class.java)
-                            .putExtra("data", data)
+                            .putExtra("data", data!!.body.category[pos])
                     )
                 }
             }

@@ -15,10 +15,11 @@ import kotlinx.android.synthetic.main.item_services.view.*
 
 class SearchAdapter(
     var context: Context,
-    var datalist: ArrayList<HomeFragmentResponse.Body.Category>
+    var datalist: ArrayList<HomeFragmentResponse.Body.Category>,
+    var clickCallBack: ClickCallBack
 ) :
     RecyclerView.Adapter<SearchAdapter.ServicesViewHolder>() {
-    //    var onItemClick: ((pos: Int) -> Unit)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -29,16 +30,15 @@ class SearchAdapter(
     }
 
     override fun onBindViewHolder(holder: SearchAdapter.ServicesViewHolder, position: Int) {
-        // holder.onBind(position)
+
         Glide.with(context)
             .load("http://202.164.42.227:7700" + datalist[position].image)
             .placeholder(R.drawable.icon3).into(holder.itemView.ivService)
         holder.itemView.tv_service.setText(datalist.get(position).name)
 
-        /*     holder.itemView.setOnClickListener {
-                 onItemClick?.invoke(position)
-             }*/
-
+        holder.itemView.setOnClickListener {
+            clickCallBack.onItemClick(position, "cat")
+        }
     }
 
     override fun getItemCount(): Int {
@@ -48,24 +48,6 @@ class SearchAdapter(
     inner class ServicesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var img: ImageView = itemView.findViewById(R.id.ivService)
         var tv: TextView = itemView.findViewById(R.id.tv_service)
-
-//        fun onBind(pos: Int) {
-//           val serviceModel = datalist[pos]
-//            img.setImageResource(datalist[pos].img)
-//            tv.text = serviceModel.service
-//
-//            if (serviceModel.isSelected) {
-//                tv.setTextColor(tv.context.getColor(R.color.theme_Color))
-//                itemView.background = ContextCompat.getDrawable(itemView.context,R.drawable.bg_white_corners_10dp)
-//            } else {
-//                tv.setTextColor(tv.context.getColor(R.color.white))
-//                itemView.background = ContextCompat.getDrawable(itemView.context,R.drawable.bg_sky_blue_10dp)
-//            }
-//
-//            itemView.setOnClickListener {
-//                onItemClick?.invoke(serviceModel)
-//            }
-//        }
 
     }
 }

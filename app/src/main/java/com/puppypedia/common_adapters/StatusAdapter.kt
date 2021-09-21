@@ -27,28 +27,23 @@ class StatusAdapter(
     }
 
     override fun onBindViewHolder(holder: StatusViewHolder, position: Int) {
-
         if (position == arrayList.body.size) {
             Glide.with(context).load(R.drawable.plusbg)
                 .into(holder.itemView.civPet)
         } else {
             Glide.with(context).load(PET_IMAGE_URL + arrayList.body[position].image)
-                .placeholder(R.drawable.profile_pic).into(holder.itemView.civPet)
+                .placeholder(R.drawable.place_holder).into(holder.itemView.civPet)
         }
-
         holder.itemView.setOnClickListener {
             if (position == arrayList.body.size) {
             } else {
                 myPetProfileActivity.petDetails(position)
             }
-
         }
     }
-
     override fun getItemCount(): Int {
         return arrayList.body.size + 1
     }
-
     inner class StatusViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val civPet: CircleImageView = itemView.civPet
     }

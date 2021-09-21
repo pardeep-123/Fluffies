@@ -37,6 +37,7 @@ class Constants {
         const val GetWeight = BASE_URL + "get_weight"
         const val GetStatsData = BASE_URL + "get_stats_data"
         const val HomeApi = BASE_URL + "home_api"
+        const val AddReminder = BASE_URL + "add_reminder"
         fun gender(value: Int): String {
             if (value == 0) {
                 return "Male"

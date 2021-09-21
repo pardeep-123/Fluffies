@@ -21,7 +21,6 @@ class CategoryDetailActivity : AppCompatActivity() {
         tb.tv_title.setTextColor(getColor(R.color.black))
         tb.iv_back.setImageResource(R.drawable.arrow_back_white)
         catgory = intent.getSerializableExtra("data") as HomeFragmentResponse.Body.Category
-
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }

@@ -167,10 +167,10 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
     private fun isValid(): Boolean {
         val date = tvDate.text.toString().trim()
         val time = tvTime.text.toString().trim()
-        var weight = number_picker.value.toString() + "." + np.value + " " + "lbs"
+        var weight = number_picker.value.toString() + "." + np.value
 
         var check = false
-        if (weight.equals("0.0 lbs"))
+        if (weight.equals("0.0"))
             Helper.showErrorAlert(this, "Please select weight")
         else if (mValidationClass.checkStringNull(date))
             Helper.showErrorAlert(this, resources.getString(R.string.error_date))
@@ -188,17 +188,13 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
             val date = tvDate.text.toString().trim()
             val time = tvTime.text.toString().trim()
             //  val age = etAge.text.toString().trim()
-            var weight = number_picker.value.toString() + "." + np.value + " " + "lbs"
-
-
+            var weight = number_picker.value.toString() + "." + np.value
             val map = HashMap<String, String>()
-
             map["petid"] = sharedPrefUtil.petId.toString()
             map["date"] = date
             map["time"] = time
             map["weight"] = weight
             map["age"] = age
-
             viewModel.addPetWeightApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }

@@ -20,14 +20,22 @@ import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.utils.helper.others.Helper
+import com.puppypedia.utils.helper.others.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_statistics.*
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 class StatisticsFragment : Fragment(), Observer<RestObservable> {
+    var datetype = "0"
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     lateinit var v: View
-    lateinit var x: ArrayList<Entry>
+    var x: ArrayList<Entry> = ArrayList()
+/*
     lateinit var y: ArrayList<String>
+*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -35,13 +43,14 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
     ): View {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_statistics, container, false)
+        apiChart("2")
+
         return v
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()
-        setGraph()
     }
 
     private fun clicksHandle() {
@@ -53,6 +62,7 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             btnMonth.setBackgroundColor(Color.TRANSPARENT)
             btnYear.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             btnYear.setBackgroundColor(Color.TRANSPARENT)
+            apiChart("1")
         }
 
         btnMonth.setOnClickListener {
@@ -63,6 +73,8 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             btnDay.setBackgroundColor(Color.TRANSPARENT)
             btnYear.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             btnYear.setBackgroundColor(Color.TRANSPARENT)
+            apiChart("2")
+
         }
 
         btnYear.setOnClickListener {
@@ -73,19 +85,42 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             btnDay.setBackgroundColor(Color.TRANSPARENT)
             btnMonth.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             btnMonth.setBackgroundColor(Color.TRANSPARENT)
+            apiChart("3")
         }
     }
-    private fun setGraph() {
-        x = ArrayList()
-        y = ArrayList()
+
+    private fun setGraph(registerResponse: StatisticsResponse) {
+
+
+        lineChat.clear()
+        x.clear()
+        for (item in registerResponse.body) {
+            if (item.date.isNotEmpty()) {
+                var a = (dateGet(item.date).toInt()).toFloat()
+                var b = (item.weight.toInt()).toFloat()
+                x.add(Entry(a, b))
+            }
+
+        }
+        /*x.add(Entry(1F, 1.5F))
+        x.add(Entry(15F, 1.1F))
+        x.add(Entry(20F, 0.7F))
+        x.add(Entry(22F, 2.6F))
+        x.add(Entry(25F, 2F))
+        x.add(Entry(37F, 2.1F))
+        x.add(Entry(30F, 2.1F))
+        x.add(Entry(40F, 2.1F))
+        x.add(Entry(28F, 2.6F))
+        x.add(Entry(30F, 03F))*/
+
         lineChat.setDrawGridBackground(false)
         lineChat.description.isEnabled = false
         lineChat.setTouchEnabled(true)
         lineChat.setDragEnabled(true)
         lineChat.setScaleEnabled(true)
         lineChat.setPinchZoom(true)
-        lineChat.getXAxis().setTextSize(10f)
-        lineChat.getAxisLeft().setTextSize(10f)
+        lineChat.getXAxis().setTextSize(15f)
+        lineChat.getAxisLeft().setTextSize(15f)
 
         val xl: XAxis = lineChat.getXAxis()
         xl.setAvoidFirstLastClipping(true)
@@ -98,21 +133,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         val l: Legend = lineChat.getLegend()
         l.form = Legend.LegendForm.LINE
 
-        x.add(Entry(0F, 1.2f))
-        x.add(Entry(10F, 1.5F))
-        x.add(Entry(15F, 1.1F))
-        x.add(Entry(20F, 0.7F))
-        x.add(Entry(22F, 2.6F))
-        x.add(Entry(25F, 2F))
-        x.add(Entry(37F, 2.1F))
-        x.add(Entry(28F, 2.6F))
-        x.add(Entry(30F, 03F))
-
-        y.add("A")
-        y.add("B")
-        y.add("C")
-        y.add("D")
-        y.add("E")
 
         val set1 = LineDataSet(x, "")
         set1.setColor(requireContext().getColor(R.color.theme_Color))
@@ -123,16 +143,17 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         lineChat.invalidate()
     }
 
-    /* fun apiChart() {
-         viewModel.addPetChartApi(requireActivity(), true,map)
-         viewModel.mResponse.observe(requireActivity(), this)
-     }*/
+    fun apiChart(datetype: String) {
+        viewModel.addPetChartApi(requireActivity(), datetype, SharedPrefUtil.PET_ID, true)
+        viewModel.mResponse.observe(requireActivity(), this)
+    }
+
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is StatisticsResponse) {
                     val registerResponse: StatisticsResponse = it.data
-
+                    setGraph(registerResponse)
                 }
             }
             it.status == Status.ERROR -> {
@@ -144,4 +165,15 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             }
         }
     }
+
+
+    fun dateGet(date: String): String {
+        val input_date = date
+        val format1 = SimpleDateFormat("yyyy-MM-dd")
+        val dt1: Date = format1.parse(input_date)
+        val format2: DateFormat = SimpleDateFormat("dd")
+        val finalDay: String = format2.format(dt1)
+        return finalDay
+    }
+
 }

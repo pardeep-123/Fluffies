@@ -24,6 +24,7 @@
             android:orientation="vertical">
 
             <EditText
+                android:id="@+id/etName"
                 style="@style/MatchEditText"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_edit_text"

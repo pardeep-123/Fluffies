@@ -13,7 +13,7 @@ import com.puppypedia.common_adapters.StatusAdapter
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.editpetprofile.EditPetProfileActivity
-import com.puppypedia.utils.helper.others.Constants.Companion.PET_IMAGE_URL
+import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Constants.Companion.gender
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.activity_my_pet_profile.*
@@ -89,8 +89,8 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
     fun petDetails(position: Int) {
         selectedpos = position.toString()
-        Glide.with(context).load(PET_IMAGE_URL + aboutResponse!!.body[position].image)
-            .placeholder(R.drawable.profile_pic).into(ivImg)
+        Glide.with(context).load(Constants.IMAGE_URL + aboutResponse!!.body[position].image)
+            .placeholder(R.drawable.place_holder).into(ivImg)
         tvName.setText(aboutResponse!!.body[position].name)
         tvGender.setText(gender(aboutResponse!!.body[position].gender))
         tvWeight.setText(aboutResponse!!.body[position].weight.toString())

@@ -98,6 +98,13 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         val btnLater = dialog.findViewById<Button>(R.id.later)
 
         btnAddNew.setOnClickListener {
+            etName.setText("")
+            etbreed.setText("")
+            etweight.setText("")
+            etAbout.setText("")
+            age = 0
+            gender = "0"
+            image = ""
             dialog.dismiss()
         }
         btnLater.setOnClickListener {
@@ -158,8 +165,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-
-
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
         val about = etAbout.text.toString().trim()
@@ -207,6 +212,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is PetDetailResponse) {
                     val registerResponse: PetDetailResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
+
                         dialogAddPet()
 
                     } else {

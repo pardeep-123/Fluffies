@@ -1,6 +1,7 @@
 package com.puppypedia.ui.fragments
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -12,21 +13,27 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.last.manager.restApi.Status
 import com.puppypedia.R
+import com.puppypedia.common_adapters.ClickCallBack
 import com.puppypedia.common_adapters.SearchAdapter
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import com.puppypedia.ui.main.ui.AllViewModel
+import com.puppypedia.ui.main.ui.category_detail.CategoryDetailActivity
+import com.puppypedia.ui.main.ui.weight_chart.WeightChartActivity
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.fragment_search.*
 
 
-class SearchFragment : Fragment(), Observer<RestObservable> {
+class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
     lateinit var v: View
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     var aboutResponse: HomeFragmentResponse? = null
     var list = ArrayList<HomeFragmentResponse.Body.Category>()
     lateinit var searchAdapter: SearchAdapter
+    var data: HomeFragmentResponse? = null
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -79,17 +86,31 @@ class SearchFragment : Fragment(), Observer<RestObservable> {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
                     aboutResponse = it.data
-                    searchAdapter = SearchAdapter(requireContext(), list!!)
+                    searchAdapter = SearchAdapter(requireContext(), list, this)
                     rc_services.adapter = searchAdapter
-
                 }
-
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
                     Helper.showErrorAlert(requireActivity(), it.data as String)
                 } else {
                     Helper.showErrorAlert(requireActivity(), it.error.toString())
+                }
+            }
+        }
+    }
+
+    override fun onItemClick(pos: Int, value: String) {
+        when (value) {
+            "cat" -> {
+                //data!!.body.category[pos].name
+                //list[pos].name == "Weight Chart"
+                if (list[pos].name == "Weight Chart") {
+                    startActivity(Intent(requireContext(), WeightChartActivity::class.java))
+                } else {
+                    val i = Intent(requireContext(), CategoryDetailActivity::class.java)
+                    i.putExtra("data", list[pos])
+                    startActivity(i)
                 }
             }
         }

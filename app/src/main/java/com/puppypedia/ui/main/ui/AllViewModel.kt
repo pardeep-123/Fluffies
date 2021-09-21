@@ -235,6 +235,22 @@ class AllViewModel : ViewModel() {
     }
 
     @SuppressLint("CheckResult")
+    fun editPetProfileWithImageApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, RequestBody>,
+        multipartImageGet: MultipartBody.Part
+
+    ) {
+        restApiInterface.editPetProfileWithImage(map, multipartImageGet)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    @SuppressLint("CheckResult")
     fun addPetWeightApi(
         activity: Activity, showLoader: Boolean, map: HashMap<String, String>
     ) {
@@ -265,9 +281,24 @@ class AllViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun addPetChartApi(
+        activity: Activity, datetype: String, petId: String, showLoader: Boolean
+    ) {
+        restApiInterface.apiPetChart(datetype, petId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun addReminderApi(
         activity: Activity, showLoader: Boolean, map: HashMap<String, String>
     ) {
-        restApiInterface.apiPetChart(map)
+        restApiInterface.apiAddReminder(map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
