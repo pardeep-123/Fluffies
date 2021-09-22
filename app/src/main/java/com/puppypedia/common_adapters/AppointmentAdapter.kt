@@ -1,37 +1,44 @@
 package com.puppypedia.common_adapters
 
+import android.content.Context
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.puppypedia.databinding.ItemAppointmentBinding
-import com.puppypedia.databinding.ItemWeightBinding
-
-class AppointmentAdapter : RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
+import com.puppypedia.R
+import com.puppypedia.ui.fragments.calender.CalenderReminderResponse
 
 
+class AppointmentAdapter(
+    var context: Context,
+    var reminderList: CalenderReminderResponse
+) :
+    RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
-        val bind = ItemAppointmentBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return AppointmentViewHolder(bind)
+        val v: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_appointment, parent, false)
+        return AppointmentViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
-        holder.bind(position)
+        //holder.itemView.tvName?.setText(reminderList.body[position])
+
     }
 
     override fun getItemCount(): Int {
         return 3
     }
 
-    inner class AppointmentViewHolder(binding: ItemAppointmentBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    inner class AppointmentViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+/*
+        val swReminder = swReminder
+        val tvName = tvName
+        val tvDesc = tvDesc*/
+        /* fun bind(pos: Int) {
 
-        val swReminder = binding.swReminder
-        val tvName = binding.tvName
-        val tvDesc = binding.tvDesc
-
-        fun bind(pos: Int) {
-
-        }
+         }*/
     }
 
 }
+

@@ -195,6 +195,23 @@ class AllViewModel : ViewModel() {
 
 
     @SuppressLint("CheckResult")
+    fun editUserProfileWithImageApi(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, RequestBody>,
+        multipartImageGet: MultipartBody.Part
+
+    ) {
+        restApiInterface.editUserProfileWithImage(map, multipartImageGet)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
     fun getLogout(activity: Activity, showLoader: Boolean) {
         restApiInterface.apiLogout()
             .subscribeOn(Schedulers.io())
@@ -308,5 +325,19 @@ class AllViewModel : ViewModel() {
             )
     }
 
+
+    @SuppressLint("CheckResult")
+    fun getReminderApi(
+        activity: Activity, datetime: String, showLoader: Boolean
+    ) {
+        restApiInterface.apiGetReminders(datetime)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
 
 }

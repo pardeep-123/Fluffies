@@ -101,7 +101,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                     indicator?.attachToRecyclerView(rc_details_img)
                     val snapHelper: SnapHelper = PagerSnapHelper()
                     snapHelper.attachToRecyclerView(rc_details_img)
-                    petDetails(0)
+                    petDetails(SharedPrefUtil.getInstance().petPos)
                 }
             }
             it.status == Status.ERROR -> {
@@ -121,20 +121,20 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                 } else {
                     val intent =
                         Intent(requireContext(), CategoryDetailActivity::class.java)
-                    intent.putExtra("data", aboutResponse!!.body.category[pos])
+                            .putExtra("data", aboutResponse!!.body.category[pos])
                     startActivity(intent)
                 }
             }
             "pet" -> {
                 SharedPrefUtil.getInstance().savePetId(arrayList[pos].id.toString())
+                SharedPrefUtil.getInstance().savePetPos(pos)
+                petDetails(pos)
                 myPopupWindow?.dismiss()
-
             }
         }
     }
 
     fun petDetails(position: Int) {
-
         tv_choose_dog.text = aboutResponse!!.body.pets[position].name
         Glide.with(requireContext())
             .load(Constants.IMAGE_URL + aboutResponse!!.body.pets[position].image)

@@ -57,24 +57,19 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             startActivity(i)
             //   startActivity(Intent(this,EditPetProfileActivity::class.java))
         }
-
     }
-
     fun apiPetProfile() {
         viewModel.getPetProfile(this, true)
         viewModel.mResponse.observe(this, this)
     }
-
     override fun onChanged(liveData: RestObservable?) {
         when {
             liveData!!.status == Status.SUCCESS -> {
                 if (liveData.data is PetProfileResponse) {
                     aboutResponse = liveData.data
-
                     adapter = StatusAdapter(this, aboutResponse!!, this@MyPetProfileActivity)
                     rv_status.adapter = adapter
                     petDetails(0)
-
                 }
             }
             liveData.status == Status.ERROR -> {

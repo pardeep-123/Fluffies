@@ -78,18 +78,6 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
     }
 
 
-    private fun selectImage() {
-        Album.image(this).singleChoice().camera(true).columnCount(4).widget(
-            Widget.newDarkBuilder(this).title(getString(R.string.app_name)).build()
-        )
-            .onResult { result ->
-                mAlbumFiles.addAll(result)
-                Glide.with(this).load(result[0].path).into(ivProfile)
-                image = result[0].path
-            }.onCancel {
-            }.start()
-    }
-
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
         val email = etEmail.text.toString().trim()

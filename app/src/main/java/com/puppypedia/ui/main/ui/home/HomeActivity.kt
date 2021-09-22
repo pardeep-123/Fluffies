@@ -6,9 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import com.puppypedia.R
-import com.puppypedia.ui.fragments.CalenderFragment
 import com.puppypedia.ui.fragments.SearchFragment
 import com.puppypedia.ui.fragments.accountFragment.AccountFragment
+import com.puppypedia.ui.fragments.calender.CalenderFragment
 import com.puppypedia.ui.fragments.home.HomeFragment
 import kotlinx.android.synthetic.main.activity_home.*
 

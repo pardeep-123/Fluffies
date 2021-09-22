@@ -1,5 +1,6 @@
 package com.puppypedia.common_adapters
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -8,46 +9,46 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puppypedia.R
-import com.puppypedia.ui.fragments.home.HomeFragmentResponse
-import com.puppypedia.utils.helper.others.Constants
-import com.puppypedia.utils.helper.others.SharedPrefUtil
+import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
+import com.puppypedia.utils.helper.others.Constants.Companion.IMAGE_URL
 import kotlinx.android.synthetic.main.item_your_dogs.view.*
 
-class DogsAdapter(
+class PetListAdapter(
     var context: Context,
-    var arrayList: ArrayList<HomeFragmentResponse.Body.Pet>,
+    var arrayList: PetProfileResponse,
     var clickCallBack: ClickCallBack
 
 ) :
-    RecyclerView.Adapter<DogsAdapter.DogsViewHolder>() {
+    RecyclerView.Adapter<PetListAdapter.StatusViewHolder>() {
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogsAdapter.DogsViewHolder {
-        val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_your_dogs, parent, false)
-        return DogsViewHolder(view)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatusViewHolder {
+        val view = LayoutInflater.from(context).inflate(R.layout.item_your_dogs, parent, false)
+        return StatusViewHolder(view)
     }
 
     var selectedpoz = 0
-    override fun onBindViewHolder(holder: DogsViewHolder, position: Int) {
+    var pos = 0
 
+    override fun onBindViewHolder(holder: StatusViewHolder, position: Int) {
+        Glide.with(context).load(IMAGE_URL + arrayList.body[position].image)
+            .placeholder(R.drawable.place_holder).into(holder.itemView.ivDog)
+        holder.itemView.tvDogName.setText(arrayList.body[position].name)
         holder.bind(position)
     }
 
     override fun getItemCount(): Int {
-        //  return datalist.body.pets.size
-        return arrayList.size
+        return arrayList.body.size
     }
 
-    inner class DogsViewHolder(itemView: View) :
+    inner class StatusViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        val ivDog = itemView.ivDog
-        val tvDogName = itemView.tvDogName
+
         val ivCheck = itemView.ivCheck
 
+        @SuppressLint("NotifyDataSetChanged")
         fun bind(pos: Int) {
             if (selectedpoz == pos) {
-                SharedPrefUtil.getInstance().savePetId(arrayList[pos].id.toString())
+                //   SharedPrefUtil.getInstance().savePetId(arrayList.body[pos].id.toString()
                 ivCheck.setImageDrawable(
                     ContextCompat.getDrawable(
                         ivCheck.context,
@@ -62,21 +63,15 @@ class DogsAdapter(
                     )
                 )
             }
-
-            tvDogName.text = arrayList[pos].name
-            Glide.with(context)
-                .load(Constants.IMAGE_URL + arrayList[pos].image)
-                .error(R.drawable.place_holder)
-                .into(ivDog)
-
             itemView.setOnClickListener {
-                arrayList.forEachIndexed { index, dogsModel ->
+                arrayList.body.forEachIndexed { index, dogsModel ->
                     selectedpoz = pos
-                    arrayList[pos].selected = true
-                    arrayList[selectedpoz].selected = false
+                    arrayList.body[pos].selected = true
+                    arrayList.body[selectedpoz].selected = false
                     notifyDataSetChanged()
                     clickCallBack.onItemClick(pos, "pet")
                 }
+
             }
         }
     }

@@ -16,55 +16,60 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.last.manager.restApi.Status
 import com.puppypedia.R
-import com.puppypedia.common_adapters.DogsAdapter
-import com.puppypedia.model.DogsModel
+import com.puppypedia.common_adapters.ClickCallBack
+import com.puppypedia.common_adapters.PetListAdapter
 import com.puppypedia.restApi.RestObservable
-import com.puppypedia.ui.auth.forgotpassword.ForgotPasswordResponse
 import com.puppypedia.ui.main.ui.AllViewModel
+import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
 import com.puppypedia.utils.helper.AppUtils
-import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
+import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
 import kotlinx.android.synthetic.main.activity_add_remainder.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import java.util.*
-import kotlin.collections.ArrayList
 
-class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable> {
+class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
+    lateinit var context: Context
     private lateinit var mValidationClass: ValidationsClass
-    private lateinit var dogsAdapter: DogsAdapter
+
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
-
+    lateinit var sharedPrefUtil: SharedPrefUtil
     private val myCalendar: Calendar = Calendar.getInstance()
     private lateinit var date: DatePickerDialog.OnDateSetListener
     private lateinit var time: TimePickerDialog.OnTimeSetListener
+    var isRemind = "0"
+    lateinit var adapter: PetListAdapter
+    var aboutResponse: PetProfileResponse? = null
+    var arrayList = ArrayList<PetProfileResponse>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_remainder)
         mValidationClass = ValidationsClass.getInstance()
         tb.tv_title.text = getString(R.string.add_remainder)
-
+        sharedPrefUtil = SharedPrefUtil(this)
         clicksHandle()
+        context = this
+        apiPetList()
 
-        val arrayList = ArrayList<DogsModel>()
-        arrayList.add(DogsModel(R.drawable.dog_profile, "Rony", true))
-        arrayList.add(DogsModel(R.drawable.dog_img, "Rocky", false))
-
-        /* dogsAdapter = DogsAdapter(this, arrayList)
-         binding.rvDogs.adapter = dogsAdapter*/
     }
 
     private fun clicksHandle() {
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
-
         btnSubmit.setOnClickListener {
-            appointmentDialog()
+            apiReminder()
         }
-
+        sc_switch.setOnCheckedChangeListener { buttonView, isChecked ->
+            isRemind = if (isChecked) {
+                "1"
+            } else {
+                " 0"
+            }
+        }
         edtDate.setOnClickListener {
             date =
                 DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
@@ -74,11 +79,10 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable> {
                     edtDate.setText(
                         AppUtils.dateInString(
                             myCalendar.timeInMillis,
-                            "dd-MMM-yyyy"
+                            "yyyy-mm-dd"
                         )
                     )
                 }
-
             datePicker(this)
         }
 
@@ -86,17 +90,8 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable> {
             time = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 myCalendar[Calendar.HOUR_OF_DAY] = hour
                 myCalendar[Calendar.MINUTE] = minute
-
-                edtTime.setText(
-                    AppUtils.dateInString(
-                        myCalendar.timeInMillis,
-                        "hh:mm a"
-                    )
-                )
-
-
+                edtTime.setText(AppUtils.dateInString(myCalendar.timeInMillis, "hh:mm"))
             }
-
             timePicker(this)
         }
     }
@@ -117,22 +112,16 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable> {
 
         val done = dialog.findViewById<Button>(R.id.btnDone)
         done.setOnClickListener {
-            finish()
+            apiReminder()
         }
-
     }
-
     private fun datePicker(context: Context) {
         val datePicker = DatePickerDialog(
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
             myCalendar[Calendar.DAY_OF_MONTH]
         )
-
-       /* datePicker.datePicker.minDate = System.currentTimeMillis() - 1000*/
-
         datePicker.show()
     }
-
     private fun timePicker(context: Context) {
         TimePickerDialog(
             context,
@@ -143,50 +132,72 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable> {
         ).show()
     }
 
-/*
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
+        val date = edtDate.text.toString().trim()
+        val time = edtTime.text.toString().trim()
         var check = false
         if (mValidationClass.checkStringNull(name))
             Helper.showErrorAlert(this, resources.getString(R.string.error_name))
-        else if (!mValidationClass.isValidEmail(email))
-            Helper.showErrorAlert(this, resources.getString(R.string.error_validemail))
+        else if (mValidationClass.checkStringNull(date))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_date))
+        else if (mValidationClass.checkStringNull(time))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_time))
         else
             check = true
         return check
     }
-*/
 
-/*    fun apihome() {
+    fun apiReminder() {
         if (isValid()) {
-            val email = etEmail.text.toString().trim()
+            val name = etName.text.toString().trim()
+            val date = edtDate.text.toString().trim()
+            val time = edtTime.text.toString().trim()
             val map = HashMap<String, String>()
-            map["email"] = email
-            viewModel.addReminderApi(this, true,map)
+            map["petid"] = sharedPrefUtil.petId.toString()
+            map["time"] = time
+            map["date"] = date
+            map["name"] = name
+            map["isRemind"] = isRemind
+            viewModel.addReminderApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }
-    }*/
+    }
 
-    override fun onChanged(it: RestObservable?) {
+    fun apiPetList() {
+        viewModel.getPetProfile(this, true)
+        viewModel.mResponse.observe(this, this)
+    }
+
+    override fun onChanged(liveData: RestObservable?) {
         when {
-            it!!.status == Status.SUCCESS -> {
-                if (it.data is ForgotPasswordResponse) {
-                    val aboutResponse: ForgotPasswordResponse = it.data
-                    if (aboutResponse.code == Constants.success_code) {
-                        finish()
-                        // finishAffinity()
-                    } else {
-                        Helper.showErrorAlert(this, aboutResponse.code as String)
-                    }
+            liveData!!.status == Status.SUCCESS -> {
+                if (liveData.data is PetProfileResponse) {
+                    aboutResponse = liveData.data
+                    adapter = PetListAdapter(this, aboutResponse!!, this)
+                    rvDogs.adapter = adapter
+                }
+                if (liveData.data is AddReminderResponse) {
+                    finish()
                 }
             }
-            it.status == Status.ERROR -> {
-                if (it.data != null) {
-                    Helper.showErrorAlert(this, it.data as String)
+            liveData.status == Status.ERROR -> {
+                if (liveData.data != null) {
+                    Helper.showErrorAlert(this, liveData.data as String)
                 } else {
-                    Helper.showErrorAlert(this, it.error.toString())
+                    Helper.showErrorAlert(this, liveData.error.toString())
                 }
             }
         }
     }
+
+    override fun onItemClick(pos: Int, value: String) {
+        /* when (value) {
+             "pet" -> {
+                 SharedPrefUtil.getInstance().savePetId(arrayList[pos].body[pos].id.toString())
+                 SharedPrefUtil.getInstance().savePetPos(pos)
+             }
+         }*/
+    }
+
 }

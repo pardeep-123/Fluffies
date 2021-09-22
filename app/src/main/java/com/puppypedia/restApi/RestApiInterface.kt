@@ -6,6 +6,7 @@ import com.puppypedia.ui.auth.signup.SignUpResponse
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
+import com.puppypedia.ui.fragments.calender.CalenderReminderResponse
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import com.puppypedia.ui.fragments.statistics.StatisticsResponse
 import com.puppypedia.ui.fragments.weight.GetWeightResponse
@@ -97,6 +98,12 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<EditProfileResponse>
 
+    @Multipart
+    @POST(Constants.EditProfile)
+    fun editUserProfileWithImage(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part
+    ): Observable<EditProfileResponse>
 
     @FormUrlEncoded
     @POST(Constants.EditPetProfile)
@@ -151,35 +158,13 @@ interface RestApiInterface {
         @Part image: MultipartBody.Part
        ): Observable<PetDetailResponse?>
    */
-    /*
-
-     @GET(Constants.AboutUs)
-     fun aboutUs(): Observable<ModelAboutus>
-
-     @GET(Constants.Terms)
-     fun terms(): Observable<ModelTerms>
-
-     @GET(Constants.Privacy)
-     fun privacy(): Observable<ModelPrivacy>
-
-     @GET(Constants.Logout)
-     fun logout(): Observable<CommonResponse>
-
-     @FormUrlEncoded
-     @POST(Constants.ChangePassword)
-     fun changePassword(
-         @FieldMap map: HashMap<String, String>
-     ): Observable<CommonResponse>
 
 
-     @FormUrlEncoded
-     @POST(Constants.ForgotPassword)
-     fun forgotPassword(
-         @FieldMap map: HashMap<String, String>
-     ): Observable<CommonResponse>
+    @FormUrlEncoded
+    @POST(Constants.GetReminders)
+    fun apiGetReminders(
+        @Field("datetime") datetime: String
+    ): Observable<CalenderReminderResponse>
 
-     @GET(Constants.Profile)
-     fun profile(): Observable<CommonResponse>
- */
 
 }

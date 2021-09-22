@@ -53,7 +53,6 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
         np.setMinValue(0)
         np.setMaxValue(60)
         np.setWrapSelectorWheel(true)
-
         np.setOnValueChangedListener { picker, oldVal, newVal ->
             val et = np.getChildAt(0) as EditText
             et.setTextColor(ContextCompat.getColor(this, R.color.theme_Color))
@@ -88,7 +87,7 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
                 tvTime.setText(
                     AppUtils.dateInString(
                         myCalendar.timeInMillis,
-                        "hh:mm a"
+                        "hh:mm "
                     )
                 )
 

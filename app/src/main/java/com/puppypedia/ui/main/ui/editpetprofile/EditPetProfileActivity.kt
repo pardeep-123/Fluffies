@@ -21,8 +21,10 @@ import com.bumptech.glide.Glide
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
+import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
+import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
@@ -48,7 +50,8 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     private lateinit var mValidationClass: ValidationsClass
-    var firstimage = ""
+    var oldImage = ""
+    var newImage = ""
     val ageArrayList = ArrayList<String>()
     var age = 0
     var gender = 0
@@ -78,6 +81,10 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         etAbout.setText(data!!.body[poz].about)
         etBreed.setText(data!!.body[poz].breed)
         etWeight.setText(data!!.body[poz].weight.toString())
+        oldImage = data!!.body[poz].image
+        Glide.with(context).load(Constants.IMAGE_URL + data!!.body[poz].image)
+            .error(R.drawable.place_holder).into(rivPet)
+
         spinnerGender.setSelection(
             if (data!!.body[poz].gender == 0) {
                 1
@@ -94,14 +101,10 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             onBackPressed()
         }
         tb.tv_title.text = getString(R.string.edit_pet_profile)
-
-
         btnUpdate.setOnClickListener {
             apiEditPetProfile()
 
-
         }
-
         rivPet.setOnClickListener {
             selectImage()
         }
@@ -114,7 +117,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(context).load(result[0].path).into(rivPet)
-                firstimage = result[0].path
+                newImage = result[0].path
             }.onCancel {
             }.start()
     }
@@ -149,8 +152,6 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
         val adapterGender = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
         spinnerGender.adapter = adapterGender
-
-
 
         spinnerGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -251,49 +252,42 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun apiEditPetProfile() {
         if (isValid()) {
-            val name = etName.text.toString().trim()
-            val about = etAbout.text.toString().trim()
-            val weight = etWeight.text.toString().trim()
-            val breed = etBreed.text.toString().trim()
-            val map = HashMap<String, String>()
-            map["petid"] = data!!.body[poz].id.toString()
-            map["name"] = name
-            map["weight"] = weight
-            map["about"] = about
-            map["breed"] = breed
-            map["age"] = age.toString()
-            map["gender"] = gender.toString()
 
-            viewModel.editPetProfileApi(this, true, map)
-            viewModel.mResponse.observe(this, this)
+
+            if (newImage != "") {
+                val map = HashMap<String, RequestBody>()
+                map["folder"] = mValidationClass.createPartFromString("pets")
+                viewModel.imageUpload(this, true, map, multipartImageGet())
+                viewModel.mResponse.observe(this, this)
+            } else {
+
+                val name = etName.text.toString().trim()
+                val about = etAbout.text.toString().trim()
+                val weight = etWeight.text.toString().trim()
+                val breed = etBreed.text.toString().trim()
+                val map = HashMap<String, String>()
+                map["petid"] = data!!.body[poz].id.toString()
+                map["name"] = name
+                map["weight"] = weight
+                map["about"] = about
+                map["breed"] = breed
+                map["age"] = age.toString()
+                map["gender"] = gender.toString()
+
+                viewModel.editPetProfileApi(this, true, map)
+                viewModel.mResponse.observe(this, this)
+            }
+
+
         }
     }
 
-    private fun apiEditPetProfileWithImage() {
-        if (isValid()) {
-            val name = etName.text.toString().trim()
-            val about = etAbout.text.toString().trim()
-            val weight = etWeight.text.toString().trim()
-            val breed = etBreed.text.toString().trim()
-            val map = HashMap<String, RequestBody>()
-            /* map["petid"] = data!!.body[poz].id.toString()
-             map["name"] = name
-             map["weight"] = weight
-             map["about"] = about
-             map["breed"] = breed
-             map["age"] = age.toString()
-             map["gender"] = gender.toString()*/
-
-            viewModel.editPetProfileWithImageApi(this, true, map, multipartImageGet())
-            viewModel.mResponse.observe(this, this)
-        }
-    }
 
     fun multipartImageGet(): MultipartBody.Part {
         val imageFile: MultipartBody.Part
         val options = Tiny.FileCompressOptions()
         val result =
-            Tiny.getInstance().source(firstimage).asFile().withOptions(options)
+            Tiny.getInstance().source(newImage).asFile().withOptions(options)
                 .compressSync()
         val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
@@ -321,6 +315,26 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     SharedPrefUtil.getInstance().saveName(aboutResponse.body.gender.toString())
                     SharedPrefUtil.getInstance().saveName(aboutResponse.body.age.toString())
                     dialogEDitPet()
+                }
+                if (it.data is ImageUploadResponse) {
+                    val imageResponse: ImageUploadResponse = it.data
+
+                    val name = etName.text.toString().trim()
+                    val about = etAbout.text.toString().trim()
+                    val weight = etWeight.text.toString().trim()
+                    val breed = etBreed.text.toString().trim()
+                    val map = HashMap<String, String>()
+                    map["petid"] = data!!.body[poz].id.toString()
+                    map["name"] = name
+                    map["weight"] = weight
+                    map["about"] = about
+                    map["breed"] = breed
+                    map["age"] = age.toString()
+                    map["gender"] = gender.toString()
+                    map["image"] = imageResponse.body[0].image
+
+                    viewModel.editPetProfileApi(this, true, map)
+                    viewModel.mResponse.observe(this, this)
                 }
             }
             it.status == Status.ERROR -> {

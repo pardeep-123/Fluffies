@@ -171,10 +171,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         val breed = etbreed.text.toString().trim()
         var check = false
 
-
-        /*if (!mValidationClass.isNetworkConnected)
-            Helper.showErrorAlert(this, resources.getString(R.string.no_internet))
-        else */
         if (mValidationClass.checkStringNull(image))
             Helper.showErrorAlert(this, "Please select image")
         else if (mValidationClass.checkStringNull(name))
@@ -189,9 +185,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             Helper.showErrorAlert(this, resources.getString(R.string.about))
         else if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
-        else /*if (mValidationClass.checkStringNull(breed))
-            Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
-        else*/
+        else
             check = true
         return check
     }

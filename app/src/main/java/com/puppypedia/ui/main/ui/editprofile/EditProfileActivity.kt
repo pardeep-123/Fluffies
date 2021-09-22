@@ -1,7 +1,6 @@
 package com.puppypedia.ui.main.ui.editprofile
 
 import android.content.Context
-
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -10,20 +9,27 @@ import com.bumptech.glide.Glide
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
+import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
-import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
+import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_edit_profile.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 
 class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     private lateinit var mValidationClass: ValidationsClass
-    var firstimage = ""
+    var oldImage = ""
+    var newImage = ""
     lateinit var context: Context
     private var mAlbumFiles: ArrayList<AlbumFile> = ArrayList()
     var check = false
@@ -39,11 +45,11 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         tb.tv_title.text = getString(R.string.edit_profile)
         clicksHandle()
 
-        firstimage = intent.getStringExtra("image").toString()
+
         etName.setText(intent.getStringExtra("name").toString())
         etEmail.setText(intent.getStringExtra("email").toString())
-        //  Log.e("editprofile", "" + intent.getStringExtra("email") + intent.getStringExtra("name"))
-        Glide.with(this).load(Constants.IMAGE_URL + intent.getStringExtra("image").toString())
+        oldImage = intent.getStringExtra("image").toString()
+        Glide.with(this).load(intent.getStringExtra("image").toString())
             .placeholder(R.drawable.profile_pic).into(rivProfile)
     }
 
@@ -69,7 +75,7 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 Glide.with(context).load(result[0].path).into(rivProfile)
-                firstimage = result[0].path
+                newImage = result[0].path
             }.onCancel {
             }.start()
     }
@@ -91,17 +97,26 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun CallApiEDitProfile() {
         if (isValid()) {
-            val name = etName.text.toString().trim()
-            val email = etEmail.text.toString().trim()
-            val map = HashMap<String, String>()
-            map["name"] = name
-            map["email"] = email
-            map["image"] = "zczzxcxzcxzc"
+            if (newImage != "") {
+                val map = HashMap<String, RequestBody>()
+                map["folder"] = mValidationClass.createPartFromString("pets")
+                viewModel.imageUpload(this, true, map, multipartImageGet())
+                viewModel.mResponse.observe(this, this)
+            } else {
 
-            viewModel.editProfileApi(this, true, map)
-            viewModel.mResponse.observe(this, this)
+                val name = etName.text.toString().trim()
+                val email = etEmail.text.toString().trim()
+                val map = HashMap<String, String>()
+                map["name"] = name
+                map["email"] = email
+
+                viewModel.editProfileApi(this, true, map)
+                viewModel.mResponse.observe(this, this)
+            }
+
         }
     }
+
 
     override fun onChanged(it: RestObservable?) {
         when {
@@ -115,6 +130,20 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     SharedPrefUtil.getInstance().saveName(aboutResponse.body.name)
                     finish()
                 }
+                if (it.data is ImageUploadResponse) {
+                    val imageResponse: ImageUploadResponse = it.data
+
+                    val name = etName.text.toString().trim()
+                    val email = etEmail.text.toString().trim()
+                    val map = HashMap<String, String>()
+                    map["name"] = name
+                    map["email"] = email
+                    map["image"] = imageResponse.body[0].image
+
+                    viewModel.editProfileApi(this, true, map)
+                    viewModel.mResponse.observe(this, this)
+                }
+
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -124,5 +153,23 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 }
             }
         }
+    }
+
+
+    fun multipartImageGet(): MultipartBody.Part {
+        val imageFile: MultipartBody.Part
+        val options = Tiny.FileCompressOptions()
+        val result =
+            Tiny.getInstance().source(newImage).asFile().withOptions(options)
+                .compressSync()
+        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
+        imageFile =
+            MultipartBody.Part.createFormData(
+                "image",
+                System.currentTimeMillis().toString() + ".jpg",
+                fileReqBody
+            )
+        return imageFile
+
     }
 }

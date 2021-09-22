@@ -28,22 +28,12 @@ class HomeAdapter(
             .load("http://202.164.42.227:7700" + datalist.body.banners[position].image)
             .placeholder(R.drawable.dogsimg).into(holder.itemView.details_img)
     }
-
-    /*    private val itemCount: Int = datalist.size*/
     override fun getItemCount(): Int {
         return datalist.body.banners.size
     }
 
     inner class Vh(itemView: View) : RecyclerView.ViewHolder(itemView) {
         lateinit var img: ImageView
-        var videoPic: ImageView? = null
 
-        /*      init {
-                img = itemView.findViewById(R.id.details_img)
-        // videoPic= itemView.findViewById(R.id.iv_videoicon);
-    }*/
     }
 }
-/*   init {
-       this.datalist = datalist
-   }*/
