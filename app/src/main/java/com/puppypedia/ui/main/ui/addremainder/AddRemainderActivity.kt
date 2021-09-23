@@ -32,7 +32,7 @@ import java.util.*
 class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
     lateinit var context: Context
     private lateinit var mValidationClass: ValidationsClass
-
+    var petId = ""
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     lateinit var sharedPrefUtil: SharedPrefUtil
@@ -159,7 +159,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             val date = edtDate.text.toString().trim()
             val time = edtTime.text.toString().trim()
             val map = HashMap<String, String>()
-            map["petid"] = sharedPrefUtil.petId.toString()
+            map["petid"] = petId
             map["time"] = time
             map["date"] = date
             map["name"] = name
@@ -179,6 +179,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             liveData!!.status == Status.SUCCESS -> {
                 if (liveData.data is PetProfileResponse) {
                     aboutResponse = liveData.data
+                    petId = aboutResponse!!.body[0].id.toString()
                     adapter = PetListAdapter(this, aboutResponse!!, this)
                     rvDogs.adapter = adapter
                 }
@@ -199,8 +200,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "pet" -> {
-                SharedPrefUtil.getInstance().savePetId(arrayList[pos].body[pos].id.toString())
-                SharedPrefUtil.getInstance().savePetPos(pos)
+                petId = aboutResponse!!.body[pos].id.toString()
             }
         }
     }

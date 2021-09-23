@@ -102,7 +102,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
 
-    fun apiReminderOnOff() {
+    fun apiReminderOnOff(isRemind: String, reminderid: String) {
         viewModel.reminderOnOffApi(requireActivity(), isRemind, reminderid, true)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
@@ -170,7 +170,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
     }
 
     override fun onItemClick(pos: Int, value: Boolean) {
-
+        apiReminderOnOff(if (value) "1" else "0", reminderList[pos].id)
     }
 
 
