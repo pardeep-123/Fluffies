@@ -18,6 +18,9 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     var list: ArrayList<NotificationResponse>? = null
+    var aboutResponse: NotificationResponse? = null
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
@@ -35,10 +38,6 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
         callApi()
     }
 
-    fun setAdapter() {
-        val notificationAdapter = NotificationAdapter(this)
-        rv_notifications.adapter = notificationAdapter
-    }
 
     fun callApi() {
         viewModel.getNotificationListAPI(this, true)
@@ -49,8 +48,10 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is NotificationResponse) {
-                    val aboutResponse: NotificationResponse = it.data
-                    setAdapter()
+                    aboutResponse = it.data
+
+                    val notificationAdapter = NotificationAdapter(this, aboutResponse!!)
+                    rv_notifications.adapter = notificationAdapter
                 }
             }
             it.status == Status.ERROR -> {

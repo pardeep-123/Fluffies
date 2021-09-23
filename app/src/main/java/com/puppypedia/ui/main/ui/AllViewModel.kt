@@ -340,4 +340,19 @@ class AllViewModel : ViewModel() {
             )
     }
 
+
+    @SuppressLint("CheckResult")
+    fun reminderOnOffApi(
+        activity: Activity, isRemind: String, reminderid: String, showLoader: Boolean
+    ) {
+        restApiInterface.apiReminderOnOff(isRemind, reminderid)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
 }

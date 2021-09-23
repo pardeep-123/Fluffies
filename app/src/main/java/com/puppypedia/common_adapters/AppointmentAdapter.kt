@@ -6,12 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.puppypedia.R
-import com.puppypedia.ui.fragments.calender.CalenderReminderResponse
+import com.puppypedia.ui.fragments.calender.CalendarDataModel
+import kotlinx.android.synthetic.main.item_appointment.view.*
 
 
 class AppointmentAdapter(
     var context: Context,
-    var reminderList: CalenderReminderResponse
+    var reminderList: ArrayList<CalendarDataModel>,
+    var checkChangeClickCallBack: CheckChangeClickCallBack
 ) :
     RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
@@ -21,12 +23,19 @@ class AppointmentAdapter(
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
-        //holder.itemView.tvName?.setText(reminderList.body[position])
+        holder.itemView.tvName.setText(reminderList[position].name)
+        holder.itemView.tvDesc.setText("Dog - " + reminderList[position].petName + " At " + reminderList[position].time)
+        holder.itemView.swReminder.isChecked = reminderList[position].isRemender == 1
+
+        holder.itemView.swReminder.setOnCheckedChangeListener { compoundButton, b ->
+            checkChangeClickCallBack.onItemClick(position, b)
+
+        }
 
     }
 
     override fun getItemCount(): Int {
-        return 3
+        return reminderList.size
     }
 
     inner class AppointmentViewHolder(itemView: View) :

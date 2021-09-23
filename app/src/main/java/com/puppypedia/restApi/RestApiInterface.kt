@@ -6,12 +6,14 @@ import com.puppypedia.ui.auth.signup.SignUpResponse
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
-import com.puppypedia.ui.fragments.calender.CalenderReminderResponse
+import com.puppypedia.ui.fragments.calender.CalenderGetReminderResponse
+import com.puppypedia.ui.fragments.calender.ReminderOnOffResponse
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import com.puppypedia.ui.fragments.statistics.StatisticsResponse
 import com.puppypedia.ui.fragments.weight.GetWeightResponse
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
 import com.puppypedia.ui.main.ui.add_weight.AddWeightResponse
+import com.puppypedia.ui.main.ui.addremainder.AddReminderResponse
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordResponse
 import com.puppypedia.ui.main.ui.editpetprofile.EditPetResponse
 import com.puppypedia.ui.main.ui.editprofile.EditProfileResponse
@@ -149,7 +151,7 @@ interface RestApiInterface {
     @POST(Constants.AddReminder)
     fun apiAddReminder(
         @FieldMap map: HashMap<String, String>
-    ): Observable<StatisticsResponse>
+    ): Observable<AddReminderResponse>
 
     /*   @Multipart
        @POST(Constants.AddPuppies)
@@ -164,7 +166,14 @@ interface RestApiInterface {
     @POST(Constants.GetReminders)
     fun apiGetReminders(
         @Field("datetime") datetime: String
-    ): Observable<CalenderReminderResponse>
+    ): Observable<CalenderGetReminderResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.RemindersOnOff)
+    fun apiReminderOnOff(
+        @Field("isRemind") isRemind: String,
+        @Field("reminderid") reminderid: String
+    ): Observable<ReminderOnOffResponse>
 
 
 }

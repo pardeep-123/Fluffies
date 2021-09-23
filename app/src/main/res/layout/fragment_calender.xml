@@ -108,7 +108,6 @@
 
 
                     </LinearLayout>
-
                     <com.github.sundeepk.compactcalendarview.CompactCalendarView
                         android:id="@+id/compactCalendarView"
                         android:layout_width="fill_parent"

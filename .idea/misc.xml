@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../../../layout/custom_preview.xml" value="0.15989583333333332" />
         <entry key="../../../../layout/custom_preview.xml" value="0.2" />
+        <entry key="app/src/main/res/drawable-v24/bg_round.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/drawable/bg_check_boxx.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_edit_text.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_edit_text_10dp.xml" value="0.1609375" />
@@ -53,14 +54,14 @@
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_weight.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/guest_dialog.xml" value="0.18489583333333334" />
-        <entry key="app/src/main/res/layout/item_appointment.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_appointment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_notification.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/item_notification.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_services.xml" value="0.21" />
         <entry key="app/src/main/res/layout/item_spinner.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_status.xml" value="0.14479166666666668" />

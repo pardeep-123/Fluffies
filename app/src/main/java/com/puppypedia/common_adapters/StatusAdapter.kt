@@ -1,6 +1,7 @@
 package com.puppypedia.common_adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.puppypedia.R
 import com.puppypedia.ui.main.ui.mypetprofile.MyPetProfileActivity
 import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
+import com.puppypedia.ui.main.ui.petdetail.YourPetDetailActivity
 import com.puppypedia.utils.helper.others.Constants.Companion.PET_IMAGE_URL
 import de.hdodenhof.circleimageview.CircleImageView
 
@@ -36,6 +38,13 @@ class StatusAdapter(
         }
         holder.itemView.setOnClickListener {
             if (position == arrayList.body.size) {
+
+                holder.itemView.context.startActivity(
+                    Intent(
+                        holder.itemView.context,
+                        YourPetDetailActivity::class.java
+                    ).putExtra("add", "add")
+                )
             } else {
                 myPetProfileActivity.petDetails(position)
             }

@@ -1,4 +1,5 @@
 package com.puppypedia.ui.main.ui.petdetail
+
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -36,6 +37,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
+
 class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     private lateinit var mValidationClass: ValidationsClass
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
@@ -47,10 +49,14 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pet_detail)
         mValidationClass = ValidationsClass.getInstance()
+        if (intent.hasExtra("add")) {
+
+        }
         SharedPrefUtil.init(this)
         for (i in 1 until 60) {
             ageArrayList.add(i.toString() + "yr")
@@ -121,10 +127,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         spinnerGender.adapter = adapterGender
 
         spinnerGender.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-            }
-
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(
                 parent: AdapterView<*>?,
                 view: View?,
@@ -145,7 +148,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     private fun setSpinnerAge() {
         val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
         spinnerAge.adapter = adapterAge
-
         spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
             override fun onItemSelected(
@@ -199,15 +201,18 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is PetDetailResponse) {
                     val registerResponse: PetDetailResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
+                        if (intent.hasExtra("add")) {
+                            finish()
+                        } else {
+                            dialogAddPet()
+                        }
 
-                        dialogAddPet()
 
                     } else {
                         Helper.showErrorAlert(this, registerResponse.code.toString())

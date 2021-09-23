@@ -39,7 +39,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     private val myCalendar: Calendar = Calendar.getInstance()
     private lateinit var date: DatePickerDialog.OnDateSetListener
     private lateinit var time: TimePickerDialog.OnTimeSetListener
-    var isRemind = "0"
+    var isRemind = "1"
     lateinit var adapter: PetListAdapter
     var aboutResponse: PetProfileResponse? = null
     var arrayList = ArrayList<PetProfileResponse>()
@@ -79,13 +79,12 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                     edtDate.setText(
                         AppUtils.dateInString(
                             myCalendar.timeInMillis,
-                            "yyyy-mm-dd"
+                            "yyyy-MM-dd"
                         )
                     )
                 }
             datePicker(this)
         }
-
         edtTime.setOnClickListener {
             time = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 myCalendar[Calendar.HOUR_OF_DAY] = hour
@@ -97,7 +96,11 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     }
 
     fun appointmentDialog() {
-        val dialog = Dialog(this)
+        var dialog = Dialog(this@AddRemainderActivity)
+
+        if (!dialog.isShowing) {
+            dialog.show()
+        }
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_appointment)
         dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -108,18 +111,20 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         dialog.setCancelable(true)
         dialog.setCanceledOnTouchOutside(true)
         dialog.window!!.setGravity(Gravity.CENTER)
-        dialog.show()
+
 
         val done = dialog.findViewById<Button>(R.id.btnDone)
         done.setOnClickListener {
-            apiReminder()
+            finish()
         }
+
     }
     private fun datePicker(context: Context) {
         val datePicker = DatePickerDialog(
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
             myCalendar[Calendar.DAY_OF_MONTH]
         )
+        datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
         datePicker.show()
     }
     private fun timePicker(context: Context) {
@@ -178,7 +183,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                     rvDogs.adapter = adapter
                 }
                 if (liveData.data is AddReminderResponse) {
-                    finish()
+                    appointmentDialog()
                 }
             }
             liveData.status == Status.ERROR -> {
@@ -192,12 +197,12 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     }
 
     override fun onItemClick(pos: Int, value: String) {
-        /* when (value) {
-             "pet" -> {
-                 SharedPrefUtil.getInstance().savePetId(arrayList[pos].body[pos].id.toString())
-                 SharedPrefUtil.getInstance().savePetPos(pos)
-             }
-         }*/
+        when (value) {
+            "pet" -> {
+                SharedPrefUtil.getInstance().savePetId(arrayList[pos].body[pos].id.toString())
+                SharedPrefUtil.getInstance().savePetPos(pos)
+            }
+        }
     }
 
 }

@@ -25,6 +25,7 @@
         <activity android:name=".ui.main.ui.weight_chart.WeightChartActivity" />
         <activity
             android:name=".ui.main.ui.addremainder.AddRemainderActivity"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden"
             android:screenOrientation="portrait" />
         <activity
             android:name=".ui.main.ui.category_detail.CategoryDetailActivity"

@@ -39,6 +39,7 @@ class Constants {
         const val HomeApi = BASE_URL + "home_api"
         const val AddReminder = BASE_URL + "add_reminder"
         const val GetReminders = BASE_URL + "get_reminders"
+        const val RemindersOnOff = BASE_URL + "reminder_on_off"
         fun gender(value: Int): String {
             if (value == 0) {
                 return "Male"

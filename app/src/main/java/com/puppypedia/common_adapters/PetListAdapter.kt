@@ -69,7 +69,7 @@ class PetListAdapter(
                     arrayList.body[pos].selected = true
                     arrayList.body[selectedpoz].selected = false
                     notifyDataSetChanged()
-                    clickCallBack.onItemClick(pos, "pet")
+                    clickCallBack.onItemClick(pos, arrayList.body[pos].id.toString())
                 }
 
             }

@@ -97,7 +97,7 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         for (item in registerResponse.body) {
             if (item.date.isNotEmpty()) {
                 var a = (dateGet(item.date).toInt()).toFloat()
-                var b = (item.weight.toInt()).toFloat()
+                var b = (item.weight).toFloat()
                 x.add(Entry(a, b))
             }
 
@@ -144,7 +144,12 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
     }
 
     fun apiChart(datetype: String) {
-        viewModel.addPetChartApi(requireActivity(), datetype, SharedPrefUtil.PET_ID, true)
+        viewModel.addPetChartApi(
+            requireActivity(),
+            datetype,
+            SharedPrefUtil.getInstance().petId,
+            true
+        )
         viewModel.mResponse.observe(requireActivity(), this)
     }
 

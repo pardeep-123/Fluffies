@@ -72,6 +72,17 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp">
 
+                <TextView
+                    android:id="@+id/tvCount"
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:background="@drawable/bg_round"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_8sdp" />
+
                 <ImageView
                     android:layout_width="@dimen/_12sdp"
                     android:layout_height="@dimen/_15sdp"

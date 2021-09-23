@@ -151,7 +151,7 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
             myCalendar[Calendar.DAY_OF_MONTH]
         )
-        /* datePicker.datePicker.minDate = System.currentTimeMillis() - 1000*/
+         datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
         datePicker.show()
     }
     private fun timePicker(context: Context) {

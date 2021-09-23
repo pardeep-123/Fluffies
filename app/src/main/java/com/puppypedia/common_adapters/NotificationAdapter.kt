@@ -8,9 +8,13 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.puppypedia.R
+import com.puppypedia.ui.main.ui.notification.NotificationResponse
 import kotlinx.android.synthetic.main.item_notification.view.*
 
-class NotificationAdapter (var context: Context) :
+class NotificationAdapter(
+    var context: Context,
+    var notiList: NotificationResponse
+) :
     RecyclerView.Adapter<NotificationAdapter.NotificationViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -21,10 +25,12 @@ class NotificationAdapter (var context: Context) :
     }
 
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
+        holder.itemView.tvDescription.setText(notiList.body[position].message)
+        holder.itemView.tvDate.setText(notiList.body[position].createdAt)
         holder.onbind(position)
     }
     override fun getItemCount(): Int {
-        return 5
+        return notiList.body.size
     }
     inner class NotificationViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val tvName: TextView = itemView.tvName
