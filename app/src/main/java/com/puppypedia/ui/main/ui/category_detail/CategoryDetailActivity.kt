@@ -18,7 +18,7 @@ class CategoryDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_category_detail)
         context = this
-        tb.tv_title.setTextColor(getColor(R.color.black))
+        tb.tv_title.setTextColor(getColor(R.color.white))
         tb.iv_back.setImageResource(R.drawable.arrow_back_white)
         catgory = intent.getSerializableExtra("data") as HomeFragmentResponse.Body.Category
         tb.iv_back.setOnClickListener {
@@ -29,7 +29,7 @@ class CategoryDetailActivity : AppCompatActivity() {
             catgory.description, HtmlCompat.FROM_HTML_MODE_LEGACY
         )
         // tv_description.text = catgory.description
-        Glide.with(context).load(Constants.IMAGE_URL + catgory.image)
-            .placeholder(R.drawable.dog_img).into(img)
+        Glide.with(context).load(Constants.IMAGE_URL + catgory.logo)
+            .placeholder(R.drawable.place_holder).into(img)
     }
 }

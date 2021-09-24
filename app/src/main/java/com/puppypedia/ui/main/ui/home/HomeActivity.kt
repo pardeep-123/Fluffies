@@ -68,8 +68,6 @@ class HomeActivity : AppCompatActivity() {
         }
 
     }
-
-
     private fun setHomeFragment() {
         if (currentFragment() !is HomeFragment) {
             openFragment(HomeFragment())
@@ -82,11 +80,9 @@ class HomeActivity : AppCompatActivity() {
             )
         }
     }
-
     private fun currentFragment(): Fragment? {
         return supportFragmentManager.findFragmentById(R.id.frame_main)
     }
-
     private fun openFragment(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()

@@ -8,15 +8,17 @@ data class NotificationResponse(
     val body: List<Body>
 ) {
     data class Body(
-        val id: Int, // 33
+        val id: Int, // 41
         val isRead: Int, // 1
-        val petid: Int, // 23
-        val reminderid: Int, // 40
-        val message: String, // You have reminder of ddsdsd sfesbnjyjghhbgabvdfr
+        val petid: Int, // 61
+        val reminderid: Int, // 76
+        val message: String, // You have reminder of  doggy
         val notificationType: Int, // 1
-        val receiverId: Int, // 77
+        val receiverId: Int, // 78
         val senderId: Int, // 1
-        val createdAt: String, // 2021-09-23T07:10:00.000Z
-        val updatedAt: String // 2021-09-23T07:22:24.000Z
+        val createdAt: String, // 2021-09-24T05:38:00.000Z
+        val updatedAt: String, // 2021-09-24T05:55:51.000Z
+        val petName: String, // kutta 2
+        val petImage: String // /assets/images/pets/1632303979006-file.jpg
     )
 }

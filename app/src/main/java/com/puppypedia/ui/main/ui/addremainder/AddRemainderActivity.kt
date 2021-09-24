@@ -43,6 +43,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     lateinit var adapter: PetListAdapter
     var aboutResponse: PetProfileResponse? = null
     var arrayList = ArrayList<PetProfileResponse>()
+    var orderId = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,7 +54,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         clicksHandle()
         context = this
         apiPetList()
-
+        //  orderId = intent.getStringExtra("orderId").toString()
     }
 
     private fun clicksHandle() {
@@ -196,11 +197,11 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             }
         }
     }
-
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "pet" -> {
                 petId = aboutResponse!!.body[pos].id.toString()
+                // SharedPrefUtil.getInstance().savePetId(arrayList[pos].body[pos].id.toString())
             }
         }
     }

@@ -4,9 +4,11 @@ import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
 import android.net.ConnectivityManager
+import android.util.Log
 import com.puppypedia.base.MediaLoader
 import com.puppypedia.restApi.RestApiInterface
 import com.puppypedia.restApi.ServiceGenerator
+import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumConfig
 import java.util.*
@@ -22,6 +24,8 @@ class MyApplication : Application() {
         instance = this
         initializePreferences()
         initializePreferencesToken()
+        Log.e(TAG, "FCM token : " + SharedPrefUtil.getInstance().fcmToken)
+
         Album.initialize(
             AlbumConfig.newBuilder(this)
                 .setAlbumLoader(MediaLoader())

@@ -23,7 +23,6 @@ import kotlinx.android.synthetic.main.fragment_weight.*
 class WeightFragment : Fragment(), Observer<RestObservable> {
     lateinit var v: View
     var petId: String = ""
-
     lateinit var sharedPrefUtil: SharedPrefUtil
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }

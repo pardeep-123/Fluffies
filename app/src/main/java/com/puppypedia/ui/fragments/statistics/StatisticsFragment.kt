@@ -112,7 +112,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         x.add(Entry(40F, 2.1F))
         x.add(Entry(28F, 2.6F))
         x.add(Entry(30F, 03F))*/
-
         lineChat.setDrawGridBackground(false)
         lineChat.description.isEnabled = false
         lineChat.setTouchEnabled(true)
@@ -121,19 +120,15 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         lineChat.setPinchZoom(true)
         lineChat.getXAxis().setTextSize(15f)
         lineChat.getAxisLeft().setTextSize(15f)
-
         val xl: XAxis = lineChat.getXAxis()
         xl.setAvoidFirstLastClipping(true)
         xl.setPosition(XAxis.XAxisPosition.BOTTOM)
-
         val leftAxis: YAxis = lineChat.getAxisLeft()
         leftAxis.isInverted = false
         val rightAxis: YAxis = lineChat.getAxisRight()
         rightAxis.isEnabled = false
         val l: Legend = lineChat.getLegend()
         l.form = Legend.LegendForm.LINE
-
-
         val set1 = LineDataSet(x, "")
         set1.setColor(requireContext().getColor(R.color.theme_Color))
         set1.lineWidth = 1.5f

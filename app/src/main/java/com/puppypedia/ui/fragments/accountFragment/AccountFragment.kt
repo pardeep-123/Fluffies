@@ -115,7 +115,7 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
                     }
                 }
                 if (it.data is LogoutResponse) {
-                    SharedPrefUtil.getInstance().clear()
+                  //  SharedPrefUtil.getInstance().clear()
                     startActivity(Intent(activity, LoginActivity::class.java))
                     activity?.finishAffinity()
                 }

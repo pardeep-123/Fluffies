@@ -18,6 +18,8 @@ public class SharedPrefUtil {
 
     public static final String NAME = "name";
     public static final String EMAIL = "email";
+    public static final String EMAILRember = "email_remember";
+
     public static final String IMAGE = "profileImage";
     public static final String LOGIN_TYPE = "loginType";
     public static final String USER_ID = "userId";
@@ -30,6 +32,7 @@ public class SharedPrefUtil {
     public static final String NOTIFY = "notify";
     public static final String NOTIFY_ICON = "notifyIcon";
     public static final String PET_ID = "petId";
+    public static final String FCM = "fcm_token";
     public static final String Pet_Pos = "petPos";
     public static final String LATITUDE = "latitude";
     public static final String LONGITUDE = "longitude";
@@ -47,7 +50,9 @@ public class SharedPrefUtil {
      * Name of the preference file
      */
     private static final String APP_PREFS = "application_preferences";
+    private static final String APP_PREFS_REMEMBER = "application_preferences";
     private static SharedPreferences mSharedPreferences;
+
     private static SharedPrefUtil instance;
     private Context mContext;
     private SharedPreferences.Editor mEditor;
@@ -57,17 +62,31 @@ public class SharedPrefUtil {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
     }
 
+
     public static void init(Context context) {
         if (instance == null) {
             instance = new SharedPrefUtil(context);
         }
     }
 
+
     public static SharedPrefUtil getInstance() {
         if (instance == null) {
             instance = new SharedPrefUtil(MyApplication.Companion.getInstance());
         }
         return instance;
+    }
+
+    public static SharedPrefUtil getInstanceRemember() {
+        if (instance == null) {
+            instance = new SharedPrefUtil(MyApplication.Companion.getInstance());
+        }
+        return instance;
+    }
+
+    public void SharedPrefUtilRemember(Context mContext) {
+        this.mContext = mContext;
+        mSharedPreferences = mContext.getSharedPreferences(APP_PREFS_REMEMBER, Context.MODE_PRIVATE);
     }
 
     @SuppressLint("NewApi")
@@ -510,16 +529,6 @@ public class SharedPrefUtil {
         return mSharedPreferences.getString(IMAGE, "");
     }
 
-    public void savePassword(String password) {
-        mEditor = mSharedPreferences.edit();
-        mEditor.putString(PASSWORD, password);
-        mEditor.apply();
-    }
-
-    public String getPassword() {
-        mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
-        return mSharedPreferences.getString(PASSWORD, "");
-    }
 
     public void saveEmail(String email) {
         mEditor = mSharedPreferences.edit();
@@ -531,6 +540,29 @@ public class SharedPrefUtil {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         return mSharedPreferences.getString(EMAIL, "");
     }
+
+    public void saveEmailRememberMe(String email) {
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(EMAIL, email);
+        mEditor.apply();
+    }
+
+    public String getEmailRememberMe() {
+        mSharedPreferences = mContext.getSharedPreferences(APP_PREFS_REMEMBER, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(EMAILRember, "");
+    }
+
+    public void savePassword(String password) {
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(PASSWORD, password);
+        mEditor.apply();
+    }
+
+    public String getPassword() {
+        mSharedPreferences = mContext.getSharedPreferences(APP_PREFS_REMEMBER, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(PASSWORD, "");
+    }
+
 
     public void saveNotifyIcon(boolean value) {
         mEditor = mSharedPreferences.edit();
@@ -552,6 +584,17 @@ public class SharedPrefUtil {
     public String getPetId() {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         return mSharedPreferences.getString(PET_ID, "");
+    }
+
+    public void saveFcmToken(String value) {
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(FCM, value);
+        mEditor.apply();
+    }
+
+    public String getFcmToken() {
+        mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(FCM, "");
     }
 
     public void savePetPos(int value) {

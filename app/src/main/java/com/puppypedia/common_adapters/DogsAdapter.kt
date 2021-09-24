@@ -51,14 +51,14 @@ class DogsAdapter(
                 ivCheck.setImageDrawable(
                     ContextCompat.getDrawable(
                         ivCheck.context,
-                        R.drawable.ic_dot_unselect
+                        R.drawable.ic_dot_select
                     )
                 )
             } else {
                 ivCheck.setImageDrawable(
                     ContextCompat.getDrawable(
                         ivCheck.context,
-                        R.drawable.ic_dot_select
+                        R.drawable.ic_dot_unselect
                     )
                 )
             }

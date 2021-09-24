@@ -97,9 +97,6 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                     } else {
                         tvCount.setText(aboutResponse!!.body.notificationsCount.toString())
                     }
-
-
-
                     rc_services.adapter = ServicesAdapter(requireContext(), aboutResponse!!, this)
                     arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
                     setPopUpWindow()
@@ -151,6 +148,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         Glide.with(requireContext())
             .load(Constants.IMAGE_URL + aboutResponse!!.body.pets[position].image)
             .placeholder(R.drawable.place_holder).into(ivDogImg)
+
     }
 }
 

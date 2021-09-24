@@ -24,17 +24,13 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)
-
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
         tb.tv_title.text = getString(R.string.notifications)
+        rv_notifications.visibility = View.VISIBLE
+        ll_no_notifications.visibility = View.GONE
 
-
-        ll_no_notifications.setOnClickListener {
-            rv_notifications.visibility = View.VISIBLE
-            ll_no_notifications.visibility = View.GONE
-        }
         callApi()
     }
 
@@ -49,7 +45,14 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is NotificationResponse) {
                     aboutResponse = it.data
+                    /*   if(aboutResponse!!.body.size==0){
+                           ll_no_notifications.visibility = View.VISIBLE
+                            rv_notifications.visibility = View.GONE
 
+                       }else{
+                           val notificationAdapter = NotificationAdapter(this, aboutResponse!!)
+                           rv_notifications.adapter = notificationAdapter
+                       }*/
                     val notificationAdapter = NotificationAdapter(this, aboutResponse!!)
                     rv_notifications.adapter = notificationAdapter
                 }

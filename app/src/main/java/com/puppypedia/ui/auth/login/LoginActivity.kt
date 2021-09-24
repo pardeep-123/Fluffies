@@ -28,6 +28,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClickListener {
     private lateinit var mValidationClass: ValidationsClass
     var token = ""
+    var select: Boolean = false
     private val viewModel: AuthViewModel
             by lazy { ViewModelProviders.of(this).get(AuthViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,6 +41,16 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
         tvForgotPassword.setOnClickListener(this)
         btnSignIn.setOnClickListener(this)
         llSignUp.setOnClickListener(this)
+
+        try {
+            if (!SharedPrefUtil.getInstanceRemember().getPassword().equals("")
+                && SharedPrefUtil.getInstanceRemember().getPassword() != null
+            ) {
+                etEmail.setText(SharedPrefUtil.getInstanceRemember().getEmailRememberMe())
+                etPassword.setText(SharedPrefUtil.getInstanceRemember().getPassword())
+            }
+        } catch (e: Exception) {
+        }
 
     }
     private fun passwordShowHide() {
@@ -88,6 +99,7 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                 if (it.data is LoginResponse) {
                     val registerResponse: LoginResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
+                        SharedPrefUtil.getInstance().saveFcmToken(token)
                         SharedPrefUtil.getInstance().saveAuthToken(registerResponse.body.authKey)
                         // SharedPrefUtil.getInstance().saveUserId(registerResponse.body.id.toString())
                         SharedPrefUtil.getInstance().saveEmail(registerResponse.body.email)
@@ -101,6 +113,14 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                         )
                         startActivity(Intent(this, HomeActivity::class.java))
                         finishAffinity()
+                        if (chkbox.isSelected == true) {
+
+                            SharedPrefUtil.getInstance()
+                                .saveEmailRememberMe(registerResponse.body.email)
+                            SharedPrefUtil.getInstanceRemember()
+                                .savePassword(registerResponse.body.password)
+                        } else {
+                        }
                     } else {
                         Helper.showErrorAlert(this, registerResponse.code as String)
                     }
@@ -137,7 +157,7 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
             }
             // Get new FCM registration token
             token = task.result.toString()
-            Log.e("Fetching FCM ", token!!)
+            Log.e("Fetching FCM ", token)
         })
     }
 

@@ -29,6 +29,7 @@ data class HomeFragmentResponse(
             val id: Int, // 2
             val name: String, // Toys and Chews
             val image: String, // /assets/images/categories/d0f4af69-903f-4a52-896e-3065617997e4.png
+            val logo: String, // /assets/images/categories/d0f4af69-903f-4a52-896e-3065617997e4.png
             val description: String, // <p>qwdasddfasd</p>
             val status: Int // 1
         ) : Serializable

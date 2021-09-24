@@ -29,9 +29,6 @@ import kotlin.collections.ArrayList
 
 class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickCallBack {
     var aboutResponse: CalenderGetReminderResponse? = null
-    var isRemind: String = ""
-    var reminderid: String = ""
-
     var reminderList: ArrayList<CalendarDataModel> = ArrayList()
     var allReminderList: ArrayList<CalendarDataModel> = ArrayList()
     lateinit var v: View
@@ -41,6 +38,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
         SimpleDateFormat("MMM yyyy", Locale.getDefault())
     private lateinit var appointmentAdapter: AppointmentAdapter
 
+    var orderId = ""
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -54,6 +52,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()
         setCalendarEvent()
+        // orderId = intent.getStringExtra("orderId").toString()
     }
 
     override fun onResume() {
@@ -172,6 +171,4 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
     override fun onItemClick(pos: Int, value: Boolean) {
         apiReminderOnOff(if (value) "1" else "0", reminderList[pos].id)
     }
-
-
 }

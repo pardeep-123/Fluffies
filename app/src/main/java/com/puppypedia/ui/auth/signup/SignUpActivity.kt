@@ -219,6 +219,8 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
             }
             // Get new FCM registration token
             token = task.result.toString()
+            SharedPrefUtil.getInstance().saveFcmToken(task.result.toString())
+
             Log.e("Fetching FCM ", token!!)
         })
     }

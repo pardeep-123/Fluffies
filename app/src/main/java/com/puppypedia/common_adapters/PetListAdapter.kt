@@ -17,7 +17,6 @@ class PetListAdapter(
     var context: Context,
     var arrayList: PetProfileResponse,
     var clickCallBack: ClickCallBack
-
 ) :
     RecyclerView.Adapter<PetListAdapter.StatusViewHolder>() {
 
@@ -30,9 +29,6 @@ class PetListAdapter(
     var pos = 0
 
     override fun onBindViewHolder(holder: StatusViewHolder, position: Int) {
-        Glide.with(context).load(IMAGE_URL + arrayList.body[position].image)
-            .placeholder(R.drawable.place_holder).into(holder.itemView.ivDog)
-        holder.itemView.tvDogName.setText(arrayList.body[position].name)
         holder.bind(position)
     }
 
@@ -47,19 +43,23 @@ class PetListAdapter(
 
         @SuppressLint("NotifyDataSetChanged")
         fun bind(pos: Int) {
+            Glide.with(context).load(IMAGE_URL + arrayList.body[position].image)
+                .placeholder(R.drawable.place_holder).into(itemView.ivDog)
+            itemView.tvDogName.setText(arrayList.body[position].name)
+
             if (selectedpoz == pos) {
                 //   SharedPrefUtil.getInstance().savePetId(arrayList.body[pos].id.toString()
                 ivCheck.setImageDrawable(
                     ContextCompat.getDrawable(
                         ivCheck.context,
-                        R.drawable.ic_dot_unselect
+                        R.drawable.ic_dot_select
                     )
                 )
             } else {
                 ivCheck.setImageDrawable(
                     ContextCompat.getDrawable(
                         ivCheck.context,
-                        R.drawable.ic_dot_select
+                        R.drawable.ic_dot_unselect
                     )
                 )
             }
@@ -68,9 +68,11 @@ class PetListAdapter(
                     selectedpoz = pos
                     arrayList.body[pos].selected = true
                     arrayList.body[selectedpoz].selected = false
+
                     notifyDataSetChanged()
-                    clickCallBack.onItemClick(pos, arrayList.body[pos].id.toString())
+                    //  clickCallBack.onItemClick(pos, "pet")
                 }
+                clickCallBack.onItemClick(pos, "pet")
 
             }
         }

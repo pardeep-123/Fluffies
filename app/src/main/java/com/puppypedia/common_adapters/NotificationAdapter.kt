@@ -5,10 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.puppypedia.R
 import com.puppypedia.ui.main.ui.notification.NotificationResponse
+import com.puppypedia.utils.helper.others.Constants
 import kotlinx.android.synthetic.main.item_notification.view.*
 
 class NotificationAdapter(
@@ -27,6 +28,10 @@ class NotificationAdapter(
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         holder.itemView.tvDescription.setText(notiList.body[position].message)
         holder.itemView.tvDate.setText(notiList.body[position].createdAt)
+        holder.itemView.tvName.setText(notiList.body[position].petName)
+        Glide.with(context)
+            .load(Constants.IMAGE_URL + notiList.body[position].petImage)
+            .placeholder(R.drawable.place_holder).into(holder.itemView.rivProfile)
         holder.onbind(position)
     }
     override fun getItemCount(): Int {
@@ -38,18 +43,18 @@ class NotificationAdapter(
         val tvDate: TextView = itemView.tvDate
 
         fun onbind(position: Int) {
-            if (position == 0) {
-                itemView.background =
-                    ContextCompat.getDrawable(context, R.drawable.bg_layout_radius_colored)
-                tvName.setTextColor(ContextCompat.getColor(context, R.color.white))
-                tvDate.setTextColor(ContextCompat.getColor(context, R.color.white))
-                tvDescription.setTextColor(ContextCompat.getColor(context, R.color.white))
-            }else {
-                itemView.background = ContextCompat.getDrawable(context,R.drawable.bg_layout_radius)
-              tvName.setTextColor(ContextCompat.getColor(context,R.color.black))
-                tvDate.setTextColor(ContextCompat.getColor(context, R.color.black))
-                tvDescription.setTextColor(ContextCompat.getColor(context, R.color.black))
-            }
+            /*  if (position == 0) {
+                  itemView.background =
+                      ContextCompat.getDrawable(context, R.drawable.bg_layout_radius_colored)
+                  tvName.setTextColor(ContextCompat.getColor(context, R.color.white))
+                  tvDate.setTextColor(ContextCompat.getColor(context, R.color.white))
+                  tvDescription.setTextColor(ContextCompat.getColor(context, R.color.white))
+              }else {
+                  itemView.background = ContextCompat.getDrawable(context,R.drawable.bg_layout_radius)
+                tvName.setTextColor(ContextCompat.getColor(context,R.color.black))
+                  tvDate.setTextColor(ContextCompat.getColor(context, R.color.black))
+                  tvDescription.setTextColor(ContextCompat.getColor(context, R.color.black))
+              }*/
 
         }
     }
