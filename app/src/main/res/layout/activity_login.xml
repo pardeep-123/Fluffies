@@ -1,6 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -62,7 +60,6 @@
             android:text="@string/password"
             android:textSize="@dimen/_14sdp" />
 
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="@dimen/_35sdp"
@@ -90,7 +87,6 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:button="@drawable/bg_password_show_hide" />
-
         </RelativeLayout>
 
         <RelativeLayout
@@ -119,11 +115,9 @@
                 style="@style/WrapTextView"
                 android:layout_alignParentEnd="true"
                 android:layout_centerVertical="true"
-
                 android:text="@string/forgot_password"
                 android:textColor="@color/grey"
                 android:textSize="@dimen/_10sdp" />
-
         </RelativeLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -133,9 +127,7 @@
             android:background="@drawable/bg_sky_blue_10dp"
             android:contentDescription="@string/image"
             android:text="@string/sign_in" />
-
     </LinearLayout>
-
         <LinearLayout
             android:id="@+id/llSignUp"
             android:layout_width="wrap_content"
@@ -144,14 +136,12 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_10sdp">
-
             <TextView
                 style="@style/WrapTextView"
                 android:layout_gravity="center"
                 android:layout_marginBottom="@dimen/dp5"
                 android:text="@string/don_t_have_an_account"
                 android:textSize="@dimen/_10sdp" />
-
             <TextView
                 style="@style/WrapTextView"
                 android:layout_width="wrap_content"
@@ -159,10 +149,8 @@
                 android:layout_gravity="center"
                 android:layout_marginStart="@dimen/dp5"
                 android:layout_marginBottom="@dimen/dp5"
-
                 android:text="@string/sign_up"
                 android:textColor="@color/theme_Color"
                 android:textSize="@dimen/_10sdp" />
-
         </LinearLayout>
     </RelativeLayout>

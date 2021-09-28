@@ -36,7 +36,7 @@ import kotlinx.android.synthetic.main.fragment_account.view.*
 class AccountFragment : Fragment(), Observer<RestObservable> {
     lateinit var v: View
     private val viewModel: AllViewModel
-            by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
+    by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     var status = "0"
     lateinit var dialog: Dialog
     var isFirst = false
@@ -48,17 +48,22 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
     ): View? {
         v = inflater.inflate(R.layout.fragment_account, container, false)
         sharedPrefUtil = SharedPrefUtil(requireContext())
-        // v.tvName.text = MyApplication.instance!!.getString(NAME)
-        // v.tvEmail.text = MyApplication.instance!!.getString(EMAIL)
+
+
+        return v
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        clicksHandle()
+    }
+
+    override fun onResume() {
         v.tvName.text = sharedPrefUtil.name
         v.tvEmail.text = sharedPrefUtil.email
         Glide.with(this).load(Constants.IMAGE_URL + sharedPrefUtil.image)
             .placeholder(R.drawable.profile).into(v.civProfile)
-        return v
-    }
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        clicksHandle()
+        super.onResume()
     }
 
     private fun clicksHandle() {
@@ -115,9 +120,10 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
                     }
                 }
                 if (it.data is LogoutResponse) {
-                  //  SharedPrefUtil.getInstance().clear()
+                    SharedPrefUtil.getInstance().clear()
                     startActivity(Intent(activity, LoginActivity::class.java))
                     activity?.finishAffinity()
+                    Log.e("lllll", "ppp    " + SharedPrefUtil.getInstanceRemember().getPassword())
                 }
             }
             it.status == Status.ERROR -> {
@@ -143,11 +149,9 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
         dialog.setContentView(R.layout.dialog_logout)
         dialog.show()
         dialog.findViewById<AppCompatButton>(R.id.btnYes).setOnClickListener {
-
             Log.e("msg", "jjjjjjjj" + MyApplication.instance!!.getString(NAME))
             dialog.dismiss()
             apiLogout()
-
         }
         dialog.findViewById<AppCompatButton>(R.id.btnNo).setOnClickListener {
             dialog.dismiss()

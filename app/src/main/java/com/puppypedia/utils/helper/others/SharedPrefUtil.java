@@ -543,7 +543,7 @@ public class SharedPrefUtil {
 
     public void saveEmailRememberMe(String email) {
         mEditor = mSharedPreferences.edit();
-        mEditor.putString(EMAIL, email);
+        mEditor.putString(EMAILRember, email);
         mEditor.apply();
     }
 

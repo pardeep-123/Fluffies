@@ -46,6 +46,7 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
             if (!SharedPrefUtil.getInstanceRemember().getPassword().equals("")
                 && SharedPrefUtil.getInstanceRemember().getPassword() != null
             ) {
+                chkbox.isChecked = true
                 etEmail.setText(SharedPrefUtil.getInstanceRemember().getEmailRememberMe())
                 etPassword.setText(SharedPrefUtil.getInstanceRemember().getPassword())
             }
@@ -105,6 +106,7 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                         SharedPrefUtil.getInstance().saveEmail(registerResponse.body.email)
                         SharedPrefUtil.getInstance().saveImage(registerResponse.body.image)
                         SharedPrefUtil.getInstance().saveName(registerResponse.body.name)
+                        Log.e("DEVICETOKEN", "-----  " + registerResponse.body.deviceToken)
                         SharedPrefUtil.getInstance().isLogin = true
                         //  sharedPref.setSKIP(false)
                         MyApplication.instance!!.setString(
@@ -113,13 +115,21 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                         )
                         startActivity(Intent(this, HomeActivity::class.java))
                         finishAffinity()
-                        if (chkbox.isSelected == true) {
-
-                            SharedPrefUtil.getInstance()
-                                .saveEmailRememberMe(registerResponse.body.email)
+                        if (chkbox.isChecked) {
                             SharedPrefUtil.getInstanceRemember()
-                                .savePassword(registerResponse.body.password)
+                                .saveEmailRememberMe(etEmail.text.toString())
+                            SharedPrefUtil.getInstanceRemember()
+                                .savePassword(etPassword.text.toString())
+                            Log.e(
+                                "lllll",
+                                "---" + SharedPrefUtil.getInstanceRemember().getEmailRememberMe()
+                            )
+
                         } else {
+                            SharedPrefUtil.getInstanceRemember()
+                                .saveEmailRememberMe("")
+                            SharedPrefUtil.getInstanceRemember()
+                                .savePassword("")
                         }
                     } else {
                         Helper.showErrorAlert(this, registerResponse.code as String)

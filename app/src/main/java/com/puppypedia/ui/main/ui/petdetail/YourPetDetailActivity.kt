@@ -58,6 +58,8 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
 
         }
         SharedPrefUtil.init(this)
+        ageArrayList.add("Age")
+
         for (i in 1 until 60) {
             ageArrayList.add(i.toString() + "yr")
         }
@@ -111,6 +113,9 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             age = 0
             gender = "0"
             image = ""
+            spinnerGender.setSelection(0)
+            spinnerAge.setSelection(0)
+            Glide.with(this).load(R.drawable.pet_pic).into(ivPetProfile)
             dialog.dismiss()
         }
         btnLater.setOnClickListener {

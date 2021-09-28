@@ -3,6 +3,7 @@ package com.puppypedia.ui.auth.forgotpassword
 import android.content.Context
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -65,6 +66,7 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener,
                     val aboutResponse: ForgotPasswordResponse = it.data
                     if (aboutResponse.code == Constants.success_code) {
                         finish()
+                        Toast.makeText(this, "Email sent successfully", Toast.LENGTH_LONG).show()
                         // finishAffinity()
                     } else {
                         Helper.showErrorAlert(this, aboutResponse.code as String)

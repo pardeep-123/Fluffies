@@ -20,6 +20,7 @@ import com.puppypedia.utils.helper.others.SharedPrefUtil
 import org.json.JSONObject
 import java.util.*
 
+
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     var TAG = "FirebaseService"
     var title = ""
@@ -185,13 +186,12 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setColor(ContextCompat.getColor(applicationContext, R.color.colorAccent))
             .setContentTitle(title)
             .setContentText(message)
-            .setSound(soundUri)
+            //  .setSound(soundUri)
             .setDefaults(DEFAULT_ALL)
-            .setVibrate(LongArray(0))
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
-
-
+            // .setDefaults(DEFAULT_SOUND or DEFAULT_VIBRATE)
+            .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationBuilder.setChannelId(CHANNEL_ID)
             notificationManager!!.createNotificationChannel(notificationChannel)
@@ -201,9 +201,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             ((Date().getTime() / 1000L % Int.MAX_VALUE).toInt()),
             notification
         )
-
-
     }
-
 
 }

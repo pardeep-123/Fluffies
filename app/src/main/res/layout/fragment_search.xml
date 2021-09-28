@@ -15,20 +15,15 @@
         android:fitsSystemWindows="true"
         app:contentInsetEnd="0dp"
         app:contentInsetStart="0dp">
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
-
             <TextView
                 android:id="@+id/signin_text"
                 style="@style/WrapTextView"
                 android:layout_centerInParent="true"
                 android:text="@string/search"
                 android:textSize="@dimen/_14sdp" />
-
-
         </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
 

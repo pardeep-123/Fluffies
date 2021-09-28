@@ -48,7 +48,7 @@
         <entry key="app/src/main/res/layout/auth_toolbar.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/camera_gallery_popup.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_add_new_pet.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/dialog_appointment.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/dialog_appointment.xml" value="0.21" />
         <entry key="app/src/main/res/layout/dialog_logout.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_pet_profile_update.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.18489583333333334" />

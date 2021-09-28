@@ -43,14 +43,11 @@ class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         apiSearch()
         return v
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
         edtSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
-
             @SuppressLint("NotifyDataSetChanged")
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 list.clear()
@@ -61,9 +58,22 @@ class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                         list.add(aboutResponse!!.body.category.get(i))
                     }
                 }
+/*
+                if(s!!.isNotEmpty())
+                {
+                    searchText = s.toString()
+                    api(s.toString())
+                }
+                else
+                {
+                    tvNoDataFound.visibility= View.VISIBLE
+                    lottiView.visibility= View.VISIBLE
+                    recyclerview.visibility = View.GONE
+                    tv_search_result_count.visibility = View.GONE
+                }}
+*/
                 searchAdapter.notifyDataSetChanged()
             }
-
             override fun afterTextChanged(s: Editable?) {
                 if (s.toString().isNotEmpty()) {
                     ivCross.visibility = View.VISIBLE
@@ -74,13 +84,10 @@ class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
 
         })
     }
-
-
     fun apiSearch() {
         viewModel.getHomeDetails(requireActivity(), true)
         viewModel.mResponse.observe(requireActivity(), this)
     }
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -99,7 +106,6 @@ class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
             }
         }
     }
-
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "cat" -> {

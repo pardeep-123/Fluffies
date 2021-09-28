@@ -16,6 +16,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.last.manager.restApi.Status
 import com.puppypedia.R
+import com.puppypedia.alaram.PollReciver.Companion.scheduleAlarms
 import com.puppypedia.common_adapters.ClickCallBack
 import com.puppypedia.common_adapters.PetListAdapter
 import com.puppypedia.restApi.RestObservable
@@ -28,6 +29,7 @@ import com.puppypedia.utils.helper.others.ValidationsClass
 import kotlinx.android.synthetic.main.activity_add_remainder.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import java.util.*
+
 
 class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
     lateinit var context: Context
@@ -44,6 +46,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     var aboutResponse: PetProfileResponse? = null
     var arrayList = ArrayList<PetProfileResponse>()
     var orderId = ""
+    lateinit var dialog: Dialog
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +57,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         clicksHandle()
         context = this
         apiPetList()
+
         //  orderId = intent.getStringExtra("orderId").toString()
     }
 
@@ -97,29 +101,27 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     }
 
     fun appointmentDialog() {
-        var dialog = Dialog(this@AddRemainderActivity)
-
-        if (!dialog.isShowing) {
-            dialog.show()
-        }
+        dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
-        dialog.setContentView(R.layout.dialog_appointment)
-        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        dialog.window!!.setLayout(
+        dialog.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT
         )
         dialog.setCancelable(true)
-        dialog.setCanceledOnTouchOutside(true)
-        dialog.window!!.setGravity(Gravity.CENTER)
-
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.window?.setGravity(Gravity.CENTER)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.dialog_appointment)
+        dialog.show()
 
         val done = dialog.findViewById<Button>(R.id.btnDone)
         done.setOnClickListener {
+            dialog.dismiss()
             finish()
         }
-
+        dialog.show()
     }
+
     private fun datePicker(context: Context) {
         val datePicker = DatePickerDialog(
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
@@ -187,6 +189,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                 if (liveData.data is AddReminderResponse) {
                     appointmentDialog()
                 }
+                scheduleAlarms(this)
             }
             liveData.status == Status.ERROR -> {
                 if (liveData.data != null) {
