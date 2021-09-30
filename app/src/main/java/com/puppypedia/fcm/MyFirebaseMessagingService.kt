@@ -5,13 +5,15 @@ import android.app.Notification
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
+import android.content.ContentResolver
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
+import android.media.AudioAttributes
 import android.media.RingtoneManager
+import android.net.Uri
 import android.os.Build
 import android.util.Log
-import androidx.core.app.NotificationCompat.DEFAULT_ALL
 import androidx.core.content.ContextCompat
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -47,7 +49,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     lateinit var notificationChannel: NotificationChannel
     lateinit var notification: Notification
 
-
     override fun onMessageReceived(remoteMessage: RemoteMessage) {
         if (remoteMessage.data.isNotEmpty()) {
             Log.d(TAG, "Uniques Message data payload: ${remoteMessage.data}")
@@ -77,6 +78,13 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (notificationManager == null)
             notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
+        val sound: Uri =
+            Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/" + R.raw.alarm) //Here is FILE_NAME is the name of file that you want to play
+        val audioAttributes: AudioAttributes = AudioAttributes.Builder()
+            .setContentType(AudioAttributes.CONTENT_TYPE_SONIFICATION)
+            .setUsage(AudioAttributes.USAGE_ALARM)
+            .build()
+
         CHANNEL_ID = applicationContext.packageName
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
@@ -86,6 +94,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 NotificationManager.IMPORTANCE_HIGH
             )
             notificationChannel.enableVibration(true)
+            notificationChannel.setSound(sound, audioAttributes)
             notificationChannel.vibrationPattern = LongArray(0)
             notificationChannel.enableLights(true)
             notificationChannel.lightColor = Color.BLUE
@@ -186,8 +195,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setColor(ContextCompat.getColor(applicationContext, R.color.colorAccent))
             .setContentTitle(title)
             .setContentText(message)
-            //  .setSound(soundUri)
-            .setDefaults(DEFAULT_ALL)
+//              .setSound(soundUri)
+//            .setDefaults(DEFAULT_ALL)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
             // .setDefaults(DEFAULT_SOUND or DEFAULT_VIBRATE)
