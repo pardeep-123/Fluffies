@@ -22,16 +22,17 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        initializePreferences()
-        initializePreferencesToken()
-        Log.e(TAG, "FCM token : " + SharedPrefUtil.getInstance().fcmToken)
-
         Album.initialize(
             AlbumConfig.newBuilder(this)
                 .setAlbumLoader(MediaLoader())
                 .setLocale(Locale.getDefault())
                 .build()
         )
+        initializePreferences()
+        initializePreferencesToken()
+        Log.e(TAG, "FCM token : " + SharedPrefUtil.getInstance().fcmToken)
+
+
     }
 
     var restApiInterface: RestApiInterface? = null
