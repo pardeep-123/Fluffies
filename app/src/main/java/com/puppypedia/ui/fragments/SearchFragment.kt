@@ -45,33 +45,35 @@ class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+        ivCross.setOnClickListener {
+            edtSearch.text.clear()
+        }
+
         edtSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
+
             @SuppressLint("NotifyDataSetChanged")
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 list.clear()
-                for (i in 0 until aboutResponse!!.body.category.size) {
-                    if (aboutResponse!!.body.category.get(i).name.toLowerCase()
+                for (item in aboutResponse!!.body.category) {
+                    if (item.name.toLowerCase()
                             .contains(s.toString().toLowerCase())
                     ) {
-                        list.add(aboutResponse!!.body.category.get(i))
+                        list.add(item)
                     }
                 }
-/*
-                if(s!!.isNotEmpty())
-                {
-                    searchText = s.toString()
-                    api(s.toString())
+                if (list.isEmpty()) {
+                    rc_services.visibility = View.GONE
+                    no_notification.visibility = View.VISIBLE
+                    no_notification.text = "No Data Found"
+                } else {
+                    rc_services.visibility = View.VISIBLE
+                    no_notification.visibility = View.GONE
                 }
-                else
-                {
-                    tvNoDataFound.visibility= View.VISIBLE
-                    lottiView.visibility= View.VISIBLE
-                    recyclerview.visibility = View.GONE
-                    tv_search_result_count.visibility = View.GONE
-                }}
-*/
+
                 searchAdapter.notifyDataSetChanged()
             }
             override fun afterTextChanged(s: Editable?) {
@@ -95,6 +97,16 @@ class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                     aboutResponse = it.data
                     searchAdapter = SearchAdapter(requireContext(), list, this)
                     rc_services.adapter = searchAdapter
+
+                    /* if(aboutResponse!!.body.category.isEmpty())
+                     {
+                         rc_services.visibility = View.GONE
+                         no_notification.visibility = View.VISIBLE
+                     }
+                     else{
+                         rc_services.visibility = View.VISIBLE
+                         no_notification.visibility = View.GONE
+                     }*/
                 }
             }
             it.status == Status.ERROR -> {

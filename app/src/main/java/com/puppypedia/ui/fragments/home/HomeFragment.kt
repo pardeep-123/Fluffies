@@ -50,12 +50,14 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         apihome()
         return v
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()
         //  etAddress.setText(addresses[0].locality)
         tv_choose_dog.setText("")
     }
+
     private fun clicksHandle() {
         rl_notification.setOnClickListener {
             startActivity(Intent(requireContext(), NotificationActivity::class.java))
@@ -82,10 +84,12 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
         rvDogs.adapter = DogsAdapter(requireContext(), arrayList, this)
     }
+
     fun apihome() {
         viewModel.getHomeDetails(requireActivity(), true)
         viewModel.mResponse.observe(requireActivity(), this)
     }
+
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -122,6 +126,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
             }
         }
     }
+
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "cat" -> {
@@ -144,7 +149,19 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
     }
 
     fun petDetails(position: Int) {
-        tv_choose_dog.text = aboutResponse!!.body.pets[position].name
+
+        if (aboutResponse!!.body.pets[position].name.length > 12) {
+            tv_choose_dog.text = (aboutResponse!!.body.pets[position].name.replaceRange(
+                12,
+                aboutResponse!!.body.pets[position].name.length,
+                "..."
+            ))
+        } else {
+            tv_choose_dog.text = aboutResponse!!.body.pets[position].name
+        }
+
+
+
         Glide.with(requireContext())
             .load(Constants.IMAGE_URL + aboutResponse!!.body.pets[position].image)
             .placeholder(R.drawable.place_holder).into(ivDogImg)

@@ -45,14 +45,14 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is NotificationResponse) {
                     aboutResponse = it.data
-                    /*   if(aboutResponse!!.body.size==0){
+                       if (it.data.body.isEmpty()) {
                            ll_no_notifications.visibility = View.VISIBLE
-                            rv_notifications.visibility = View.GONE
+                           rv_notifications.visibility = View.GONE
 
-                       }else{
+                       } else {
                            val notificationAdapter = NotificationAdapter(this, aboutResponse!!)
                            rv_notifications.adapter = notificationAdapter
-                       }*/
+                       }
                     val notificationAdapter = NotificationAdapter(this, aboutResponse!!)
                     rv_notifications.adapter = notificationAdapter
                 }

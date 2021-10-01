@@ -88,8 +88,8 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
             val map = HashMap<String, String>()
             map["email"] = email
             map["password"] = password
-            map["device_type"] = Constants.Device_Type
-            map["device_token"] = token
+            map["deviceType"] = Constants.Device_Type
+            map["deviceToken"] = token
             viewModel.loginApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }

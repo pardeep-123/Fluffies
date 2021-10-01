@@ -2,6 +2,7 @@ package com.puppypedia.fcm
 
 
 import android.app.Notification
+import android.app.Notification.DEFAULT_ALL
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.PendingIntent
@@ -195,11 +196,11 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             .setColor(ContextCompat.getColor(applicationContext, R.color.colorAccent))
             .setContentTitle(title)
             .setContentText(message)
-//              .setSound(soundUri)
-//            .setDefaults(DEFAULT_ALL)
+            .setSound(soundUri)
+            .setDefaults(DEFAULT_ALL)
             .setAutoCancel(true)
             .setContentIntent(pendingIntent)
-            // .setDefaults(DEFAULT_SOUND or DEFAULT_VIBRATE)
+//             .setDefaults(DEFAULT_SOUND or DEFAULT_VIBRATE)
             .setVibrate(longArrayOf(1000, 1000, 1000, 1000, 1000))
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             notificationBuilder.setChannelId(CHANNEL_ID)

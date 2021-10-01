@@ -94,7 +94,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             time = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
                 myCalendar[Calendar.HOUR_OF_DAY] = hour
                 myCalendar[Calendar.MINUTE] = minute
-                edtTime.setText(AppUtils.dateInString(myCalendar.timeInMillis, "hh:mm"))
+                edtTime.setText(AppUtils.dateInString(myCalendar.timeInMillis, "kk:mm:ss"))
             }
             timePicker(this)
         }
