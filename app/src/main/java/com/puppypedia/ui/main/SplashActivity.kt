@@ -9,7 +9,7 @@ import com.puppypedia.R
 import com.puppypedia.ui.auth.login.LoginActivity
 import com.puppypedia.ui.main.ui.home.HomeActivity
 import com.puppypedia.utils.helper.others.SharedPrefUtil
-
+///// SERVER KEY:: AAAACZOXSJw:APA91bGQlimefiDl7O04BmRWbAkg6UJDp2sPFjml1KuK4DlPoV7fQAAxZ6u-FplVbj7frlurWtATaLGog9uRZeBZyxo4G2NLr_Rf-Ld2R_Ab3hqZBOwjm9uCrLOgyAL1HTEtbK0LTy-3
 
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

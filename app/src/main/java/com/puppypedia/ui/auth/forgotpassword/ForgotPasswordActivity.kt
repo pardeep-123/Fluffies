@@ -15,6 +15,7 @@ import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.ValidationsClass
 import kotlinx.android.synthetic.main.activity_forgot_password.*
+import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
 
 class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener,
@@ -29,6 +30,9 @@ class ForgotPasswordActivity : AppCompatActivity(), View.OnClickListener,
         setContentView(R.layout.activity_forgot_password)
         mValidationClass = ValidationsClass.getInstance()
         btnSubmit.setOnClickListener(this)
+        tb.iv_back.setOnClickListener {
+            onBackPressed()
+        }
     }
     override fun onClick(v: View?) {
         when (v?.id) {

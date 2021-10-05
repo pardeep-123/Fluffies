@@ -18,6 +18,7 @@ import com.puppypedia.ui.auth.AuthViewModel
 import com.puppypedia.ui.auth.forgotpassword.ForgotPasswordActivity
 import com.puppypedia.ui.auth.signup.SignUpActivity
 import com.puppypedia.ui.main.ui.home.HomeActivity
+import com.puppypedia.ui.main.ui.petdetail.YourPetDetailActivity
 import com.puppypedia.utils.helper.MyApplication
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
@@ -113,8 +114,16 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                             Constants.AuthKey,
                             registerResponse.body.authKey
                         )
-                        startActivity(Intent(this, HomeActivity::class.java))
-                        finishAffinity()
+                        if (it.data.body.petsCount == 0) {
+                            startActivity(Intent(this, YourPetDetailActivity::class.java))
+
+                        } else {
+
+                            startActivity(Intent(this, HomeActivity::class.java))
+                            finishAffinity()
+                        }
+
+
                         if (chkbox.isChecked) {
                             SharedPrefUtil.getInstanceRemember()
                                 .saveEmailRememberMe(etEmail.text.toString())

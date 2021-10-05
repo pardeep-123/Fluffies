@@ -95,6 +95,11 @@ class SearchFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
                     aboutResponse = it.data
+                    for (item in aboutResponse!!.body.category) {
+                        list.add(item)
+                    }
+                    rc_services.visibility = View.VISIBLE
+                    no_notification.visibility = View.GONE
                     searchAdapter = SearchAdapter(requireContext(), list, this)
                     rc_services.adapter = searchAdapter
 

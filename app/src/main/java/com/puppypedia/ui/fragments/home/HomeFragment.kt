@@ -27,6 +27,7 @@ import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.category.CategoryActivity
 import com.puppypedia.ui.main.ui.category_detail.CategoryDetailActivity
 import com.puppypedia.ui.main.ui.notification.NotificationActivity
+import com.puppypedia.ui.main.ui.petdetail.YourPetDetailActivity
 import com.puppypedia.ui.main.ui.weight_chart.WeightChartActivity
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
@@ -94,15 +95,25 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
+                    arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
+                    if (arrayList.size == 0) {
+                        whitebackground.visibility = View.VISIBLE
+                        // SharedPrefUtil.getInstance().clear()
+                        startActivity(Intent(activity, YourPetDetailActivity::class.java))
+                        activity?.finishAffinity()
+                    } else {
+                        whitebackground.visibility = View.GONE
+                    }
                     aboutResponse = it.data
-
                     if (aboutResponse!!.body.notificationsCount == 0) {
                         tvCount.visibility = View.GONE
                     } else {
                         tvCount.setText(aboutResponse!!.body.notificationsCount.toString())
                     }
                     rc_services.adapter = ServicesAdapter(requireContext(), aboutResponse!!, this)
-                    arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
+
+
+
                     setPopUpWindow()
 /////////////////////////////////////// Banneer Adapter with Indigator
                     val indicator = view?.findViewById<ScrollingPagerIndicator>(R.id.indicator)

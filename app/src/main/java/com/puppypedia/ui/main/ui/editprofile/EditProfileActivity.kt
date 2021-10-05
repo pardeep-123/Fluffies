@@ -103,21 +103,16 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 viewModel.imageUpload(this, true, map, multipartImageGet())
                 viewModel.mResponse.observe(this, this)
             } else {
-
                 val name = etName.text.toString().trim()
                 val email = etEmail.text.toString().trim()
                 val map = HashMap<String, String>()
                 map["name"] = name
                 map["email"] = email
-
                 viewModel.editProfileApi(this, true, map)
                 viewModel.mResponse.observe(this, this)
             }
-
         }
     }
-
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -132,7 +127,6 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 }
                 if (it.data is ImageUploadResponse) {
                     val imageResponse: ImageUploadResponse = it.data
-
                     val name = etName.text.toString().trim()
                     val email = etEmail.text.toString().trim()
                     val map = HashMap<String, String>()
@@ -143,7 +137,6 @@ class EditProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     viewModel.editProfileApi(this, true, map)
                     viewModel.mResponse.observe(this, this)
                 }
-
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {

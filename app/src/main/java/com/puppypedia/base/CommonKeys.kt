@@ -19,7 +19,6 @@ object CommonKeys {
     const val notifiactionBroadcase = "notificationCallChange"
     var notifyScreen = ""
     var anotherUserId = ""
-
     var currentLat: ObservableField<Double> = ObservableField(0.0)
     var currentLng: ObservableField<Double> = ObservableField(0.0)
 
