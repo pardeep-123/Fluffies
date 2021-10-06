@@ -53,7 +53,6 @@ class HomeActivity : AppCompatActivity() {
                 )
             }
         }
-
         llAccount.setOnClickListener {
             if (currentFragment() !is AccountFragment) {
                 openFragment(AccountFragment())
@@ -66,12 +65,10 @@ class HomeActivity : AppCompatActivity() {
                 )
             }
         }
-
     }
     private fun setHomeFragment() {
         if (currentFragment() !is HomeFragment) {
             openFragment(HomeFragment())
-
             setViews(
                 R.drawable.home_active, R.drawable.search_unactive,
                 R.drawable.cal_unactive, R.drawable.acc_unactive,

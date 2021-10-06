@@ -28,6 +28,7 @@ import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
 import kotlinx.android.synthetic.main.activity_add_remainder.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
+import java.text.SimpleDateFormat
 import java.util.*
 
 
@@ -47,7 +48,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     var arrayList = ArrayList<PetProfileResponse>()
     var orderId = ""
     lateinit var dialog: Dialog
-
+    var type = 0
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_remainder)
@@ -57,7 +58,6 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         clicksHandle()
         context = this
         apiPetList()
-
         //  orderId = intent.getStringExtra("orderId").toString()
     }
 
@@ -95,10 +95,12 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                 myCalendar[Calendar.HOUR_OF_DAY] = hour
                 myCalendar[Calendar.MINUTE] = minute
                 edtTime.setText(AppUtils.dateInString(myCalendar.timeInMillis, "kk:mm"))
+
             }
             timePicker(this)
         }
     }
+
 
     fun appointmentDialog() {
         dialog = Dialog(this)
@@ -145,16 +147,28 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         val date = edtDate.text.toString().trim()
         val time = edtTime.text.toString().trim()
         var check = false
+
         if (mValidationClass.checkStringNull(name))
             Helper.showErrorAlert(this, resources.getString(R.string.error_name))
         else if (mValidationClass.checkStringNull(date))
             Helper.showErrorAlert(this, resources.getString(R.string.error_date))
         else if (mValidationClass.checkStringNull(time))
             Helper.showErrorAlert(this, resources.getString(R.string.error_time))
+        else if (checkTime(date, time))
+            Helper.showErrorAlert(this, "Please select future time")
         else
             check = true
         return check
     }
+
+    fun checkTime(date: String, time: String): Boolean {
+        val formatter: java.text.DateFormat = SimpleDateFormat("yyyy-MM-dd kk:mm")
+        val getDate = formatter.parse(date + " " + time) as Date
+        val output = getDate.time / 1000
+        val tsLong = System.currentTimeMillis() / 1000
+        return output < tsLong
+    }
+
 
     fun apiReminder() {
         if (isValid()) {
@@ -208,5 +222,6 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             }
         }
     }
+
 
 }

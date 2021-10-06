@@ -115,7 +115,7 @@
                         style="@style/WrapTextView"
                         android:text="@string/age"
                         android:textSize="@dimen/_14sdp" />
-                    <RelativeLayout
+                  <!--  <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_marginTop="@dimen/_5sdp"
@@ -137,7 +137,17 @@
                             android:src="@drawable/downaero" />
 
 
-                    </RelativeLayout>
+                    </RelativeLayout>-->
+                    <EditText
+                        android:id="@+id/etAge"
+                        style="@style/MatchEditText"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/bg_edit_text"
+                        android:hint="@string/weight"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp" />
 
 
                     <TextView

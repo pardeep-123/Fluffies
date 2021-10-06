@@ -123,4 +123,5 @@
     <string name="error_weight">Please enter weight</string>
     <string name="error_date">Please enter date</string>
     <string name="error_time">Please enter time</string>
+    <string name="error_age">Please enter age</string>
 </resources>

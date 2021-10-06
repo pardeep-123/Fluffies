@@ -144,7 +144,7 @@
                     android:layout_weight="1"
                     android:orientation="vertical">
 
-                    <RelativeLayout
+                    <!--<RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
                         android:layout_marginTop="@dimen/_10sdp"
@@ -166,8 +166,19 @@
                             android:src="@drawable/downaero" />
 
 
-                    </RelativeLayout>
-
+                    </RelativeLayout>-->
+                    <EditText
+                        android:id="@+id/etAge"
+                        style="@style/MatchEditText"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@drawable/bg_edit_text"
+                        android:fontFamily="@font/opensans_semibold"
+                        android:hint="@string/age"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:textColorHint="@color/black" />
 
                     <EditText
                         android:id="@+id/etbreed"

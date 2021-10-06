@@ -115,15 +115,14 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                             registerResponse.body.authKey
                         )
                         if (it.data.body.petsCount == 0) {
-                            startActivity(Intent(this, YourPetDetailActivity::class.java))
-
+                            startActivity(
+                                Intent(this, YourPetDetailActivity::class.java)
+                                    .putExtra("auth", registerResponse.body.authKey)
+                            )
                         } else {
-
                             startActivity(Intent(this, HomeActivity::class.java))
                             finishAffinity()
                         }
-
-
                         if (chkbox.isChecked) {
                             SharedPrefUtil.getInstanceRemember()
                                 .saveEmailRememberMe(etEmail.text.toString())

@@ -76,14 +76,11 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
             }
         }
     }
-
-
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
         val email = etEmail.text.toString().trim()
         val password = etPassword.text.toString().trim()
         val confirmPassword = etConfirmPass.text.toString().trim()
-
         var check = false
         /*if (!mValidationClass.isNetworkConnected)
             Helper.showErrorAlert(this, resources.getString(R.string.no_internet))
@@ -102,7 +99,7 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
         else if (mValidationClass.checkStringNull(confirmPassword))
             Helper.showErrorAlert(this, "Please enter confirm password")
         else if (password != confirmPassword)
-            Helper.showErrorAlert(this, "Password Don't match")
+            Helper.showErrorAlert(this, "Password doesn't match")
         else
             check = true
         return check
@@ -123,20 +120,21 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
                 if (it.data is SignUpResponse) {
                     val registerResponse: SignUpResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
-                        SharedPrefUtil.getInstance().saveAuthToken(registerResponse.body.authKey)
                         SharedPrefUtil.getInstance().saveImage(registerResponse.body.image)
                         SharedPrefUtil.getInstance().saveUserId(registerResponse.body.id.toString())
                         SharedPrefUtil.getInstance().saveEmail(registerResponse.body.email)
                         SharedPrefUtil.getInstance().saveName(registerResponse.body.name)
-                        SharedPrefUtil.getInstance().isLogin = true
 
                         MyApplication.instance!!.setString(
                             Constants.AuthKey,
                             registerResponse.body.authKey
                         )
-                        startActivity(Intent(this, YourPetDetailActivity::class.java))
-
-
+                        startActivity(
+                            Intent(this, YourPetDetailActivity::class.java)
+                                .putExtra(
+                                    "auth", registerResponse.body.authKey
+                                )
+                        )
                     } else {
                         Helper.showErrorAlert(this, registerResponse.code.toString())
                     }

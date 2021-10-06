@@ -24,6 +24,7 @@
                 android:layout_centerInParent="true"
                 android:text="@string/calender"
                 android:textSize="@dimen/_14sdp" />
+
             <ImageView
                 android:id="@+id/ivAdd"
                 android:layout_width="@dimen/_25sdp"
@@ -32,8 +33,8 @@
                 android:layout_centerVertical="true"
                 android:layout_marginEnd="@dimen/_10sdp"
                 android:contentDescription="@string/image"
-                android:padding="@dimen/_5sdp"
-                android:src="@drawable/plis" />
+
+                android:src="@drawable/ic_add" />
 
         </RelativeLayout>
 
@@ -70,11 +71,11 @@
 
                         <ImageView
                             android:id="@+id/ivBackCal"
-                            android:layout_width="@dimen/_15sdp"
-                            android:layout_height="@dimen/_15sdp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:layout_gravity="start"
                             android:contentDescription="@string/image"
-                            android:src="@drawable/blackleftaero" />
+                            android:src="@drawable/ic_left_arrow" />
 
 
                         <TextView
@@ -89,11 +90,11 @@
 
                         <ImageView
                             android:id="@+id/ivNextCal"
-                            android:layout_width="@dimen/_15sdp"
-                            android:layout_height="@dimen/_15sdp"
+                            android:layout_width="@dimen/_20sdp"
+                            android:layout_height="@dimen/_20sdp"
                             android:layout_gravity="end"
                             android:contentDescription="@string/image"
-                            android:src="@drawable/blackrightaero" />
+                            android:src="@drawable/ic_right_arrow" />
 
 
                     </LinearLayout>
@@ -128,7 +129,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/image"
-                    android:src="@drawable/ic_dot_select" />
+                    android:src="@drawable/ic_circle" />
 
                 <TextView
                     style="@style/WrapTextView"

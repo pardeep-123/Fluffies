@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puppypedia.R
@@ -23,7 +24,10 @@ class HomeAdapter(
     }
 
     override fun onBindViewHolder(holder: Vh, position: Int) {
-        holder.itemView.tvDescription.setText(datalist.body.banners[position].description)
+        //   holder.itemView.tvDescription.setText(datalist.body.banners[position].description)
+        holder.itemView.tvDescription.text = HtmlCompat.fromHtml(
+            datalist.body.banners[position].description, HtmlCompat.FROM_HTML_MODE_LEGACY
+        )
         Glide.with(context)
             .load("http://202.164.42.227:7700" + datalist.body.banners[position].image)
             .placeholder(R.drawable.dogsimg).into(holder.itemView.details_img)

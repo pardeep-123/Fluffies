@@ -23,7 +23,7 @@ class CategoryActivity : AppCompatActivity(), ClickCallBack {
         data = (intent.getSerializableExtra("aboutResponse") as HomeFragmentResponse)
         //poz= intent.getStringExtra("selectedpos")!!.toInt()
 
-        var serviceAdapter = ServicesAdapter(this, data!!, this)
+        var serviceAdapter = ServicesAdapter(this, data!!, this, 2)
         rvCategory.adapter = serviceAdapter
         // setCategoryAdapter()
     }

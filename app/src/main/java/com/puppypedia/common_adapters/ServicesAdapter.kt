@@ -16,7 +16,8 @@ import kotlinx.android.synthetic.main.item_services.view.*
 class ServicesAdapter(
     var context: Context,
     var datalist: HomeFragmentResponse,
-    var clickCallBack: ClickCallBack
+    var clickCallBack: ClickCallBack,
+    var idata: Int
 ) :
     RecyclerView.Adapter<ServicesAdapter.ServicesViewHolder>() {
 
@@ -41,7 +42,11 @@ class ServicesAdapter(
         }
     }
     override fun getItemCount(): Int {
-        return datalist.body.category.size
+        if (idata == 1) {
+            return 6
+        } else {
+            return datalist.body.category.size
+        }
     }
     inner class ServicesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var img: ImageView = itemView.findViewById(R.id.ivService)

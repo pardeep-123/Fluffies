@@ -33,12 +33,6 @@ import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
-import kotlinx.android.synthetic.main.activity_edit_pet_profile.etAbout
-import kotlinx.android.synthetic.main.activity_edit_pet_profile.etName
-import kotlinx.android.synthetic.main.activity_edit_pet_profile.spinnerAge
-import kotlinx.android.synthetic.main.activity_edit_pet_profile.spinnerGender
-import kotlinx.android.synthetic.main.activity_edit_pet_profile.tb
-import kotlinx.android.synthetic.main.activity_your_pet_detail.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -68,11 +62,11 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         clicksHandle()
         mValidationClass = ValidationsClass.getInstance()
         ageArrayList.add("Age")
-        for (i in 0 until 60) {
+        for (i in 0 until 21) {
             ageArrayList.add((i + 1).toString() + "yr")
         }
         setSpinnerGender()
-        setSpinnerAge()
+        //setSpinnerAge()
         data = (intent.getSerializableExtra("aboutResponse") as PetProfileResponse)
         // setSpinnerWeight()
 
@@ -92,7 +86,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 2
             }
         )
-        spinnerAge.setSelection(data!!.body[poz].age)
+//        spinnerAge.setSelection(data!!.body[poz].age)
 
     }
 
@@ -188,7 +182,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-    private fun setSpinnerAge() {
+    /*private fun setSpinnerAge() {
 
         val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
         spinnerAge.adapter = adapterAge
@@ -205,7 +199,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             ) {
                 val view = (parent?.getChildAt(0) as View)
                 val tvSpinner = view.findViewById<TextView>(R.id.tvSpinner)
-                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                *//*tvSpinner.setPadding(0, 0, 0, 0)*//*
 
                 if (pos == 0) {
                     tvSpinner.setTextColor(
@@ -228,14 +222,14 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             }
 
         }
-    }
+    }*/
 
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
-
         val about = etAbout.text.toString().trim()
         val weight = etWeight.text.toString().trim()
         val breed = etBreed.text.toString().trim()
+        val age = etAge.text.toString().trim()
         var check = false
         if (mValidationClass.checkStringNull(name))
             Helper.showErrorAlert(this, resources.getString(R.string.error_name))
@@ -245,6 +239,8 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
         else if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
+        else if (mValidationClass.checkStringNull(age))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_age))
         else
             check = true
         return check
@@ -265,13 +261,15 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 val about = etAbout.text.toString().trim()
                 val weight = etWeight.text.toString().trim()
                 val breed = etBreed.text.toString().trim()
+                val age = etAge.text.toString().trim()
                 val map = HashMap<String, String>()
                 map["petid"] = data!!.body[poz].id.toString()
                 map["name"] = name
                 map["weight"] = weight
                 map["about"] = about
                 map["breed"] = breed
-                map["age"] = age.toString()
+                map["age"] = age
+                //  map["age"] = age.toString()
                 map["gender"] = gender.toString()
 
                 viewModel.editPetProfileApi(this, true, map)

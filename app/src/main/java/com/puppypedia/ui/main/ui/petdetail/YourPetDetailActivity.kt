@@ -44,7 +44,9 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     var gender = ""
     var image = ""
     var age = 0
+    var auth = ""
     var weight = 0
+    var onePetAdded = false
     val ageArrayList = ArrayList<String>()
 
     private val viewModel: AllViewModel
@@ -54,18 +56,21 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pet_detail)
         mValidationClass = ValidationsClass.getInstance()
+        if (intent.hasExtra("auth")) {
+            auth = intent.getStringExtra("auth").toString()
+        }
         if (intent.hasExtra("add")) {
-
+            onePetAdded = true
         }
         SharedPrefUtil.init(this)
         ageArrayList.add("Age")
 
-        for (i in 1 until 60) {
+        for (i in 1 until 21) {
             ageArrayList.add(i.toString() + "yr")
         }
         tb.tv_title.text = getString(R.string.your_pet_detail)
         clicksHandle()
-        setSpinnerAge()
+        //setSpinnerAge()
         setSpinnerGender()
         //  setSpinnerWeight()
     }
@@ -108,13 +113,14 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         btnAddNew.setOnClickListener {
             etName.setText("")
             etbreed.setText("")
+            etAge.setText("")
             etweight.setText("")
             etAbout.setText("")
-            age = 0
+            // age = 0
             gender = "0"
             image = ""
             spinnerGender.setSelection(0)
-            spinnerAge.setSelection(0)
+            //  spinnerAge.setSelection(0)
             Glide.with(this).load(R.drawable.pet_pic).into(ivPetProfile)
             dialog.dismiss()
         }
@@ -150,7 +156,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-    private fun setSpinnerAge() {
+/*    private fun setSpinnerAge() {
         val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
         spinnerAge.adapter = adapterAge
         spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
@@ -164,18 +170,20 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 age = pos
                 val v = (parent?.getChildAt(0) as View)
                 val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
-                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                *//*tvSpinner.setPadding(0, 0, 0, 0)*//*
                 tvSpinner.typeface = ResourcesCompat.getFont(
                     this@YourPetDetailActivity, R.font.opensans_semibold
                 )
             }
         }
-    }
+    }*/
 
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
         val about = etAbout.text.toString().trim()
         val breed = etbreed.text.toString().trim()
+        val weight = etweight.text.toString().trim()
+        val age = etAge.text.toString().trim()
         var check = false
 
         if (mValidationClass.checkStringNull(image))
@@ -184,14 +192,18 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             Helper.showErrorAlert(this, resources.getString(R.string.error_name))
         else if (gender == "0")
             Helper.showErrorAlert(this, "Please select gender")
-        else if (age == 0)
-            Helper.showErrorAlert(this, "Please select age")
-        /*   else if (weight == 0)
-            Helper.showErrorAlert(this, "Please select weight")*/
+        /*   else if (age == 0)
+               Helper.showErrorAlert(this, "Please select age")
+              else if (weight == 0)
+               Helper.showErrorAlert(this, "Please select weight")*/
         else if (mValidationClass.checkStringNull(about))
             Helper.showErrorAlert(this, resources.getString(R.string.about))
         else if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
+        else if (mValidationClass.checkStringNull(weight))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
+        else if (mValidationClass.checkStringNull(age))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_age))
         else
             check = true
         return check
@@ -210,6 +222,12 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is PetDetailResponse) {
+                    if (!onePetAdded) {
+                        onePetAdded = true
+                        SharedPrefUtil.getInstance().isLogin = true
+                        SharedPrefUtil.getInstance().saveAuthToken(auth)
+                    }
+
                     val registerResponse: PetDetailResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
                         if (intent.hasExtra("add")) {
@@ -227,12 +245,14 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                     val name = etName.text.toString().trim()
                     val breed = etbreed.text.toString().trim()
                     val weight = etweight.text.toString().trim()
+                    val age = etAge.text.toString().trim()
                     val about = etAbout.text.toString().trim()
                     val map = HashMap<String, String>()
                     map["name"] = name
                     map["gender"] = if (gender.equals("1")) "0" else "1"
-                    map["age"] = ageArrayList[age]
+                    // map["age"] = ageArrayList[age]
                     map["weight"] = weight
+                    map["age"] = age
                     map["about"] = about
                     map["breed"] = breed
                     map["image"] = it.data.body[0].image

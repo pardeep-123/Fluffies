@@ -27,6 +27,7 @@
         <TextView
             android:id="@+id/tvPetName"
             android:layout_width="wrap_content"
+            android:visibility="gone"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_regular"
             android:text="@string/best_pet_care_here"

@@ -19,10 +19,14 @@
         <entry key="app/src/main/res/drawable/bg_sky_blue_10dp.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bg_white_corners_10dp.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/bottom_nav_corner_5dp.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/drawable/ic_check_box_filled_24.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/ic_check_box_unfilled_24.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/ic_circle.xml" value="0.14444444444444443" />
         <entry key="app/src/main/res/drawable/ic_eye_visibility_24.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/ic_eye_visibility_off_24.xml" value="0.1609375" />
+        <entry key="app/src/main/res/drawable/ic_left_arrow.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/drawable/ic_right_arrow.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/loader.xml" value="0.14" />
         <entry key="app/src/main/res/drawable/password_hide.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/password_show.xml" value="0.1609375" />
@@ -53,7 +57,7 @@
         <entry key="app/src/main/res/layout/dialog_pet_profile_update.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_progress.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.2" />

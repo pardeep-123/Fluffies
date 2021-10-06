@@ -27,7 +27,6 @@ import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.category.CategoryActivity
 import com.puppypedia.ui.main.ui.category_detail.CategoryDetailActivity
 import com.puppypedia.ui.main.ui.notification.NotificationActivity
-import com.puppypedia.ui.main.ui.petdetail.YourPetDetailActivity
 import com.puppypedia.ui.main.ui.weight_chart.WeightChartActivity
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
@@ -51,14 +50,12 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         apihome()
         return v
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()
         //  etAddress.setText(addresses[0].locality)
         tv_choose_dog.setText("")
     }
-
     private fun clicksHandle() {
         rl_notification.setOnClickListener {
             startActivity(Intent(requireContext(), NotificationActivity::class.java))
@@ -73,7 +70,6 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
             // startActivity(Intent(requireContext(), CategoryActivity::class.java))
         }
     }
-
     @SuppressLint("InflateParams")
     private fun setPopUpWindow() {
         val inflater =
@@ -85,35 +81,36 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
         rvDogs.adapter = DogsAdapter(requireContext(), arrayList, this)
     }
-
     fun apihome() {
         viewModel.getHomeDetails(requireActivity(), true)
         viewModel.mResponse.observe(requireActivity(), this)
     }
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
                     arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
-                    if (arrayList.size == 0) {
+                  /*  if (arrayList.size == 0) {
                         whitebackground.visibility = View.VISIBLE
-                        // SharedPrefUtil.getInstance().clear()
-                        startActivity(Intent(activity, YourPetDetailActivity::class.java))
+                        SharedPrefUtil.getInstance().clear()
+                       // startActivity(Intent(this, LoginActivity::class.java))
+                        startActivity(Intent(activity, LoginActivity::class.java))
                         activity?.finishAffinity()
                     } else {
                         whitebackground.visibility = View.GONE
-                    }
+                    }*/
                     aboutResponse = it.data
                     if (aboutResponse!!.body.notificationsCount == 0) {
                         tvCount.visibility = View.GONE
                     } else {
                         tvCount.setText(aboutResponse!!.body.notificationsCount.toString())
                     }
-                    rc_services.adapter = ServicesAdapter(requireContext(), aboutResponse!!, this)
-
-
-
+                    rc_services.adapter = ServicesAdapter(
+                        requireContext(),
+                        aboutResponse!!,
+                        this,
+                        1
+                    )
                     setPopUpWindow()
 /////////////////////////////////////// Banneer Adapter with Indigator
                     val indicator = view?.findViewById<ScrollingPagerIndicator>(R.id.indicator)
@@ -125,7 +122,6 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                     petDetails(SharedPrefUtil.getInstance().petPos)
                     SharedPrefUtil.getInstance()
                         .savePetId(arrayList[SharedPrefUtil.getInstance().petPos].id.toString())
-
                 }
             }
             it.status == Status.ERROR -> {
@@ -160,7 +156,6 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
     }
 
     fun petDetails(position: Int) {
-
         if (aboutResponse!!.body.pets[position].name.length > 12) {
             tv_choose_dog.text = (aboutResponse!!.body.pets[position].name.replaceRange(
                 12,
@@ -170,9 +165,6 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         } else {
             tv_choose_dog.text = aboutResponse!!.body.pets[position].name
         }
-
-
-
         Glide.with(requireContext())
             .load(Constants.IMAGE_URL + aboutResponse!!.body.pets[position].image)
             .placeholder(R.drawable.place_holder).into(ivDogImg)
