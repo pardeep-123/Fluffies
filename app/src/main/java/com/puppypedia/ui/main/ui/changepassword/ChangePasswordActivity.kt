@@ -51,8 +51,10 @@ class ChangePasswordActivity : AppCompatActivity(), Observer<RestObservable> {
             if (boolean) {
                 edtOldPass.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
+                edtOldPass.setSelection(edtOldPass.text.length)
             } else {
                 edtOldPass.transformationMethod = PasswordTransformationMethod.getInstance()
+                edtOldPass.setSelection(edtOldPass.text.length)
             }
         }
 
@@ -60,8 +62,10 @@ class ChangePasswordActivity : AppCompatActivity(), Observer<RestObservable> {
             if (boolean) {
                 edtNewPass.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
+                edtNewPass.setSelection(edtNewPass.text.length)
             } else {
                 edtNewPass.transformationMethod = PasswordTransformationMethod.getInstance()
+                edtNewPass.setSelection(edtNewPass.text.length)
             }
         }
 
@@ -69,9 +73,11 @@ class ChangePasswordActivity : AppCompatActivity(), Observer<RestObservable> {
             if (boolean) {
                 edtConfirmNewPass.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
+                edtConfirmNewPass.setSelection(edtConfirmNewPass.text.length)
             } else {
                 edtConfirmNewPass.transformationMethod =
                     PasswordTransformationMethod.getInstance()
+                edtConfirmNewPass.setSelection(edtConfirmNewPass.text.length)
             }
         }
     }

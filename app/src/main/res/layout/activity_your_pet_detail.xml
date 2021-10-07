@@ -52,33 +52,31 @@
                 style="@style/MatchEditText"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_edit_text"
-                android:fontFamily="@font/opensans_semibold"
-                android:hint="@string/name"
+                android:fontFamily="@font/opensans_regular"
+                android:hint="@string/enter_name"
                 android:imeOptions="actionDone"
                 android:inputType="text"
                 android:paddingStart="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:textColorHint="@color/black" />
+                android:paddingEnd="@dimen/_10sdp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
-                android:orientation="horizontal"
-                android:weightSum="2">
+                android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
 
                     <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_edit_text">
 
                         <Spinner
@@ -98,103 +96,66 @@
 
                     </RelativeLayout>
 
-
                     <EditText
-                        android:id="@+id/etweight"
+                        android:id="@+id/etAge"
                         style="@style/MatchEditText"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
                         android:background="@drawable/bg_edit_text"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:hint="@string/weight"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/opensans_regular"
+                        android:hint="@string/enter_age"
                         android:imeOptions="actionNext"
-
-                        android:inputType="number"
+                        android:inputType="text"
                         android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:textColorHint="@color/black" />
-                    <!-- <RelativeLayout
-                         android:layout_width="match_parent"
-                         android:layout_height="@dimen/_35sdp"
-                         android:layout_marginTop="@dimen/_10sdp"
-                         android:background="@drawable/bg_edit_text">
-
-                         <Spinner
-                             android:id="@+id/spinnerWeight"
-                             android:layout_width="match_parent"
-                             android:layout_height="match_parent"
-                             android:background="@null" />
-
-
-                         <ImageView
-                             android:layout_width="@dimen/_8sdp"
-                             android:layout_height="@dimen/_8sdp"
-                             android:layout_alignParentEnd="true"
-                             android:layout_centerVertical="true"
-                             android:layout_marginEnd="@dimen/_10sdp"
-                             android:src="@drawable/downaero" />
-
-                     </RelativeLayout>-->
+                        android:paddingEnd="@dimen/_10sdp" />
 
                 </LinearLayout>
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:orientation="horizontal">
 
-                    <!--<RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:background="@drawable/bg_edit_text">
-
-                        <Spinner
-                            android:id="@+id/spinnerAge"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@null" />
-
-
-                        <ImageView
-                            android:layout_width="@dimen/_8sdp"
-                            android:layout_height="@dimen/_8sdp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:src="@drawable/downaero" />
-
-
-                    </RelativeLayout>-->
                     <EditText
-                        android:id="@+id/etAge"
-                        style="@style/MatchEditText"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:id="@+id/etweight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_edit_text"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:hint="@string/age"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/opensans_regular"
                         android:imeOptions="actionNext"
-                        android:inputType="text"
+                        android:hint="@string/enter_weight"
+                        android:inputType="number"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/lightGrayA3A3A3"
+                        android:textSize="@dimen/_12sdp"
                         android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:textColorHint="@color/black" />
+                        android:paddingEnd="@dimen/_10sdp" />
 
                     <EditText
                         android:id="@+id/etbreed"
                         style="@style/MatchEditText"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
                         android:background="@drawable/bg_edit_text"
-                        android:fontFamily="@font/opensans_semibold"
-                        android:hint="@string/breed"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/opensans_regular"
                         android:imeOptions="actionNext"
+                        android:hint="@string/enter_breed"
                         android:inputType="text"
                         android:paddingStart="@dimen/_10sdp"
-                        android:paddingEnd="@dimen/_10sdp"
-                        android:textColorHint="@color/black" />
-
+                        android:paddingEnd="@dimen/_10sdp" />
 
                 </LinearLayout>
+
+
             </LinearLayout>
 
             <EditText
@@ -203,17 +164,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_edit_text"
-                android:fontFamily="@font/opensans_semibold"
+                android:fontFamily="@font/opensans_regular"
                 android:gravity="start|top"
                 android:hint="@string/about_pet"
+
                 android:imeOptions="actionDone"
                 android:inputType="textMultiLine"
                 android:maxHeight="@dimen/_100sdp"
                 android:minHeight="@dimen/_100sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingTop="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:textColorHint="@color/black" />
+                android:paddingEnd="@dimen/_10sdp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btSubmit"

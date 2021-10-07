@@ -57,12 +57,15 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
     }
     private fun passwordShowHide() {
         cbPassword.setOnCheckedChangeListener { compoundButton, boolean ->
+
             if (boolean) {
                 etPassword.transformationMethod =
                     HideReturnsTransformationMethod.getInstance()
+                etPassword.setSelection(etPassword.text.length)
             } else {
                 etPassword.transformationMethod =
                     PasswordTransformationMethod.getInstance()
+                etPassword.setSelection(etPassword.text.length)
             }
         }
     }
@@ -101,8 +104,7 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                 if (it.data is LoginResponse) {
                     val registerResponse: LoginResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
-                        SharedPrefUtil.getInstance().saveFcmToken(token)
-                        SharedPrefUtil.getInstance().saveAuthToken(registerResponse.body.authKey)
+
                         // SharedPrefUtil.getInstance().saveUserId(registerResponse.body.id.toString())
                         SharedPrefUtil.getInstance().saveEmail(registerResponse.body.email)
                         SharedPrefUtil.getInstance().saveImage(registerResponse.body.image)
@@ -120,6 +122,9 @@ class LoginActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClic
                                     .putExtra("auth", registerResponse.body.authKey)
                             )
                         } else {
+                            SharedPrefUtil.getInstance().saveFcmToken(token)
+                            SharedPrefUtil.getInstance()
+                                .saveAuthToken(registerResponse.body.authKey)
                             startActivity(Intent(this, HomeActivity::class.java))
                             finishAffinity()
                         }

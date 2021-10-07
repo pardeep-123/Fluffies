@@ -111,7 +111,7 @@
     <string name="error_email">Please enter email</string>
     <string name="error_validemail">Please enter valid email</string>
     <string name="error_password">Please enter password</string>
-    <string name="error_password_length">Password length should be atleast 6 digit.</string>
+    <string name="error_password_length">Password length should be atleast 6 characters.</string>
     <string name="error_new_password">Please enter new password</string>
     <string name="error_cpassword">Please confirm password</string>
     <string name="error_password_not_matched">Passwords should be matched.</string>
@@ -124,4 +124,7 @@
     <string name="error_date">Please enter date</string>
     <string name="error_time">Please enter time</string>
     <string name="error_age">Please enter age</string>
+    <string name="enter_age">Enter Age</string>
+    <string name="enter_weight">Weight (in pounds)</string>
+    <string name="enter_breed">Enter Breed</string>
 </resources>

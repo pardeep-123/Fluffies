@@ -28,6 +28,7 @@ import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_sign_up.*
+
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -63,16 +64,20 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
         cbPassword.setOnCheckedChangeListener { compoundButton, boolean ->
             if (boolean) {
                 etPassword.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                etPassword.setSelection(etPassword.text.length)
             } else {
                 etPassword.transformationMethod = PasswordTransformationMethod.getInstance()
+                etPassword.setSelection(etPassword.text.length)
             }
         }
 
         cbConfirmPassPassword.setOnCheckedChangeListener { compoundButton, boolean ->
             if (boolean) {
                 etConfirmPass.transformationMethod = HideReturnsTransformationMethod.getInstance()
+                etConfirmPass.setSelection(etConfirmPass.text.length)
             } else {
                 etConfirmPass.transformationMethod = PasswordTransformationMethod.getInstance()
+                etConfirmPass.setSelection(etConfirmPass.text.length)
             }
         }
     }
@@ -126,8 +131,7 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
                         SharedPrefUtil.getInstance().saveName(registerResponse.body.name)
 
                         MyApplication.instance!!.setString(
-                            Constants.AuthKey,
-                            registerResponse.body.authKey
+                            Constants.AuthKey, registerResponse.body.authKey
                         )
                         startActivity(
                             Intent(this, YourPetDetailActivity::class.java)

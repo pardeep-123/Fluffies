@@ -33,6 +33,12 @@ import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.etAbout
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.etAge
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.etName
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.spinnerGender
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.tb
+import kotlinx.android.synthetic.main.activity_your_pet_detail.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -47,7 +53,8 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     var oldImage = ""
     var newImage = ""
     val ageArrayList = ArrayList<String>()
-    var age = 0
+
+    // var age = 0
     var gender = 0
     var poz = 0
     var data: PetProfileResponse? = null
@@ -74,6 +81,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         etName.setText(data!!.body[poz].name)
         etAbout.setText(data!!.body[poz].about)
         etBreed.setText(data!!.body[poz].breed)
+        etAge.setText(data!!.body[poz].age.toString())
         etWeight.setText(data!!.body[poz].weight.toString())
         oldImage = data!!.body[poz].image
         Glide.with(context).load(Constants.IMAGE_URL + data!!.body[poz].image)
@@ -97,11 +105,11 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         tb.tv_title.text = getString(R.string.edit_pet_profile)
         btnUpdate.setOnClickListener {
             apiEditPetProfile()
-
         }
         rivPet.setOnClickListener {
             selectImage()
         }
+
     }
 
     private fun selectImage() {
@@ -321,13 +329,15 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     val about = etAbout.text.toString().trim()
                     val weight = etWeight.text.toString().trim()
                     val breed = etBreed.text.toString().trim()
+                    val age = etAge.text.toString().trim()
                     val map = HashMap<String, String>()
                     map["petid"] = data!!.body[poz].id.toString()
                     map["name"] = name
                     map["weight"] = weight
                     map["about"] = about
                     map["breed"] = breed
-                    map["age"] = age.toString()
+                    map["age"] = age
+                    //  map["age"] = age.toString()
                     map["gender"] = gender.toString()
                     map["image"] = imageResponse.body[0].image
 

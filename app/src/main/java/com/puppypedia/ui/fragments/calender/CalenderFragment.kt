@@ -131,13 +131,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
                             )
                         )
                     }
-
-
-
                     searchedData(CommonMethods.timeStampToDate((System.currentTimeMillis() / 1000).toInt()))
-                    /* weightAdapter = WeightAdapter(requireContext(), aboutResponse!!)
-                        rvWeight.adapter = weightAdapter*/
-
                 }
             }
             it.status == Status.ERROR -> {

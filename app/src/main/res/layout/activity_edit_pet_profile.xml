@@ -46,10 +46,157 @@
                 android:inputType="textEmailAddress"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
-                android:text="Rocky" />
+                />
 
 
             <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_7sdp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/gender"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/age"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentLeft="true"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edit_text">
+
+                        <Spinner
+                            android:id="@+id/spinnerGender"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@null" />
+
+
+                        <ImageView
+                            android:layout_width="@dimen/_8sdp"
+                            android:layout_height="@dimen/_8sdp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:src="@drawable/downaero" />
+
+                    </RelativeLayout>
+
+                    <EditText
+                        android:id="@+id/etAge"
+                        style="@style/MatchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edit_text"
+                        android:fontFamily="@font/opensans_regular"
+                        android:hint="@string/enter_age"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_7sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/weight"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:text="@string/breed"
+                        android:textSize="@dimen/_14sdp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_35sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/etWeight"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginRight="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edit_text"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/opensans_regular"
+                        android:hint="@string/enter_weight"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/lightGrayA3A3A3"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etBreed"
+                        style="@style/MatchEditText"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_edit_text"
+                        android:focusableInTouchMode="true"
+                        android:fontFamily="@font/opensans_regular"
+                        android:imeOptions="actionNext"
+                        android:hint="@string/enter_breed"
+                        android:inputType="text"
+                        android:paddingStart="@dimen/_10sdp"
+                        android:paddingEnd="@dimen/_10sdp" />
+
+                </LinearLayout>
+
+
+            </LinearLayout>
+            <!--<LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
@@ -99,7 +246,7 @@
                         style="@style/MatchEditText"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text"
-                        android:hint="@string/weight"
+                        android:hint="@string/enter_weight"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:paddingStart="@dimen/_10sdp"
@@ -115,35 +262,13 @@
                         style="@style/WrapTextView"
                         android:text="@string/age"
                         android:textSize="@dimen/_14sdp" />
-                  <!--  <RelativeLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="@dimen/_35sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:background="@drawable/bg_edit_text">
 
-                        <Spinner
-                            android:id="@+id/spinnerAge"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:background="@null" />
-
-
-                        <ImageView
-                            android:layout_width="@dimen/_8sdp"
-                            android:layout_height="@dimen/_8sdp"
-                            android:layout_alignParentEnd="true"
-                            android:layout_centerVertical="true"
-                            android:layout_marginEnd="@dimen/_10sdp"
-                            android:src="@drawable/downaero" />
-
-
-                    </RelativeLayout>-->
                     <EditText
                         android:id="@+id/etAge"
                         style="@style/MatchEditText"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text"
-                        android:hint="@string/weight"
+                        android:hint="@string/enter_age"
                         android:imeOptions="actionNext"
                         android:inputType="text"
                         android:paddingStart="@dimen/_10sdp"
@@ -161,16 +286,16 @@
                         style="@style/MatchEditText"
                         android:layout_marginTop="@dimen/_5sdp"
                         android:background="@drawable/bg_edit_text"
-                        android:hint="@string/breed"
+                        android:hint="@string/enter_breed"
                         android:imeOptions="actionNext"
                         android:inputType="textEmailAddress"
                         android:paddingStart="@dimen/_10sdp"
                         android:paddingEnd="@dimen/_10sdp"
-                        android:text="Golden Retriever" />
+                       />
 
 
                 </LinearLayout>
-            </LinearLayout>
+            </LinearLayout>-->
 
             <TextView
                 style="@style/WrapTextView"
@@ -192,8 +317,7 @@
                 android:minHeight="@dimen/_100sdp"
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingTop="@dimen/_10sdp"
-                android:paddingEnd="@dimen/_10sdp"
-                android:text="@string/dummY_text" />
+                android:paddingEnd="@dimen/_10sdp" />
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btnUpdate"

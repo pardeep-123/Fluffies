@@ -53,8 +53,6 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
                            val notificationAdapter = NotificationAdapter(this, aboutResponse!!)
                            rv_notifications.adapter = notificationAdapter
                        }
-                    val notificationAdapter = NotificationAdapter(this, aboutResponse!!)
-                    rv_notifications.adapter = notificationAdapter
                 }
             }
             it.status == Status.ERROR -> {

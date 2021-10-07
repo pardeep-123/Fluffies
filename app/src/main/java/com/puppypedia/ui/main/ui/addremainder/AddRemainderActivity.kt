@@ -169,7 +169,6 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         return output < tsLong
     }
 
-
     fun apiReminder() {
         if (isValid()) {
             val name = etName.text.toString().trim()

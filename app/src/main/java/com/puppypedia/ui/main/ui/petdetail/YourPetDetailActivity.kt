@@ -12,6 +12,7 @@ import android.view.Window
 import android.view.WindowManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,6 +31,7 @@ import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import com.zxy.tiny.Tiny
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_your_pet_detail.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
@@ -85,11 +87,11 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         btSubmit.setOnClickListener {
             callSignupApi()
         }
+
         ivCamera.setOnClickListener {
             mAlbumFiles = java.util.ArrayList()
             mAlbumFiles.clear()
             callImagePicker(this)
-
         }
     }
 
@@ -148,9 +150,26 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 gender = pos.toString()
                 val v = (parent?.getChildAt(0) as View)
                 val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+                if (pos == 0) {
+                    tvSpinner.setTextColor(
+                        ContextCompat.getColor(
+                            this@YourPetDetailActivity,
+                            R.color.lightGrayA3A3A3
+                        )
+                    )
+                } else {
+                    tvSpinner.setTextColor(
+                        ContextCompat.getColor(
+                            this@YourPetDetailActivity,
+                            R.color.black
+                        )
+                    )
+
+                }
+
                 /*tvSpinner.setPadding(0, 0, 0, 0)*/
                 tvSpinner.typeface = ResourcesCompat.getFont(
-                    this@YourPetDetailActivity, R.font.opensans_semibold
+                    this@YourPetDetailActivity, R.font.opensans_regular
                 )
             }
         }
