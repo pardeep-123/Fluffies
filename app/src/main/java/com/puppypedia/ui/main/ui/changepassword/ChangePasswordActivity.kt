@@ -1,6 +1,5 @@
 package com.puppypedia.ui.main.ui.changepassword
 
-import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -10,7 +9,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.restApi.RestObservable
-import com.puppypedia.ui.auth.login.LoginActivity
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
@@ -81,8 +79,6 @@ class ChangePasswordActivity : AppCompatActivity(), Observer<RestObservable> {
             }
         }
     }
-
-
     private fun isValid(): Boolean {
         var check = false
         if (!mValidationClass.isNetworkConnected)
@@ -97,9 +93,7 @@ class ChangePasswordActivity : AppCompatActivity(), Observer<RestObservable> {
             Helper.showErrorAlert(this, resources.getString(R.string.error_password_length))
         else if (mValidationClass.checkStringNull(edtConfirmNewPass.text.toString().trim()))
             Helper.showErrorAlert(this, resources.getString(R.string.error_cpassword))
-        else if (!edtConfirmNewPass.text.toString().trim()
-                .equals(edtConfirmNewPass.text.toString())
-        ) {
+        else if (!edtNewPass.text.toString().trim().equals(edtConfirmNewPass.text.toString())) {
             Helper.showErrorAlert(this, resources.getString(R.string.error_password_not_matched))
         } else
             check = true
@@ -128,9 +122,9 @@ class ChangePasswordActivity : AppCompatActivity(), Observer<RestObservable> {
                             this,
                             commonResponse.msg + "Password Changed Successfully"
                         )
-                        val intent = Intent(this, LoginActivity::class.java)
-                        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
-                        startActivity(intent)
+                        /*  val intent = Intent(this, LoginActivity::class.java)
+                          intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
+                          startActivity(intent)*/
                         finish()
                     } else {
                         Helper.showErrorAlert(this, commonResponse.code as String)

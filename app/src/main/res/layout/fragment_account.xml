@@ -97,6 +97,7 @@
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_toStartOf="@id/sw_switch"
                         android:text="@string/notifications" />
+
                     <androidx.appcompat.widget.SwitchCompat
                         android:id="@+id/sw_switch"
                         android:layout_width="wrap_content"

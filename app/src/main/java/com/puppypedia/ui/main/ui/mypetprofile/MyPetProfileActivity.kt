@@ -16,7 +16,9 @@ import com.puppypedia.ui.main.ui.editpetprofile.EditPetProfileActivity
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Constants.Companion.gender
 import com.puppypedia.utils.helper.others.Helper
+import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
 import kotlinx.android.synthetic.main.activity_my_pet_profile.*
+import kotlinx.android.synthetic.main.activity_my_pet_profile.tb
 import kotlinx.android.synthetic.main.activity_my_pet_profile.view.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
@@ -33,6 +35,7 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_pet_profile)
+
         clickHandle()
         context = this
 

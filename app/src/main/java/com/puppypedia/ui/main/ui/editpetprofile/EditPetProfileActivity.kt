@@ -24,6 +24,7 @@ import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
+import com.puppypedia.utils.helper.CommonMethods
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
@@ -65,6 +66,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_pet_profile)
+        CommonMethods.scrollEditText(etAbout)
         context = this
         clicksHandle()
         mValidationClass = ValidationsClass.getInstance()
@@ -74,6 +76,11 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         }
         setSpinnerGender()
         //setSpinnerAge()
+        etWeight.setSelection(etWeight.getText().length)
+        etBreed.setSelection(etBreed.getText().length)
+        etAbout.setSelection(etAbout.getText().length)
+
+
         data = (intent.getSerializableExtra("aboutResponse") as PetProfileResponse)
         // setSpinnerWeight()
 

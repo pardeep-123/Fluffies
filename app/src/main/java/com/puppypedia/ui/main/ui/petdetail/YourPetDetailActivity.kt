@@ -23,6 +23,7 @@ import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.home.HomeActivity
+import com.puppypedia.utils.helper.CommonMethods
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
@@ -57,6 +58,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_your_pet_detail)
+        CommonMethods.scrollEditText(etAbout)
         mValidationClass = ValidationsClass.getInstance()
         if (intent.hasExtra("auth")) {
             auth = intent.getStringExtra("auth").toString()
@@ -206,7 +208,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         var check = false
 
         if (mValidationClass.checkStringNull(image))
-            Helper.showErrorAlert(this, "Please select image")
+            Helper.showErrorAlert(this, "Please select your pet image")
         else if (mValidationClass.checkStringNull(name))
             Helper.showErrorAlert(this, resources.getString(R.string.error_name))
         else if (gender == "0")
@@ -215,19 +217,18 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                Helper.showErrorAlert(this, "Please select age")
               else if (weight == 0)
                Helper.showErrorAlert(this, "Please select weight")*/
-        else if (mValidationClass.checkStringNull(about))
-            Helper.showErrorAlert(this, resources.getString(R.string.about))
-        else if (mValidationClass.checkStringNull(breed))
-            Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
-        else if (mValidationClass.checkStringNull(weight))
-            Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
         else if (mValidationClass.checkStringNull(age))
             Helper.showErrorAlert(this, resources.getString(R.string.error_age))
+        else if (mValidationClass.checkStringNull(weight))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
+        else if (mValidationClass.checkStringNull(breed))
+            Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
+        else if (mValidationClass.checkStringNull(about))
+            Helper.showErrorAlert(this, resources.getString(R.string.about))
         else
             check = true
         return check
     }
-
     private fun callSignupApi() {
         if (isValid()) {
             val map = HashMap<String, RequestBody>()
@@ -324,8 +325,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                 }
             }
             .onCancel {
-                Toast.makeText(context, "Error", Toast.LENGTH_LONG)
-                    .show()
+                // Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
             }
             .start()
     }

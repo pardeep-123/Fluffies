@@ -1,11 +1,11 @@
 package com.puppypedia.ui.auth.signup
+
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.Log
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -28,7 +28,6 @@ import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
 import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_sign_up.*
-
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -207,8 +206,7 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
                 }
             }
             .onCancel {
-                Toast.makeText(context, "Error", Toast.LENGTH_LONG)
-                    .show()
+                // Toast.makeText(context, "Error", Toast.LENGTH_LONG).show()
             }
             .start()
     }

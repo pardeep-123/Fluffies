@@ -7,6 +7,7 @@ import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -48,8 +49,6 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
     ): View? {
         v = inflater.inflate(R.layout.fragment_account, container, false)
         sharedPrefUtil = SharedPrefUtil(requireContext())
-
-
         return v
     }
 
@@ -93,10 +92,12 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
             logoutDialog()
         }
         sw_switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            status = if (isChecked) {
-                "1"
+            if (isChecked) {
+                status = "1"
+                Toast.makeText(context, "Notification On", Toast.LENGTH_SHORT).show()
             } else {
-                " 0"
+                status = " 0"
+                Toast.makeText(context, "Notification Off", Toast.LENGTH_SHORT).show()
             }
             api(status)
         }

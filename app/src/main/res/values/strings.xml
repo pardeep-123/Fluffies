@@ -110,21 +110,21 @@
     <string name="error_name">Please enter name</string>
     <string name="error_email">Please enter email</string>
     <string name="error_validemail">Please enter valid email</string>
-    <string name="error_password">Please enter password</string>
+    <string name="error_password">Please enter old password</string>
     <string name="error_password_length">Password length should be atleast 6 characters.</string>
     <string name="error_new_password">Please enter new password</string>
-    <string name="error_cpassword">Please confirm password</string>
-    <string name="error_password_not_matched">Passwords should be matched.</string>
+    <string name="error_cpassword">Please enter confirm password</string>
+    <string name="error_password_not_matched">New password and confirm new password must be same.</string>
     <string name="cardname_missing_message">Please enter card name</string>
     <string name="cardnumber_missing_message">Please enter card number</string>
     <string name="invalid_card_message">Please enter valid card number</string>
-    <string name="about">Please enter about you pet</string>
+    <string name="about">Please enter about your pet</string>
     <string name="error_breed">Please enter breed</string>
     <string name="error_weight">Please enter weight</string>
     <string name="error_date">Please enter date</string>
     <string name="error_time">Please enter time</string>
     <string name="error_age">Please enter age</string>
     <string name="enter_age">Enter Age</string>
-    <string name="enter_weight">Weight (in pounds)</string>
+    <string name="enter_weight">Weight <small>(in pounds)</small></string>
     <string name="enter_breed">Enter Breed</string>
 </resources>
