@@ -52,7 +52,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()
     }
-
     private fun clicksHandle() {
         btnDay.setOnClickListener {
             btnDay.background =
@@ -64,7 +63,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             btnYear.setBackgroundColor(Color.TRANSPARENT)
             apiChart("1")
         }
-
         btnMonth.setOnClickListener {
             btnMonth.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_sky_blue_10dp)
@@ -74,9 +72,7 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             btnYear.setTextColor(ContextCompat.getColor(requireContext(), R.color.black))
             btnYear.setBackgroundColor(Color.TRANSPARENT)
             apiChart("2")
-
         }
-
         btnYear.setOnClickListener {
             btnYear.background =
                 ContextCompat.getDrawable(requireContext(), R.drawable.bg_sky_blue_10dp)
@@ -88,10 +84,7 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
             apiChart("3")
         }
     }
-
     private fun setGraph(registerResponse: StatisticsResponse) {
-
-
         lineChat.clear()
         x.clear()
         for (item in registerResponse.body) {
@@ -100,7 +93,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
                 var b = (item.weight).toFloat()
                 x.add(Entry(a, b))
             }
-
         }
         /*x.add(Entry(1F, 1.5F))
         x.add(Entry(15F, 1.1F))
@@ -137,7 +129,6 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
         lineChat.setData(data)
         lineChat.invalidate()
     }
-
     fun apiChart(datetype: String) {
         viewModel.addPetChartApi(
             requireActivity(),

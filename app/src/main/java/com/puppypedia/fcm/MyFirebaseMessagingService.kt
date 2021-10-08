@@ -12,6 +12,7 @@ import android.content.Intent
 import android.graphics.BitmapFactory
 import android.graphics.Color
 import android.media.AudioAttributes
+import android.media.RingtoneManager
 import android.net.Uri
 import android.os.Build
 import android.util.Log
@@ -70,7 +71,6 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         if (notificationManager == null)
             notificationManager = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-
         val sound: Uri =
             Uri.parse(ContentResolver.SCHEME_ANDROID_RESOURCE + "://" + applicationContext.packageName + "/" + R.raw.alarm) //Here is FILE_NAME is the name of file that you want to play
         val audioAttributes: AudioAttributes = AudioAttributes.Builder()
@@ -160,8 +160,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 PendingIntent.FLAG_UPDATE_CURRENT
             )
         val icon1 = BitmapFactory.decodeResource(resources, R.mipmap.ic_launcher)
-        // val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
-        val soundUri = Uri.parse("file:///android_asset/hopo.mp3")
+        val soundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
+        // val soundUri = Uri.parse("file:///android_asset/hopo.mp3")
         val notificationBuilder: Notification.Builder = Notification.Builder(
             applicationContext
         )

@@ -11,6 +11,7 @@ import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -30,7 +31,6 @@ import kotlinx.android.synthetic.main.activity_add_remainder.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import java.text.SimpleDateFormat
 import java.util.*
-
 
 class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
     lateinit var context: Context
@@ -60,7 +60,6 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         apiPetList()
         //  orderId = intent.getStringExtra("orderId").toString()
     }
-
     private fun clicksHandle() {
         tb.iv_back.setOnClickListener {
             onBackPressed()
@@ -69,10 +68,12 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             apiReminder()
         }
         sc_switch.setOnCheckedChangeListener { buttonView, isChecked ->
-            isRemind = if (isChecked) {
-                "1"
+            if (isChecked) {
+                isRemind = "1"
+                Toast.makeText(context, "Reminder On", Toast.LENGTH_SHORT).show()
             } else {
-                " 0"
+                isRemind = "0"
+                Toast.makeText(context, "Reminder Off", Toast.LENGTH_SHORT).show()
             }
         }
         edtDate.setOnClickListener {
