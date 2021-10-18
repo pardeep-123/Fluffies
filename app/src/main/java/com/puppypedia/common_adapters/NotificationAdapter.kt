@@ -24,7 +24,6 @@ class NotificationAdapter(
         val view = LayoutInflater.from(context).inflate(R.layout.item_notification, parent, false)
         return NotificationViewHolder(view)
     }
-
     override fun onBindViewHolder(holder: NotificationViewHolder, position: Int) {
         holder.itemView.tvDescription.setText(notiList.body[position].message)
         holder.itemView.tvDate.setText(notiList.body[position].createdAt)

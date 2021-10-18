@@ -19,8 +19,6 @@ class NotificationActivity : AppCompatActivity(), Observer<RestObservable> {
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     var list: ArrayList<NotificationResponse>? = null
     var aboutResponse: NotificationResponse? = null
-
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_notification)

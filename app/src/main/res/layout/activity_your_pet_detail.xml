@@ -78,14 +78,11 @@
                         android:layout_marginRight="@dimen/_4sdp"
                         android:layout_weight="1"
                         android:background="@drawable/bg_edit_text">
-
                         <Spinner
                             android:id="@+id/spinnerGender"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@null" />
-
-
                         <ImageView
                             android:layout_width="@dimen/_8sdp"
                             android:layout_height="@dimen/_8sdp"
@@ -93,7 +90,6 @@
                             android:layout_centerVertical="true"
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:src="@drawable/downaero" />
-
                     </RelativeLayout>
 
                     <EditText
