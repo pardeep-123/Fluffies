@@ -85,7 +85,6 @@ class AllViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getTermsAPI(
         activity: Activity, showLoader: Boolean
-
     ) {
         restApiInterface.terms()
             .subscribeOn(Schedulers.io())
@@ -113,7 +112,6 @@ class AllViewModel : ViewModel() {
             )
     }
 
-
     @SuppressLint("CheckResult")
     fun apiNotiOnOff(activity: Activity, status: String, showLoader: Boolean) {
         restApiInterface.notiOnOff(status)
@@ -129,7 +127,6 @@ class AllViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun changePasswordApi(
         activity: Activity, showLoader: Boolean, map: HashMap<String, String>
-
     ) {
         restApiInterface.changePassword(map)
             .subscribeOn(Schedulers.io())

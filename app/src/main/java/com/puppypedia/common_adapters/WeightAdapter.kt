@@ -24,10 +24,9 @@ class WeightAdapter(var context: Context, var weightlist: GetWeightResponse) :
 
     override fun onBindViewHolder(holder: WeightAdapter.WeightViewHolder, position: Int) {
         holder.itemView.tvWeight.setText(weightlist.body.weightCharts[position].weight + " lbs")
-        holder.itemView.tvAge.setText(weightlist.body.weightCharts[position].age)
+        holder.itemView.tvAge.setText(weightlist.body.weightCharts[position].age + " yr")
         holder.itemView.tvDate.setText(weightlist.body.weightCharts[position].date)
         holder.itemView.tvTime.setText(weightlist.body.weightCharts[position].time)
-
     }
 
     override fun getItemCount(): Int {

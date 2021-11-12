@@ -131,7 +131,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         btnLater.setOnClickListener {
             startActivity(Intent(this, HomeActivity::class.java))
             dialog.dismiss()
-            finishAffinity()
+            //finishAffinity()
         }
     }
 
@@ -177,27 +177,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-/*    private fun setSpinnerAge() {
-        val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
-        spinnerAge.adapter = adapterAge
-        spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                pos: Int,
-                id: Long
-            ) {
-                age = pos
-                val v = (parent?.getChildAt(0) as View)
-                val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
-                *//*tvSpinner.setPadding(0, 0, 0, 0)*//*
-                tvSpinner.typeface = ResourcesCompat.getFont(
-                    this@YourPetDetailActivity, R.font.opensans_semibold
-                )
-            }
-        }
-    }*/
+
 
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
@@ -237,7 +217,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             viewModel.mResponse.observe(this, this)
         }
     }
-
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -247,7 +226,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                         SharedPrefUtil.getInstance().isLogin = true
                         SharedPrefUtil.getInstance().saveAuthToken(auth)
                     }
-
                     val registerResponse: PetDetailResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
                         if (intent.hasExtra("add")) {
@@ -255,7 +233,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                         } else {
                             dialogAddPet()
                         }
-
 
                     } else {
                         Helper.showErrorAlert(this, registerResponse.code.toString())
@@ -294,29 +271,21 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     fun multipartImageGet(): MultipartBody.Part {
         val imageFile: MultipartBody.Part
         val options = Tiny.FileCompressOptions()
-        val result =
-            Tiny.getInstance().source(image).asFile().withOptions(options)
-                .compressSync()
+        val result = Tiny.getInstance().source(image).asFile().withOptions(options)
+            .compressSync()
         val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
             MultipartBody.Part.createFormData(
-                "image",
-                System.currentTimeMillis().toString() + ".jpg",
+                "image", System.currentTimeMillis().toString() + ".jpg",
                 fileReqBody
             )
         return imageFile
     }
 
     private fun callImagePicker(context: Context) {
-        Album.image(context)
-            .singleChoice()
-            .camera(true)
-            .columnCount(4)
-            .widget(
-                Widget.newDarkBuilder(context)
-                    .title(context.getString(R.string.app_name))
-                    .build()
-            )
+        Album.image(context).singleChoice().camera(true).columnCount(4).widget(
+            Widget.newDarkBuilder(context).title(context.getString(R.string.app_name)).build()
+        )
             .onResult { result ->
                 mAlbumFiles.addAll(result)
                 if (result.isNotEmpty()) {

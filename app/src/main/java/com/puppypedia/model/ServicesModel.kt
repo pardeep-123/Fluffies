@@ -1,7 +1,5 @@
 package com.puppypedia.model
 
-import android.widget.TextView
-
 class ServicesModel {
     var img: Int = 0
     var service: String? = null

@@ -70,7 +70,6 @@
                     android:layout_height="@dimen/_35sdp"
                     android:layout_marginTop="@dimen/_10sdp"
                     android:orientation="horizontal">
-
                     <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -91,7 +90,6 @@
                             android:layout_marginEnd="@dimen/_10sdp"
                             android:src="@drawable/downaero" />
                     </RelativeLayout>
-
                     <EditText
                         android:id="@+id/etAge"
                         style="@style/MatchEditText"

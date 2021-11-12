@@ -26,7 +26,6 @@ import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import java.util.*
 import kotlin.collections.set
 
-
 class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
@@ -75,7 +74,6 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
                         )
                     )
                 }
-
             datePicker(this)
         }
 
@@ -90,10 +88,7 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
                         "hh:mm "
                     )
                 )
-
-
             }
-
             timePicker(this)
         }
 
@@ -101,7 +96,6 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
             callApi()
         }
     }
-
     private fun setSpinnerAge() {
         ageArrayList.add("Age")
 
@@ -138,14 +132,10 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
                         )
                     )
                 }
-
                 age = ageArrayList[pos]
-
-
             }
         }
     }
-
     private fun datePicker(context: Context) {
         val datePicker = DatePickerDialog(
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
@@ -186,14 +176,14 @@ class AddWeightActivity : AppCompatActivity(), Observer<RestObservable> {
         if (isValid()) {
             val date = tvDate.text.toString().trim()
             val time = tvTime.text.toString().trim()
-            //  val age = etAge.text.toString().trim()
+            //  val age = etAge.text.toString().trim()-
             var weight = number_picker.value.toString() + "." + np.value
             val map = HashMap<String, String>()
             map["petid"] = sharedPrefUtil.petId.toString()
             map["date"] = date
             map["time"] = time
             map["weight"] = weight
-            map["age"] = age
+            map["age"] = age.replace("yr", "")
             viewModel.addPetWeightApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }

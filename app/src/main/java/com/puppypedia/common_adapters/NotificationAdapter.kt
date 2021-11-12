@@ -42,7 +42,7 @@ class NotificationAdapter(
         val tvDate: TextView = itemView.tvDate
 
         fun onbind(position: Int) {
-            /*  if (position == 0) {
+           /*   if (position == 0) {
                   itemView.background =
                       ContextCompat.getDrawable(context, R.drawable.bg_layout_radius_colored)
                   tvName.setTextColor(ContextCompat.getColor(context, R.color.white))
@@ -53,8 +53,8 @@ class NotificationAdapter(
                 tvName.setTextColor(ContextCompat.getColor(context,R.color.black))
                   tvDate.setTextColor(ContextCompat.getColor(context, R.color.black))
                   tvDescription.setTextColor(ContextCompat.getColor(context, R.color.black))
-              }*/
-
+              }
+*/
         }
     }
 }

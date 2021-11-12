@@ -27,7 +27,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_160sdp"
                 android:layout_marginTop="@dimen/_10sdp">
-                <com.makeramen.roundedimageview.RoundedImageView
+
+            <com.makeramen.roundedimageview.RoundedImageView
                     android:id="@+id/rivProfile"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"

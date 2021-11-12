@@ -49,6 +49,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
     var orderId = ""
     lateinit var dialog: Dialog
     var type = 0
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_remainder)
@@ -130,6 +131,8 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
             myCalendar[Calendar.DAY_OF_MONTH]
         )
+
+        //////////////////////////////////below line is for unable past dates
         datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
         datePicker.show()
     }
@@ -148,7 +151,6 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         val date = edtDate.text.toString().trim()
         val time = edtTime.text.toString().trim()
         var check = false
-
         if (mValidationClass.checkStringNull(name))
             Helper.showErrorAlert(this, resources.getString(R.string.error_name))
         else if (mValidationClass.checkStringNull(date))

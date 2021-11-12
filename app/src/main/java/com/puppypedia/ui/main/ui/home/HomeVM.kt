@@ -1,10 +1,7 @@
 package com.puppypedia.ui.main.ui.home
 
-import android.app.Activity
-import android.content.Intent
 import android.view.View
 import androidx.lifecycle.ViewModel
-import com.puppypedia.ui.main.ui.notification.NotificationActivity
 
 class HomeVM : ViewModel() {
 
