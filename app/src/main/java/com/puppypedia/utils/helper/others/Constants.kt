@@ -9,9 +9,16 @@ class Constants {
          const val IMAGE_URL = "http://202.164.42.227:7700"
          const val PET_IMAGE_URL = "http://202.164.42.227:7700/"*/
 
+        /*    const val BASE_URL = "https://app.puppypediaapp.com/api/"
+            const val IMAGE_URL = "https://app.puppypediaapp.com"
+            const val PET_IMAGE_URL = "https://app.puppypediaapp.com/"*/
+
+
+        ///////////////CHANGED Live URL
         const val BASE_URL = "https://app.puppypediaapp.com/api/"
         const val IMAGE_URL = "https://app.puppypediaapp.com"
         const val PET_IMAGE_URL = "https://app.puppypediaapp.com/"
+
 
         val success_code = 200
         val errorCode = 403
