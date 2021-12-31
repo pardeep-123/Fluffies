@@ -17,4 +17,6 @@
     <color name="red">#E53520</color>
     <color name="green">#5DB954</color>
     <color name="blue">#06238A</color>
+    <color name="Transparent">#00000000</color>
+
 </resources>

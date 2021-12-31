@@ -22,6 +22,9 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".ui.main.ui.AddRecordActivity"
+            android:exported="true" />
+        <activity
             android:name=".ui.main.ui.add_weight.AddWeightActivity"
             android:exported="true"
             android:launchMode="singleTop"
@@ -91,6 +94,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -103,7 +107,6 @@
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
-
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@mipmap/ic_launcher" />
@@ -114,8 +117,6 @@ Set color used with incoming notification messages. This is used when no color i
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_color"
             android:resource="@color/colorPrimary" /> <!-- ////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-
-
         <provider
             android:name="androidx.core.content.FileProvider"
             android:authorities="${applicationId}.provider"
@@ -127,7 +128,7 @@ Set color used with incoming notification messages. This is used when no color i
         </provider>
 
         <service
-            android:name="com.puppypedia.fcm.MyFirebaseMessagingService"
+            android:name=".fcm.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />

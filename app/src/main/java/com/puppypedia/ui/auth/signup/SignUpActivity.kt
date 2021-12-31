@@ -157,6 +157,8 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
                     map["deviceType"] = Constants.Device_Type
                     map["deviceToken"] = token
                     viewModel.signUpApi(this, true, map)
+                    viewModel.mResponse.observe(this, this)
+
 
                 }
             }
