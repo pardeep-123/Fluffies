@@ -2,7 +2,7 @@ package com.puppypedia.ui.main.ui.editpetprofile
 
 
 data class EditPetResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // Edit Pet successfully
     val body: Body

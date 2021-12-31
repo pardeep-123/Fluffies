@@ -2,7 +2,7 @@ package com.puppypedia.ui.fragments.calender
 
 
 data class CalenderGetReminderResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // get All reminders successfully
     val body: List<Body>

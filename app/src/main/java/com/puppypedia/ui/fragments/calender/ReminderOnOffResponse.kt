@@ -2,7 +2,7 @@ package com.puppypedia.ui.fragments.calender
 
 
 data class ReminderOnOffResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // Reminder status update successfully
     val body: Body

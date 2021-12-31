@@ -2,7 +2,7 @@ package com.puppypedia.ui.main.ui.petdetail
 
 
 data class PetDetailResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // report added successfully
     val body: Body

@@ -131,9 +131,7 @@ class StatisticsFragment : Fragment(), Observer<RestObservable> {
     }
     fun apiChart(datetype: String) {
         viewModel.addPetChartApi(
-            requireActivity(),
-            datetype,
-            SharedPrefUtil.getInstance().petId,
+            requireActivity(), datetype, SharedPrefUtil.getInstance().petId,
             true
         )
         viewModel.mResponse.observe(requireActivity(), this)

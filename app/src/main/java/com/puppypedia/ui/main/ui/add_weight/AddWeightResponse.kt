@@ -4,7 +4,7 @@ package com.puppypedia.ui.main.ui.add_weight
 import com.google.gson.annotations.SerializedName
 
 data class AddWeightResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // Add weight chart successfully
     val body: Body

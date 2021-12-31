@@ -2,7 +2,7 @@ package com.puppypedia.ui.fragments.weight
 
 
 data class GetWeightResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // Get weight profile 
     val body: Body

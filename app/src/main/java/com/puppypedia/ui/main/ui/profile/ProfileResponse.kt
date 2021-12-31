@@ -2,7 +2,7 @@ package com.puppypedia.ui.main.ui.profile
 
 
 data class ProfileResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // Get profile 
     val body: Body

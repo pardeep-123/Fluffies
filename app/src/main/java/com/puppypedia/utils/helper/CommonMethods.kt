@@ -90,5 +90,12 @@ object CommonMethods {
         return output
     }
 
+    fun convertOnedatetoAnother(date: String, olddateformt: String, newdateformat: String): Long {
+        val formatter: java.text.DateFormat = SimpleDateFormat(newdateformat)
+        val getDate = formatter.parse(date) as Date
+        val output = getDate.time
+        return output
+    }
+
 
 }

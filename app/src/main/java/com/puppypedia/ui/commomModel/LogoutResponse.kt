@@ -2,7 +2,7 @@ package com.puppypedia.ui.commomModel
 
 
 data class LogoutResponse(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // Logout successfully
     val body: Body

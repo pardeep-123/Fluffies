@@ -145,6 +145,8 @@ interface RestApiInterface {
         @Field("datetype") datetype: String,
         @Field("petid") petid: String
     ): Observable<StatisticsResponse>
+
+
     @FormUrlEncoded
     @POST(Constants.AddReminder)
     fun apiAddReminder(

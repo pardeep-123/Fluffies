@@ -51,7 +51,6 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
         sharedPrefUtil = SharedPrefUtil(requireContext())
         return v
     }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()

@@ -2,7 +2,7 @@ package com.puppypedia.ui.auth.signup
 
 
 data class SignUpResponse(
-    val success: Int, // 1
+    val success: Boolean, // true
     val code: Int, // 200
     val msg: String, // User registered successfully
     val body: Body

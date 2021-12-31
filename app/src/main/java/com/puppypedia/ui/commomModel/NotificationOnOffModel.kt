@@ -2,7 +2,7 @@ package com.puppypedia.ui.commomModel
 
 
 data class NotificationOnOffModel(
-    val success: Int, // 1
+    val success: Boolean, // 1
     val code: Int, // 200
     val msg: String, // Notification status update successfully
     val body: Body

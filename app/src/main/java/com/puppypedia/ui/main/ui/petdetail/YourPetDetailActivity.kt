@@ -177,8 +177,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-
-
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
         val about = etAbout.text.toString().trim()

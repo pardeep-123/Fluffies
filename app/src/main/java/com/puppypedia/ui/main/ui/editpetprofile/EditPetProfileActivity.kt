@@ -263,15 +263,12 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun apiEditPetProfile() {
         if (isValid()) {
-
-
             if (newImage != "") {
                 val map = HashMap<String, RequestBody>()
                 map["folder"] = mValidationClass.createPartFromString("pets")
                 viewModel.imageUpload(this, true, map, multipartImageGet())
                 viewModel.mResponse.observe(this, this)
             } else {
-
                 val name = etName.text.toString().trim()
                 val about = etAbout.text.toString().trim()
                 val weight = etWeight.text.toString().trim()
