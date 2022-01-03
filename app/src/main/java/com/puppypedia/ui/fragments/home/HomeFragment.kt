@@ -50,12 +50,14 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         apihome()
         return v
     }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()
         //  etAddress.setText(addresses[0].locality)
         tv_choose_dog.setText("")
     }
+
     private fun clicksHandle() {
         rl_notification.setOnClickListener {
             startActivity(Intent(requireContext(), NotificationActivity::class.java))
@@ -70,6 +72,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
             // startActivity(Intent(requireContext(), CategoryActivity::class.java))
         }
     }
+
     @SuppressLint("InflateParams")
     private fun setPopUpWindow() {
         val inflater =
@@ -81,24 +84,28 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
         rvDogs.adapter = DogsAdapter(requireContext(), arrayList, this)
     }
+
     fun apihome() {
+
         viewModel.getHomeDetails(requireActivity(), true)
         viewModel.mResponse.observe(requireActivity(), this)
+
     }
+
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
                     arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
-                  /*  if (arrayList.size == 0) {
-                        whitebackground.visibility = View.VISIBLE
-                        SharedPrefUtil.getInstance().clear()
-                       // startActivity(Intent(this, LoginActivity::class.java))
-                        startActivity(Intent(activity, LoginActivity::class.java))
-                        activity?.finishAffinity()
-                    } else {
-                        whitebackground.visibility = View.GONE
-                    }*/
+                    /*  if (arrayList.size == 0) {
+                          whitebackground.visibility = View.VISIBLE
+                          SharedPrefUtil.getInstance().clear()
+                         // startActivity(Intent(this, LoginActivity::class.java))
+                          startActivity(Intent(activity, LoginActivity::class.java))
+                          activity?.finishAffinity()
+                      } else {
+                          whitebackground.visibility = View.GONE
+                      }*/
                     aboutResponse = it.data
                     if (aboutResponse!!.body.notificationsCount == 0) {
                         tvCount.visibility = View.GONE

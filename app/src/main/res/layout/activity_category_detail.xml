@@ -76,12 +76,12 @@
             android:id="@+id/rv_addRecord"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            tools:listitem="@layout/add_record_layout"
             android:layout_marginTop="@dimen/_10sdp"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:listitem="@layout/add_record_layout" />
     </LinearLayout>
-
 
     <ImageView
         android:id="@+id/iv_addRecord"

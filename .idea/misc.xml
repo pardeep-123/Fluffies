@@ -54,7 +54,7 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_weight_chart.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_your_pet_detail.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/add_record_layout.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/add_record_layout.xml" value="0.18" />
         <entry key="app/src/main/res/layout/auth_toolbar.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/camera_gallery_popup.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_add_new_pet.xml" value="0.25" />
