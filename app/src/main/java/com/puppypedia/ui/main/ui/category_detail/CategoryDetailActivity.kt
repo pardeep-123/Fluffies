@@ -39,8 +39,7 @@ class CategoryDetailActivity : AppCompatActivity() {
             .placeholder(R.drawable.place_holder).into(img)
 
         iv_addRecord.setOnClickListener {
-            startActivity(
-                (Intent(this, AddRecordActivity::class.java)).putExtra("from", "add"))        }
+            startActivity((Intent(this, AddRecordActivity::class.java)).putExtra("from", "add"))        }
 
         if (catgory.id == 34) {
             iv_addRecord.visibility = View.VISIBLE
