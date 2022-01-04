@@ -127,4 +127,6 @@
     <string name="enter_age">Enter Age</string>
     <string name="enter_weight">Weight <small>(in pounds)</small></string>
     <string name="enter_breed">Enter Breed</string>
+    <string name="enter_description">Please enter description</string>
+    <string name="add"><u>Add</u></string>
 </resources>

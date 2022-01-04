@@ -24,7 +24,6 @@ class PetListAdapter(
         val view = LayoutInflater.from(context).inflate(R.layout.item_your_dogs, parent, false)
         return StatusViewHolder(view)
     }
-
     var selectedpoz = 0
     var pos = 0
 

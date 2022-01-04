@@ -84,7 +84,6 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             }
         }
     }
-
     fun petDetails(position: Int) {
         selectedpos = position.toString()
         Glide.with(context).load(Constants.IMAGE_URL + aboutResponse!!.body[position].image)

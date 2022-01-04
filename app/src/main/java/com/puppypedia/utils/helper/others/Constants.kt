@@ -42,6 +42,7 @@ class Constants {
         const val ChangePassword = BASE_URL + "changePassword"
         const val Profile = BASE_URL + "profile"
         const val GetPetProfile = BASE_URL + "get_pets"
+        const val get_pet_post = BASE_URL + "get_pet_post"
         const val EditProfile = BASE_URL + "edit_profile"
         const val EditPetProfile = BASE_URL + "edit_pet"
         const val Logout = BASE_URL + "logout"
@@ -53,7 +54,9 @@ class Constants {
         const val HomeApi = BASE_URL + "home_api"
         const val AddReminder = BASE_URL + "add_reminder"
         const val GetReminders = BASE_URL + "get_reminders"
+        const val delete_pet_data = BASE_URL + "delete_pet_data"
         const val RemindersOnOff = BASE_URL + "reminder_on_off"
+        const val upload_pet = BASE_URL + "upload_pet"
         fun gender(value: Int): String {
             if (value == 0) {
                 return "Male"

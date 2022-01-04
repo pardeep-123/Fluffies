@@ -3,6 +3,7 @@ package com.puppypedia.restApi
 import com.puppypedia.ui.auth.forgotpassword.ForgotPasswordResponse
 import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
+import com.puppypedia.ui.commomModel.CommonModel
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
@@ -12,8 +13,10 @@ import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import com.puppypedia.ui.fragments.statistics.StatisticsResponse
 import com.puppypedia.ui.fragments.weight.GetWeightResponse
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
+import com.puppypedia.ui.main.ui.add_record.AddPetRecordResponse
 import com.puppypedia.ui.main.ui.add_weight.AddWeightResponse
 import com.puppypedia.ui.main.ui.addremainder.AddReminderResponse
+import com.puppypedia.ui.main.ui.category_detail.GetPetResponse
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordResponse
 import com.puppypedia.ui.main.ui.editpetprofile.EditPetResponse
 import com.puppypedia.ui.main.ui.editprofile.EditProfileResponse
@@ -26,6 +29,7 @@ import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.http.*
+import java.util.*
 
 
 interface RestApiInterface {
@@ -42,6 +46,14 @@ interface RestApiInterface {
         @PartMap map: HashMap<String, RequestBody>,
         @Part image: MultipartBody.Part
     ): Observable<ImageUploadResponse>
+
+    @Multipart
+    @POST(Constants.FileUpload)
+    fun fileUploadmultiple(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: ArrayList<MultipartBody.Part?>
+    ): Observable<ImageUploadResponse>
+
 
     @FormUrlEncoded
     @POST(Constants.Login)
@@ -86,6 +98,15 @@ interface RestApiInterface {
 
     @GET(Constants.GetPetProfile)
     fun apiPetProfile(): Observable<PetProfileResponse>
+
+/*  @GET(Constants.get_pet_post)
+    fun apiPetData(): Observable<GetPetResponse>*/
+
+    @FormUrlEncoded
+    @POST(Constants.get_pet_post)
+    fun apiPetData(
+        @Field("petid") petid: String
+    ): Observable<GetPetResponse>
 
     @GET(Constants.HomeApi)
     fun apiHome(): Observable<HomeFragmentResponse>
@@ -169,11 +190,23 @@ interface RestApiInterface {
     ): Observable<CalenderGetReminderResponse>
 
     @FormUrlEncoded
+    @POST(Constants.delete_pet_data)
+    fun apideletePet(
+        @Field("id") id: String,
+        @Field("post_id") post_id: String,
+    ): Observable<CommonModel>
+
+    @FormUrlEncoded
     @POST(Constants.RemindersOnOff)
     fun apiReminderOnOff(
         @Field("isRemind") isRemind: String,
         @Field("reminderid") reminderid: String
     ): Observable<ReminderOnOffResponse>
 
+    @FormUrlEncoded
+    @POST(Constants.upload_pet)
+    fun addPuppyDescription(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<AddPetRecordResponse>
 
 }

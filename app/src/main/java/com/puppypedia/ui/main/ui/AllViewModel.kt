@@ -10,6 +10,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.schedulers.Schedulers
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import java.util.*
 
 class AllViewModel : ViewModel() {
     private val TAG = AllViewModel::class.java.name
@@ -32,7 +33,6 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
     @SuppressLint("CheckResult")
     fun apiAddPuppy(
         activity: Activity,
@@ -49,7 +49,6 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
     @SuppressLint("CheckResult")
     fun getAboutUsAPI(
         activity: Activity, showLoader: Boolean
@@ -64,12 +63,9 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
-
     @SuppressLint("CheckResult")
     fun getPrivacyPolicyAPI(
         activity: Activity, showLoader: Boolean
-
     ) {
         restApiInterface.privacypolicy()
             .subscribeOn(Schedulers.io())
@@ -80,8 +76,6 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
-
     @SuppressLint("CheckResult")
     fun getTermsAPI(
         activity: Activity, showLoader: Boolean
@@ -95,8 +89,6 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
-
     @SuppressLint("CheckResult")
     fun getNotificationListAPI(
         activity: Activity, showLoader: Boolean
@@ -111,7 +103,6 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
     @SuppressLint("CheckResult")
     fun apiNotiOnOff(activity: Activity, status: String, showLoader: Boolean) {
         restApiInterface.notiOnOff(status)
@@ -123,7 +114,6 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
     @SuppressLint("CheckResult")
     fun changePasswordApi(
         activity: Activity, showLoader: Boolean, map: HashMap<String, String>
@@ -137,10 +127,26 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
-
     @SuppressLint("CheckResult")
     fun getProfile(activity: Activity, showLoader: Boolean) {
         restApiInterface.apiProfile()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    @SuppressLint("CheckResult")
+    fun imageUploadmultile(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, RequestBody>,
+        multipartImageGet: ArrayList<MultipartBody.Part?>
+    ) {
+        restApiInterface.fileUploadmultiple(map, multipartImageGet)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -154,6 +160,22 @@ class AllViewModel : ViewModel() {
     @SuppressLint("CheckResult")
     fun getPetProfile(activity: Activity, showLoader: Boolean) {
         restApiInterface.apiPetProfile()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    @SuppressLint("CheckResult")
+    fun apiPetData(
+        activity: Activity,
+        petId: String,
+        showLoader: Boolean
+    ) {
+        restApiInterface.apiPetData(petId)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -294,6 +316,21 @@ class AllViewModel : ViewModel() {
 
 
     @SuppressLint("CheckResult")
+    fun apiDeletePet(
+        activity: Activity, id: String, post_id: String, showLoader: Boolean
+    ) {
+        restApiInterface.apideletePet(id, post_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
     fun addPetChartApi(
         activity: Activity, datetype: String, petId: String, showLoader: Boolean
     ) {
@@ -348,6 +385,24 @@ class AllViewModel : ViewModel() {
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
             .subscribe(
                 { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun apiAddPuppyDescription(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, String>,
+        // multipartImageGet: MultipartBody.Part
+    ) {
+        restApiInterface.addPuppyDescription(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it!!) },
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }

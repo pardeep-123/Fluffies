@@ -1,45 +1,47 @@
 package com.puppypedia.common_adapters
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.*
-import androidx.core.content.ContextCompat.startActivity
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.puppypedia.R
-import com.puppypedia.ui.main.ui.AddRecordActivity
-import java.util.ArrayList
+import com.puppypedia.ui.main.ui.category_detail.GetPetResponse
+import com.puppypedia.utils.helper.others.Constants
+import kotlinx.android.synthetic.main.add_record_layout.view.*
 
-class AddRecordAdapter(var mContext1: Context) :
+class AddRecordAdapter(
+    var context: Context,
+    var dataList: GetPetResponse,
+    var clickCallBack: ClickCallBack
+) :
     RecyclerView.Adapter<AddRecordAdapter.ViewHolderGrid>() {
-    var onItemClickListener: ((pos: Int, type: String) -> Unit)? = null
-
-
-    private lateinit var mContext: Context
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolderGrid {
-        mContext=parent.context
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.add_record_layout, parent, false)
-
+        val view =
+            LayoutInflater.from(parent.context).inflate(R.layout.add_record_layout, parent, false)
         return ViewHolderGrid(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolderGrid, position: Int) {
-
+        Glide.with(holder.itemView.context)
+            .load(Constants.PET_IMAGE_URL + dataList.body[position].petImages)
+            .placeholder(R.drawable.place_holder).into(holder.itemView.iv_record)
+        holder.itemView.tv_record.setText(dataList.body[position].description)
         holder.iv_delete.setOnClickListener {
-
+            clickCallBack!!.onItemClick(position, "3")
         }
         holder.iv_edit.setOnClickListener {
-            onItemClickListener!!.invoke(position,"2")
+            clickCallBack!!.onItemClick(position, "2")
         }
 
     }
 
     override fun getItemCount(): Int {
-        return 5
+        return dataList.body.size
     }
 
     class ViewHolderGrid(item1: View) : RecyclerView.ViewHolder(item1) {
@@ -52,36 +54,5 @@ class AddRecordAdapter(var mContext1: Context) :
 
 
     }
-//    private fun imageWithLoader(imView: ImageView, url: String, progressBar: ProgressBar) {
-//        Glide.with(mContext)
-//            .load(url)
-//            .placeholder(R.drawable.ic_image_placeholder)
-//            .error(R.drawable.ic_image_placeholder)
-//            .listener(object : RequestListener<Drawable?> {
-//                override fun onLoadFailed(
-//                    e: GlideException?,
-//                    model: Any?,
-//                    target: com.bumptech.glide.request.target.Target<Drawable?>?,
-//                    isFirstResource: Boolean
-//                ): Boolean {
-//
-//                    progressBar.visibility = View.GONE
-//                    return false
-//                }
-//
-//                override fun onResourceReady(
-//                    resource: Drawable?,
-//                    model: Any?,
-//                    target: com.bumptech.glide.request.target.Target<Drawable?>?,
-//                    dataSource: DataSource?,
-//                    isFirstResource: Boolean
-//                ): Boolean {
-//                    progressBar.visibility = View.GONE
-//                    return false
-//                }
-//            })
-//            .into(imView)
-//    }
-
 
 }

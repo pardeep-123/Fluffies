@@ -22,7 +22,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".ui.main.ui.AddRecordActivity"
+            android:name=".ui.main.ui.add_record.AddRecordActivity"
             android:exported="true" />
         <activity
             android:name=".ui.main.ui.add_weight.AddWeightActivity"

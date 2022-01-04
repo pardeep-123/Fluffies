@@ -32,6 +32,7 @@ public class SharedPrefUtil {
     public static final String NOTIFY = "notify";
     public static final String NOTIFY_ICON = "notifyIcon";
     public static final String PET_ID = "petId";
+    public static final String POST_ID = "postId";
     public static final String FCM = "fcm_token";
     public static final String Pet_Pos = "petPos";
     public static final String LATITUDE = "latitude";
@@ -585,6 +586,18 @@ public class SharedPrefUtil {
         mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
         return mSharedPreferences.getString(PET_ID, "");
     }
+
+    public void savePostId(String value) {
+        mEditor = mSharedPreferences.edit();
+        mEditor.putString(POST_ID, value);
+        mEditor.apply();
+    }
+
+    public String getPostId() {
+        mSharedPreferences = mContext.getSharedPreferences(APP_PREFS, Context.MODE_PRIVATE);
+        return mSharedPreferences.getString(POST_ID, "");
+    }
+
 
     public void saveFcmToken(String value) {
         mEditor = mSharedPreferences.edit();
