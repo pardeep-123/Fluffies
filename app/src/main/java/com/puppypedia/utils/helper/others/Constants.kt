@@ -44,6 +44,7 @@ class Constants {
         const val GetPetProfile = BASE_URL + "get_pets"
         const val get_pet_post = BASE_URL + "get_pet_post"
         const val EditProfile = BASE_URL + "edit_profile"
+        const val edit_pet_post = BASE_URL + "edit_pet_post"
         const val EditPetProfile = BASE_URL + "edit_pet"
         const val Logout = BASE_URL + "logout"
         const val ForgotPassword = BASE_URL + "forgotPassword"

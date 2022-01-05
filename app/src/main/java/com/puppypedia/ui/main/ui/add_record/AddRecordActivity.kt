@@ -37,6 +37,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClickListener,
+    ImageAdapter.deleteimage,
     ClickCallBack {
     var data: GetPetResponse.Body? = null
     var petId = ""
@@ -73,7 +74,10 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
             petId = data!!.id.toString()
             edDescription.setText(data!!.description)
             firstImage = data!!.petImages[0].petImage
-            rv_img.adapter = ImageAdapter(this, data!!.petImages)
+            rv_img.adapter = ImageAdapter(
+                this,
+                data!!.petImages as ArrayList<GetPetResponse.Body.PetImage>, this@AddRecordActivity
+            )
 
         }
     }
@@ -125,6 +129,16 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
                         stringImage.toString().replace("[", "").replace("]", "").replace(" ", "")
                     viewModel.apiAddPuppyDescription(this, true, map)
                 }
+                if (it.data is EditPetDataResponse) {
+                    val registerResponse: EditPetDataResponse = it.data
+                    if (registerResponse.code == Constants.success_code) {
+
+                    } else {
+                        Helper.showErrorAlert(this, registerResponse.code.toString())
+                    }
+                }
+
+
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -197,4 +211,11 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
             }
         }
     }
+
+    override fun deleteimageapi(postid: String, imageid: String) {
+        viewModel.apiDeletePetImage(this, sharedPrefUtil.petId.toString(), postid, imageid, true)
+        viewModel.mResponse.observe(this, this)
+    }
+
+
 }

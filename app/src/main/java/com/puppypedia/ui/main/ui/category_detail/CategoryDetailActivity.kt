@@ -72,7 +72,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
 
                   }
                   if (type == "3") {
-                      apiDeletePet()
+                      apiitPet()
                   }
               }*/
         } else {

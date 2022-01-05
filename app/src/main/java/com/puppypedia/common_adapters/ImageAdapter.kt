@@ -8,12 +8,17 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puppypedia.R
+import com.puppypedia.ui.main.ui.add_record.AddRecordActivity
 import com.puppypedia.ui.main.ui.category_detail.GetPetResponse
 import com.puppypedia.utils.helper.others.Constants
 import kotlinx.android.synthetic.main.res_image.view.iv_delete
 import kotlinx.android.synthetic.main.rv_multi_images.view.*
 
-class ImageAdapter(var context: Context, var list: List<GetPetResponse.Body.PetImage>) :
+class ImageAdapter(
+    var context: Context,
+    var list: ArrayList<GetPetResponse.Body.PetImage>,
+    var addRecordActivity: AddRecordActivity
+) :
     RecyclerView.Adapter<ImageAdapter.MyViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         return MyViewHolder(
@@ -29,8 +34,12 @@ class ImageAdapter(var context: Context, var list: List<GetPetResponse.Body.PetI
             .into(holder.itemView.ivImage)
 
         holder.itemView.iv_delete.setOnClickListener {
+            addRecordActivity.deleteimageapi(
+                list[position].postId.toString(),
+                list.get(position).id.toString()
+            )
 
-            //list.remove(list.get(position))
+            list.remove(list.get(position))
 
             notifyDataSetChanged()
         }
@@ -38,6 +47,10 @@ class ImageAdapter(var context: Context, var list: List<GetPetResponse.Body.PetI
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    interface deleteimage {
+        fun deleteimageapi(postid: String, imageid: String)
     }
 
     inner class MyViewHolder(itemView: View) :

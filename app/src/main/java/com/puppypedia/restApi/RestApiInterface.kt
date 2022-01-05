@@ -13,6 +13,7 @@ import com.puppypedia.ui.fragments.statistics.StatisticsResponse
 import com.puppypedia.ui.fragments.weight.GetWeightResponse
 import com.puppypedia.ui.main.ui.about_us.AboutusResponse
 import com.puppypedia.ui.main.ui.add_record.AddPetRecordResponse
+import com.puppypedia.ui.main.ui.add_record.EditPetDataResponse
 import com.puppypedia.ui.main.ui.add_weight.AddWeightResponse
 import com.puppypedia.ui.main.ui.addremainder.AddReminderResponse
 import com.puppypedia.ui.main.ui.category_detail.DeleteResponse
@@ -121,6 +122,13 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<EditProfileResponse>
 
+    @FormUrlEncoded
+    @POST(Constants.edit_pet_post)
+    fun editPetPost(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<EditPetDataResponse>
+
+
     @Multipart
     @POST(Constants.EditProfile)
     fun editUserProfileWithImage(
@@ -195,6 +203,16 @@ interface RestApiInterface {
         @Field("petid") petid: String,
         @Field("post_id") post_id: String,
     ): Observable<DeleteResponse>
+
+
+    @FormUrlEncoded
+    @POST(Constants.delete_pet_data)
+    fun apideletePetImages(
+        @Field("petid") petid: String,
+        @Field("post_id") post_id: String,
+        @Field("image_id") image_id: String,
+    ): Observable<DeleteResponse>
+
 
     @FormUrlEncoded
     @POST(Constants.RemindersOnOff)

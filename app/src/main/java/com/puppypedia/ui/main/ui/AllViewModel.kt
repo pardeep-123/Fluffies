@@ -212,6 +212,19 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    @SuppressLint("CheckResult")
+    fun editPetData(
+        activity: Activity, showLoader: Boolean, map: HashMap<String, String>
+    ) {
+        restApiInterface.editPetPost(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
 
     @SuppressLint("CheckResult")
     fun editUserProfileWithImageApi(
@@ -320,6 +333,21 @@ class AllViewModel : ViewModel() {
         activity: Activity, petid: String, post_id: String, showLoader: Boolean
     ) {
         restApiInterface.apideletePet(petid, post_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
+    fun apiDeletePetImage(
+        activity: Activity, petid: String, post_id: String, image_id: String, showLoader: Boolean
+    ) {
+        restApiInterface.apideletePetImages(petid, post_id, image_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
