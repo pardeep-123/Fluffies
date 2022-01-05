@@ -6,7 +6,6 @@
         <entry key="../../../../../../layout/custom_preview.xml" value="0.15989583333333332" />
         <entry key="../../../../layout/custom_preview.xml" value="0.2" />
         <entry key="app/src/main/res/drawable-v24/bg_round.xml" value="0.20104166666666667" />
-        <entry key="app/src/main/res/drawable-v24/eddescriptionshape.xml" value="0.16574074074074074" />
         <entry key="app/src/main/res/drawable-v24/place_holder.xml" value="0.19794871794871796" />
         <entry key="app/src/main/res/drawable-v24/toast_back.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/drawable/bg_check_boxx.xml" value="0.1609375" />
@@ -36,25 +35,26 @@
         <entry key="app/src/main/res/drawable/password_show.xml" value="0.1609375" />
         <entry key="app/src/main/res/drawable/place_holder.xml" value="0.18541666666666667" />
         <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.17" />
-        <entry key="app/src/main/res/layout/activity_add_record.xml" value="0.1578125" />
-        <entry key="app/src/main/res/layout/activity_add_remainder.xml" value="0.17" />
+        <entry key="app/src/main/res/layout/activity_add_record.xml" value="0.16927083333333334" />
+        <entry key="app/src/main/res/layout/activity_add_remainder.xml" value="0.21" />
         <entry key="app/src/main/res/layout/activity_add_weight.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_category.xml" value="0.18" />
-        <entry key="app/src/main/res/layout/activity_category_detail.xml" value="0.15" />
+        <entry key="app/src/main/res/layout/activity_category_detail.xml" value="0.19" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_edit_pet_profile.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_edit_profile.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_edit_record.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/activity_forgot_password.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/activity_home.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.19" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/activity_my_pet_profile.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/activity_my_pet_profile.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_notification.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_profile.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_sign_up.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/activity_weight_chart.xml" value="0.14479166666666668" />
-        <entry key="app/src/main/res/layout/activity_your_pet_detail.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/add_record_layout.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_your_pet_detail.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/add_record_layout.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/auth_toolbar.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/camera_gallery_popup.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/dialog_add_new_pet.xml" value="0.25" />
@@ -65,19 +65,21 @@
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/fragment_search.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.2" />
-        <entry key="app/src/main/res/layout/fragment_weight.xml" value="0.14479166666666668" />
+        <entry key="app/src/main/res/layout/fragment_weight.xml" value="0.33" />
         <entry key="app/src/main/res/layout/guest_dialog.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/item_appointment.xml" value="0.22" />
         <entry key="app/src/main/res/layout/item_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_notification.xml" value="0.22" />
-        <entry key="app/src/main/res/layout/item_services.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/item_services.xml" value="0.17" />
         <entry key="app/src/main/res/layout/item_spinner.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_status.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/layout/item_weight.xml" value="0.21" />
         <entry key="app/src/main/res/layout/item_your_dogs.xml" value="0.18" />
         <entry key="app/src/main/res/layout/popup.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/res_image.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/rv_multi_images.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/xml/file_paths.xml" value="0.14479166666666668" />
       </map>
