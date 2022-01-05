@@ -2,13 +2,14 @@ package com.puppypedia.ui.main.ui.category_detail
 
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
-data class GetPetResponse(
+class GetPetResponse(
     val success: Boolean, // true
     val code: Int, // 200
     val msg: String, // pet posts
     val body: List<Body>
-) {
+) : Serializable {
     data class Body(
         val id: Int, // 6
         @SerializedName("user_id")
@@ -20,7 +21,7 @@ data class GetPetResponse(
         val updatedAt: String, // 2022-01-04T12:38:04.000Z
         @SerializedName("pet_images")
         val petImages: List<PetImage>
-    ) {
+    ) : Serializable {
         data class PetImage(
             val id: Int, // 34
             @SerializedName("user_id")
@@ -33,6 +34,6 @@ data class GetPetResponse(
             val petImage: String, // fdfd
             val createdAt: String, // 2022-01-04T12:38:04.000Z
             val updatedAt: String // 2022-01-04T12:38:04.000Z
-        )
+        ) : Serializable
     }
 }

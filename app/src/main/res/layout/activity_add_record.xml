@@ -51,59 +51,42 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_select_add_post"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_230sdp"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/llSelect"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:backgroundTint="#E5E5E5"
+                app:contentPadding="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_15sdp">
 
-                <RelativeLayout
-                    android:id="@+id/view"
+                <HorizontalScrollView
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
-
-                    <androidx.recyclerview.widget.RecyclerView
-                        android:id="@+id/rv_img"
+                    <LinearLayout
+                        android:id="@+id/view"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_200sdp"
-                        android:layout_alignParentTop="true"
-                        android:layout_centerInParent="true"
-                        android:nestedScrollingEnabled="false"
-                        android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
 
-                    <ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
-                        android:id="@+id/indicator"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/rv_img"
-                        android:layout_alignParentBottom="true"
-                        android:layout_centerHorizontal="true"
-                        android:layout_gravity="center"
-                        android:layout_marginTop="@dimen/_10sdp"
-                        android:layout_marginBottom="@dimen/_10sdp"
-                        app:spi_dotColor="@color/black"
-                        app:spi_dotSelectedColor="@color/grey"
-                        app:spi_dotSelectedSize="@dimen/_6sdp"
-                        app:spi_dotSize="@dimen/_4sdp" />
 
-                    <!--
-                       <ImageView
-                           android:layout_width="@dimen/_120sdp"
-                           android:layout_height="@dimen/_120sdp"
-                           android:layout_centerInParent="true"
-                           android:scaleType="centerCrop"
-                           android:src="@drawable/add_pic" />
-                       <ImageView
-                           android:id="@+id/ivAddPost"
-                           android:layout_width="match_parent"
-                           android:layout_height="match_parent"
-                           android:scaleType="centerCrop" />
-   -->
-                </RelativeLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_edit_img"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_toEndOf="@+id/rv_img"
+                            android:orientation="horizontal"
+                            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                    </LinearLayout>
+                </HorizontalScrollView>
             </androidx.cardview.widget.CardView>
 
 
@@ -158,11 +141,9 @@
                 android:layout_marginTop="@dimen/_50sdp"
                 android:layout_marginEnd="@dimen/_20sdp"
                 android:layout_marginBottom="@dimen/_20sdp"
-                android:fontFamily="@font/opensans_bold"
                 android:background="@drawable/bg_sky_blue_10dp"
+                android:fontFamily="@font/opensans_bold"
                 android:text="Add Record" />
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
-
-
 </RelativeLayout>

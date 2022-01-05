@@ -317,9 +317,9 @@ class AllViewModel : ViewModel() {
 
     @SuppressLint("CheckResult")
     fun apiDeletePet(
-        activity: Activity, id: String, post_id: String, showLoader: Boolean
+        activity: Activity, petid: String, post_id: String, showLoader: Boolean
     ) {
-        restApiInterface.apideletePet(id, post_id)
+        restApiInterface.apideletePet(petid, post_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

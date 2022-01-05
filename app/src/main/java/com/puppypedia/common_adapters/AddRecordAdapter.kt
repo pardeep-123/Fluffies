@@ -28,25 +28,21 @@ class AddRecordAdapter(
 
     override fun onBindViewHolder(holder: ViewHolderGrid, position: Int) {
         Glide.with(holder.itemView.context)
-            .load(Constants.PET_IMAGE_URL + dataList.body[position].petImages)
+            .load(Constants.PET_IMAGE_URL + dataList.body[position].petImages[0].petImage)
             .placeholder(R.drawable.place_holder).into(holder.itemView.iv_record)
+
         holder.itemView.tv_record.setText(dataList.body[position].description)
         holder.iv_delete.setOnClickListener {
-            clickCallBack!!.onItemClick(position, "3")
+            clickCallBack.onItemClick(position, "3")
         }
         holder.iv_edit.setOnClickListener {
-            clickCallBack!!.onItemClick(position, "2")
+            clickCallBack.onItemClick(position, "2")
         }
-
     }
-
     override fun getItemCount(): Int {
         return dataList.body.size
     }
-
     class ViewHolderGrid(item1: View) : RecyclerView.ViewHolder(item1) {
-
-
         val iv_record: ImageView = item1.findViewById(R.id.iv_record)
         val tv_record: TextView = item1.findViewById(R.id.tv_record)
         val iv_delete: ImageView = item1.findViewById(R.id.iv_delete)

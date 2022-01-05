@@ -13,7 +13,6 @@ import com.puppypedia.R
 import com.puppypedia.common_adapters.AddRecordAdapter
 import com.puppypedia.common_adapters.ClickCallBack
 import com.puppypedia.restApi.RestObservable
-import com.puppypedia.ui.commomModel.CommonModel
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.add_record.AddRecordActivity
@@ -25,6 +24,7 @@ import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
 class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
     lateinit var context: Context
+    var description = ""
     lateinit var addRecordAdapter: AddRecordAdapter
     var aboutResponse: GetPetResponse? = null
     lateinit var sharedPrefUtil: SharedPrefUtil
@@ -53,6 +53,11 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
             startActivity((Intent(this, AddRecordActivity::class.java)).putExtra("from", "add"))
         }
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         if (catgory.id == 34) {
             iv_addRecord.visibility = View.VISIBLE
             rv_addRecord.visibility = View.VISIBLE
@@ -64,8 +69,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
                       addRecordAdapter.notifyDataSetChanged()
                   }
                   if (type == "2") {
-                      startActivity(
-                          (Intent(this, AddRecordActivity::class.java)).putExtra("from", "edit"))
+
                   }
                   if (type == "3") {
                       apiDeletePet()
@@ -77,18 +81,14 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
         }
     }
 
+
     fun apiPetData() {
         viewModel.apiPetData(this, sharedPrefUtil.petId.toString(), true)
         viewModel.mResponse.observe(this, this)
     }
 
-    fun apiDeletePet(id: String) {
-        viewModel.apiDeletePet(
-            this,
-            sharedPrefUtil.petId.toString(),
-            sharedPrefUtil.getPostId().toString(),
-            true
-        )
+    fun apiDeletePet(postId: String) {
+        viewModel.apiDeletePet(this, sharedPrefUtil.petId.toString(), postId, true)
         viewModel.mResponse.observe(this, this)
     }
 
@@ -100,8 +100,8 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
                     addRecordAdapter = AddRecordAdapter(this, aboutResponse!!, this)
                     rv_addRecord.adapter = addRecordAdapter
                 }
-                if (it.data is CommonModel) {
-
+                if (it.data is DeleteResponse) {
+                    apiPetData()
                 }
             }
             it.status == Status.ERROR -> {
@@ -113,11 +113,22 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
             }
         }
     }
-
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "3" -> {
-                // apiDeletePet(aboutResponse!!.body[pos].petImages[pos].postId.toString())
+                apiDeletePet(aboutResponse!!.body[pos].petImages[pos].postId.toString())
+            }
+            "2" -> {
+                var i = Intent(context, AddRecordActivity::class.java)
+                i.putExtra("from", "edit")
+                i.putExtra("data", aboutResponse!!.body[pos])
+                startActivity(i)
+
+                /*
+                 startActivity((Intent(this, AddRecordActivity::class.java))
+                     .putExtra("from", "edit")
+                     .putExtra("description",  aboutResponse?.body)
+                 )*/
             }
         }
     }

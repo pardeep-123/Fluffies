@@ -7,16 +7,17 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.SnapHelper
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.ClickCallBack
+import com.puppypedia.common_adapters.ImageAdapter
+import com.puppypedia.common_adapters.MultiEditImageAdapter
 
 import com.puppypedia.common_adapters.MultipleImageAdapter
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
+import com.puppypedia.ui.main.ui.category_detail.GetPetResponse
 import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
@@ -33,34 +34,30 @@ import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.RequestBody.Companion.asRequestBody
-import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
 import java.io.File
 
 class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClickListener,
     ClickCallBack {
-
+    var data: GetPetResponse.Body? = null
     var petId = ""
+    var firstImage = ""
     lateinit var sharedPrefUtil: SharedPrefUtil
     var images = ArrayList<MultipartBody.Part?>()
     lateinit var adapter: MultipleImageAdapter
+    lateinit var multiEditImageAdapter: MultiEditImageAdapter
     var aboutResponse: PetProfileResponse? = null
     private var mAlbumFiles = ArrayList<AlbumFile>()
     private var stringImage = ArrayList<String>()
     private val viewModel: AllViewModel by lazy { ViewModelProvider(this).get(AllViewModel::class.java) }
     private lateinit var mValidationClass: ValidationsClass
 
-    /* override fun selectedImage(imagePath: File?) {
-         Glide.with(this).load(imagePath).into(ivAddPost)
-     }*/
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_record)
         mValidationClass = ValidationsClass.getInstance()
         sharedPrefUtil = SharedPrefUtil(this)
         btnAddRecord.setOnClickListener(this)
-
         tvAdd.setOnClickListener(this)
-
         btnAddRecord.setOnClickListener(this)
         toolbar.tv_title.setTextColor(getColor(R.color.black))
         toolbar.iv_back.setImageResource(R.drawable.back_arrow)
@@ -71,10 +68,14 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
             toolbar.tv_title.text = "Add Record"
         } else {
             toolbar.tv_title.text = "Edit Record"
+            btnAddRecord.text = "Submit"
+            data = (intent.getSerializableExtra("data") as GetPetResponse.Body)
+            petId = data!!.id.toString()
+            edDescription.setText(data!!.description)
+            firstImage = data!!.petImages[0].petImage
+            rv_img.adapter = ImageAdapter(this, data!!.petImages)
+
         }
-        /* ivAddPost.setOnClickListener {
-             getImage(this, 0, false)
-         }*/
     }
 
     private fun isValid(): Boolean {
@@ -169,13 +170,8 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
                     "checkimagelink",
                     "-////-" + images.toString().replace("[", "").replace("]", "")
                 )
-                //rv_img.adapter = MultipleImageAdapter(this, mAlbumFiles, "complete")
-                val indicator = view?.findViewById<ScrollingPagerIndicator>(R.id.indicator)
-                val adapter = MultipleImageAdapter(this, mAlbumFiles, "complete")
-                rv_img.adapter = adapter
-                indicator?.attachToRecyclerView(rv_img)
-                val snapHelper: SnapHelper = PagerSnapHelper()
-                snapHelper.attachToRecyclerView(rv_img)
+                rv_edit_img.adapter = MultipleImageAdapter(this, mAlbumFiles, "complete")
+
             }
             .onCancel {
             }.start()
@@ -198,7 +194,6 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         when (value) {
             "pet" -> {
                 petId = aboutResponse!!.body[pos].id.toString()
-                // SharedPrefUtil.getInstance().savePetId(arrayList[pos].body[pos].id.toString())
             }
         }
     }
