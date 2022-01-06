@@ -60,14 +60,18 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         btnAddRecord.setOnClickListener(this)
         tvAdd.setOnClickListener(this)
         btnAddRecord.setOnClickListener(this)
+        addIcon.setOnClickListener(this)
         toolbar.tv_title.setTextColor(getColor(R.color.black))
         toolbar.iv_back.setImageResource(R.drawable.back_arrow)
         toolbar.iv_back.setOnClickListener {
             onBackPressed()
         }
+
         if (intent.getStringExtra("from") == "add") {
             toolbar.tv_title.text = "Add Record"
+            addIcon.visibility = View.VISIBLE
         } else {
+            addIcon.visibility = View.GONE
             toolbar.tv_title.text = "Edit Record"
             btnAddRecord.text = "Submit"
             data = (intent.getSerializableExtra("data") as GetPetResponse.Body)
@@ -223,6 +227,9 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
                 }
             }
             R.id.tvAdd -> {
+                selectImage()
+            }
+            R.id.addIcon ->{
                 selectImage()
             }
         }

@@ -21,11 +21,11 @@
             <RelativeLayout
                 android:id="@+id/llSelect"
                 android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_below="@id/toolbar"
                 android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
-                android:layout_height="wrap_content">
+                android:layout_marginEnd="@dimen/_20sdp">
 
                 <TextView
                     android:id="@+id/tvadd"
@@ -53,17 +53,24 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_200sdp"
                 android:layout_below="@id/llSelect"
-                android:layout_marginTop="@dimen/_20sdp"
                 android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginTop="@dimen/_20sdp"
                 android:backgroundTint="#E5E5E5"
                 app:cardCornerRadius="@dimen/_15sdp"
                 app:contentPadding="@dimen/_5sdp">
 
+                <ImageView
+                    android:id="@+id/addIcon"
+                    android:layout_width="@dimen/_50sdp"
+                    android:layout_height="@dimen/_50sdp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    android:src="@drawable/plusbg" />
+
                 <HorizontalScrollView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:scrollbars="horizontal"
-                    >
+                    android:scrollbars="horizontal">
 
                     <RelativeLayout
                         android:id="@+id/view"

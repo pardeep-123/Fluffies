@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
@@ -36,13 +37,17 @@ class ImageAdapter(
             .into(holder.itemView.ivImage)
 
         holder.itemView.iv_delete.setOnClickListener {
-            addRecordActivity.deleteimageapi(
-                list[position].postId.toString(),
-                list[position].id.toString()
-            )
-            list.remove(list[position])
+            if (list.size>1) {
+                addRecordActivity.deleteimageapi(
+                    list[position].postId.toString(),
+                    list[position].id.toString()
+                )
+                list.remove(list[position])
 
-            notifyDataSetChanged()
+                notifyDataSetChanged()
+            } else{
+                Toast.makeText(context,"You have to remain atleast One Photo",Toast.LENGTH_LONG).show()
+            }
         }
     }
 
