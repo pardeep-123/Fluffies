@@ -122,17 +122,22 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
                         stringImage.add(it.data.body[i].image)
                     }
                     val description = edDescription.text.toString().trim()
-                    val map = HashMap<String, String>()
-                    map["petid"] = sharedPrefUtil.petId.toString()
-                    map["description"] = description
-                    map["pet_image"] =
-                        stringImage.toString().replace("[", "").replace("]", "").replace(" ", "")
-                    viewModel.apiAddPuppyDescription(this, true, map)
+                    if (intent.getStringExtra("from") == "add") {
+                        val map = HashMap<String, String>()
+                        map["petid"] = sharedPrefUtil.petId.toString()
+                        map["description"] = description
+                        map["pet_image"] =
+                            stringImage.toString().replace("[", "").replace("]", "")
+                                .replace(" ", "")
+                        viewModel.apiAddPuppyDescription(this, true, map)
+                    } else {
+                       editData(description)
+                    }
                 }
                 if (it.data is EditPetDataResponse) {
                     val registerResponse: EditPetDataResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
-
+                        finish()
                     } else {
                         Helper.showErrorAlert(this, registerResponse.code.toString())
                     }
@@ -150,9 +155,20 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         }
     }
 
-    fun multipartImageGet() {
+    private fun editData(description: String) {
+        val map = HashMap<String, String>()
+        map["petid"] = sharedPrefUtil.petId.toString()
+        map["post_id"] = data?.id!!.toString()
+        map["description"] = description
+        map["pet_image"] =
+            stringImage.toString().replace("[", "").replace("]", "")
+                .replace(" ", "")
+        viewModel.editPetData(this, true, map)
+        viewModel.mResponse.observe(this, this)
+    }
+    private fun multipartImageGet() {
         images.clear()
-        images = ArrayList<MultipartBody.Part?>()
+        images = ArrayList()
         for (i in 0..mAlbumFiles.size - 1) {
             var newFile: File? = null
             var imageFileBody: MultipartBody.Part? = null
@@ -196,7 +212,15 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         when (p0?.id) {
             R.id.btnAddRecord -> {
                 multipartImageGet()
-                callUploadPetApi()
+                if (intent.getStringExtra("from") == "add") {
+                    callUploadPetApi()
+                } else{
+                    if (images.size>0){
+                        callUploadPetApi() // if images are available to upload
+                    } else{
+                        editData(edDescription.text.toString().trim())  // else no images
+                    }
+                }
             }
             R.id.tvAdd -> {
                 selectImage()
@@ -217,9 +241,5 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         viewModel.mResponse.observe(this, this)
     }
 
-    /* fun editApi() {
-         viewModel.editPetData(this, true)
-         viewModel.mResponse.observe(this, this)
-     }*/
 
 }

@@ -51,41 +51,42 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/card_select_add_post"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_250sdp"
+                android:layout_height="@dimen/_200sdp"
                 android:layout_below="@id/llSelect"
-                android:layout_marginStart="@dimen/_20sdp"
                 android:layout_marginTop="@dimen/_20sdp"
-                android:layout_marginEnd="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_20sdp"
                 android:backgroundTint="#E5E5E5"
                 app:cardCornerRadius="@dimen/_15sdp"
-                app:contentPadding="@dimen/_10sdp">
+                app:contentPadding="@dimen/_5sdp">
 
                 <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="horizontal"
+                    >
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:id="@+id/view"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_img"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:orientation="horizontal"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
                         <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/rv_edit_img"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_toEndOf="@+id/rv_img"
                             android:orientation="horizontal"
                             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-                    </LinearLayout>
+                    </RelativeLayout>
                 </HorizontalScrollView>
             </androidx.cardview.widget.CardView>
 

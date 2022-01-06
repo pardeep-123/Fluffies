@@ -97,8 +97,12 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
             it!!.status == Status.SUCCESS -> {
                 if (it.data is GetPetResponse) {
                     aboutResponse = it.data
-                    addRecordAdapter = AddRecordAdapter(this, aboutResponse!!, this)
-                    rv_addRecord.adapter = addRecordAdapter
+                    if (aboutResponse?.body!!.isNotEmpty()) {
+                        nodataFound.visibility = View.GONE
+                        addRecordAdapter = AddRecordAdapter(this, aboutResponse!!, this)
+                        rv_addRecord.adapter = addRecordAdapter
+                    }else
+                        nodataFound.visibility = View.VISIBLE
                 }
                 if (it.data is DeleteResponse) {
                     apiPetData()
@@ -116,7 +120,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "3" -> {
-                apiDeletePet(aboutResponse!!.body[pos].petImages[pos].postId.toString())
+                apiDeletePet(aboutResponse!!.body[pos].petImages[0].postId.toString())
             }
             "2" -> {
                 var i = Intent(context, AddRecordActivity::class.java)

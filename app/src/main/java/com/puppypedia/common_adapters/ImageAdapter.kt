@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.puppypedia.R
 import com.puppypedia.ui.main.ui.add_record.AddRecordActivity
 import com.puppypedia.ui.main.ui.category_detail.GetPetResponse
@@ -29,16 +30,17 @@ class ImageAdapter(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         Log.e("chcekurll", "++++" + Constants.PET_IMAGE_URL + list.get(position).petImage)
         Glide.with(context)
-            .load(Constants.PET_IMAGE_URL + list.get(position).petImage)
+            .load(Constants.PET_IMAGE_URL + list[position].petImage)
+            .diskCacheStrategy(DiskCacheStrategy.ALL) // It will cache your image after loaded for first time
             .placeholder(R.drawable.logo)
             .into(holder.itemView.ivImage)
 
         holder.itemView.iv_delete.setOnClickListener {
             addRecordActivity.deleteimageapi(
                 list[position].postId.toString(),
-                list.get(position).id.toString()
+                list[position].id.toString()
             )
-            list.remove(list.get(position))
+            list.remove(list[position])
 
             notifyDataSetChanged()
         }
