@@ -27,14 +27,23 @@ class AddRecordAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolderGrid, position: Int) {
-        Glide.with(holder.itemView.context)
-            .load(Constants.PET_IMAGE_URL + dataList.body[position].petImages[0].petImage)
-            .placeholder(R.drawable.place_holder).into(holder.itemView.iv_record)
+        try {
+            Glide.with(holder.itemView.context)
+                .load(Constants.PET_IMAGE_URL + dataList.body[position].petImages[0].petImage)
+                .placeholder(R.drawable.place_holder).into(holder.itemView.iv_record)
+        } catch (e: Exception) {
+        }
+
 
         holder.itemView.tv_record.setText(dataList.body[position].description)
-        holder.iv_delete.setOnClickListener {
-            clickCallBack.onItemClick(position, "3")
+        try {
+            holder.iv_delete.setOnClickListener {
+                clickCallBack.onItemClick(position, "3")
+            }
+
+        } catch (e: Exception) {
         }
+
         holder.iv_edit.setOnClickListener {
             clickCallBack.onItemClick(position, "2")
         }

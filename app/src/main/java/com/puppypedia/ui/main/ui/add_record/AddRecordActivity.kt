@@ -217,5 +217,9 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         viewModel.mResponse.observe(this, this)
     }
 
+    /* fun editApi() {
+         viewModel.editPetData(this, true)
+         viewModel.mResponse.observe(this, this)
+     }*/
 
 }

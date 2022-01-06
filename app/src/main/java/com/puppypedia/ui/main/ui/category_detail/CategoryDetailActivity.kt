@@ -123,7 +123,6 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
                 i.putExtra("from", "edit")
                 i.putExtra("data", aboutResponse!!.body[pos])
                 startActivity(i)
-
                 /*
                  startActivity((Intent(this, AddRecordActivity::class.java))
                      .putExtra("from", "edit")

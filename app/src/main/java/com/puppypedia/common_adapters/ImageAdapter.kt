@@ -38,7 +38,6 @@ class ImageAdapter(
                 list[position].postId.toString(),
                 list.get(position).id.toString()
             )
-
             list.remove(list.get(position))
 
             notifyDataSetChanged()
