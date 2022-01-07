@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="@dimen/_200sdp"
+    android:id="@+id/multiLayout"
     android:layout_height="@dimen/_200sdp"
     android:layout_margin="2dp">
 
     <ImageView
         android:id="@+id/ivImage"
-        android:layout_width="@dimen/_200sdp"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/_200sdp"
         android:scaleType="fitXY"
+        android:layout_marginStart="@dimen/_5sdp"
         android:src="@drawable/add_pic" />
 
     <ImageView

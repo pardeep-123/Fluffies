@@ -1,6 +1,8 @@
 package com.puppypedia.ui.main.ui.mypetprofile
 
 import java.io.Serializable
+import com.google.gson.annotations.SerializedName
+
 
 
 data class PetProfileResponse(
@@ -27,3 +29,4 @@ data class PetProfileResponse(
         var selected: Boolean
     ) : Serializable
 }
+

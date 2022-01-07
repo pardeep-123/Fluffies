@@ -29,6 +29,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
     var aboutResponse: GetPetResponse? = null
     lateinit var sharedPrefUtil: SharedPrefUtil
     private lateinit var catgory: HomeFragmentResponse.Body.Category
+    var list : ArrayList<GetPetResponse.Body> = ArrayList()
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
 
@@ -82,7 +83,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
     }
 
 
-    fun apiPetData() {
+    private fun apiPetData() {
         viewModel.apiPetData(this, sharedPrefUtil.petId.toString(), true)
         viewModel.mResponse.observe(this, this)
     }
@@ -95,14 +96,19 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
+
                 if (it.data is GetPetResponse) {
+                    aboutResponse?.body?.clear()
                     aboutResponse = it.data
+
                     if (aboutResponse?.body!!.isNotEmpty()) {
                         nodataFound.visibility = View.GONE
+                    //    rv_addRecord.visibility = View.VISIBLE
                         addRecordAdapter = AddRecordAdapter(this, aboutResponse!!, this)
                         rv_addRecord.adapter = addRecordAdapter
                     }else
                         nodataFound.visibility = View.VISIBLE
+                   // rv_addRecord.visibility = View.GONE
                 }
                 if (it.data is DeleteResponse) {
                     apiPetData()
@@ -123,7 +129,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
                 apiDeletePet(aboutResponse!!.body[pos].petImages[0].postId.toString())
             }
             "2" -> {
-                var i = Intent(context, AddRecordActivity::class.java)
+                val i = Intent(context, AddRecordActivity::class.java)
                 i.putExtra("from", "edit")
                 i.putExtra("data", aboutResponse!!.body[pos])
                 startActivity(i)

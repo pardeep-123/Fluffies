@@ -18,6 +18,7 @@ class Constants {
         const val BASE_URL = "https://app.puppypediaapp.com/api/"
         const val IMAGE_URL = "https://app.puppypediaapp.com"
         const val PET_IMAGE_URL = "https://app.puppypediaapp.com/"
+        const val PET_IMAGE_URL2 = "https://app.puppypediaapp.com"
 
 
         val success_code = 200

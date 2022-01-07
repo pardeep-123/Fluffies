@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
@@ -10,27 +11,46 @@
         android:layout_margin="@dimen/_10sdp"
         app:cardCornerRadius="@dimen/_15sdp">
 
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
             <androidx.cardview.widget.CardView
+                android:id="@+id/card"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+
                 app:cardCornerRadius="@dimen/_15sdp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
+                    <androidx.viewpager.widget.ViewPager
+                        android:id="@+id/rv_addRecord"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_160sdp"
+                        android:orientation="horizontal"
+                       />
+
+                    <info.jeovani.viewpagerindicator.ViewPagerIndicator
+                        android:id="@+id/viewPagerIndicator"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_alignBottom="@id/rv_addRecord"
+                        android:layout_centerHorizontal="true"
+                        app:vpi_item_type="oval"
+                        app:vpi_view_pager="@+id/rv_addRecord" />
 
                     <ImageView
                         android:id="@+id/iv_record"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_160sdp"
                         android:scaleType="centerCrop"
-                        android:src="@drawable/img" />
+                        android:src="@drawable/img"
+                        android:visibility="gone" />
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -66,8 +86,10 @@
                 android:padding="@dimen/_5sdp"
                 android:text="gergegesgfergergherherherhrehwerhergrfgefsefsfwefwefweffwefwefwefwefweg"
                 android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/card"
+                app:layout_constraintStart_toStartOf="parent"
                 android:textSize="@dimen/_12sdp" />
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

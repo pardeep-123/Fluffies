@@ -8,7 +8,7 @@ class GetPetResponse(
     val success: Boolean, // true
     val code: Int, // 200
     val msg: String, // pet posts
-    val body: List<Body>
+    val body: ArrayList<Body>
 ) : Serializable {
     data class Body(
         val id: Int, // 6
@@ -20,7 +20,7 @@ class GetPetResponse(
         val createdAt: String, // 2022-01-04T12:38:04.000Z
         val updatedAt: String, // 2022-01-04T12:38:04.000Z
         @SerializedName("pet_images")
-        val petImages: List<PetImage>
+        val petImages: ArrayList<PetImage>
     ) : Serializable {
         data class PetImage(
             val id: Int, // 34

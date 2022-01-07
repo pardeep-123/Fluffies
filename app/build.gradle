@@ -76,6 +76,11 @@ dependencies {
     implementation "ru.tinkoff.scrollingpagerindicator:scrollingpagerindicator:1.2.1"
     //Circular ImageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+
+    //CircleIndicator to moving images
+    implementation 'com.github.JeovaniMartinez:AndroidViewPagerIndicator:0.1.0'
+    implementation 'org.jetbrains.anko:anko:0.10.5'
+
     //Graph
     implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
     //Calendar

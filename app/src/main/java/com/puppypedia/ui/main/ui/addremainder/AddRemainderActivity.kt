@@ -183,6 +183,8 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             map["date"] = date
             map["name"] = name
             map["isRemind"] = isRemind
+            map["timezone"] = "Asia/Kolkata"
+
             viewModel.addReminderApi(this, true, map)
             viewModel.mResponse.observe(this, this)
         }

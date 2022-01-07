@@ -37,8 +37,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.OnClickListener,
-    ImageAdapter.deleteimage,
-    ClickCallBack {
+    ClickCallBack, ImageAdapter.SendClick {
     var data: GetPetResponse.Body? = null
     var petId = ""
     var firstImage = ""
@@ -80,8 +79,8 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
             firstImage = data!!.petImages[0].petImage
             rv_img.adapter = ImageAdapter(
                 this,
-                data!!.petImages as ArrayList<GetPetResponse.Body.PetImage>, this@AddRecordActivity
-            )
+                data!!.petImages, this@AddRecordActivity
+           ,"record" )
 
         }
     }
@@ -146,8 +145,6 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
                         Helper.showErrorAlert(this, registerResponse.code.toString())
                     }
                 }
-
-
             }
             it.status == Status.ERROR -> {
                 if (it.data != null) {
@@ -176,15 +173,14 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         for (i in 0..mAlbumFiles.size - 1) {
             var newFile: File? = null
             var imageFileBody: MultipartBody.Part? = null
-            if (mAlbumFiles.get(i).path != "") {
-                newFile = File(mAlbumFiles.get(i).path)
+            if (mAlbumFiles[i].path != "") {
+                newFile = File(mAlbumFiles[i].path)
             }
             if (newFile != null && newFile.exists() && !newFile.equals("")) {
-                val mediaType: MediaType?
-                if (mAlbumFiles.get(i).path.endsWith("png")) {
-                    mediaType = "image/png".toMediaTypeOrNull()
+                val mediaType: MediaType? = if (mAlbumFiles[i].path.endsWith("png")) {
+                    "image/png".toMediaTypeOrNull()
                 } else {
-                    mediaType = "image/jpeg".toMediaTypeOrNull()
+                    "image/jpeg".toMediaTypeOrNull()
                 }
                 val requestBody: RequestBody = newFile.asRequestBody(mediaType)
                 imageFileBody =
@@ -243,8 +239,12 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
         }
     }
 
-    override fun deleteimageapi(postid: String, imageid: String) {
-        viewModel.apiDeletePetImage(this, sharedPrefUtil.petId.toString(), postid, imageid, true)
+    /**
+     * @author PArdeep Sharma
+     *  to hit delete api via interface
+     */
+    override fun onClick(id: String, postId: String) {
+        viewModel.apiDeletePetImage(this, sharedPrefUtil.petId.toString(), id, postId, true)
         viewModel.mResponse.observe(this, this)
     }
 
