@@ -344,6 +344,21 @@ class AllViewModel : ViewModel() {
 
 
     @SuppressLint("CheckResult")
+    fun apiWeightPet(
+        activity: Activity, weightId: String, showLoader: Boolean
+    ) {
+        restApiInterface.apiWeightPet(weightId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+
+    @SuppressLint("CheckResult")
     fun apiDeletePetImage(
         activity: Activity, petid: String, post_id: String, image_id: String, showLoader: Boolean
     ) {

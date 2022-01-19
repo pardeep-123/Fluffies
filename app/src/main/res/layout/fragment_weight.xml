@@ -75,8 +75,8 @@
                 android:id="@+id/rvWeight"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/llTop"
                 android:layout_marginTop="@dimen/_10sdp"
+
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
         </LinearLayout>

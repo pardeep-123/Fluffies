@@ -1,9 +1,17 @@
 package com.puppypedia.ui.main.ui.category_detail
+import android.app.Dialog
 import android.content.Context
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.view.Gravity
 import android.view.View
+import android.view.Window
+import android.view.WindowManager
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.text.HtmlCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -25,6 +33,8 @@ import kotlinx.android.synthetic.main.auth_toolbar.view.*
 class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
     lateinit var context: Context
     var description = ""
+    lateinit var dialog: Dialog
+
     lateinit var addRecordAdapter: AddRecordAdapter
     var aboutResponse: GetPetResponse? = null
     lateinit var sharedPrefUtil: SharedPrefUtil
@@ -126,7 +136,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "3" -> {
-                apiDeletePet(aboutResponse!!.body[pos].petImages[0].postId.toString())
+                deleteDialog(aboutResponse!!.body[pos].petImages[0].postId.toString())
             }
             "2" -> {
                 val i = Intent(context, AddRecordActivity::class.java)
@@ -139,6 +149,31 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
                      .putExtra("description",  aboutResponse?.body)
                  )*/
             }
+        }
+    }
+
+    private fun deleteDialog(postId: String) {
+        dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.window?.setGravity(Gravity.CENTER)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.dialog_logout)
+        dialog.show()
+        dialog.findViewById<TextView>(R.id.tvTitle).text = "Are you sure you want to remove this record"
+        dialog.findViewById<AppCompatButton>(R.id.btnYes).setOnClickListener {
+
+            dialog.dismiss()
+            apiDeletePet(postId)
+        }
+        dialog.findViewById<AppCompatButton>(R.id.btnNo).setOnClickListener {
+            dialog.dismiss()
+
         }
     }
 }

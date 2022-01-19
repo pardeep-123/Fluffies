@@ -57,6 +57,7 @@ class Constants {
         const val AddReminder = BASE_URL + "add_reminder"
         const val GetReminders = BASE_URL + "get_reminders"
         const val delete_pet_data = BASE_URL + "delete_pet_data"
+        const val delete_pet_weight = BASE_URL + "delete_pet_weight"
         const val RemindersOnOff = BASE_URL + "reminder_on_off"
         const val upload_pet = BASE_URL + "upload_pet"
         fun gender(value: Int): String {

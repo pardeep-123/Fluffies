@@ -72,6 +72,9 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
         ivNextCal.setOnClickListener {
             compactCalendarView.scrollRight()
         }
+        viewAll.setOnClickListener {
+            adapterViewCall()
+        }
     }
 
     private fun setCalendarEvent() {
@@ -96,7 +99,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
 
     }
 
-    fun apiGetReminder() {
+    private fun apiGetReminder() {
         viewModel.getReminderApi(requireActivity(), "", true)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
@@ -160,6 +163,10 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
 
     fun adapterCall() {
         rvAppointments.adapter = AppointmentAdapter(requireContext(), reminderList, this)
+    }
+
+    fun adapterViewCall() {
+        rvAppointments.adapter = AppointmentAdapter(requireContext(), allReminderList, this)
     }
 
     override fun onItemClick(pos: Int, value: Boolean) {

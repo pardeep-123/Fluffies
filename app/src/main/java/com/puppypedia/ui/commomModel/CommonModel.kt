@@ -11,3 +11,8 @@ data class CommonModel(
 
     class Body
 }
+
+ data class AgeModel(
+     var age: String = "",
+ var isSelect : Boolean= false
+ )

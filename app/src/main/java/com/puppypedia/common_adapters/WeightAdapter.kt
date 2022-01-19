@@ -1,18 +1,27 @@
 package com.puppypedia.common_adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.puppypedia.R
 import com.puppypedia.ui.fragments.weight.GetWeightResponse
 import kotlinx.android.synthetic.main.item_weight.view.*
 
-class WeightAdapter(var context: Context, var weightlist: GetWeightResponse) :
+class WeightAdapter(var context: Context, var weightlist: ArrayList<GetWeightResponse.Body.WeightChart>,
+                    var onDeleteClick: OnDeleteClick,var from :String) :
 
     RecyclerView.Adapter<WeightAdapter.WeightViewHolder>() {
+    // create interface
+    interface OnDeleteClick{
+        fun onDeleteClick(postId:String,petId:String){}
+    }
     var onItemClick: ((pos: Int) -> Unit)? = null
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -23,17 +32,39 @@ class WeightAdapter(var context: Context, var weightlist: GetWeightResponse) :
     }
 
     override fun onBindViewHolder(holder: WeightAdapter.WeightViewHolder, position: Int) {
-        holder.itemView.tvWeight.setText(weightlist.body.weightCharts[position].weight + " lbs")
-        holder.itemView.tvAge.setText(weightlist.body.weightCharts[position].age + " yr")
-        holder.itemView.tvDate.setText(weightlist.body.weightCharts[position].date)
-        holder.itemView.tvTime.setText(weightlist.body.weightCharts[position].time)
+        if (from == "stat")
+            holder.itemView.ivDelete.visibility = View.GONE
+        else
+            holder.itemView.ivDelete.visibility = View.VISIBLE
+        weightlist[position].run {
+            holder.itemView.tvWeight.text = weight + " lbs"
+            if (age.contains("Yr")|| age.contains("yr"))
+            holder.itemView.tvAge.text = age
+            else
+                holder.itemView.tvAge.text = age + " yr"
+            holder.itemView.tvDate.text = date
+            holder.itemView.tvTime.text = time
+        }
+        holder.itemView.ivDelete.setOnClickListener {
+            onDeleteClick.onDeleteClick(weightlist[position].id.toString(),
+                          weightlist[position].petid.toString())
+        }
+      //  holder.itemView.swipeLayout.close(true)
     }
 
     override fun getItemCount(): Int {
-        return weightlist.body.weightCharts.size
+        return weightlist.size
     }
 
     inner class WeightViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private var heightInitial = 0
+
+//        init {
+//            itemView.swipeLayout?.post {
+//                heightInitial = itemView.swipeLayout.layoutParams.height
+//                itemView.llDelete.layoutParams.height = heightInitial
+//            }
+//        }
         /*    RecyclerView.ViewHolder(binding.root) {
             val tvWeight = binding.tvWeight
             val tvAge = binding.tvAge

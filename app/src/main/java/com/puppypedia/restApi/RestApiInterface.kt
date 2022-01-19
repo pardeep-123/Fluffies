@@ -204,6 +204,12 @@ interface RestApiInterface {
         @Field("post_id") post_id: String,
     ): Observable<DeleteResponse>
 
+    @FormUrlEncoded
+    @POST(Constants.delete_pet_weight)
+    fun apiWeightPet(
+        @Field("weightId") weightId: String
+    ): Observable<DeleteResponse>
+
 
     @FormUrlEncoded
     @POST(Constants.delete_pet_data)
@@ -212,7 +218,6 @@ interface RestApiInterface {
         @Field("post_id") post_id: String,
         @Field("image_id") image_id: String,
     ): Observable<DeleteResponse>
-
 
     @FormUrlEncoded
     @POST(Constants.RemindersOnOff)

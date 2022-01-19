@@ -120,6 +120,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/_4sdp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:background="@drawable/bg_edit_text"
                         android:focusableInTouchMode="true"
                         android:fontFamily="@font/opensans_regular"

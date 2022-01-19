@@ -3,96 +3,174 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/white"
     android:fillViewport="true"
     tools:context=".ui.fragments.statistics.StatisticsFragment">
 
-    <LinearLayout
+<!--    <LinearLayout-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="gone"-->
+<!--        android:orientation="vertical">-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_200sdp"-->
+<!--            android:layout_marginEnd="@dimen/_20sdp"-->
+<!--            android:orientation="horizontal">-->
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:fontFamily="@font/opensans_regular"-->
+<!--                android:rotation="270"-->
+<!--                android:text="@string/weight"-->
+<!--                android:textColor="@color/black"-->
+<!--                android:textSize="@dimen/_10sdp" />-->
+<!--            <com.github.mikephil.charting.charts.LineChart-->
+<!--                android:id="@+id/lineChat"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_gravity="center" />-->
+<!--        </LinearLayout>-->
+<!--        <TextView-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_gravity="center_horizontal"-->
+<!--            android:fontFamily="@font/opensans_regular"-->
+<!--            android:text="@string/date"-->
+<!--            android:textColor="@color/black"-->
+<!--            android:textSize="@dimen/_10sdp" />-->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="@dimen/_28sdp"-->
+<!--            android:layout_marginStart="@dimen/_20sdp"-->
+<!--            android:layout_marginTop="@dimen/_15sdp"-->
+<!--            android:layout_marginEnd="@dimen/_20sdp"-->
+<!--            android:background="@drawable/bg_light_grray_10dp"-->
+<!--            android:weightSum="3">-->
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/btnDay"-->
+<!--                style="@style/ButtonMatch"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:text="@string/day"-->
+<!--                android:textColor="@color/black" />-->
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/btnMonth"-->
+<!--                style="@style/ButtonMatch"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@drawable/bg_sky_blue_10dp"-->
+<!--                android:text="@string/month" />-->
+<!--            <androidx.appcompat.widget.AppCompatButton-->
+<!--                android:id="@+id/btnYear"-->
+<!--                style="@style/ButtonMatch"-->
+<!--                android:layout_width="0dp"-->
+<!--                android:layout_height="match_parent"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:text="@string/year"-->
+<!--                android:textColor="@color/black" />-->
+<!--        </LinearLayout>-->
+<!--        <TextView-->
+<!--            android:id="@+id/tvHeading"-->
+<!--            style="@style/WrapTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginStart="@dimen/_20sdp"-->
+<!--            android:layout_marginTop="@dimen/_20sdp"-->
+<!--            android:layout_marginEnd="@dimen/_20sdp"-->
+<!--            android:text="@string/about_weight"-->
+<!--            android:textColor="@color/theme_Color"-->
+<!--            android:textSize="@dimen/_15sdp" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/tvDescription"-->
+<!--            style="@style/WrapTextView"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_marginStart="@dimen/_20sdp"-->
+<!--            android:layout_marginTop="@dimen/_10sdp"-->
+<!--            android:layout_marginEnd="@dimen/_20sdp"-->
+<!--            android:fontFamily="@font/opensans_regular"-->
+<!--            android:text="@string/dummY_text"-->
+<!--            android:textSize="@dimen/_10sdp" />-->
+<!--    </LinearLayout>-->
+  <androidx.constraintlayout.widget.ConstraintLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+
+      >
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvAge"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_200sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:orientation="horizontal">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:fontFamily="@font/opensans_regular"
-                android:rotation="270"
-                android:text="@string/weight"
-                android:textColor="@color/black"
-                android:textSize="@dimen/_10sdp" />
-            <com.github.mikephil.charting.charts.LineChart
-                android:id="@+id/lineChat"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_gravity="center" />
-        </LinearLayout>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/opensans_regular"
-            android:text="@string/date"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_10sdp" />
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_28sdp"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_15sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:background="@drawable/bg_light_grray_10dp"
-            android:weightSum="3">
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnDay"
-                style="@style/ButtonMatch"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:text="@string/day"
-                android:textColor="@color/black" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnMonth"
-                style="@style/ButtonMatch"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/bg_sky_blue_10dp"
-                android:text="@string/month" />
-            <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btnYear"
-                style="@style/ButtonMatch"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:text="@string/year"
-                android:textColor="@color/black" />
-        </LinearLayout>
-        <TextView
-            android:id="@+id/tvHeading"
-            style="@style/WrapTextView"
-            android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:text="@string/about_weight"
-            android:textColor="@color/theme_Color"
-            android:textSize="@dimen/_15sdp" />
-        <TextView
-            android:id="@+id/tvDescription"
-            style="@style/WrapTextView"
-            android:layout_width="match_parent"
-            android:layout_marginStart="@dimen/_20sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:layout_marginEnd="@dimen/_20sdp"
-            android:fontFamily="@font/opensans_regular"
-            android:text="@string/dummY_text"
-            android:textSize="@dimen/_10sdp" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:orientation="horizontal"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+    <LinearLayout
+        android:id="@+id/llTop"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/rvAge"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:weightSum="4">
+
+      <TextView
+          style="@style/WrapTextView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:fontFamily="@font/opensans_bold"
+          android:gravity="center"
+          android:text="@string/weight" />
+
+      <TextView
+          style="@style/WrapTextView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:fontFamily="@font/opensans_bold"
+          android:gravity="center"
+          android:text="@string/age" />
+
+
+      <TextView
+          style="@style/WrapTextView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:fontFamily="@font/opensans_bold"
+          android:gravity="center"
+          android:text="@string/date" />
+
+      <TextView
+          style="@style/WrapTextView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:fontFamily="@font/opensans_bold"
+          android:gravity="center"
+          android:text="@string/time" />
+
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvWeight"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@+id/llTop"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.core.widget.NestedScrollView>

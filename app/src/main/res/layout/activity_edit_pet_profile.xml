@@ -140,6 +140,7 @@
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight="1"
                         android:text="@string/weight"
+                        android:visibility="gone"
                         android:textSize="@dimen/_14sdp" />
 
                     <TextView
@@ -164,6 +165,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginRight="@dimen/_5sdp"
                         android:layout_weight="1"
+                        android:visibility="gone"
                         android:background="@drawable/bg_edit_text"
                         android:focusableInTouchMode="true"
                         android:fontFamily="@font/opensans_regular"

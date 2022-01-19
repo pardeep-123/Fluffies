@@ -109,6 +109,10 @@ dependencies {
     //Image compress
     implementation 'id.zelory:compressor:2.1.1'
 
+    //
+    //swipe layout
+    implementation "com.daimajia.swipelayout:library:1.2.0@aar"
+
 }
 repositories {
     mavenCentral()

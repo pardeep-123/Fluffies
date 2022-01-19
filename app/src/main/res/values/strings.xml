@@ -86,6 +86,7 @@
     <string name="appointments">Appointments</string>
     <string name="no_appointment_yet">No Appointment Yet!!</string>
     <string name="tap_plus_button">Tap Plus + Button Add New Appointment</string>
+    <string name="tap_plus_button1">press the plus button to set a reminder</string>
     <string name="remainder_date">Reminder Date</string>
     <string name="best_pet_care_here">Best Pet Care Here!!</string>
     <string name="house_essential">House Essential</string>
@@ -130,4 +131,6 @@
     <string name="enter_description">Please enter description</string>
     <string name="add"><u>Add</u></string>
     <string name="nodatafound">No data found</string>
+    <string name="delete">Delete</string>
+    <string name="reminders">Reminders</string>
 </resources>
