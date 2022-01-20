@@ -24,7 +24,7 @@ class AppointmentAdapter(
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
         holder.itemView.tvName.setText(reminderList[position].name)
-        holder.itemView.tvDesc.setText("Dog - " + reminderList[position].petName + " At " + reminderList[position].time)
+        holder.itemView.tvDesc.setText("Dog - " + reminderList[position].petName + " At " + reminderList[position].date + " "+ reminderList[position].time)
         holder.itemView.swReminder.isChecked = reminderList[position].isRemender == 1
 
         holder.itemView.swReminder.setOnCheckedChangeListener { compoundButton, b ->

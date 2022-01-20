@@ -114,13 +114,24 @@
         android:layout_marginHorizontal="@dimen/_15sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/rvAge"
+        app:layout_constraintBottom_toTopOf="@+id/btnAddWeight"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:padding="@dimen/_1sdp"
+        android:layout_marginHorizontal="@dimen/_8sdp"
+        android:background="@drawable/bg_light_sky_blue_10dp"
+      >
+
     <LinearLayout
         android:id="@+id/llTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintTop_toBottomOf="@id/rvAge"
-        android:layout_marginTop="@dimen/_15sdp"
+        app:layout_constraintTop_toTopOf="parent"
+     android:layout_marginTop="@dimen/_5sdp"
         android:weightSum="4">
 
       <TextView
@@ -165,11 +176,27 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvWeight"
         android:layout_width="match_parent"
+       android:layout_marginHorizontal="@dimen/_8sdp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/_10sdp"
         app:layout_constraintTop_toBottomOf="@+id/llTop"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAddWeight"
+        style="@style/ButtonMatch"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginTop="@dimen/_80sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/bg_sky_blue_10dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="invisible"
+        android:text="@string/add_weight" />
 
   </androidx.constraintlayout.widget.ConstraintLayout>
 

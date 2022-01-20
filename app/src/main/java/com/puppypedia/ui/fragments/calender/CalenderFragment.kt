@@ -127,12 +127,14 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
                                 item.isremind
                             )
                         )
-                        compactCalendarView.addEvent(
-                            Event(
-                                R.color.colorPrimary,
-                                CommonMethods.dateToTimestamp(item.date)
-                            )
-                        )
+
+                               compactCalendarView.addEvent(
+                                   Event(
+                                       R.color.colorPrimary,
+                                       CommonMethods.dateToTimestamp(item.date)
+                                   )
+                               )
+
                     }
                     searchedData(CommonMethods.timeStampToDate((System.currentTimeMillis() / 1000).toInt()))
                 }
@@ -149,7 +151,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
     }
 
     fun searchedData(dateType: String) {
-        var listData: ArrayList<CalendarDataModel> = ArrayList()
+        val listData: ArrayList<CalendarDataModel> = ArrayList()
         for (item in allReminderList) {
             if (item.date == dateType) {
                 listData.add(item)
