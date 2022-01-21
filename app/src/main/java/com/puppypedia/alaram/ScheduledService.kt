@@ -16,7 +16,7 @@ class ScheduledService : JobIntentService() {
         private const val UNIQUE_JOB_ID = 1337
         fun enqueueWork(ctxt: Context?) {
             enqueueWork(
-                ctxt!!, ScheduledService::class.java, ScheduledService.Companion.UNIQUE_JOB_ID,
+                ctxt!!, ScheduledService::class.java, UNIQUE_JOB_ID,
                 Intent(ctxt, ScheduledService::class.java)
             )
         }

@@ -197,8 +197,8 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                Helper.showErrorAlert(this, "Please select weight")*/
         else if (mValidationClass.checkStringNull(age))
             Helper.showErrorAlert(this, resources.getString(R.string.error_age))
-        else if (mValidationClass.checkStringNull(weight))
-            Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
+//        else if (mValidationClass.checkStringNull(weight))
+//            Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
         else if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
         else if (mValidationClass.checkStringNull(about))

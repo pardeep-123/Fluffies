@@ -206,8 +206,9 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                 }
                 if (liveData.data is AddReminderResponse) {
                     appointmentDialog()
+                    scheduleAlarms(this)
                 }
-                scheduleAlarms(this)
+
             }
             liveData.status == Status.ERROR -> {
                 if (liveData.data != null) {

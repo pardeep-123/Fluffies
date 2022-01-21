@@ -24,11 +24,12 @@ class PollReciver : BroadcastReceiver() {
             val mgr = ctxt.getSystemService(Context.ALARM_SERVICE) as AlarmManager
             val i = Intent(ctxt, PollReciver::class.java)
             val pi = PendingIntent.getBroadcast(ctxt, 0, i, 0)
-            mgr.setRepeating(
-                AlarmManager.ELAPSED_REALTIME_WAKEUP,
-                SystemClock.elapsedRealtime() + INITIAL_DELAY,
-                PERIOD.toLong(), pi
-            )
+            mgr.set(AlarmManager.RTC_WAKEUP, 1642772210, pi)
+//            mgr.setRepeating(
+//                AlarmManager.ELAPSED_REALTIME_WAKEUP,
+//                1642767721,
+//                PERIOD.toLong(), pi
+//            )
         }
     }
 }
