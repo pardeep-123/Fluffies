@@ -138,10 +138,6 @@ Set color used with incoming notification messages. This is used when no color i
             </intent-filter>
         </service>
 
-
-        <receiver
-            android:name=".alaram.PollReciver"
-            android:enabled="true" />
     </application>
 
 </manifest>

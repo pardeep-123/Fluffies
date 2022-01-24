@@ -7,6 +7,7 @@ import android.content.Context
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
+import android.util.Log
 import android.view.Gravity
 import android.view.Window
 import android.view.WindowManager
@@ -15,15 +16,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.work.Data
+import androidx.work.ExistingWorkPolicy
+import androidx.work.OneTimeWorkRequest
+import androidx.work.WorkManager
 import com.last.manager.restApi.Status
 import com.puppypedia.R
-import com.puppypedia.alaram.PollReciver.Companion.scheduleAlarms
 import com.puppypedia.common_adapters.ClickCallBack
 import com.puppypedia.common_adapters.PetListAdapter
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
 import com.puppypedia.utils.helper.AppUtils
+import com.puppypedia.utils.helper.CommonMethods
+import com.puppypedia.utils.helper.NotifyWork
+import com.puppypedia.utils.helper.NotifyWork.Companion.NOTIFICATION_ID
+import com.puppypedia.utils.helper.NotifyWork.Companion.NOTIFICATION_WORK
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
@@ -31,6 +39,7 @@ import kotlinx.android.synthetic.main.activity_add_remainder.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import java.text.SimpleDateFormat
 import java.util.*
+import java.util.concurrent.TimeUnit
 
 class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
     lateinit var context: Context
@@ -195,6 +204,19 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         viewModel.mResponse.observe(this, this)
     }
 
+    /**
+     * @author Pardeep Sharma
+     * method for reminder with work manager
+     */
+    private fun scheduleNotification(delay: Long, data: Data) {
+        val notificationWork = OneTimeWorkRequest.Builder(NotifyWork::class.java)
+            .setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(data).build()
+
+        val instanceWorkManager = WorkManager.getInstance(this)
+        instanceWorkManager.beginUniqueWork(NOTIFICATION_WORK,
+            ExistingWorkPolicy.REPLACE, notificationWork).enqueue()
+    }
+
     override fun onChanged(liveData: RestObservable?) {
         when {
             liveData!!.status == Status.SUCCESS -> {
@@ -206,9 +228,18 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                 }
                 if (liveData.data is AddReminderResponse) {
                     appointmentDialog()
-                    scheduleAlarms(this)
-                }
+         val convertTime = CommonMethods.dateToTimestampReminder(liveData.data.body.datetime)
+       Log.d("Longdate", convertTime.toString())
 
+                    //  scheduleAlarms(this)
+
+                    val currentTime = System.currentTimeMillis()
+                    if (convertTime > currentTime) {
+                        val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
+                        val delay = convertTime - currentTime
+                        scheduleNotification(delay, data)
+                    }
+                }
             }
             liveData.status == Status.ERROR -> {
                 if (liveData.data != null) {

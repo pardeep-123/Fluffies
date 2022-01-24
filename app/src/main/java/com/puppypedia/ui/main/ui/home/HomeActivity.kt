@@ -10,6 +10,7 @@ import com.puppypedia.ui.fragments.SearchFragment
 import com.puppypedia.ui.fragments.accountFragment.AccountFragment
 import com.puppypedia.ui.fragments.calender.CalenderFragment
 import com.puppypedia.ui.fragments.home.HomeFragment
+import com.puppypedia.utils.helper.NotifyWork.Companion.NOTIFICATION_ID
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity() {
@@ -20,8 +21,21 @@ class HomeActivity : AppCompatActivity() {
          setContentView(binding.root)
          binding.homeVM = homeVM*/
 
-        setHomeFragment()
+
         clicksHandle()
+
+        if (intent.hasExtra(NOTIFICATION_ID)){
+            if (currentFragment() !is CalenderFragment) {
+                openFragment(CalenderFragment())
+                setViews(
+                    R.drawable.home_unactive, R.drawable.search_unactive,
+                    R.drawable.cal_active, R.drawable.acc_unactive,
+                    R.color.lightGrayA3A3A3, R.color.lightGrayA3A3A3,
+                    R.color.black, R.color.lightGrayA3A3A3
+                )
+            }
+        } else
+            setHomeFragment()
     }
 
     private fun clicksHandle() {

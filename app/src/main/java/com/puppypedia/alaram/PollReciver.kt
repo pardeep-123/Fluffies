@@ -10,11 +10,11 @@ import android.os.SystemClock
 
 class PollReciver : BroadcastReceiver() {
     override fun onReceive(ctxt: Context, i: Intent) {
-        if (i.action == null) {
-            ScheduledService.enqueueWork(ctxt)
-        } else {
-            scheduleAlarms(ctxt)
-        }
+//        if (i.action == null) {
+//            ScheduledService.enqueueWork(ctxt)
+//        } else {
+//            scheduleAlarms(ctxt)
+//        }
     }
 
     companion object {

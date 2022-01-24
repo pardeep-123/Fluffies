@@ -133,4 +133,6 @@
     <string name="nodatafound">No data found</string>
     <string name="delete">Delete</string>
     <string name="reminders">Reminders</string>
+    <string name="notification_title">Puppy Pedia</string>
+    <string name="notification_subtitle">You have a new Reminders</string>
 </resources>
