@@ -40,6 +40,17 @@
             android:background="@android:color/transparent"
             android:text="@string/statistics"
             android:textColor="@color/black" />
+
+<!--        <androidx.appcompat.widget.AppCompatButton-->
+<!--            android:id="@+id/btnBodyConditionChart"-->
+<!--            style="@style/ButtonMatch"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:background="@android:color/transparent"-->
+<!--            android:text="@string/body_condition_chart"-->
+<!--            android:textColor="@color/black" />-->
+
     </LinearLayout>
 
     <RelativeLayout

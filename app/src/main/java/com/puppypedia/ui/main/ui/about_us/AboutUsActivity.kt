@@ -29,7 +29,6 @@ class AboutUsActivity : AppCompatActivity(), Observer<RestObservable> {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_about_us)
 
-
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
@@ -38,7 +37,6 @@ class AboutUsActivity : AppCompatActivity(), Observer<RestObservable> {
             tb.tv_title.text = getString(R.string.privacy_police)
             viewModel.getPrivacyPolicyAPI(this, true)
             viewModel.mResponse.observe(this, this)
-
 
         } else if (intent.getIntExtra(AppConstant.HEADING, 0) == 1) {
             tb.tv_title.text = getString(R.string.terms_conditions)

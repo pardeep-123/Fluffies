@@ -21,6 +21,7 @@ import com.puppypedia.ui.commomModel.LogoutResponse
 import com.puppypedia.ui.commomModel.NotificationOnOffModel
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.about_us.AboutUsActivity
+import com.puppypedia.ui.main.ui.addhealthproblem.AddHealthProblemActivity
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordActivity
 import com.puppypedia.ui.main.ui.mypetprofile.MyPetProfileActivity
 import com.puppypedia.ui.main.ui.profile.ProfileActivity
@@ -70,6 +71,9 @@ class AccountFragment : Fragment(), Observer<RestObservable> {
         }
         rlMyPets.setOnClickListener {
             startActivity(Intent(requireContext(), MyPetProfileActivity::class.java))
+        }
+        rlAddHealthProblem.setOnClickListener {
+            startActivity(Intent(requireContext(),AddHealthProblemActivity::class.java))
         }
         rlChangePassword.setOnClickListener {
             startActivity(Intent(requireContext(), ChangePasswordActivity::class.java))

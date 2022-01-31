@@ -144,7 +144,8 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "cat" -> {
-                if (aboutResponse!!.body.category[pos].name == "Weight Chart") {
+                // name change by pardeep from weight chart to weight log.
+                if (aboutResponse!!.body.category[pos].name == "Weight Log") {
                     startActivity(Intent(requireContext(), WeightChartActivity::class.java))
                 } else {
                     val intent =

@@ -122,6 +122,7 @@
                     android:layout_height="@dimen/_40sdp"
                     android:paddingStart="@dimen/dp10"
                     android:paddingEnd="@dimen/dp10">
+
                     <TextView
                         style="@style/WrapTextView"
                         android:layout_alignParentStart="true"
@@ -140,6 +141,38 @@
                         android:src="@drawable/leftbluearrow" />
                 </RelativeLayout>
             </androidx.cardview.widget.CardView>
+            <!--change by naveen singh start here-->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_5sdp"
+                app:cardUseCompatPadding="true">
+                <RelativeLayout
+                    android:id="@+id/rlAddHealthProblem"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:paddingStart="@dimen/dp10"
+                    android:paddingEnd="@dimen/dp10">
+                    <TextView
+                        style="@style/WrapTextView"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_toStartOf="@id/ivArrowHealth"
+                        android:text="@string/add_health_problem" />
+                    <ImageView
+                        android:id="@+id/ivArrowHealth"
+                        android:layout_width="@dimen/_12sdp"
+                        android:layout_height="@dimen/_12sdp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:contentDescription="@string/image"
+                        android:src="@drawable/leftbluearrow" />
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+            <!--end here-->
+
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -99,9 +99,15 @@
 <!--    </LinearLayout>-->
   <androidx.constraintlayout.widget.ConstraintLayout
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"
+      android:layout_height="wrap_content">
 
-      >
+    <com.makeramen.roundedimageview.RoundedImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/img_statitics"
+        app:riv_corner_radius="@dimen/_10sdp"
+        android:elevation="@dimen/_2sdp"
+        android:layout_marginBottom="@dimen/_10sdp"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvAge"
@@ -111,6 +117,7 @@
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="@dimen/_10sdp"
         android:orientation="horizontal"
+        android:visibility="gone"
         android:layout_marginHorizontal="@dimen/_15sdp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
@@ -121,6 +128,7 @@
         app:layout_constraintBottom_toTopOf="@+id/btnAddWeight"
         android:layout_marginTop="@dimen/_15sdp"
         android:padding="@dimen/_1sdp"
+        android:visibility="gone"
         android:layout_marginHorizontal="@dimen/_8sdp"
         android:background="@drawable/bg_light_sky_blue_10dp"
       >

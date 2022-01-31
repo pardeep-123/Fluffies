@@ -120,5 +120,4 @@ class WeightFragment : Fragment(), Observer<RestObservable> ,WeightAdapter.OnDel
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
 
-
 }

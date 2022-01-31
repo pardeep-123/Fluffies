@@ -19,13 +19,12 @@ import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_statistics.*
-import kotlinx.android.synthetic.main.fragment_statistics.rvWeight
-import kotlinx.android.synthetic.main.fragment_weight.*
-import java.util.*
-import kotlin.collections.ArrayList
 
-class StatisticsFragment : Fragment(), Observer<RestObservable>, WeightAdapter.OnDeleteClick,
-    AgeAdapter.OnAgeClick {
+class StatisticsFragment : Fragment() {
+
+   /* , Observer<RestObservable>, WeightAdapter.OnDeleteClick,
+    AgeAdapter.OnAgeClick*/
+
     var datetype = "0"
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
@@ -46,12 +45,11 @@ var aboutResponse: GetWeightResponse? = null
     ): View {
         // Inflate the layout for this fragment
         v = inflater.inflate(R.layout.fragment_statistics, container, false)
-
-
         return v
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    /*comment by naveen singh*/
+   /* override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         ageList.add(AgeModel("Age 1"))
         ageList.add(AgeModel("Age 2"))
@@ -78,7 +76,9 @@ var aboutResponse: GetWeightResponse? = null
 
         apiChart()
       //  clicksHandle()
-    }
+    }*/
+
+
 //    private fun clicksHandle() {
 //        btnDay.setOnClickListener {
 //            btnDay.background =
@@ -156,7 +156,7 @@ var aboutResponse: GetWeightResponse? = null
 //        lineChat.setData(data)
 //        lineChat.invalidate()
 //    }
-     private fun apiChart() {
+/*     private fun apiChart() {
 //        viewModel.addPetChartApi(
 //            requireActivity(), datetype, SharedPrefUtil.getInstance().petId,
 //            true
@@ -165,9 +165,10 @@ var aboutResponse: GetWeightResponse? = null
 
     viewModel.getWeightApi(requireActivity(), SharedPrefUtil.getInstance().petId, true)
     viewModel.mResponse.observe(viewLifecycleOwner, this)
-    }
+    }*/
 
-    override fun onChanged(it: RestObservable?) {
+    //
+/*    override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is GetWeightResponse) {
@@ -189,12 +190,13 @@ var aboutResponse: GetWeightResponse? = null
                 }
             }
         }
-    }
+    }*/
 
-    override fun onAge(s: String) {
+//
+  /*  override fun onAge(s: String) {
         dogAge = s
         apiChart()
-    }
+    }*/
 
 
 //    fun dateGet(date: String): String {

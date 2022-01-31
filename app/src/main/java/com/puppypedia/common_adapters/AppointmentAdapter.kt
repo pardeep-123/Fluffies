@@ -17,8 +17,7 @@ class AppointmentAdapter(
 ) :
     RecyclerView.Adapter<AppointmentAdapter.AppointmentViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AppointmentViewHolder {
-        val v: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_appointment, parent, false)
+        val v: View = LayoutInflater.from(parent.context).inflate(R.layout.item_appointment, parent, false)
         return AppointmentViewHolder(v)
     }
 

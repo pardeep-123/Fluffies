@@ -68,7 +68,7 @@
     <string name="privacy_police">Privacy Policy</string>
     <string name="update">Update</string>
     <string name="add_remainder">Add Reminder</string>
-    <string name="weight_chart">Weight Chart</string>
+    <string name="weight_chart">Weight Log</string>
     <string name="statistics">Statistics</string>
     <string name="add_weight">Add Weight</string>
     <string name="date">Date</string>
@@ -135,4 +135,7 @@
     <string name="reminders">Reminders</string>
     <string name="notification_title">Puppy Pedia</string>
     <string name="notification_subtitle">You have a new Reminders</string>
+    <string name="body_condition_chart">Body Condition Chart</string>
+    <string name="add_health_problem">Add Health Problem</string>
+    <string name="v_n_cristhon">V.N.Cristhon</string>
 </resources>
