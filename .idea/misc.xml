@@ -3,20 +3,34 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/bg_dialog.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/drawable/bg_light_grray_10dp.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/drawable/bg_light_sky_blue_10dp.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/drawable/bg_password_show_hide.xml" value="0.20104166666666667" />
+        <entry key="app/src/main/res/drawable/ic_delete.xml" value="0.20104166666666667" />
         <entry key="app/src/main/res/layout/activity_about_us.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/activity_add_health_problem.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/activity_category_detail.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.18205128205128204" />
+        <entry key="app/src/main/res/layout/activity_edit_pet_profile.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/activity_home.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/activity_my_pet_profile.xml" value="0.18489583333333334" />
-        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_weight_chart.xml" value="0.2" />
         <entry key="app/src/main/res/layout/auth_toolbar.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/dialog_appointment.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/dialog_delete.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/dialog_logout.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/dialog_pet_profile_update.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/fragment_account.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_body_condition_chart.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/fragment_calender.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/fragment_statistics.xml" value="0.2" />
         <entry key="app/src/main/res/layout/fragment_weight.xml" value="0.18489583333333334" />
+        <entry key="app/src/main/res/layout/item_appointment.xml" value="0.2" />
+        <entry key="app/src/main/res/layout/item_home.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/item_services.xml" value="0.18489583333333334" />
         <entry key="app/src/main/res/layout/item_weight.xml" value="0.25" />
       </map>

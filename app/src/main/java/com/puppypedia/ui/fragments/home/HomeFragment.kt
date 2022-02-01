@@ -55,7 +55,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         super.onViewCreated(view, savedInstanceState)
         clicksHandle()
         //  etAddress.setText(addresses[0].locality)
-        tv_choose_dog.setText("")
+        tv_choose_dog.text = ""
     }
 
     private fun clicksHandle() {
@@ -110,7 +110,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                     if (aboutResponse!!.body.notificationsCount == 0) {
                         tvCount.visibility = View.GONE
                     } else {
-                        tvCount.setText(aboutResponse!!.body.notificationsCount.toString())
+                        tvCount.text = aboutResponse!!.body.notificationsCount.toString()
                     }
                     rc_services.adapter = ServicesAdapter(
                         requireContext(),
@@ -127,8 +127,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                     val snapHelper: SnapHelper = PagerSnapHelper()
                     snapHelper.attachToRecyclerView(rc_details_img)
                     petDetails(SharedPrefUtil.getInstance().petPos)
-                    SharedPrefUtil.getInstance()
-                        .savePetId(arrayList[SharedPrefUtil.getInstance().petPos].id.toString())
+                    SharedPrefUtil.getInstance().savePetId(arrayList[SharedPrefUtil.getInstance().petPos].id.toString())
                 }
             }
             it.status == Status.ERROR -> {

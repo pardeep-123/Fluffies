@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.puppypedia.R
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
+import com.puppypedia.utils.helper.others.Constants.Companion.IMAGE_URL
 import kotlinx.android.synthetic.main.item_services.view.*
 
 
@@ -33,19 +34,19 @@ class ServicesAdapter(
     override fun onBindViewHolder(holder: ServicesAdapter.ServicesViewHolder, position: Int) {
         // holder.onBind(position)
         Glide.with(context)
-            .load("http://202.164.42.227:7700" + datalist.body.category[position].image)
+            .load("$IMAGE_URL${datalist.body.category[position].image}")
             .placeholder(R.drawable.icon3).into(holder.itemView.ivService)
-        holder.itemView.tv_service.setText(datalist.body.category.get(position).name)
+        holder.itemView.tv_service.text = datalist.body.category[position].name
 
         holder.itemView.setOnClickListener {
             clickCallBack.onItemClick(position, "cat")
         }
     }
     override fun getItemCount(): Int {
-        if (idata == 1) {
-            return 6
+        return if (idata == 1) {
+            6
         } else {
-            return datalist.body.category.size
+            datalist.body.category.size
         }
     }
     inner class ServicesViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

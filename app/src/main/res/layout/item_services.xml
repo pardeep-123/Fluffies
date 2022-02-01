@@ -14,10 +14,8 @@
         style="@style/WrapTextView"
         android:layout_marginStart="@dimen/_5sdp"
         android:layout_marginTop="@dimen/_5sdp"
-        android:text="@string/feeding"
         android:textColor="@color/white"
         android:textSize="@dimen/_10sdp" />
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -27,8 +25,7 @@
         <ImageView
             android:id="@+id/ivService"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/icon3" />
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>

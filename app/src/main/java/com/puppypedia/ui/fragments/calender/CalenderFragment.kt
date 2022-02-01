@@ -1,14 +1,20 @@
 package com.puppypedia.ui.fragments.calender
 
+import android.annotation.SuppressLint
+import android.app.Dialog
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
+import android.widget.TextView
+import androidx.appcompat.widget.AppCompatButton
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.github.sundeepk.compactcalendarview.CompactCalendarView.CompactCalendarViewListener
 import com.github.sundeepk.compactcalendarview.domain.Event
 import com.last.manager.restApi.Status
@@ -20,6 +26,7 @@ import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.addremainder.AddRemainderActivity
 import com.puppypedia.utils.helper.AppUtils
 import com.puppypedia.utils.helper.CommonMethods
+import com.puppypedia.utils.helper.RecyclerItemTouchHelper
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.fragment_calender.*
 import java.text.SimpleDateFormat
@@ -27,8 +34,9 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 
-class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickCallBack {
+class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickCallBack,RecyclerItemTouchHelper.RecyclerItemTouchHelperListener {
     var aboutResponse: CalenderGetReminderResponse? = null
+    private lateinit var dialog: Dialog
     var reminderList: ArrayList<CalendarDataModel> = ArrayList()
     var allReminderList: ArrayList<CalendarDataModel> = ArrayList()
     lateinit var v: View
@@ -53,6 +61,11 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
         clicksHandle()
         setCalendarEvent()
         // orderId = intent.getStringExtra("orderId").toString()
+
+        /*worked by naveen singh*/
+        val itemTouchHelperCallback = RecyclerItemTouchHelper(requireContext(),this)
+         ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(rvAppointments)
+//        ItemTouchHelper(itemTouchHelperCallback).attachToRecyclerView(binding.rvNotifications)
     }
 
     override fun onResume() {
@@ -78,11 +91,9 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
     }
 
     private fun setCalendarEvent() {
-        tvMonth.setText(
-            AppUtils.dateInString(
-                compactCalendarView.firstDayOfCurrentMonth.time,
-                "MMM yyyy"
-            )
+        tvMonth.text = AppUtils.dateInString(
+            compactCalendarView.firstDayOfCurrentMonth.time,
+            "MMM yyyy"
         )
         compactCalendarView.setListener(object : CompactCalendarViewListener {
             override fun onDayClick(dateClicked: Date) {
@@ -91,12 +102,10 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
             }
 
             override fun onMonthScroll(firstDayOfNewMonth: Date?) {
-                tvMonth.setText(AppUtils.dateInString(firstDayOfNewMonth?.time!!, "MMM yyyy"))
+                tvMonth.text = AppUtils.dateInString(firstDayOfNewMonth?.time!!, "MMM yyyy")
                 searchedData(CommonMethods.timeStampToDate((firstDayOfNewMonth.time / 1000).toInt()))
             }
         })
-
-
     }
 
     private fun apiGetReminder() {
@@ -173,5 +182,34 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
 
     override fun onItemClick(pos: Int, value: Boolean) {
         apiReminderOnOff(if (value) "1" else "0", reminderList[pos].id)
+    }
+
+
+    /*worked by naveen singh*/
+    @SuppressLint("NotifyDataSetChanged")
+    override fun onSwiped(viewHolder: RecyclerView.ViewHolder?, direction: Int, position: Int) {
+
+        dialog = Dialog(requireContext())
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT
+        )
+        dialog.setCancelable(true)
+        dialog.setCanceledOnTouchOutside(false)
+        dialog.window?.setGravity(Gravity.CENTER)
+        dialog.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        dialog.setContentView(R.layout.dialog_logout)
+        dialog.show()
+        dialog.findViewById<TextView>(R.id.tvTitle).text = "Are you sure you want to delete"
+        dialog.findViewById<AppCompatButton>(R.id.btnYes).setOnClickListener {
+
+            dialog.dismiss()
+
+        }
+        dialog.findViewById<AppCompatButton>(R.id.btnNo).setOnClickListener {
+            dialog.dismiss()
+        }
+        rvAppointments.adapter?.notifyDataSetChanged()
     }
 }

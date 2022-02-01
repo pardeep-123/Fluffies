@@ -11,7 +11,7 @@
     <ImageView
         android:id="@+id/ivSplash"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_200sdp"
+        android:layout_height="@dimen/_170sdp"
         android:visibility="invisible"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,9 +22,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/v_n_cristhon"
-        android:textSize="@dimen/_14sdp"
+        android:textSize="@dimen/_12sdp"
         android:textColor="@color/black"
-        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_30sdp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/ivSplash"
         android:fontFamily="@font/opensans_semibold"/>

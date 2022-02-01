@@ -9,7 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="fitXY"
-        android:src="@drawable/dogsimg"
         app:riv_corner_radius="@dimen/_5sdp" />
 
     <LinearLayout
@@ -30,7 +29,6 @@
             android:visibility="gone"
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_regular"
-            android:text="@string/best_pet_care_here"
             android:textColor="@color/white"
             android:textSize="@dimen/_11sdp" />
 
@@ -40,7 +38,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/opensans_regular"
             android:ellipsize="end"
-            android:text="@string/dummY_text"
             android:textColor="@color/white"
             android:lines="5"
             android:textSize="@dimen/_7sdp" />

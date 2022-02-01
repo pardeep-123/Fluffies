@@ -138,4 +138,5 @@
     <string name="body_condition_chart">Body Condition Chart</string>
     <string name="add_health_problem">Add Health Problem</string>
     <string name="v_n_cristhon">V.N.Cristhon</string>
+    <string name="do_you_want_to_delete">Do you want to Delete</string>
 </resources>

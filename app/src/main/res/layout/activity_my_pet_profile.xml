@@ -60,9 +60,7 @@
                 <TextView
                     android:id="@+id/tvName"
                     style="@style/WrapTextView"
-                    android:layout_alignParentEnd="true"
-                    android:text="Rony" />
-
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
@@ -80,8 +78,7 @@
                 <TextView
                     android:id="@+id/tvGender"
                     style="@style/WrapTextView"
-                    android:layout_alignParentEnd="true"
-                    android:text="@string/male" />
+                    android:layout_alignParentEnd="true" />
 
 
             </RelativeLayout>
@@ -99,7 +96,6 @@
                     android:textColor="@color/theme_Color" />
 
                 <TextView
-
                     android:id="@+id/tvWeight"
                     style="@style/WrapTextView"
                     android:layout_alignParentEnd="true"
@@ -122,9 +118,7 @@
                 <TextView
                     android:id="@+id/tvAge"
                     style="@style/WrapTextView"
-                    android:layout_alignParentEnd="true"
-                    android:text="@string/_01_yr" />
-
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
@@ -142,9 +136,7 @@
                 <TextView
                     android:id="@+id/tvBreed"
                     style="@style/WrapTextView"
-                    android:layout_alignParentEnd="true"
-                    android:text="@string/golden_retriever" />
-
+                    android:layout_alignParentEnd="true" />
 
             </RelativeLayout>
 
@@ -156,7 +148,7 @@
                 <TextView
                     style="@style/WrapTextView"
                     android:layout_alignParentStart="true"
-                    android:text="About Pet"
+                    android:text="@string/about_pet"
                     android:textColor="@color/theme_Color" />
 
             </RelativeLayout>
@@ -168,11 +160,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/_10sdp"
                 android:background="@drawable/bg_edit_text_10dp"
-                android:text="@string/dummY_text"
                 android:textColor="@color/black"
                 android:maxHeight="@dimen/_100sdp"
                 android:minHeight="@dimen/_100sdp"
-
                 android:padding="@dimen/_10sdp"
                 android:textSize="@dimen/_10sdp" />
 

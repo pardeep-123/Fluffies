@@ -130,8 +130,7 @@
         android:padding="@dimen/_1sdp"
         android:visibility="gone"
         android:layout_marginHorizontal="@dimen/_8sdp"
-        android:background="@drawable/bg_light_sky_blue_10dp"
-      >
+        android:background="@drawable/bg_light_sky_blue_10dp">
 
     <LinearLayout
         android:id="@+id/llTop"

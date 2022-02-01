@@ -10,6 +10,7 @@ import com.bumptech.glide.Glide
 import com.puppypedia.R
 import com.puppypedia.ui.fragments.home.HomeFragment
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
+import com.puppypedia.utils.helper.others.Constants.Companion.IMAGE_URL
 import kotlinx.android.synthetic.main.item_home.view.*
 
 
@@ -28,8 +29,7 @@ class HomeAdapter(
         holder.itemView.tvDescription.text = HtmlCompat.fromHtml(
             datalist.body.banners[position].description, HtmlCompat.FROM_HTML_MODE_LEGACY
         )
-        Glide.with(context)
-            .load("http://202.164.42.227:7700" + datalist.body.banners[position].image)
+        Glide.with(context).load("$IMAGE_URL${datalist.body.banners[position].image}")
             .placeholder(R.drawable.dogsimg).into(holder.itemView.details_img)
     }
     override fun getItemCount(): Int {

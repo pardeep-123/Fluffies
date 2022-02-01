@@ -37,7 +37,7 @@ class CategoryActivity : AppCompatActivity(), ClickCallBack {
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "cat" -> {
-                if (data!!.body.category[pos].name == "Weight Chart") {
+                if (data!!.body.category[pos].name == "Weight Log") {
                     startActivity(Intent(this, WeightChartActivity::class.java))
                 } else {
                     startActivity(

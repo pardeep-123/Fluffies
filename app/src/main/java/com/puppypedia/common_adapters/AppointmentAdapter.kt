@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.RelativeLayout
 import androidx.recyclerview.widget.RecyclerView
 import com.puppypedia.R
 import com.puppypedia.ui.fragments.calender.CalendarDataModel
@@ -22,15 +23,14 @@ class AppointmentAdapter(
     }
 
     override fun onBindViewHolder(holder: AppointmentViewHolder, position: Int) {
-        holder.itemView.tvName.setText(reminderList[position].name)
-        holder.itemView.tvDesc.setText("Dog - " + reminderList[position].petName + " At " + reminderList[position].date + " "+ reminderList[position].time)
+        holder.itemView.tvName.text = reminderList[position].name
+        holder.itemView.tvDesc.text = "Dog - " + reminderList[position].petName + " At " + reminderList[position].date + " "+ reminderList[position].time
         holder.itemView.swReminder.isChecked = reminderList[position].isRemender == 1
 
         holder.itemView.swReminder.setOnCheckedChangeListener { compoundButton, b ->
             checkChangeClickCallBack.onItemClick(position, b)
 
         }
-
     }
 
     override fun getItemCount(): Int {
@@ -39,6 +39,8 @@ class AppointmentAdapter(
 
     inner class AppointmentViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
+        val viewForeground : RelativeLayout = itemView.findViewById(R.id.view_foreground)
+        val viewBackground : RelativeLayout = itemView.findViewById(R.id.view_background)
 /*
         val swReminder = swReminder
         val tvName = tvName

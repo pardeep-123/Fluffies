@@ -24,6 +24,7 @@
                 android:src="@drawable/dog_img"
                 app:riv_corner_radius_bottom_left="@dimen/_10sdp"
                 app:riv_corner_radius_bottom_right="@dimen/_10sdp" />
+
             <include
                 android:id="@+id/tb"
                 layout="@layout/auth_toolbar" />
