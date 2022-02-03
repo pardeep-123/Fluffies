@@ -38,7 +38,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@android:color/transparent"
-            android:text="@string/statistics"
+            android:text="@string/weight_chart1"
             android:textColor="@color/black" />
 
 <!--        <androidx.appcompat.widget.AppCompatButton-->

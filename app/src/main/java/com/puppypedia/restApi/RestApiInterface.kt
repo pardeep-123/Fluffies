@@ -48,6 +48,15 @@ interface RestApiInterface {
         @Part image: MultipartBody.Part
     ): Observable<ImageUploadResponse>
 
+    // Add Health
+    @Multipart
+    @POST(Constants.addHealthDetail)
+    fun addHealthDetail(
+        @PartMap map: HashMap<String, RequestBody>,
+        @Part image: MultipartBody.Part,
+        @Part image1: MultipartBody.Part
+    ): Observable<ImageUploadResponse>
+
     @Multipart
     @POST(Constants.FileUpload)
     fun fileUploadmultiple(
@@ -232,4 +241,10 @@ interface RestApiInterface {
         @FieldMap map: HashMap<String, String>
     ): Observable<AddPetRecordResponse>
 
+
+    @FormUrlEncoded
+    @POST(Constants.deletePetReminder)
+    fun deletePetReminder(
+        @FieldMap map: HashMap<String, String>
+    ): Observable<DeleteResponse>
 }

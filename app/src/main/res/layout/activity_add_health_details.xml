@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:fillViewport="true"
+    android:layout_height="match_parent">
+
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".ui.main.ui.addhealthproblem.AddHealthDetails">
+
+    <include
+        android:id="@+id/tb"
+        layout="@layout/auth_toolbar" />
+   <TextView
+       android:id="@+id/tvselectDog"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="@string/selectdog"
+       app:layout_constraintTop_toBottomOf="@id/tb"
+       app:layout_constraintStart_toStartOf="parent"
+       android:layout_marginStart="@dimen/_15sdp"
+       android:layout_marginTop="@dimen/_15sdp"
+       android:textStyle="bold"
+       android:textColor="@color/black"
+       android:textSize="16sp"
+
+       />
+
+    <Spinner
+        android:id="@+id/spinner_trader_distance"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/tvselectDog"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:dropDownSelector="@drawable/downblack"
+        android:fontFamily="@font/opensans_regular"
+        android:gravity="start"
+        android:hint="dog"
+        android:inputType="text"
+        android:spinnerMode="dropdown" />
+
+    <TextView
+        android:id="@+id/tvHealthDescription"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/healthDesription"
+        app:layout_constraintTop_toBottomOf="@id/spinner_trader_distance"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+    <EditText
+        android:id="@+id/healthDescription"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:hint="@string/enter_description"
+        android:minHeight="@dimen/_100sdp"
+        android:gravity="top"
+        android:paddingTop="@dimen/_5sdp"
+        android:paddingStart="@dimen/_5sdp"
+        android:background="@drawable/bg_layout_radius"
+        app:layout_constraintTop_toBottomOf="@id/tvHealthDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:maxLines="7"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+
+        />
+
+    <TextView
+        android:id="@+id/tvAddImages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/addImages"
+        app:layout_constraintTop_toBottomOf="@id/healthDescription"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:textStyle="bold"
+        android:textColor="@color/black"
+        android:textSize="16sp"/>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivPetProfile1"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_130sdp"
+        android:contentDescription="@string/image"
+        android:layout_marginTop="@dimen/_25sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddImages"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/ivPetProfile2"
+        android:src="@drawable/pet_pic" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/ivPetProfile2"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/_130sdp"
+        android:contentDescription="@string/image"
+        android:layout_marginTop="@dimen/_25sdp"
+        app:layout_constraintTop_toBottomOf="@+id/tvAddImages"
+        app:layout_constraintStart_toEndOf="@id/ivPetProfile1"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:src="@drawable/pet_pic" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSubmit"
+        style="@style/ButtonMatch"
+        app:layout_constraintTop_toBottomOf="@id/ivPetProfile2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginEnd="@dimen/_20sdp"
+        android:layout_marginBottom="@dimen/_20sdp"
+        android:background="@drawable/bg_sky_blue_10dp"
+        android:fontFamily="@font/opensans_bold"
+        android:text="@string/submit" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

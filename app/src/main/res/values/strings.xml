@@ -69,6 +69,7 @@
     <string name="update">Update</string>
     <string name="add_remainder">Add Reminder</string>
     <string name="weight_chart">Weight Log</string>
+    <string name="weight_chart1">Weight Chart</string>
     <string name="statistics">Statistics</string>
     <string name="add_weight">Add Weight</string>
     <string name="date">Date</string>
@@ -137,6 +138,12 @@
     <string name="notification_subtitle">You have a new Reminders</string>
     <string name="body_condition_chart">Body Condition Chart</string>
     <string name="add_health_problem">Add Health Problem</string>
+    <string name="health_problem">Health Problems</string>
     <string name="v_n_cristhon">V.N.Cristhon</string>
     <string name="do_you_want_to_delete">Do you want to Delete</string>
+    <string name="selectdog">Select Your Pet</string>
+    <string name="healthDesription">Health Description</string>
+    <string name="loreum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s</string>
+    <string name="addImages">Add Images</string>
+    <string name="error_description">"Enter Description "</string>
 </resources>

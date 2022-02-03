@@ -33,6 +33,26 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
+
+    // Add Health Details
+    @SuppressLint("CheckResult")
+    fun addHealthDetails(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, RequestBody>,
+        multipartImageGet: MultipartBody.Part,
+        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.addHealthDetail(map, multipartImageGet,multipartImageGet1)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
     @SuppressLint("CheckResult")
     fun apiAddPuppy(
         activity: Activity,
@@ -441,6 +461,24 @@ class AllViewModel : ViewModel() {
         // multipartImageGet: MultipartBody.Part
     ) {
         restApiInterface.addPuppyDescription(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it!!) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    // to delete the reminders
+    @SuppressLint("CheckResult")
+    fun deletePetReminder(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, String>,
+        // multipartImageGet: MultipartBody.Part
+    ) {
+        restApiInterface.deletePetReminder(map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }

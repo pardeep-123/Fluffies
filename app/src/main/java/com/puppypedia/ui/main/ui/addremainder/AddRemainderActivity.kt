@@ -70,6 +70,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         apiPetList()
         //  orderId = intent.getStringExtra("orderId").toString()
     }
+
     private fun clicksHandle() {
         tb.iv_back.setOnClickListener {
             onBackPressed()
@@ -145,6 +146,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
         datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
         datePicker.show()
     }
+
     private fun timePicker(context: Context) {
         TimePickerDialog(
             context,
@@ -213,8 +215,10 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             .setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(data).build()
 
         val instanceWorkManager = WorkManager.getInstance(this)
-        instanceWorkManager.beginUniqueWork(NOTIFICATION_WORK,
-            ExistingWorkPolicy.REPLACE, notificationWork).enqueue()
+        instanceWorkManager.beginUniqueWork(
+            NOTIFICATION_WORK,
+            ExistingWorkPolicy.REPLACE, notificationWork
+        ).enqueue()
     }
 
     override fun onChanged(liveData: RestObservable?) {
@@ -228,8 +232,9 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                 }
                 if (liveData.data is AddReminderResponse) {
                     appointmentDialog()
-         val convertTime = CommonMethods.dateToTimestampReminder(liveData.data.body.datetime)
-       Log.d("Longdate", convertTime.toString())
+                    val convertTime =
+                        CommonMethods.dateToTimestampReminder(liveData.data.body.datetime)
+                    Log.d("Longdate", convertTime.toString())
 
                     //  scheduleAlarms(this)
 
@@ -250,6 +255,7 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
             }
         }
     }
+
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "pet" -> {
