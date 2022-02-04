@@ -32,6 +32,7 @@ import com.puppypedia.utils.helper.CommonMethods
 import com.puppypedia.utils.helper.NotifyWork
 import com.puppypedia.utils.helper.NotifyWork.Companion.NOTIFICATION_ID
 import com.puppypedia.utils.helper.NotifyWork.Companion.NOTIFICATION_WORK
+import com.puppypedia.utils.helper.NotifyWork.Companion.instanceWorkManager
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.SharedPrefUtil
 import com.puppypedia.utils.helper.others.ValidationsClass
@@ -210,15 +211,17 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
      * @author Pardeep Sharma
      * method for reminder with work manager
      */
-    private fun scheduleNotification(delay: Long, data: Data) {
+    private fun scheduleNotification(delay: Long, data: Data, tag: String) {
         val notificationWork = OneTimeWorkRequest.Builder(NotifyWork::class.java)
-            .setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(data).build()
+            .setInitialDelay(delay, TimeUnit.MILLISECONDS).setInputData(data)
+            .addTag(tag)
+            .build()
 
-        val instanceWorkManager = WorkManager.getInstance(this)
-        instanceWorkManager.beginUniqueWork(
+         instanceWorkManager = WorkManager.getInstance(this)
+        instanceWorkManager?.beginUniqueWork(
             NOTIFICATION_WORK,
             ExistingWorkPolicy.REPLACE, notificationWork
-        ).enqueue()
+        )?.enqueue()
     }
 
     override fun onChanged(liveData: RestObservable?) {
@@ -236,13 +239,13 @@ class AddRemainderActivity : AppCompatActivity(), Observer<RestObservable>, Clic
                         CommonMethods.dateToTimestampReminder(liveData.data.body.datetime)
                     Log.d("Longdate", convertTime.toString())
 
-                    //  scheduleAlarms(this)
+                     // scheduleAlarms(this)
 
                     val currentTime = System.currentTimeMillis()
                     if (convertTime > currentTime) {
                         val data = Data.Builder().putInt(NOTIFICATION_ID, 0).build()
                         val delay = convertTime - currentTime
-                        scheduleNotification(delay, data)
+                        scheduleNotification(delay, data,liveData.data.body.id.toString())
                     }
                 }
             }

@@ -8,12 +8,18 @@ import android.widget.ArrayAdapter
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.StatusAdapter
+import com.puppypedia.model.AddHealthDetail
+import com.puppypedia.model.GetHealthListModel
 import com.puppypedia.restApi.RestObservable
+import com.puppypedia.showToast
+import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.mypetprofile.PetProfileResponse
+import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
@@ -26,6 +32,7 @@ import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
 import kotlinx.android.synthetic.main.activity_my_pet_profile.*
 import kotlinx.android.synthetic.main.activity_my_pet_profile.tb
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
+import kotlinx.android.synthetic.main.item_health_details.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -41,7 +48,12 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     var nameList: ArrayList<String> = ArrayList()
-    var idList: ArrayList<Int> = ArrayList()
+    var idList: ArrayList<String> = ArrayList()
+
+    var images = ArrayList<MultipartBody.Part?>()
+   // make list to get data from previous screen
+
+    var list: GetHealthListModel.Body?=null
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_add_health_details)
@@ -61,7 +73,7 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
         }
 
         btnSubmit.setOnClickListener {
-            callAddHealthApi()
+            callUploadPetApi()
         }
 
         // set spinner
@@ -73,13 +85,39 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                     position: Int,
                     id: Long) {
 
-                    petId = idList[position].toString()
-                }
+                    petId = if (position != 0) {
+                        idList[position-1]
 
+                    } else {
+                        ""
+                    }
+                }
                 override fun onNothingSelected(parent: AdapterView<*>?) {
 
                 }
             }
+
+        // get intent from previous screen
+        if(intent.extras?.get("data")!=null){
+            list = intent.extras?.get("data") as GetHealthListModel.Body?
+            healthDescription.setText(list?.description)
+           // spinner_trader_distance.setSelection()
+            // Set Images
+            if (list?.image1!="") {
+                Glide.with(this)
+                    .load(Constants.PET_IMAGE_URL +list?.image1)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) // It will cache your image after loaded for first time
+                    .placeholder(R.drawable.place_holder)
+                    .into(ivPetProfile1)
+            }
+            if (list?.image2!=""){
+                Glide.with(this)
+                    .load(Constants.PET_IMAGE_URL +list?.image2)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL) // It will cache your image after loaded for first time
+                    .placeholder(R.drawable.logo)
+                    .into(ivPetProfile2)
+            }
+        }
     }
 
     fun apiPetProfile() {
@@ -95,12 +133,17 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                 mAlbumFiles.addAll(result)
                 Glide.with(this).load(result[0].path).into(imageView)
 
-                if (imageView.id == R.id.ivPetProfile1)
+                if (imageView.id == R.id.ivPetProfile1) {
                     imageOne = result[0].path
-                else
+                    multipartImageGet()
+                }
+                else {
                     imageTwo = result[0].path
+                    multipartImageGet1()
+                }
             }.onCancel {
             }.start()
+
     }
 
     private fun multipartImageGet(): MultipartBody.Part {
@@ -112,10 +155,11 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
         val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
             MultipartBody.Part.createFormData(
-                "image_1",
+                "image",
                 System.currentTimeMillis().toString() + ".jpg",
                 fileReqBody
             )
+        images.add(imageFile)
         return imageFile
 
     }
@@ -129,23 +173,13 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
         val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
             MultipartBody.Part.createFormData(
-                "image_2",
+                "image",
                 System.currentTimeMillis().toString() + ".jpg",
                 fileReqBody
             )
+        images.add(imageFile)
         return imageFile
 
-    }
-
-    private fun callAddHealthApi() {
-        if (isValid()) {
-            val map = HashMap<String, RequestBody>()
-            map["pet_id"] = mValidationClass.createPartFromString(petId)
-            map["description"] =
-                mValidationClass.createPartFromString(healthDescription.text.toString())
-            viewModel.addHealthDetails(this, true, map, multipartImageGet(), multipartImageGet1())
-            viewModel.mResponse.observe(this, this)
-        }
     }
 
     private fun isValid(): Boolean {
@@ -169,13 +203,24 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
         return check
     }
 
+    // function for images upload
+    private fun callUploadPetApi() {
+        if (isValid()) {
+            val map = HashMap<String, RequestBody>()
+            map["folder"] = mValidationClass.createPartFromString("pets")
+            viewModel.imageUploadmultile(this, true, map, images)
+            viewModel.mResponse.observe(this, this)
+        }
+    }
+
     override fun onChanged(liveData: RestObservable?) {
         when {
             liveData!!.status == Status.SUCCESS -> {
                 if (liveData.data is PetProfileResponse) {
                     for (i in 0 until liveData.data.body.size) {
+                        nameList.add(0,"Select Pet")
                         nameList.add(liveData.data.body[i].name)
-                        idList.add(liveData.data.body[i].id)
+                        idList.add(liveData.data.body[i].id.toString())
 
                     }
                     val adapter1: ArrayAdapter<*> = ArrayAdapter(
@@ -183,6 +228,19 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                         nameList
                     )
                     spinner_trader_distance!!.adapter = adapter1
+                } else if(liveData.data is AddHealthDetail){
+                    showToast(liveData.data.msg)
+                    finish()
+                } else if (liveData.data is ImageUploadResponse){
+                     val image = liveData.data.body[0].image
+                     val image2 = liveData.data.body[1].image
+                    val map = HashMap<String, RequestBody>()
+                    map["pet_id"] = mValidationClass.createPartFromString(petId)
+                    map["image_1"] = mValidationClass.createPartFromString(image)
+                    map["image_2"] = mValidationClass.createPartFromString(image2)
+                    map["description"] = mValidationClass.createPartFromString(healthDescription.text.toString())
+                    viewModel.addHealthDetails(this, true, map)
+                    viewModel.mResponse.observe(this, this)
                 }
             }
             liveData.status == Status.ERROR -> {

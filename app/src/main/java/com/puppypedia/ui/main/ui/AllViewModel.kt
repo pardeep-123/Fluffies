@@ -40,10 +40,10 @@ class AllViewModel : ViewModel() {
         activity: Activity,
         showLoader: Boolean,
         map: HashMap<String, RequestBody>,
-        multipartImageGet: MultipartBody.Part,
-        multipartImageGet1: MultipartBody.Part
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
     ) {
-        restApiInterface.addHealthDetail(map, multipartImageGet,multipartImageGet1)
+        restApiInterface.addHealthDetail(map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -436,6 +436,21 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
+
+    @SuppressLint("CheckResult")
+    fun getHealthDetail(
+        activity: Activity, showLoader: Boolean
+    ) {
+        restApiInterface.getHealthDetail()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
 
 
     @SuppressLint("CheckResult")

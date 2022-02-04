@@ -21,6 +21,7 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationCompat.DEFAULT_ALL
 import androidx.core.app.NotificationCompat.PRIORITY_MAX
 import androidx.work.ListenableWorker.Result.success
+import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.puppypedia.R
@@ -81,5 +82,6 @@ class NotifyWork(context: Context, params: WorkerParameters) : Worker(context, p
         const val NOTIFICATION_NAME = "appName"
         const val NOTIFICATION_CHANNEL = "appName_channel_01"
         const val NOTIFICATION_WORK = "appName_notification_work"
+        var instanceWorkManager :WorkManager?=null
     }
 }

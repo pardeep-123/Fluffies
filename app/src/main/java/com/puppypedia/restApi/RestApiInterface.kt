@@ -1,5 +1,7 @@
 package com.puppypedia.restApi
 
+import com.puppypedia.model.AddHealthDetail
+import com.puppypedia.model.GetHealthListModel
 import com.puppypedia.ui.auth.forgotpassword.ForgotPasswordResponse
 import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
@@ -52,10 +54,10 @@ interface RestApiInterface {
     @Multipart
     @POST(Constants.addHealthDetail)
     fun addHealthDetail(
-        @PartMap map: HashMap<String, RequestBody>,
-        @Part image: MultipartBody.Part,
-        @Part image1: MultipartBody.Part
-    ): Observable<ImageUploadResponse>
+        @PartMap map: HashMap<String, RequestBody>
+      //  @Part image: MultipartBody.Part,
+       // @Part image1: MultipartBody.Part
+    ): Observable<AddHealthDetail>
 
     @Multipart
     @POST(Constants.FileUpload)
@@ -205,6 +207,10 @@ interface RestApiInterface {
     fun apiGetReminders(
         @Field("datetime") datetime: String
     ): Observable<CalenderGetReminderResponse>
+
+    @GET(Constants.getHealthDetail)
+    fun getHealthDetail(): Observable<GetHealthListModel>
+
 
     @FormUrlEncoded
     @POST(Constants.delete_pet_data)

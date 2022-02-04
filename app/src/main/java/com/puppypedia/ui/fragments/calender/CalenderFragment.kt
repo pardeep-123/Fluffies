@@ -27,6 +27,8 @@ import com.puppypedia.ui.main.ui.addremainder.AddRemainderActivity
 import com.puppypedia.ui.main.ui.category_detail.DeleteResponse
 import com.puppypedia.utils.helper.AppUtils
 import com.puppypedia.utils.helper.CommonMethods
+import com.puppypedia.utils.helper.NotifyWork
+import com.puppypedia.utils.helper.NotifyWork.Companion.instanceWorkManager
 import com.puppypedia.utils.helper.RecyclerItemTouchHelper
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.fragment_calender.*
@@ -154,6 +156,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
                     }
                     searchedData(CommonMethods.timeStampToDate((System.currentTimeMillis() / 1000).toInt()))
                 } else if (it.data is DeleteResponse) {
+                    instanceWorkManager?.cancelAllWorkByTag(reminderid)
                     apiGetReminder()
                 }
             }
@@ -216,6 +219,7 @@ class CalenderFragment : Fragment(), Observer<RestObservable>, CheckChangeClickC
             myposition = position
             val map = HashMap<String, String>()
             map["reminderId"] = allReminderList[position].id
+            reminderid = allReminderList[position].id
             viewModel.deletePetReminder(requireActivity(), true, map)
             viewModel.mResponse.observe(viewLifecycleOwner, this)
 

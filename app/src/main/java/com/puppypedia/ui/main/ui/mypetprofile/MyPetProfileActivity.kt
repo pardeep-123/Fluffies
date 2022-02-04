@@ -24,8 +24,8 @@ import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
 
 class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
-    lateinit var adapter: StatusAdapter
 
+    lateinit var adapter: StatusAdapter
     var selectedpos = ""
     var aboutResponse: PetProfileResponse? = null
     lateinit var context: Context
