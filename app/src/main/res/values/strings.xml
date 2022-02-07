@@ -146,4 +146,8 @@
     <string name="loreum">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s</string>
     <string name="addImages">Add Images</string>
     <string name="error_description">"Enter Description "</string>
+    <string name="addfirstImage">Add First Image</string>
+    <string name="addsecondImage">Add Second Image</string>
+    <string name="picture">Picture</string>
+    <string name="lifeEvent">Life Event</string>
 </resources>

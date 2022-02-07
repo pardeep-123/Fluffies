@@ -10,17 +10,22 @@ import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.AddHealthListAdapter
 import com.puppypedia.model.GetHealthListModel
+import com.puppypedia.myDeleteDialog
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
+import com.puppypedia.ui.main.ui.category_detail.DeleteResponse
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.activity_add_health_problem.*
 import kotlinx.android.synthetic.main.activity_my_pet_profile.tb
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
 /*created by naveen singh*/
-class AddHealthProblemActivity : AppCompatActivity(), Observer<RestObservable> {
+class AddHealthProblemActivity : AppCompatActivity(), Observer<RestObservable>,
+    AddHealthListAdapter.OnDeleteClick {
 
     private var adapter : AddHealthListAdapter?=null
+    private var myPos = -1
+    private var mylist: ArrayList<GetHealthListModel.Body> = ArrayList()
    private val viewModel : AllViewModel by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,7 +43,6 @@ class AddHealthProblemActivity : AppCompatActivity(), Observer<RestObservable> {
             tb.tvAdd.visibility = View.GONE
         }
 
-
     }
 
     override fun onBackPressed() {
@@ -51,8 +55,9 @@ class AddHealthProblemActivity : AppCompatActivity(), Observer<RestObservable> {
         tb.tvAdd.visibility = View.VISIBLE
         apiGetHealthDetails()
     }
+
     private fun setAdapter(list: ArrayList<GetHealthListModel.Body>) {
-        adapter = AddHealthListAdapter(list)
+        adapter = AddHealthListAdapter(this,list)
         rvHealthList.adapter = adapter
     }
 
@@ -65,7 +70,12 @@ class AddHealthProblemActivity : AppCompatActivity(), Observer<RestObservable> {
         when{
             it!!.status == Status.SUCCESS ->{
                 if (it.data is GetHealthListModel){
-                    setAdapter(it.data.body)
+                    mylist.clear()
+                    mylist.addAll(it.data.body)
+                    setAdapter(mylist)
+                } else if (it.data is DeleteResponse){
+                    mylist.removeAt(myPos)
+                    adapter?.notifyDataSetChanged()
                 }
             }
             it.status == Status.ERROR -> {
@@ -76,6 +86,16 @@ class AddHealthProblemActivity : AppCompatActivity(), Observer<RestObservable> {
                 }
             }
         }
+    }
+
+    fun apideleteHealthDetail(healthId: String, petId: String) {
+        viewModel.apideleteHealthDetail(this, petId, healthId, true)
+        viewModel.mResponse.observe(this, this)
+    }
+
+    override fun onDelete(healthId: String, petId: String,position :Int) {
+        myPos = position
+        myDeleteDialog(this,{apideleteHealthDetail(healthId,petId)},"Are you sure to delete?")
     }
 
 }

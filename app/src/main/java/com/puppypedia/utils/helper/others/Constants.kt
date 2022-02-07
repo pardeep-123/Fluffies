@@ -63,6 +63,8 @@ class Constants {
         const val deletePetReminder = BASE_URL + "delete_pet_reminder"
         const val addHealthDetail = BASE_URL + "add_health_detail"
         const val getHealthDetail = BASE_URL + "get_health_detail"
+        const val deleteHealthDetail = BASE_URL + "delete_health_detail"
+        const val editHealthDetail = BASE_URL + "edit_health_detail"
         fun gender(value: Int): String {
             if (value == 0) {
                 return "Male"

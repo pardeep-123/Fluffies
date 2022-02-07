@@ -46,10 +46,8 @@ class WeightChartActivity : AppCompatActivity() {
     private fun weightBtnClick() {
         btnWeight.background = ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
         btnStatistics.setBackgroundColor(Color.TRANSPARENT)
-//        btnBodyConditionChart.setBackgroundColor(Color.TRANSPARENT)
         btnWeight.setTextColor(ContextCompat.getColor(this, R.color.white))
         btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.black))
-//        btnBodyConditionChart.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         if (currentFragment() !is WeightFragment) {
             openFragment(WeightFragment())

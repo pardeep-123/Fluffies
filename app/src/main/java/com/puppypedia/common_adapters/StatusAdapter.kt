@@ -46,7 +46,7 @@ class StatusAdapter(
                     ).putExtra("add", "add")
                 )
             } else {
-                myPetProfileActivity.petDetails(position)
+               // myPetProfileActivity.petDetails(position)
             }
         }
     }

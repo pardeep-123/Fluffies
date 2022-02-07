@@ -31,7 +31,7 @@
                     <ImageView
                         android:id="@+id/img"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_160sdp"
+                        android:layout_height="@dimen/_130sdp"
                         android:orientation="horizontal"
                         />
 
@@ -79,6 +79,20 @@
                 android:text=""
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/card"
+                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="@dimen/_12sdp" />
+
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:padding="@dimen/_5sdp"
+                android:text=""
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:textColor="@color/black"
+                app:layout_constraintTop_toBottomOf="@+id/tv_record"
                 app:layout_constraintStart_toStartOf="parent"
                 android:textSize="@dimen/_12sdp" />
         </androidx.constraintlayout.widget.ConstraintLayout>

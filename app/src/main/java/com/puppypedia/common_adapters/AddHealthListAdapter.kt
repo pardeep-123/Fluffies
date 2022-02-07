@@ -14,8 +14,13 @@ import com.puppypedia.ui.main.ui.addhealthproblem.AddHealthDetails
 import com.puppypedia.utils.helper.others.Constants
 import kotlinx.android.synthetic.main.item_health_details.view.*
 
-class AddHealthListAdapter(var list: ArrayList<GetHealthListModel.Body>) : RecyclerView.Adapter<AddHealthListAdapter.ViewHolder>() {
+class AddHealthListAdapter(var onDelete : OnDeleteClick,var list: ArrayList<GetHealthListModel.Body>) : RecyclerView.Adapter<AddHealthListAdapter.ViewHolder>() {
     lateinit var ctx : Context
+
+    interface OnDeleteClick{
+
+        fun onDelete(healthId:String, petId:String,position: Int)
+    }
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
@@ -25,14 +30,20 @@ class AddHealthListAdapter(var list: ArrayList<GetHealthListModel.Body>) : Recyc
         return ViewHolder(view)
     }
 
+
     override fun onBindViewHolder(holder: AddHealthListAdapter.ViewHolder, position: Int) {
         holder.itemView.iv_edit.setOnClickListener {
             val intent = Intent(ctx,AddHealthDetails::class.java)
             intent.putExtra("data",list[position])
              ctx.startActivity(intent)
         }
+
+        // set interface on delete button
+        holder.itemView.iv_delete.setOnClickListener {
+            onDelete.onDelete(list[position].id.toString(),list[position].petId.toString(),position)
+        }
         holder.itemView.tv_record.text = list[position].petName
-      //  holder.itemView.tvDescription.text = list[position].description
+        holder.itemView.tv_description.text = list[position].description
         if (list[position].image1!="") {
             Glide.with(ctx)
                 .load(Constants.PET_IMAGE_URL +list[position].image1)

@@ -45,7 +45,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         v = inflater.inflate(R.layout.fragment_home, container, false)
         apihome()
         return v

@@ -59,6 +59,15 @@ interface RestApiInterface {
        // @Part image1: MultipartBody.Part
     ): Observable<AddHealthDetail>
 
+    // Edit Health
+    @Multipart
+    @POST(Constants.editHealthDetail)
+    fun editHealthDetail(
+        @PartMap map: HashMap<String, RequestBody>
+        //  @Part image: MultipartBody.Part,
+        // @Part image1: MultipartBody.Part
+    ): Observable<AddHealthDetail>
+
     @Multipart
     @POST(Constants.FileUpload)
     fun fileUploadmultiple(
@@ -217,6 +226,13 @@ interface RestApiInterface {
     fun apideletePet(
         @Field("petid") petid: String,
         @Field("post_id") post_id: String,
+    ): Observable<DeleteResponse>
+
+    @FormUrlEncoded
+    @POST(Constants.deleteHealthDetail)
+    fun apideleteHealthDetail(
+        @Field("pet_id") petid: String,
+        @Field("health_id") health_id: String,
     ): Observable<DeleteResponse>
 
     @FormUrlEncoded

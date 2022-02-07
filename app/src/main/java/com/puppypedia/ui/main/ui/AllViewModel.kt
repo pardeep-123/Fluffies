@@ -53,6 +53,25 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    // Edit Health Details
+    @SuppressLint("CheckResult")
+    fun editHealthDetail(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, RequestBody>,
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.editHealthDetail(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
     @SuppressLint("CheckResult")
     fun apiAddPuppy(
         activity: Activity,
@@ -362,6 +381,19 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    @SuppressLint("CheckResult")
+    fun apideleteHealthDetail(
+        activity: Activity, petid: String, health_id: String, showLoader: Boolean
+    ) {
+        restApiInterface.apideleteHealthDetail(petid, health_id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
 
     @SuppressLint("CheckResult")
     fun apiWeightPet(
