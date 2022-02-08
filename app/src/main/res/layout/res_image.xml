@@ -19,6 +19,6 @@
         android:layout_alignParentEnd="true"
         android:padding="@dimen/_2sdp"
         android:src="@drawable/crros"
-        android:visibility="visible"></ImageView>
+        android:visibility="visible"/>
 
 </RelativeLayout>

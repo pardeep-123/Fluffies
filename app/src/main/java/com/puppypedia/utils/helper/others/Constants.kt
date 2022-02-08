@@ -65,6 +65,12 @@ class Constants {
         const val getHealthDetail = BASE_URL + "get_health_detail"
         const val deleteHealthDetail = BASE_URL + "delete_health_detail"
         const val editHealthDetail = BASE_URL + "edit_health_detail"
+        const val addPicture = BASE_URL + "add_picture"
+        const val getPicture = BASE_URL + "get_picture"
+        const val delPicture = BASE_URL + "del_picture"
+        const val getLifeEvent = BASE_URL + "get_life_event"
+        const val addLifeEvent = BASE_URL + "add_life_event"
+        const val delLifeEvent = BASE_URL + "del_life_event"
         fun gender(value: Int): String {
             if (value == 0) {
                 return "Male"

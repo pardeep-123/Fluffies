@@ -43,12 +43,14 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
 
+    var petId = ""
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_pet_profile)
-
+        apiPetProfile()
         context = this
-        openFragment(MyPetProfileFragment())
+
         tb.iv_back.setOnClickListener {
             onBackPressed()
         }
@@ -66,11 +68,6 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        apiPetProfile()
-    }
-
     fun apiPetProfile() {
         viewModel.getPetProfile(this, true)
         viewModel.mResponse.observe(this, this)
@@ -82,7 +79,9 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     aboutResponse = liveData.data
                     adapter = StatusAdapter(this, aboutResponse!!, this@MyPetProfileActivity)
                     rv_status.adapter = adapter
-                  //  petDetails(0)
+                    petId = aboutResponse?.body!![0].id.toString()
+                    openFragment(MyPetProfileFragment())
+                  //MyPetProfileFragment().petDetails(0,aboutResponse!!)
                 }
             }
             liveData.status == Status.ERROR -> {
@@ -107,22 +106,23 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
     private fun profileBtnClick() {
         btnProfile.background = ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
-        btnStatistics.setBackgroundColor(Color.TRANSPARENT)
         btnProfile.setTextColor(ContextCompat.getColor(this, R.color.white))
-        btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.black))
-
+        btnPicture.setBackgroundColor(Color.TRANSPARENT)
+        btnPicture.setTextColor(ContextCompat.getColor(this, R.color.black))
+        btnLifeEvent.setBackgroundColor(Color.TRANSPARENT)
+        btnLifeEvent.setTextColor(ContextCompat.getColor(this, R.color.black))
         if (currentFragment() !is MyPetProfileFragment) {
             openFragment(MyPetProfileFragment())
         }
     }
 
     private fun pictureBtnClick() {
-        btnStatistics.background =
-            ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
+        btnPicture.background = ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
+        btnPicture.setTextColor(ContextCompat.getColor(this, R.color.white))
         btnProfile.setBackgroundColor(Color.TRANSPARENT)
-//        btnBodyConditionChart.setBackgroundColor(Color.TRANSPARENT)
-        btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.white))
         btnProfile.setTextColor(ContextCompat.getColor(this, R.color.black))
+        btnLifeEvent.setBackgroundColor(Color.TRANSPARENT)
+        btnLifeEvent.setTextColor(ContextCompat.getColor(this, R.color.black))
 //        btnBodyConditionChart.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         if (currentFragment() !is PictureFragment) {
@@ -131,12 +131,14 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     }
 
     private fun lifeEventBtnClick() {
-        btnStatistics.background =
-            ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
-        btnWeight.setBackgroundColor(Color.TRANSPARENT)
+        btnLifeEvent.background = ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
+        btnLifeEvent.setTextColor(ContextCompat.getColor(this, R.color.white))
+        btnProfile.setBackgroundColor(Color.TRANSPARENT)
+        btnProfile.setTextColor(ContextCompat.getColor(this, R.color.black))
+        btnPicture.setBackgroundColor(Color.TRANSPARENT)
 //        btnBodyConditionChart.setBackgroundColor(Color.TRANSPARENT)
-        btnStatistics.setTextColor(ContextCompat.getColor(this, R.color.white))
-        btnWeight.setTextColor(ContextCompat.getColor(this, R.color.black))
+
+        btnPicture.setTextColor(ContextCompat.getColor(this, R.color.black))
 //        btnBodyConditionChart.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         if (currentFragment() !is LifeEventFragment) {

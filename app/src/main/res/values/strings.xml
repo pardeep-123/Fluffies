@@ -150,4 +150,6 @@
     <string name="addsecondImage">Add Second Image</string>
     <string name="picture">Picture</string>
     <string name="lifeEvent">Life Event</string>
+    <string name="add_life">Add Life Event</string>
+    <string name="error_title">Enter Title First</string>
 </resources>

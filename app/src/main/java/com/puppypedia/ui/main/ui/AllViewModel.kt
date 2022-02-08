@@ -72,6 +72,99 @@ class AllViewModel : ViewModel() {
             )
     }
 
+    // add pictures of puppy
+
+    @SuppressLint("CheckResult")
+    fun addPicture(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, RequestBody>,
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.addPicture(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    // add life event
+    @SuppressLint("CheckResult")
+    fun addLifeEvent(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, String>,
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.addLifeEvent(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+    // get picture list
+    @SuppressLint("CheckResult")
+    fun getPicture(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, RequestBody>,
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.getPicture(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    // get Lifevent list
+    @SuppressLint("CheckResult")
+    fun getLifeEvent(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, String>,
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.getLifeEvent(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+    @SuppressLint("CheckResult")
+    fun delPicture(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, RequestBody>,
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.delPicture(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
     @SuppressLint("CheckResult")
     fun apiAddPuppy(
         activity: Activity,

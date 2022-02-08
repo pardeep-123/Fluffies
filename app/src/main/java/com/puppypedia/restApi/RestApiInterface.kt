@@ -1,7 +1,7 @@
 package com.puppypedia.restApi
 
-import com.puppypedia.model.AddHealthDetail
-import com.puppypedia.model.GetHealthListModel
+import AddImageModel
+import com.puppypedia.model.*
 import com.puppypedia.ui.auth.forgotpassword.ForgotPasswordResponse
 import com.puppypedia.ui.auth.login.LoginResponse
 import com.puppypedia.ui.auth.signup.SignUpResponse
@@ -67,6 +67,54 @@ interface RestApiInterface {
         //  @Part image: MultipartBody.Part,
         // @Part image1: MultipartBody.Part
     ): Observable<AddHealthDetail>
+
+    // to add pictures
+    @Multipart
+    @POST(Constants.addPicture)
+    fun addPicture(
+        @PartMap map: HashMap<String, RequestBody>
+        //  @Part image: MultipartBody.Part,
+        // @Part image1: MultipartBody.Part
+    ): Observable<AddImageModel>
+
+
+    // to add pictures
+   // @Multipart
+    @POST(Constants.addLifeEvent)
+    fun addLifeEvent(
+        @PartMap map: HashMap<String, String>
+        //  @Part image: MultipartBody.Part,
+        // @Part image1: MultipartBody.Part
+    ): Observable<AddLifeEventModel>
+
+    // to get pictures
+    @Multipart
+    @POST(Constants.getPicture)
+    fun getPicture(
+        @PartMap map: HashMap<String, RequestBody>
+        //  @Part image: MultipartBody.Part,
+        // @Part image1: MultipartBody.Part
+    ): Observable<GetImageModel>
+
+
+    // to get pictures
+    @Multipart
+    @POST(Constants.getLifeEvent)
+    fun getLifeEvent(
+        @PartMap map: HashMap<String, String>
+        // @Part image: MultipartBody.Part,
+        // @Part image1: MultipartBody.Part
+    ): Observable<GetLifeEventModel>
+
+    // to get pictures
+    @Multipart
+    @POST(Constants.delPicture)
+    fun delPicture(
+        @PartMap map: HashMap<String, RequestBody>
+        //  @Part image: MultipartBody.Part,
+        // @Part image1: MultipartBody.Part
+    ): Observable<DeleteResponse>
+
 
     @Multipart
     @POST(Constants.FileUpload)
@@ -269,4 +317,5 @@ interface RestApiInterface {
     fun deletePetReminder(
         @FieldMap map: HashMap<String, String>
     ): Observable<DeleteResponse>
+
 }

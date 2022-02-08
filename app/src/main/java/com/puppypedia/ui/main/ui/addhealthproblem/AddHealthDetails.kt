@@ -1,6 +1,7 @@
 package com.puppypedia.ui.main.ui.addhealthproblem
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
@@ -84,6 +85,7 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                     map["image_2"] = mValidationClass.createPartFromString(image2)
                     map["description"] =
                         mValidationClass.createPartFromString(healthDescription.text.toString())
+                    Log.d("editDtaa",petId)
                     viewModel.editHealthDetail(this, true, map)
                     viewModel.mResponse.observe(this, this)
                 }else
@@ -196,6 +198,8 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                 Helper.showErrorAlert(this, resources.getString(R.string.addfirstImage))
             else if (mValidationClass.checkStringNull(imageTwo))
                 Helper.showErrorAlert(this, resources.getString(R.string.addsecondImage))
+            else
+                check = true
         }
 //        else if (mValidationClass.checkStringNull(imageOne))
 //            Helper.showErrorAlert(this, resources.getString(R.string.addfirstImage))
@@ -224,8 +228,9 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
         when {
             liveData!!.status == Status.SUCCESS -> {
                 if (liveData.data is PetProfileResponse) {
+                    nameList.add(0, "Select Pet")
                     for (i in 0 until liveData.data.body.size) {
-                        nameList.add(0, "Select Pet")
+
                         nameList.add(liveData.data.body[i].name)
                         idList.add(liveData.data.body[i].id.toString())
 
@@ -273,6 +278,7 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                 } else if (liveData.data is ImageUploadResponse) {
 
                     image = liveData.data.body[0].image
+                    if (liveData.data.body.size>1)
                     image2 = liveData.data.body[1].image
                     if (intent?.extras?.get("data")==null) {
                         val map = HashMap<String, RequestBody>()

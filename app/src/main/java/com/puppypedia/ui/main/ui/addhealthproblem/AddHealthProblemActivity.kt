@@ -72,7 +72,11 @@ class AddHealthProblemActivity : AppCompatActivity(), Observer<RestObservable>,
                 if (it.data is GetHealthListModel){
                     mylist.clear()
                     mylist.addAll(it.data.body)
-                    setAdapter(mylist)
+                    if (mylist.size>0) {
+                        setAdapter(mylist)
+                        no_data.visibility = View.GONE
+                    }  else
+                        no_data.visibility = View.VISIBLE
                 } else if (it.data is DeleteResponse){
                     mylist.removeAt(myPos)
                     adapter?.notifyDataSetChanged()
