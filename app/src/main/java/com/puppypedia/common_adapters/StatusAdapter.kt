@@ -18,11 +18,13 @@ import kotlinx.android.synthetic.main.item_status.view.*
 
 class StatusAdapter(
     var context: Context,
-    var arrayList: PetProfileResponse,
-    var myPetProfileActivity: MyPetProfileActivity
-) :
+    var arrayList: PetProfileResponse, var onProfileClick: OnProfileClick) :
     RecyclerView.Adapter<StatusAdapter.StatusViewHolder>() {
 
+    interface OnProfileClick{
+        fun onimageClick(myPetId:String,position: Int)
+
+    }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatusViewHolder {
         val view = LayoutInflater.from(context).inflate(R.layout.item_status, parent, false)
         return StatusViewHolder(view)
@@ -46,7 +48,8 @@ class StatusAdapter(
                     ).putExtra("add", "add")
                 )
             } else {
-               // myPetProfileActivity.petDetails(position)
+                  onProfileClick.onimageClick(arrayList.body[position].id.toString(),position)
+
             }
         }
     }

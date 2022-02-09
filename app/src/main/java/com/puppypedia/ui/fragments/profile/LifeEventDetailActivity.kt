@@ -6,6 +6,7 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.TextUtils
+import android.view.View
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.last.manager.restApi.Status
@@ -14,6 +15,7 @@ import com.puppypedia.common_adapters.AddLifePicAdapter
 import com.puppypedia.common_adapters.PictureAdapter
 import com.puppypedia.model.AddLifeEventModel
 import com.puppypedia.model.GetImageModel
+import com.puppypedia.model.GetLifeEventModel
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.showToast
 import com.puppypedia.ui.commomModel.ImageUploadResponse
@@ -47,7 +49,6 @@ import kotlin.collections.HashMap
 
 class LifeEventDetailActivity : AppCompatActivity(), AddLifePicAdapter.OnImageClick,
     Observer<RestObservable> {
-    private lateinit var time: TimePickerDialog.OnTimeSetListener
     private lateinit var date: DatePickerDialog.OnDateSetListener
     private val myCalendar: Calendar = Calendar.getInstance()
 
@@ -62,10 +63,14 @@ class LifeEventDetailActivity : AppCompatActivity(), AddLifePicAdapter.OnImageCl
     private var mAlbumFiles: ArrayList<AlbumFile> = ArrayList()
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
-
+   // pet id
+    private var petId = ""
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_life_event_detail)
+
+        if (intent.getStringExtra("petId")!=null)
+        petId = intent.getStringExtra("petId")!!
 
         mValidationClass = ValidationsClass.getInstance()
         tb.iv_back.setOnClickListener {
@@ -84,6 +89,8 @@ class LifeEventDetailActivity : AppCompatActivity(), AddLifePicAdapter.OnImageCl
                     myCalendar.timeInMillis,
                     "dd-MM-yyyy"
                 )
+                etTime.setText(dateString)
+
             }
             datePicker(this)
 
@@ -96,35 +103,21 @@ class LifeEventDetailActivity : AppCompatActivity(), AddLifePicAdapter.OnImageCl
     }
 
     private fun datePicker(context: Context) {
-        time = TimePickerDialog.OnTimeSetListener { timePicker, hour, minute ->
-            myCalendar[Calendar.HOUR_OF_DAY] = hour
-            myCalendar[Calendar.MINUTE] = minute
-
-            etTime.setText(
-                dateString + " " + AppUtils.dateInString(
-                    myCalendar.timeInMillis,
-                    "hh:mm aa"
-                )
-            )
-        }
-        timePicker(this)
 
         val datePicker = DatePickerDialog(
             context, date, myCalendar[Calendar.YEAR], myCalendar[Calendar.MONTH],
             myCalendar[Calendar.DAY_OF_MONTH]
         )
-        datePicker.datePicker.minDate = System.currentTimeMillis() - 1000
+        datePicker.datePicker.maxDate = System.currentTimeMillis() - 1000
         datePicker.show()
-
-        // baad mein chlega
 
     }
 
-    fun callAddLifeApi() {
-      //  if (isValid()) {
+    private fun callAddLifeApi() {
+        if (isValid()) {
             callUploadPetApi()
 
-    //    }
+        }
     }
 
     private fun isValid(): Boolean {
@@ -134,24 +127,18 @@ class LifeEventDetailActivity : AppCompatActivity(), AddLifePicAdapter.OnImageCl
         var check = false
         if (mValidationClass.checkStringNull(etTitle))
             Helper.showErrorAlert(this, resources.getString(R.string.error_title))
-        else if (!mValidationClass.checkStringNull(tvTime))
+        else if (mValidationClass.checkStringNull(tvTime))
             Helper.showErrorAlert(this, resources.getString(R.string.error_time))
-        else if (!mValidationClass.checkStringNull(tvDescriptionDetail))
+        else if (mValidationClass.checkStringNull(tvDescriptionDetail))
             Helper.showErrorAlert(this, resources.getString(R.string.error_description))
+        else if (images.size==0){
+            Helper.showErrorAlert(this, resources.getString(R.string.select_any_image))
+        }
         else
             check = true
         return check
     }
 
-    private fun timePicker(context: Context) {
-        TimePickerDialog(
-            context,
-            time,
-            myCalendar[Calendar.HOUR_OF_DAY],
-            myCalendar[Calendar.MINUTE],
-            false
-        ).show()
-    }
 
     override fun onImageClick() {
         selectImage()
@@ -221,14 +208,14 @@ class LifeEventDetailActivity : AppCompatActivity(), AddLifePicAdapter.OnImageCl
                     }
                     image = TextUtils.join(",", imageResponseList)
 
-                    val time = tvTime.text.toString().trim()
+                    val time = etTime.text.toString().trim()
 
-                    val map = java.util.HashMap<String, String>()
-                    map["pet_id"] = (MyPetProfileActivity().petId)
-                    map["title"] = etTitle.text.toString()
-                    map["date"] = time
-                    map["description"] = tvDescriptionDetail.text.toString()
-                    map["pet_image"] = image
+                    val map = HashMap<String, String>()
+                    map["pet_id"] =  petId
+                    map["title"] =  etTitle.text.toString().trim()
+                    map["date"] =  time
+                    map["description"] =  tvDescriptionDetail.text.toString()
+                    map["pet_image"] =  image
                     viewModel.addLifeEvent(this, true, map)
                     viewModel.mResponse.observe(this, this)
                 }

@@ -78,7 +78,7 @@ class AllViewModel : ViewModel() {
     fun addPicture(
         activity: Activity,
         showLoader: Boolean,
-        map: HashMap<String, RequestBody>,
+        map: HashMap<String, String>,
 //        multipartImageGet: MultipartBody.Part,
 //        multipartImageGet1: MultipartBody.Part
     ) {
@@ -102,6 +102,26 @@ class AllViewModel : ViewModel() {
 //        multipartImageGet1: MultipartBody.Part
     ) {
         restApiInterface.addLifeEvent(map)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
+    // to delete life events
+
+    @SuppressLint("CheckResult")
+    fun delLifeEvent(
+        activity: Activity,
+        showLoader: Boolean,
+        map: HashMap<String, Int>
+//        multipartImageGet: MultipartBody.Part,
+//        multipartImageGet1: MultipartBody.Part
+    ) {
+        restApiInterface.delLifeEvent(map)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
@@ -151,7 +171,7 @@ class AllViewModel : ViewModel() {
     fun delPicture(
         activity: Activity,
         showLoader: Boolean,
-        map: HashMap<String, RequestBody>,
+        map: HashMap<String, String>,
 //        multipartImageGet: MultipartBody.Part,
 //        multipartImageGet1: MultipartBody.Part
     ) {

@@ -25,9 +25,10 @@ import kotlinx.android.synthetic.main.fragment_life_event.*
 import kotlinx.android.synthetic.main.fragment_picture.*
 import okhttp3.RequestBody
 
-class LifeEventFragment : Fragment(), Observer<RestObservable>, GetLifeAdapter.OnDeletePic {
+class LifeEventFragment(var petId:String) : Fragment(), Observer<RestObservable>, GetLifeAdapter.OnDeletePic {
 
     var adapter : GetLifeAdapter?=null
+    private var delPosition = -1
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     private var mylist = ArrayList<GetLifeEventModel.Body>()
@@ -44,9 +45,15 @@ class LifeEventFragment : Fragment(), Observer<RestObservable>, GetLifeAdapter.O
 
         add_fab_event.setOnClickListener {
            val intent = Intent(requireContext(),LifeEventDetailActivity::class.java)
+            intent.putExtra("petId",petId)
             startActivity(intent)
         }
         setAdapter(mylist)
+
+    }
+
+    override fun onResume() {
+        super.onResume()
         hitGetPictureApi()
     }
 
@@ -58,8 +65,19 @@ class LifeEventFragment : Fragment(), Observer<RestObservable>, GetLifeAdapter.O
     // get picture list api
     private fun hitGetPictureApi(){
         val map = HashMap<String, String>()
-        map["pet_id"] = ((activity as MyPetProfileActivity).petId)
+        map["pet_id"] = petId
         viewModel.getLifeEvent(requireActivity(), true, map)
+        viewModel.mResponse.observe(viewLifecycleOwner, this)
+    }
+
+    // to delete the life events
+
+    private fun delLifeEventApi(id:String){
+        val map = HashMap<String, Int>()
+        map["pet_id"] = petId.toInt()
+        map["event_id"] = id.toInt()
+        map["image_id"] = 0
+        viewModel.delLifeEvent(requireActivity(), true, map)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
 
@@ -72,10 +90,10 @@ class LifeEventFragment : Fragment(), Observer<RestObservable>, GetLifeAdapter.O
                     mylist.addAll(liveData.data.body)
                     adapter?.notifyDataSetChanged()
                 }
-//                else if (liveData.data is DeleteResponse) {
-//                    myList.removeAt(delPosition)
-//                    adapter?.notifyDataSetChanged()
-//                }
+                else if (liveData.data is DeleteResponse) {
+                    mylist.removeAt(delPosition)
+                    adapter?.notifyDataSetChanged()
+                }
             }
             liveData.status == Status.ERROR -> {
                 if (liveData.data != null) {
@@ -88,6 +106,7 @@ class LifeEventFragment : Fragment(), Observer<RestObservable>, GetLifeAdapter.O
     }
 
     override fun onDeletePic(id: String, position: Int) {
-
+        delPosition = position
+        delLifeEventApi(id)
     }
 }

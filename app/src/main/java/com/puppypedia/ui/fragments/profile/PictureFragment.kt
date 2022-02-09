@@ -1,7 +1,7 @@
 package com.puppypedia.ui.fragments.profile
 
-import AddImageModel
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,11 +12,11 @@ import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.PictureAdapter
 import com.puppypedia.model.GetImageModel
+import com.puppypedia.model.NewAddModel
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.category_detail.DeleteResponse
-import com.puppypedia.ui.main.ui.mypetprofile.MyPetProfileActivity
 import com.puppypedia.utils.helper.others.Helper
 import com.puppypedia.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
@@ -31,7 +31,7 @@ import okhttp3.RequestBody.Companion.asRequestBody
 import java.io.File
 
 
-class PictureFragment : Fragment(), PictureAdapter.OnDeletePic, Observer<RestObservable> {
+class PictureFragment(var petId: String) : Fragment(), PictureAdapter.OnDeletePic, Observer<RestObservable> {
    var adapter : PictureAdapter?=null
     private lateinit var mValidationClass: ValidationsClass
     private var mAlbumFiles: ArrayList<AlbumFile> = ArrayList()
@@ -113,25 +113,25 @@ class PictureFragment : Fragment(), PictureAdapter.OnDeletePic, Observer<RestObs
 
     }
     private fun hitAddPictureApi(){
-        val map = HashMap<String, RequestBody>()
-        map["pet_id"] = mValidationClass.createPartFromString((activity as MyPetProfileActivity).petId)
-        map["pet_image"] = mValidationClass.createPartFromString(image)
-        viewModel.addPicture(requireActivity(), true, map)
-        viewModel.mResponse.observe(this, this)
+        val map = HashMap<String, String>()
+        map["pet_id"] = (petId)
+        map["pet_image"] = (image)
+        viewModel.addPicture(requireActivity(), false, map)
+
     }
 
     // get picture list api
     private fun hitGetPictureApi(){
         val map = HashMap<String, RequestBody>()
-        map["pet_id"] = mValidationClass.createPartFromString((activity as MyPetProfileActivity).petId)
+        map["pet_id"] = mValidationClass.createPartFromString(petId)
         viewModel.getPicture(requireActivity(), true, map)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
 
     override fun onDeletePic(id:String,position:Int) {
         delPosition = position
-        val map = HashMap<String, RequestBody>()
-        map["image_id"] = mValidationClass.createPartFromString(id)
+        val map = HashMap<String, String>()
+        map["image_id"] = id
         viewModel.delPicture(requireActivity(), true, map)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }
@@ -139,21 +139,28 @@ class PictureFragment : Fragment(), PictureAdapter.OnDeletePic, Observer<RestObs
     override fun onChanged(liveData: RestObservable?) {
         when{
             liveData!!.status == Status.SUCCESS->{
-                if (liveData.data is ImageUploadResponse) {
-                    image = liveData.data.body[0].image
-                    hitAddPictureApi()
-                } else if(liveData.data is AddImageModel){
-                   hitGetPictureApi()
-//                    myList.add(liveData.data.body)
-//                    adapter?.notifyDataSetChanged()
-                } else if (liveData.data is GetImageModel){
-                    if (liveData.data.body.size>0)
-                        myList.clear()
-                    myList.addAll(liveData.data.body)
-                    adapter?.notifyDataSetChanged()
-                }  else if (liveData.data is DeleteResponse){
-                    myList.removeAt(delPosition)
-                    adapter?.notifyDataSetChanged()
+                when (liveData.data) {
+                    is ImageUploadResponse -> {
+                        image = liveData.data.body[0].image
+                        Handler().postDelayed({
+                            hitAddPictureApi()
+                        },200)
+
+                    }
+                    is NewAddModel -> {
+                        hitGetPictureApi()
+
+                    }
+                    is GetImageModel -> {
+                        if (liveData.data.body.size>0)
+                            myList.clear()
+                        myList.addAll(liveData.data.body)
+                        adapter?.notifyDataSetChanged()
+                    }
+                    is DeleteResponse -> {
+                        myList.removeAt(delPosition)
+                        adapter?.notifyDataSetChanged()
+                    }
                 }
             }
             liveData.status == Status.ERROR -> {

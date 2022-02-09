@@ -116,6 +116,9 @@ dependencies {
     // work manager
     implementation 'androidx.work:work-runtime:2.1.0-alpha02'
 
+    // use this library for zoom function on image.
+    implementation 'com.github.chrisbanes:PhotoView:2.1.3'
+
 }
 repositories {
     mavenCentral()

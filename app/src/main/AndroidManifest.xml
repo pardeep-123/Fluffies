@@ -23,7 +23,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.fragments.profile.LifeEventDetailActivity"/>
+        <activity android:name=".ui.fragments.profile.EditLifeEvent"></activity>
+        <activity android:name=".ui.fragments.profile.LifeEventDetailActivity" />
         <activity android:name=".ui.main.ui.addhealthproblem.AddHealthDetails" />
         <activity
             android:name=".ui.main.ui.addhealthproblem.AddHealthProblemActivity"

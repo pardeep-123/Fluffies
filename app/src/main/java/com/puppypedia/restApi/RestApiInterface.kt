@@ -1,6 +1,5 @@
 package com.puppypedia.restApi
 
-import AddImageModel
 import com.puppypedia.model.*
 import com.puppypedia.ui.auth.forgotpassword.ForgotPasswordResponse
 import com.puppypedia.ui.auth.login.LoginResponse
@@ -69,23 +68,34 @@ interface RestApiInterface {
     ): Observable<AddHealthDetail>
 
     // to add pictures
-    @Multipart
+    @FormUrlEncoded
     @POST(Constants.addPicture)
     fun addPicture(
-        @PartMap map: HashMap<String, RequestBody>
+        @FieldMap map: HashMap<String, String>
         //  @Part image: MultipartBody.Part,
         // @Part image1: MultipartBody.Part
-    ): Observable<AddImageModel>
+    ): Observable<NewAddModel>
 
 
     // to add pictures
-   // @Multipart
+    @FormUrlEncoded
     @POST(Constants.addLifeEvent)
     fun addLifeEvent(
-        @PartMap map: HashMap<String, String>
+        @FieldMap map: HashMap<String, String>
         //  @Part image: MultipartBody.Part,
         // @Part image1: MultipartBody.Part
     ): Observable<AddLifeEventModel>
+
+    // to delete life events
+
+    // to add pictures
+    @FormUrlEncoded
+    @POST(Constants.delLifeEvent)
+    fun delLifeEvent(
+        @FieldMap map: HashMap<String, Int>
+        //  @Part image: MultipartBody.Part,
+        // @Part image1: MultipartBody.Part
+    ): Observable<DeleteResponse>
 
     // to get pictures
     @Multipart
@@ -98,19 +108,19 @@ interface RestApiInterface {
 
 
     // to get pictures
-    @Multipart
+    @FormUrlEncoded
     @POST(Constants.getLifeEvent)
     fun getLifeEvent(
-        @PartMap map: HashMap<String, String>
+        @FieldMap map: HashMap<String, String>
         // @Part image: MultipartBody.Part,
         // @Part image1: MultipartBody.Part
     ): Observable<GetLifeEventModel>
 
     // to get pictures
-    @Multipart
+    @FormUrlEncoded
     @POST(Constants.delPicture)
     fun delPicture(
-        @PartMap map: HashMap<String, RequestBody>
+        @FieldMap map: HashMap<String, String>
         //  @Part image: MultipartBody.Part,
         // @Part image1: MultipartBody.Part
     ): Observable<DeleteResponse>

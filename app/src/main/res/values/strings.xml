@@ -137,8 +137,8 @@
     <string name="notification_title">Puppy Pedia</string>
     <string name="notification_subtitle">You have a new Reminders</string>
     <string name="body_condition_chart">Body Condition Chart</string>
-    <string name="add_health_problem">Add Health Problem</string>
-    <string name="health_problem">Health Problems</string>
+    <string name="add_health_problem">Add Health Concerns</string>
+    <string name="health_problem">Health Concerns</string>
     <string name="v_n_cristhon">V.N.Cristhon</string>
     <string name="do_you_want_to_delete">Do you want to Delete</string>
     <string name="selectdog">Select Your Pet</string>
@@ -152,4 +152,5 @@
     <string name="lifeEvent">Life Event</string>
     <string name="add_life">Add Life Event</string>
     <string name="error_title">Enter Title First</string>
+    <string name="select_any_image">upload any image</string>
 </resources>

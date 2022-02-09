@@ -1,6 +1,7 @@
 package com.puppypedia.common_adapters
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import com.bumptech.glide.Glide
 import com.puppypedia.R
 import com.puppypedia.model.GetImageModel
 import com.puppypedia.model.GetLifeEventModel
+import com.puppypedia.ui.fragments.profile.EditLifeEvent
+import com.puppypedia.ui.fragments.profile.LifeEventDetailActivity
 import com.puppypedia.utils.helper.others.Constants
 import kotlinx.android.synthetic.main.items_pictures.view.*
 
@@ -30,6 +33,13 @@ class GetLifeAdapter(var onDeletePic: OnDeletePic,var list: ArrayList<GetLifeEve
 
         holder.itemView.iv_delete.setOnClickListener {
             onDeletePic.onDeletePic(list[position].id.toString(),position)
+        }
+
+        holder.itemView.setOnClickListener {
+
+            val intent = Intent(ctx, EditLifeEvent::class.java)
+            intent.putExtra("lifeData",list[position])
+            ctx.startActivity(intent)
         }
     }
 

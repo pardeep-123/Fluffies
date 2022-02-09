@@ -1,5 +1,8 @@
 package com.puppypedia.model
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
+import java.io.Serializable
 
 
 data class GetLifeEventModel(
@@ -12,6 +15,7 @@ data class GetLifeEventModel(
     @SerializedName("success")
     val success: Boolean // true
 ) {
+    @Parcelize
     data class Body(
         @SerializedName("createdAt")
         val createdAt: String, // 2022-02-07T11:54:35.000Z
@@ -31,7 +35,8 @@ data class GetLifeEventModel(
         val updatedAt: String, // 2022-02-07T11:54:35.000Z
         @SerializedName("user_id")
         val userId: Int // 184
-    ) {
+    ):Parcelable {
+        @Parcelize
         data class PetImage(
             @SerializedName("createdAt")
             val createdAt: String, // 2022-02-07T11:54:35.000Z
@@ -51,6 +56,6 @@ data class GetLifeEventModel(
             val updatedAt: String, // 2022-02-07T11:54:35.000Z
             @SerializedName("user_id")
             val userId: Int // 184
-        )
+        ):Parcelable
     }
 }

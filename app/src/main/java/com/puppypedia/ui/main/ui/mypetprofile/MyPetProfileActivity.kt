@@ -1,7 +1,6 @@
 package com.puppypedia.ui.main.ui.mypetprofile
 
 import android.content.Context
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +10,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import com.bumptech.glide.Glide
 import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.StatusAdapter
@@ -19,12 +17,7 @@ import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.fragments.profile.LifeEventFragment
 import com.puppypedia.ui.fragments.profile.MyPetProfileFragment
 import com.puppypedia.ui.fragments.profile.PictureFragment
-import com.puppypedia.ui.fragments.statistics.StatisticsFragment
-import com.puppypedia.ui.fragments.weight.WeightFragment
 import com.puppypedia.ui.main.ui.AllViewModel
-import com.puppypedia.ui.main.ui.editpetprofile.EditPetProfileActivity
-import com.puppypedia.utils.helper.others.Constants
-import com.puppypedia.utils.helper.others.Constants.Companion.gender
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
 import kotlinx.android.synthetic.main.activity_my_pet_profile.*
@@ -33,17 +26,16 @@ import kotlinx.android.synthetic.main.activity_my_pet_profile.view.*
 import kotlinx.android.synthetic.main.activity_weight_chart.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
-
-class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
+class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,StatusAdapter.OnProfileClick{
 
     lateinit var adapter: StatusAdapter
-    var selectedpos = ""
     var aboutResponse: PetProfileResponse? = null
     lateinit var context: Context
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
 
     var petId = ""
+    var myposition = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -80,8 +72,8 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                     adapter = StatusAdapter(this, aboutResponse!!, this@MyPetProfileActivity)
                     rv_status.adapter = adapter
                     petId = aboutResponse?.body!![0].id.toString()
-                    openFragment(MyPetProfileFragment())
-                  //MyPetProfileFragment().petDetails(0,aboutResponse!!)
+                    openFragment(MyPetProfileFragment(petId,myposition))
+
                 }
             }
             liveData.status == Status.ERROR -> {
@@ -112,7 +104,7 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         btnLifeEvent.setBackgroundColor(Color.TRANSPARENT)
         btnLifeEvent.setTextColor(ContextCompat.getColor(this, R.color.black))
         if (currentFragment() !is MyPetProfileFragment) {
-            openFragment(MyPetProfileFragment())
+            openFragment(MyPetProfileFragment(petId,myposition))
         }
     }
 
@@ -123,10 +115,9 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         btnProfile.setTextColor(ContextCompat.getColor(this, R.color.black))
         btnLifeEvent.setBackgroundColor(Color.TRANSPARENT)
         btnLifeEvent.setTextColor(ContextCompat.getColor(this, R.color.black))
-//        btnBodyConditionChart.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         if (currentFragment() !is PictureFragment) {
-            openFragment(PictureFragment())
+            openFragment(PictureFragment(petId))
         }
     }
 
@@ -136,27 +127,27 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         btnProfile.setBackgroundColor(Color.TRANSPARENT)
         btnProfile.setTextColor(ContextCompat.getColor(this, R.color.black))
         btnPicture.setBackgroundColor(Color.TRANSPARENT)
-//        btnBodyConditionChart.setBackgroundColor(Color.TRANSPARENT)
 
         btnPicture.setTextColor(ContextCompat.getColor(this, R.color.black))
-//        btnBodyConditionChart.setTextColor(ContextCompat.getColor(this, R.color.black))
 
         if (currentFragment() !is LifeEventFragment) {
-            openFragment(LifeEventFragment())
+            openFragment(LifeEventFragment(petId))
         }
     }
 
-//    fun petDetails(position: Int) {
-//        selectedpos = position.toString()
-//        Glide.with(context).load(Constants.IMAGE_URL + aboutResponse!!.body[position].image)
-//            .placeholder(R.drawable.place_holder).into(ivImg)
-//        tvName.setText(aboutResponse!!.body[position].name)
-//        tvGender.setText(gender(aboutResponse!!.body[position].gender))
-//        tvWeight.setText(aboutResponse!!.body[position].weight.toString())
-//        tvAge.setText(aboutResponse!!.body[position].age.toString())
-//        tvBreed.setText(aboutResponse!!.body[position].breed)
-//        tvAbout.setText(aboutResponse!!.body[position].about)
-//
-//
-//    }
-}
+    override fun onimageClick(myPetId: String,position: Int) {
+        petId = myPetId
+        myposition = position
+        when {
+            currentFragment() is MyPetProfileFragment -> {
+                openFragment(MyPetProfileFragment(petId,position))
+            }
+            currentFragment() is LifeEventFragment -> {
+                openFragment(LifeEventFragment(petId))
+            }
+            currentFragment() is PictureFragment -> {
+                openFragment(PictureFragment(petId))
+            }
+        }
+    }
+  }
