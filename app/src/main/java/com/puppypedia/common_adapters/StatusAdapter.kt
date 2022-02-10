@@ -23,6 +23,7 @@ class StatusAdapter(
 
     interface OnProfileClick{
         fun onimageClick(myPetId:String,position: Int)
+        fun onitemClick(name:String,value: String)
 
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StatusViewHolder {
@@ -41,12 +42,8 @@ class StatusAdapter(
         holder.itemView.setOnClickListener {
             if (position == arrayList.body.size) {
 
-                holder.itemView.context.startActivity(
-                    Intent(
-                        holder.itemView.context,
-                        YourPetDetailActivity::class.java
-                    ).putExtra("add", "add")
-                )
+                onProfileClick.onitemClick("add","add")
+
             } else {
                   onProfileClick.onimageClick(arrayList.body[position].id.toString(),position)
 

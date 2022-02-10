@@ -21,9 +21,12 @@ import com.puppypedia.utils.helper.others.Constants
 class ImagePagerAdapter  (
     var ctx: Context,
     var list: ArrayList<GetPetResponse.Body.PetImage>,
-    var sendClick: ImageAdapter.SendClick, var from : String
+    var sendClick: ImageAdapter.SendClick, var from : String,var onOpenImage: OnOpenImage
     ) : PagerAdapter() {
 
+    interface OnOpenImage{
+        fun onClick(path:String)
+    }
         override fun instantiateItem(container: ViewGroup, position: Int): Any {
             val myLayout: View =
                 LayoutInflater.from(ctx).inflate(R.layout.rv_multi_images, container, false)
@@ -45,7 +48,7 @@ class ImagePagerAdapter  (
             Glide.with(ctx)
                 .load(Constants.PET_IMAGE_URL + list[position].petImage)
                 .diskCacheStrategy(DiskCacheStrategy.ALL) // It will cache your image after loaded for first time
-                .placeholder(R.drawable.logo)
+                .placeholder(R.drawable.puppypediamain)
                 .into(img)
 
             ivDelete.setOnClickListener {
@@ -61,6 +64,9 @@ class ImagePagerAdapter  (
                 } else{
                     Toast.makeText(ctx,"You have to remain atleast One Photo", Toast.LENGTH_LONG).show()
                 }
+            }
+            myLayout.setOnClickListener {
+               onOpenImage.onClick(list[position].petImage)
             }
 
             container.addView(myLayout, 0)

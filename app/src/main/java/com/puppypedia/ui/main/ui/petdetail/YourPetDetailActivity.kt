@@ -97,7 +97,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-    fun dialogAddPet() {
+    private fun dialogAddPet() {
         val dialog = Dialog(this)
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog.setContentView(R.layout.dialog_add_new_pet)
@@ -207,6 +207,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             check = true
         return check
     }
+
     private fun callSignupApi() {
         if (isValid()) {
             val map = HashMap<String, RequestBody>()
@@ -215,6 +216,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             viewModel.mResponse.observe(this, this)
         }
     }
+
     override fun onChanged(it: RestObservable?) {
         when {
             it!!.status == Status.SUCCESS -> {
@@ -227,6 +229,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                     val registerResponse: PetDetailResponse = it.data
                     if (registerResponse.code == Constants.success_code) {
                         if (intent.hasExtra("add")) {
+                            setResult(RESULT_OK)
                             finish()
                         } else {
                             dialogAddPet()

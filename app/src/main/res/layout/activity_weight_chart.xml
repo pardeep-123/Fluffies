@@ -15,9 +15,10 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/_35sdp"
         android:layout_below="@+id/tb"
-        android:layout_marginStart="@dimen/_20sdp"
+        android:layout_marginStart="@dimen/_10sdp"
         android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginEnd="@dimen/_20sdp"
+
+        android:layout_marginEnd="@dimen/_10sdp"
         android:background="@drawable/bg_light_grray_10dp"
         android:orientation="horizontal"
         android:weightSum="2">
@@ -28,6 +29,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="12sp"
             android:background="@drawable/bg_sky_blue_10dp"
             android:text="@string/weight" />
 
@@ -37,8 +39,9 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
+            android:textSize="12sp"
             android:background="@android:color/transparent"
-            android:text="@string/weight_chart1"
+            android:text="@string/body_condition"
             android:textColor="@color/black" />
 
 <!--        <androidx.appcompat.widget.AppCompatButton-->

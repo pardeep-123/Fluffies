@@ -76,7 +76,7 @@ class LifeEventFragment(var petId:String) : Fragment(), Observer<RestObservable>
         val map = HashMap<String, Int>()
         map["pet_id"] = petId.toInt()
         map["event_id"] = id.toInt()
-        map["image_id"] = 0
+
         viewModel.delLifeEvent(requireActivity(), true, map)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
     }

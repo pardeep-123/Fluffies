@@ -1,9 +1,9 @@
 package com.puppypedia.common_adapters
 
-public interface ClickCallBack {
+interface ClickCallBack {
     fun onItemClick(pos: Int, value: String)
 }
 
-public interface CheckChangeClickCallBack {
+interface CheckChangeClickCallBack {
     fun onItemClick(pos: Int, value: Boolean)
 }

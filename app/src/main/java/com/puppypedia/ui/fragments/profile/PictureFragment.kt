@@ -13,6 +13,7 @@ import com.puppypedia.R
 import com.puppypedia.common_adapters.PictureAdapter
 import com.puppypedia.model.GetImageModel
 import com.puppypedia.model.NewAddModel
+import com.puppypedia.openImagePopUp
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.commomModel.ImageUploadResponse
 import com.puppypedia.ui.main.ui.AllViewModel
@@ -105,7 +106,7 @@ class PictureFragment(var petId: String) : Fragment(), PictureAdapter.OnDeletePi
                 System.currentTimeMillis().toString() + ".jpg",
                 fileReqBody
             )
-
+           images.clear()
         images.add(imageFile)
         // hit upload api for image
         callUploadPetApi()
@@ -134,6 +135,10 @@ class PictureFragment(var petId: String) : Fragment(), PictureAdapter.OnDeletePi
         map["image_id"] = id
         viewModel.delPicture(requireActivity(), true, map)
         viewModel.mResponse.observe(viewLifecycleOwner, this)
+    }
+
+    override fun onOpenPic(path: String) {
+        openImagePopUp(path,requireContext())
     }
 
     override fun onChanged(liveData: RestObservable?) {

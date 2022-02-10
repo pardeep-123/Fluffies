@@ -71,6 +71,7 @@ class Constants {
         const val getLifeEvent = BASE_URL + "get_life_event"
         const val addLifeEvent = BASE_URL + "add_life_event"
         const val delLifeEvent = BASE_URL + "del_life_event"
+        const val getBackground = BASE_URL + "get_background"
         fun gender(value: Int): String {
             if (value == 0) {
                 return "Male"

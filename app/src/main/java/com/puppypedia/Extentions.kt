@@ -12,6 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatButton
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.github.chrisbanes.photoview.PhotoView
 import com.puppypedia.utils.helper.others.Constants
@@ -73,4 +74,22 @@ fun openImagePopUp(pos: String?, ctx: Context) {
         Glide.with(ctx).load(Constants.PET_IMAGE_URL + pos).into(headImagePopUp)
 
     }
+}
+
+fun View.click(callback: () -> Unit) {
+    setOnClickListener {
+        callback()
+    }
+}
+
+
+fun Fragment.showToast(msg: String) {
+    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+}
+fun View.isVisible() {
+    visibility = View.VISIBLE
+}
+
+fun View.isGone() {
+    visibility = View.GONE
 }

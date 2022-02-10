@@ -45,12 +45,12 @@ class NotifyWork(context: Context, params: WorkerParameters) : Worker(context, p
         val notificationManager =
             applicationContext.getSystemService(NOTIFICATION_SERVICE) as NotificationManager
 
-        val bitmap = applicationContext.vectorToBitmap(R.drawable.logo)
+        val bitmap = applicationContext.vectorToBitmap(R.drawable.puppypediamain)
         val titleNotification = applicationContext.getString(R.string.notification_title)
         val subtitleNotification = applicationContext.getString(R.string.notification_subtitle)
         val pendingIntent = getActivity(applicationContext, 0, intent, 0)
         val notification = NotificationCompat.Builder(applicationContext, NOTIFICATION_CHANNEL)
-            .setLargeIcon(bitmap).setSmallIcon(R.drawable.logo)
+            .setLargeIcon(bitmap).setSmallIcon(R.drawable.puppypediamain)
             .setContentTitle(titleNotification).setContentText(subtitleNotification)
             .setDefaults(DEFAULT_ALL).setContentIntent(pendingIntent).setAutoCancel(true)
 

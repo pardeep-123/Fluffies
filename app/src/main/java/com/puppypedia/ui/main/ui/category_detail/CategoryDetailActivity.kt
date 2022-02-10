@@ -20,6 +20,8 @@ import com.last.manager.restApi.Status
 import com.puppypedia.R
 import com.puppypedia.common_adapters.AddRecordAdapter
 import com.puppypedia.common_adapters.ClickCallBack
+import com.puppypedia.common_adapters.ImagePagerAdapter
+import com.puppypedia.openImagePopUp
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.fragments.home.HomeFragmentResponse
 import com.puppypedia.ui.main.ui.AllViewModel
@@ -30,7 +32,7 @@ import com.puppypedia.utils.helper.others.SharedPrefUtil
 import kotlinx.android.synthetic.main.activity_category_detail.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
-class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack {
+class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, ClickCallBack ,ImagePagerAdapter.OnOpenImage{
     lateinit var context: Context
     var description = ""
     lateinit var dialog: Dialog
@@ -73,19 +75,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
             iv_addRecord.visibility = View.VISIBLE
             rv_addRecord.visibility = View.VISIBLE
             apiPetData()
-            /*  addRecordAdapter.onItemClickListener = { poss, type ->
-                  var pos = poss
-               if (type == "1") {
-                    // mList.removeAt(pos)
-                      addRecordAdapter.notifyDataSetChanged()
-                  }
-                  if (type == "2") {
 
-                  }
-                  if (type == "3") {
-                      apiitPet()
-                  }
-              }*/
         } else {
             iv_addRecord.visibility = View.GONE
             rv_addRecord.visibility = View.GONE
@@ -113,7 +103,6 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
 
                     if (aboutResponse?.body!!.isNotEmpty()) {
                         nodataFound.visibility = View.GONE
-                    //    rv_addRecord.visibility = View.VISIBLE
                         addRecordAdapter = AddRecordAdapter(this, aboutResponse!!, this)
                         rv_addRecord.adapter = addRecordAdapter
                     }else
@@ -143,11 +132,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
                 i.putExtra("from", "edit")
                 i.putExtra("data", aboutResponse!!.body[pos])
                 startActivity(i)
-                /*
-                 startActivity((Intent(this, AddRecordActivity::class.java))
-                     .putExtra("from", "edit")
-                     .putExtra("description",  aboutResponse?.body)
-                 )*/
+
             }
         }
     }
@@ -175,5 +160,9 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
             dialog.dismiss()
 
         }
+    }
+
+    override fun onClick(path: String) {
+
     }
 }

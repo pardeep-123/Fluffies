@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Puppypedia</string>
+    <string name="app_name">Fluffies</string>
     <string name="image">Image</string>
     <string name="welcome_back">Welcome Back!</string>
     <string name="please_sign_into_your_account">Please sign into your account!</string>
@@ -70,6 +70,7 @@
     <string name="add_remainder">Add Reminder</string>
     <string name="weight_chart">Weight Log</string>
     <string name="weight_chart1">Weight Chart</string>
+    <string name="body_condition">Body Condition Score Chart</string>
     <string name="statistics">Statistics</string>
     <string name="add_weight">Add Weight</string>
     <string name="date">Date</string>
@@ -139,7 +140,7 @@
     <string name="body_condition_chart">Body Condition Chart</string>
     <string name="add_health_problem">Add Health Concerns</string>
     <string name="health_problem">Health Concerns</string>
-    <string name="v_n_cristhon">V.N.Cristhon</string>
+    <string name="v_n_cristhon">by Dr. Nico DVM</string>
     <string name="do_you_want_to_delete">Do you want to Delete</string>
     <string name="selectdog">Select Your Pet</string>
     <string name="healthDesription">Health Description</string>
@@ -148,8 +149,8 @@
     <string name="error_description">"Enter Description "</string>
     <string name="addfirstImage">Add First Image</string>
     <string name="addsecondImage">Add Second Image</string>
-    <string name="picture">Picture</string>
-    <string name="lifeEvent">Life Event</string>
+    <string name="picture">Album</string>
+    <string name="lifeEvent">Life Events</string>
     <string name="add_life">Add Life Event</string>
     <string name="error_title">Enter Title First</string>
     <string name="select_any_image">upload any image</string>

@@ -90,8 +90,18 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                     viewModel.mResponse.observe(this, this)
                 }else
                     callUploadPetApi()
-            }else
+            }else if(image!="" && image2!="")
             callUploadPetApi()
+            else{
+                // send add health api in case of no images selected
+                val map = HashMap<String, RequestBody>()
+                map["pet_id"] = mValidationClass.createPartFromString(petId)
+                map["description"] =
+                    mValidationClass.createPartFromString(healthDescription.text.toString())
+                viewModel.addHealthDetails(this, true, map)
+                viewModel.mResponse.observe(this, this)
+            }
+
         }
 
         // set spinner
@@ -193,22 +203,6 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
         var check = false
         if (mValidationClass.checkStringNull(name))
             Helper.showErrorAlert(this, resources.getString(R.string.error_description))
-        if (intent?.extras?.get("data") == null) {
-            if (mValidationClass.checkStringNull(imageOne))
-                Helper.showErrorAlert(this, resources.getString(R.string.addfirstImage))
-            else if (mValidationClass.checkStringNull(imageTwo))
-                Helper.showErrorAlert(this, resources.getString(R.string.addsecondImage))
-            else
-                check = true
-        }
-//        else if (mValidationClass.checkStringNull(imageOne))
-//            Helper.showErrorAlert(this, resources.getString(R.string.addfirstImage))
-//        else if (mValidationClass.checkStringNull(imageTwo))
-//            Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
-//        else if (mValidationClass.checkStringNull(breed))
-//            Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
-//        else if (mValidationClass.checkStringNull(age))
-//            Helper.showErrorAlert(this, resources.getString(R.string.error_age))
         else
             check = true
         return check
@@ -266,7 +260,7 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
                             Glide.with(this)
                                 .load(Constants.PET_IMAGE_URL + list?.image2)
                                 .diskCacheStrategy(DiskCacheStrategy.ALL) // It will cache your image after loaded for first time
-                                .placeholder(R.drawable.logo)
+                                .placeholder(R.drawable.puppypediamain)
                                 .into(ivPetProfile2)
                         }
                     }

@@ -1,8 +1,10 @@
 package com.puppypedia.ui.main.ui.mypetprofile
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -18,6 +20,7 @@ import com.puppypedia.ui.fragments.profile.LifeEventFragment
 import com.puppypedia.ui.fragments.profile.MyPetProfileFragment
 import com.puppypedia.ui.fragments.profile.PictureFragment
 import com.puppypedia.ui.main.ui.AllViewModel
+import com.puppypedia.ui.main.ui.petdetail.YourPetDetailActivity
 import com.puppypedia.utils.helper.others.Helper
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
 import kotlinx.android.synthetic.main.activity_my_pet_profile.*
@@ -26,7 +29,8 @@ import kotlinx.android.synthetic.main.activity_my_pet_profile.view.*
 import kotlinx.android.synthetic.main.activity_weight_chart.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 
-class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,StatusAdapter.OnProfileClick{
+class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable>,
+    StatusAdapter.OnProfileClick {
 
     lateinit var adapter: StatusAdapter
     var aboutResponse: PetProfileResponse? = null
@@ -64,6 +68,7 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,Stat
         viewModel.getPetProfile(this, true)
         viewModel.mResponse.observe(this, this)
     }
+
     override fun onChanged(liveData: RestObservable?) {
         when {
             liveData!!.status == Status.SUCCESS -> {
@@ -72,7 +77,7 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,Stat
                     adapter = StatusAdapter(this, aboutResponse!!, this@MyPetProfileActivity)
                     rv_status.adapter = adapter
                     petId = aboutResponse?.body!![0].id.toString()
-                    openFragment(MyPetProfileFragment(petId,myposition))
+                    openFragment(MyPetProfileFragment(petId, myposition))
 
                 }
             }
@@ -85,6 +90,7 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,Stat
             }
         }
     }
+
     private fun openFragment(fragment: Fragment) {
         val fragmentManager: FragmentManager = supportFragmentManager
         val transaction: FragmentTransaction = fragmentManager.beginTransaction()
@@ -104,7 +110,7 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,Stat
         btnLifeEvent.setBackgroundColor(Color.TRANSPARENT)
         btnLifeEvent.setTextColor(ContextCompat.getColor(this, R.color.black))
         if (currentFragment() !is MyPetProfileFragment) {
-            openFragment(MyPetProfileFragment(petId,myposition))
+            openFragment(MyPetProfileFragment(petId, myposition))
         }
     }
 
@@ -135,12 +141,12 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,Stat
         }
     }
 
-    override fun onimageClick(myPetId: String,position: Int) {
+    override fun onimageClick(myPetId: String, position: Int) {
         petId = myPetId
         myposition = position
         when {
             currentFragment() is MyPetProfileFragment -> {
-                openFragment(MyPetProfileFragment(petId,position))
+                openFragment(MyPetProfileFragment(petId, position))
             }
             currentFragment() is LifeEventFragment -> {
                 openFragment(LifeEventFragment(petId))
@@ -150,4 +156,25 @@ class MyPetProfileActivity : AppCompatActivity(), Observer<RestObservable> ,Stat
             }
         }
     }
-  }
+
+    override fun onitemClick(name: String, value: String) {
+        val intent = Intent(this, YourPetDetailActivity::class.java).putExtra(name, value)
+        launcher.launch(intent)
+    }
+
+    private val launcher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+
+            if (result.resultCode == RESULT_OK) {
+                apiPetProfile()
+                btnProfile.background = ContextCompat.getDrawable(this, R.drawable.bg_sky_blue_10dp)
+                btnProfile.setTextColor(ContextCompat.getColor(this, R.color.white))
+                btnPicture.setBackgroundColor(Color.TRANSPARENT)
+                btnPicture.setTextColor(ContextCompat.getColor(this, R.color.black))
+                btnLifeEvent.setBackgroundColor(Color.TRANSPARENT)
+                btnLifeEvent.setTextColor(ContextCompat.getColor(this, R.color.black))
+            }
+
+        }
+
+}

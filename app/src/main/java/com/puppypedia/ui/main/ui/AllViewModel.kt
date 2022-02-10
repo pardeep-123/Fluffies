@@ -167,6 +167,24 @@ class AllViewModel : ViewModel() {
                 { mResponse.value = RestObservable.error(activity, it) }
             )
     }
+
+    // get Background Images
+
+    @SuppressLint("CheckResult")
+    fun getBackground(
+        activity: Activity,
+        showLoader: Boolean
+    ) {
+        restApiInterface.getBackground()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+
     @SuppressLint("CheckResult")
     fun delPicture(
         activity: Activity,

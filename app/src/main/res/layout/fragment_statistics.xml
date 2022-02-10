@@ -102,6 +102,7 @@
       android:layout_height="wrap_content">
 
     <com.makeramen.roundedimageview.RoundedImageView
+        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:src="@drawable/img_statitics"

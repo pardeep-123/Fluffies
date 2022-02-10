@@ -26,7 +26,7 @@ class MultipleImageAdapter(var context: Context, var list: ArrayList<AlbumFile>,
         Log.e("checkimagelink", "--" + list.get(position).path)
         Glide.with(context).load(list.get(position).path)
             .dontAnimate().diskCacheStrategy(DiskCacheStrategy.ALL)
-            .placeholder(R.drawable.logo)
+            .placeholder(R.drawable.puppypediamain)
             .into(holder.itemView.ivImage)
 
         holder.itemView.iv_delete.setOnClickListener {

@@ -24,7 +24,7 @@ class MultiEditImageAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        Glide.with(context).load(list!!.petImages[position].petImage).placeholder(R.drawable.logo)
+        Glide.with(context).load(list!!.petImages[position].petImage).placeholder(R.drawable.puppypediamain)
             .into(holder.itemView.ivImage)
     }
 

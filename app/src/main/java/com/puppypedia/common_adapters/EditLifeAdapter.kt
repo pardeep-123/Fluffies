@@ -10,7 +10,9 @@ import androidx.viewpager.widget.PagerAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.puppypedia.R
+import com.puppypedia.click
 import com.puppypedia.model.AddLifeEventModel
+import com.puppypedia.openImagePopUp
 import com.puppypedia.utils.helper.others.Constants
 import kotlinx.android.synthetic.main.item_addlifepic.view.*
 import kotlinx.android.synthetic.main.item_status.view.*
@@ -36,6 +38,11 @@ class EditLifeAdapter(var ctx : Context,var onImageClick: OnImageClick,var list 
             .placeholder(R.drawable.place_holder)
             .into(img)
         container.addView(myLayout, 0)
+
+        // open image
+        myLayout.click {
+            openImagePopUp(list[position],ctx)
+        }
         return myLayout
     }
 

@@ -39,7 +39,7 @@ class AddLifePicAdapter(var onImageClick: OnImageClick,var list : ArrayList<Stri
         if (position==0) {
             holder.itemView.ivDogImgPlus.visibility = View.VISIBLE
             holder.itemView.ivDogImg.visibility = View.GONE
-            Glide.with(ctx).load(R.drawable.ic_add)
+            Glide.with(ctx).load(R.drawable.plusbg)
                 .into(holder.itemView.ivDogImgPlus)
         }else{
             holder.itemView.ivDogImgPlus.visibility = View.GONE

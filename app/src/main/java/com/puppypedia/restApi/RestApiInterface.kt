@@ -17,6 +17,7 @@ import com.puppypedia.ui.main.ui.add_record.AddPetRecordResponse
 import com.puppypedia.ui.main.ui.add_record.EditPetDataResponse
 import com.puppypedia.ui.main.ui.add_weight.AddWeightResponse
 import com.puppypedia.ui.main.ui.addremainder.AddReminderResponse
+import com.puppypedia.ui.main.ui.category_detail.BackgroundModel
 import com.puppypedia.ui.main.ui.category_detail.DeleteResponse
 import com.puppypedia.ui.main.ui.category_detail.GetPetResponse
 import com.puppypedia.ui.main.ui.changepassword.ChangePasswordResponse
@@ -115,6 +116,11 @@ interface RestApiInterface {
         // @Part image: MultipartBody.Part,
         // @Part image1: MultipartBody.Part
     ): Observable<GetLifeEventModel>
+
+
+    // to get background picture
+    @GET(Constants.getBackground)
+    fun getBackground(): Observable<BackgroundModel>
 
     // to get pictures
     @FormUrlEncoded

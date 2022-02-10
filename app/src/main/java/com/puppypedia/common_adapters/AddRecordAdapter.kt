@@ -6,9 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.puppypedia.R
+import com.puppypedia.openImagePopUp
 import com.puppypedia.ui.main.ui.category_detail.GetPetResponse
 import info.jeovani.viewpagerindicator.ViewPagerIndicator
 import info.jeovani.viewpagerindicator.constants.PagerItemType
@@ -20,7 +22,8 @@ class AddRecordAdapter(
     var dataList: GetPetResponse,
     var clickCallBack: ClickCallBack
 ) :
-    RecyclerView.Adapter<AddRecordAdapter.ViewHolderGrid>(), ImageAdapter.SendClick {
+    RecyclerView.Adapter<AddRecordAdapter.ViewHolderGrid>(), ImageAdapter.SendClick,
+    ImagePagerAdapter.OnOpenImage {
 
     private var selectedArrayList = ArrayList<Int>()
     private var unSelectedArrayList = ArrayList<Int>()
@@ -32,18 +35,6 @@ class AddRecordAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolderGrid, position: Int) {
-//        try {
-//            Glide.with(holder.itemView.context)
-//                .load(Constants.PET_IMAGE_URL + dataList.body[position].petImages[0].petImage)
-//                .placeholder(R.drawable.place_holder).into(holder.itemView.iv_record)
-//        } catch (e: Exception) {
-//        }
-
-        //  set Adapter
-//        holder.rv_addRecord. = ImageAdapter(
-//            context,
-//            dataList.body[position].petImages ,this,"category"
-//        )
 
         holder.itemView.tv_record.text = dataList.body[position].description
         try {
@@ -58,6 +49,7 @@ class AddRecordAdapter(
             clickCallBack.onItemClick(position, "2")
         }
 
+
         selectedArrayList.add(Color.parseColor("#10C7DF"))
         unSelectedArrayList.add(Color.parseColor("#80000000"))
 
@@ -71,7 +63,7 @@ class AddRecordAdapter(
         holder.viewPagerIndicator.itemMargin = 6
         holder.viewPagerIndicator.setBackgroundColor(Color.TRANSPARENT)
 
-        holder.rvAddRecord.adapter = ImagePagerAdapter(context, dataList.body[position].petImages,this,"category")
+        holder.rvAddRecord.adapter = ImagePagerAdapter(context, dataList.body[position].petImages,this,"category",this)
 
 
     }
@@ -79,8 +71,6 @@ class AddRecordAdapter(
         return dataList.body.size
     }
     class ViewHolderGrid(item1: View) : RecyclerView.ViewHolder(item1) {
-       // val ivRecord: ImageView = item1.findViewById(R.id.iv_record)
-      //  val tv_record: TextView = item1.findViewById(R.id.tv_record)
         val ivDelete: ImageView = item1.findViewById(R.id.iv_delete)
         val ivEdit: ImageView = item1.findViewById(R.id.iv_edit)
         val rvAddRecord: ViewPager = item1.findViewById(R.id.rv_addRecord)
@@ -89,4 +79,8 @@ class AddRecordAdapter(
 
     }
 
-   }
+    override fun onClick(path: String) {
+        openImagePopUp(path,context)
+    }
+
+}

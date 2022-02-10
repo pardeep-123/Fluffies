@@ -48,7 +48,7 @@ class ImageAdapter(
         Glide.with(context)
             .load(Constants.PET_IMAGE_URL + list[position].petImage)
             .diskCacheStrategy(DiskCacheStrategy.ALL) // It will cache your image after loaded for first time
-            .placeholder(R.drawable.logo)
+            .placeholder(R.drawable.puppypediamain)
             .into(holder.itemView.ivImage)
 
         holder.itemView.iv_delete.setOnClickListener {

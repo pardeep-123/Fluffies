@@ -13,7 +13,10 @@ import com.puppypedia.model.GetLifeEventModel
 import com.puppypedia.ui.fragments.profile.EditLifeEvent
 import com.puppypedia.ui.fragments.profile.LifeEventDetailActivity
 import com.puppypedia.utils.helper.others.Constants
+import kotlinx.android.synthetic.main.items_life_event.view.*
 import kotlinx.android.synthetic.main.items_pictures.view.*
+import kotlinx.android.synthetic.main.items_pictures.view.ivImage
+import kotlinx.android.synthetic.main.items_pictures.view.iv_delete
 
 
 class GetLifeAdapter(var onDeletePic: OnDeletePic,var list: ArrayList<GetLifeEventModel.Body>) : RecyclerView.Adapter<GetLifeAdapter.ViewHolder>() {
@@ -22,19 +25,21 @@ class GetLifeAdapter(var onDeletePic: OnDeletePic,var list: ArrayList<GetLifeEve
         fun onDeletePic(id:String,position: Int)
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v: View = LayoutInflater.from(parent.context).inflate(R.layout.items_pictures, parent, false)
+        val v: View = LayoutInflater.from(parent.context).inflate(R.layout.items_life_event, parent, false)
         ctx = parent.context
         return ViewHolder(v)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Glide.with(ctx).load(Constants.PET_IMAGE_URL + list[position].petImages[0].petImage).placeholder(R.drawable.logo)
+        Glide.with(ctx).load(Constants.PET_IMAGE_URL + list[position].petImages[0].petImage).placeholder(R.drawable.puppypediamain)
             .into(holder.itemView.ivImage)
 
         holder.itemView.iv_delete.setOnClickListener {
             onDeletePic.onDeletePic(list[position].id.toString(),position)
         }
-
+     // set name and date
+        holder.itemView.dateText.text = list[position].date
+        holder.itemView.titleText.text = list[position].title
         holder.itemView.setOnClickListener {
 
             val intent = Intent(ctx, EditLifeEvent::class.java)

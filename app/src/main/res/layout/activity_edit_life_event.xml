@@ -1,12 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
 
     <include
         android:id="@+id/tb"
         layout="@layout/auth_toolbar" />
+
+    <TextView
+        android:id="@+id/tvAddImages"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginTop="@dimen/_1sdp"
+        android:text="Images"
+        android:textColor="@color/black"
+        android:textSize="@dimen/_14sdp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tb" />
+
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/rv_addRecord"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_160sdp"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        app:layout_constraintTop_toBottomOf="@id/tvAddImages"
+        />
+
+    <info.jeovani.viewpagerindicator.ViewPagerIndicator
+        android:id="@+id/viewPagerIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/_35sdp"
+        android:layout_alignBottom="@id/rv_addRecord"
+        app:layout_constraintTop_toBottomOf="@id/rv_addRecord"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_centerHorizontal="true"
+        app:vpi_item_type="oval"
+        app:vpi_view_pager="@+id/rv_addRecord" />
+
+
     <TextView
         android:id="@+id/tvTitle"
         android:layout_width="wrap_content"
@@ -18,7 +62,7 @@
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tb" />
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerIndicator" />
 
     <EditText
         android:id="@+id/etTitle"
@@ -95,18 +139,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvDescription" />
 
-    <TextView
-        android:id="@+id/tvAddImages"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/_15sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:text="Images"
-        android:textColor="@color/black"
-        android:textSize="@dimen/_14sdp"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvDescriptionDetail" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvEditImages"
@@ -119,26 +151,7 @@
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:layout_marginTop="@dimen/_10sdp"/>
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/rv_addRecord"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/_160sdp"
-        android:orientation="horizontal"
-        android:layout_marginTop="@dimen/_10sdp"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        app:layout_constraintTop_toBottomOf="@id/tvAddImages"
-        />
-
-    <info.jeovani.viewpagerindicator.ViewPagerIndicator
-        android:id="@+id/viewPagerIndicator"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_alignBottom="@id/rv_addRecord"
-        app:layout_constraintTop_toBottomOf="@id/rv_addRecord"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_centerHorizontal="true"
-        app:vpi_item_type="oval"
-        app:vpi_view_pager="@+id/rv_addRecord" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

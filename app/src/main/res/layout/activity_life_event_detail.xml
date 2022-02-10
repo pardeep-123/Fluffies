@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_15sdp"
         android:layout_marginTop="@dimen/_20sdp"
-        android:text="Time"
+        android:text="Select Date"
         android:textColor="@color/black"
         android:textSize="@dimen/_14sdp"
         android:textStyle="bold"
