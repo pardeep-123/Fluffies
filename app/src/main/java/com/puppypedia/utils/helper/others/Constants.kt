@@ -79,5 +79,14 @@ class Constants {
                 return "Female"
             }
         }
+
+        fun petType(value: Int): String {
+            if (value == 1) {
+                return "Dog"
+            } else {
+                return "Cat"
+            }
+        }
+
     }
 }

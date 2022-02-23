@@ -47,7 +47,11 @@
                 android:paddingStart="@dimen/_10sdp"
                 android:paddingEnd="@dimen/_10sdp"
                 />
-
+            <TextView
+                style="@style/WrapTextView"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:text="@string/petType"
+                android:textSize="@dimen/_14sdp" />
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_35sdp"

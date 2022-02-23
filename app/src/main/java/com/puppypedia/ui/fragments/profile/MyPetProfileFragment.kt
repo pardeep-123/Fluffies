@@ -80,6 +80,7 @@ class MyPetProfileFragment(var petId: String,var position: Int) : Fragment(), Ob
             .placeholder(R.drawable.place_holder).into(ivImg!!)
          tvName?.text = aboutResponse!!.body[position].name
          tvGender?.text = Constants.gender(aboutResponse!!.body[position].gender)
+         tvPetType?.text = Constants.petType(aboutResponse!!.body[position].type)
       //  tvWeight.setText(aboutResponse!!.body[position].weight.toString())
          tvAge?.text = aboutResponse!!.body[position].age.toString()
          tvBreed?.text = aboutResponse!!.body[position].breed

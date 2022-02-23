@@ -79,7 +79,7 @@
     <string name="month">Month</string>
     <string name="year">Year</string>
     <string name="about_weight">About Weight</string>
-    <string name="choose_your_dog">Choose your dog</string>
+    <string name="choose_your_dog">Choose your pet</string>
     <string name="remainder">Reminder</string>
     <string name="done">Done</string>
     <string name="category">Category</string>
@@ -154,4 +154,6 @@
     <string name="add_life">Add Life Event</string>
     <string name="error_title">Enter Title First</string>
     <string name="select_any_image">upload any image</string>
+    <string name="petType">Pet Type</string>
+    <string name="selectType">Select pet type</string>
 </resources>

@@ -54,7 +54,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     var oldImage = ""
     var newImage = ""
     val ageArrayList = ArrayList<String>()
-    var petType = ""
+    var petType = 0
     // var age = 0
     var gender = 0
     var poz = 0
@@ -83,7 +83,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
         data = (intent.getSerializableExtra("aboutResponse") as PetProfileResponse)
         // setSpinnerWeight()
-
+        setSpinnerPetType()
         poz = intent.getStringExtra("selectedpos")!!.toInt()
         etName.setText(data!!.body[poz].name)
         etAbout.setText(data!!.body[poz].about)
@@ -97,6 +97,16 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         spinnerGender.setSelection(
             if (data!!.body[poz].gender == 0) {
                 1
+            } else {
+                2
+            }
+        )
+
+        // set type spinner value
+        spinnerType.setSelection(
+            if (data!!.body[poz].type ==1) {
+                1
+
             } else {
                 2
             }
@@ -121,7 +131,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 pos: Int,
                 id: Long
             ) {
-                petType = pos.toString()
+                petType = pos
                 val v = (parent?.getChildAt(0) as View)
                 val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
                 if (pos == 0) {
@@ -239,48 +249,6 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-    /*private fun setSpinnerAge() {
-
-        val adapterAge = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, ageArrayList)
-        spinnerAge.adapter = adapterAge
-
-
-        spinnerAge.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {}
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                pos: Int,
-                id: Long
-            ) {
-                val view = (parent?.getChildAt(0) as View)
-                val tvSpinner = view.findViewById<TextView>(R.id.tvSpinner)
-                *//*tvSpinner.setPadding(0, 0, 0, 0)*//*
-
-                if (pos == 0) {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@EditPetProfileActivity,
-                            R.color.lightGrayA3A3A3
-                        )
-                    )
-                } else {
-                    tvSpinner.setTextColor(
-                        ContextCompat.getColor(
-                            this@EditPetProfileActivity,
-                            R.color.black
-                        )
-                    )
-
-                }
-                age = pos
-
-            }
-
-        }
-    }*/
-
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
         val about = etAbout.text.toString().trim()
@@ -294,6 +262,8 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
             Helper.showErrorAlert(this, resources.getString(R.string.about))
 //        else if (mValidationClass.checkStringNull(weight))
 //            Helper.showErrorAlert(this, resources.getString(R.string.error_weight))
+        else if (petType == 0)
+            Helper.showErrorAlert(this, resources.getString(R.string.selectType))
         else if (mValidationClass.checkStringNull(breed))
             Helper.showErrorAlert(this, resources.getString(R.string.error_breed))
         else if (mValidationClass.checkStringNull(age))
@@ -325,6 +295,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
                 map["age"] = age
                 //  map["age"] = age.toString()
                 map["gender"] = gender.toString()
+                map["type"] = petType.toString()
 
                 viewModel.editPetProfileApi(this, true, map)
                 viewModel.mResponse.observe(this, this)

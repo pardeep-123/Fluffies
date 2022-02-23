@@ -3,8 +3,6 @@ package com.puppypedia.ui.main.ui.mypetprofile
 import java.io.Serializable
 import com.google.gson.annotations.SerializedName
 
-
-
 data class PetProfileResponse(
     val success: Boolean, // 1
     val code: Int, // 200
@@ -17,6 +15,7 @@ data class PetProfileResponse(
         val userid: Int, // 13
         val name: String, // rocky
         val gender: Int, // 1
+        val type: Int, // 1
         val age: Int, // 3
         val date: String,
         val time: String,

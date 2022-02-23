@@ -2,6 +2,7 @@ package com.puppypedia.ui.fragments.profile
 
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -147,7 +148,7 @@ class PictureFragment(var petId: String) : Fragment(), PictureAdapter.OnDeletePi
                 when (liveData.data) {
                     is ImageUploadResponse -> {
                         image = liveData.data.body[0].image
-                        Handler().postDelayed({
+                        Handler(Looper.getMainLooper()).postDelayed({
                             hitAddPictureApi()
                         },200)
 

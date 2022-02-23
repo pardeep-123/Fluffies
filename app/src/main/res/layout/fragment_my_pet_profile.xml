@@ -68,6 +68,24 @@
 
 
             </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp">
+
+                <TextView
+                    style="@style/WrapTextView"
+                    android:layout_alignParentStart="true"
+                    android:text="@string/petType"
+                    android:textColor="@color/theme_Color" />
+
+                <TextView
+                    android:id="@+id/tvPetType"
+                    style="@style/WrapTextView"
+                    android:layout_alignParentEnd="true" />
+
+
+            </RelativeLayout>
 
             <RelativeLayout
                 android:layout_width="match_parent"
