@@ -16,15 +16,15 @@ import kotlinx.android.synthetic.main.item_your_dogs.view.*
 class DogsAdapter(
     var context: Context,
     var arrayList: ArrayList<HomeFragmentResponse.Body.Pet>,
-    var clickCallBack: ClickCallBack
+    var selectedPos :Int,
+    var clickCallBack: ClickCallBackNew) :
 
-) :
     RecyclerView.Adapter<DogsAdapter.DogsViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogsAdapter.DogsViewHolder {
         val view: View =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_your_dogs, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.items_dog_list, parent, false)
         return DogsViewHolder(view)
     }
 
@@ -75,7 +75,7 @@ class DogsAdapter(
                     arrayList[pos].selected = true
                     arrayList[selectedpoz].selected = false
                     notifyDataSetChanged()
-                    clickCallBack.onItemClick(pos, "pet")
+                    clickCallBack.onItemClick(selectedPos,pos, "pet")
                 }
             }
         }

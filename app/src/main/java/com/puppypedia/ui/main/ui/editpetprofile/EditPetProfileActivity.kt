@@ -15,6 +15,7 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.ContextCompat
+import androidx.core.content.res.ResourcesCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.bumptech.glide.Glide
@@ -39,7 +40,6 @@ import kotlinx.android.synthetic.main.activity_edit_pet_profile.etAge
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.etName
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.spinnerGender
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.tb
-import kotlinx.android.synthetic.main.activity_your_pet_detail.*
 import kotlinx.android.synthetic.main.auth_toolbar.view.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -54,7 +54,7 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
     var oldImage = ""
     var newImage = ""
     val ageArrayList = ArrayList<String>()
-
+    var petType = ""
     // var age = 0
     var gender = 0
     var poz = 0
@@ -103,6 +103,48 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
         )
 //        spinnerAge.setSelection(data!!.body[poz].age)
 
+    }
+
+
+    // spinner for pet type
+    private fun setSpinnerPetType() {
+        val arrayList = arrayListOf("Pet Type", "Dog", "Cat")
+
+        val adapterGender = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
+        spinnerType.adapter = adapterGender
+
+        spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                pos: Int,
+                id: Long
+            ) {
+                petType = pos.toString()
+                val v = (parent?.getChildAt(0) as View)
+                val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+                if (pos == 0) {
+                    tvSpinner.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditPetProfileActivity,
+                            R.color.lightGrayA3A3A3
+                        )
+                    )
+                } else {
+                    tvSpinner.setTextColor(
+                        ContextCompat.getColor(
+                            this@EditPetProfileActivity,
+                            R.color.black))
+
+                }
+
+                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                tvSpinner.typeface = ResourcesCompat.getFont(
+                    this@EditPetProfileActivity, R.font.opensans_regular
+                )
+            }
+        }
     }
 
     private fun clicksHandle() {

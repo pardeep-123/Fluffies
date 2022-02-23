@@ -18,10 +18,8 @@ import androidx.recyclerview.widget.SnapHelper
 import com.bumptech.glide.Glide
 import com.last.manager.restApi.Status
 import com.puppypedia.R
-import com.puppypedia.common_adapters.ClickCallBack
-import com.puppypedia.common_adapters.DogsAdapter
-import com.puppypedia.common_adapters.HomeAdapter
-import com.puppypedia.common_adapters.ServicesAdapter
+import com.puppypedia.common_adapters.*
+import com.puppypedia.model.PetNameModel
 import com.puppypedia.restApi.RestObservable
 import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.category.CategoryActivity
@@ -34,14 +32,18 @@ import com.puppypedia.utils.helper.others.SharedPrefUtil
 import kotlinx.android.synthetic.main.fragment_home.*
 import ru.tinkoff.scrollingpagerindicator.ScrollingPagerIndicator
 
-class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
+class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBackNew, ClickCallBack {
 
     lateinit var v: View
     var aboutResponse: HomeFragmentResponse? = null
-    var arrayList = ArrayList<HomeFragmentResponse.Body.Pet>()
+    var dogArrayList = ArrayList<HomeFragmentResponse.Body.Pet>()
+    var catArrayList = ArrayList<HomeFragmentResponse.Body.Pet>()
     private val viewModel: AllViewModel
             by lazy { ViewModelProviders.of(this).get(AllViewModel::class.java) }
     private var myPopupWindow: PopupWindow? = null
+
+    private var petNameList : ArrayList<PetNameModel> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -56,6 +58,9 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         clicksHandle()
         //  etAddress.setText(addresses[0].locality)
         tv_choose_dog.text = ""
+
+        petNameList.add(PetNameModel("Dog"))
+        petNameList.add(PetNameModel("Cat"))
     }
 
     private fun clicksHandle() {
@@ -82,7 +87,8 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
             view, 800, RelativeLayout.LayoutParams.WRAP_CONTENT, true
         )
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
-        rvDogs.adapter = DogsAdapter(requireContext(), arrayList, this)
+       // rvDogs.adapter = DogsAdapter(requireContext(), arrayList, this)
+        rvDogs.adapter = PetNameAdapter(petNameList,dogArrayList,catArrayList,this)
     }
 
     fun apihome() {
@@ -96,7 +102,8 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         when {
             it!!.status == Status.SUCCESS -> {
                 if (it.data is HomeFragmentResponse) {
-                    arrayList.addAll(it.data.body.pets as ArrayList<HomeFragmentResponse.Body.Pet>)
+                    val dogList = it.data.body.pets.filter { it.type==1 }
+                    dogArrayList.addAll(dogList as ArrayList<HomeFragmentResponse.Body.Pet>)
                     /*  if (arrayList.size == 0) {
                           whitebackground.visibility = View.VISIBLE
                           SharedPrefUtil.getInstance().clear()
@@ -106,6 +113,9 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                       } else {
                           whitebackground.visibility = View.GONE
                       }*/
+                    val catList = it.data.body.pets.filter { it.type==2 }
+                    catArrayList.addAll(catList as ArrayList<HomeFragmentResponse.Body.Pet>)
+
                     aboutResponse = it.data
                     if (aboutResponse!!.body.notificationsCount == 0) {
                         tvCount.visibility = View.GONE
@@ -119,15 +129,15 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                         1
                     )
                     setPopUpWindow()
-/////////////////////////////////////// Banneer Adapter with Indigator
+/////////////////////////////////////// Banner Adapter with Indicator
                     val indicator = view?.findViewById<ScrollingPagerIndicator>(R.id.indicator)
                     val homeAdapter = HomeAdapter(this, aboutResponse!!)
                     rc_details_img.adapter = homeAdapter
                     indicator?.attachToRecyclerView(rc_details_img)
                     val snapHelper: SnapHelper = PagerSnapHelper()
                     snapHelper.attachToRecyclerView(rc_details_img)
-                    petDetails(SharedPrefUtil.getInstance().petPos)
-                    SharedPrefUtil.getInstance().savePetId(arrayList[SharedPrefUtil.getInstance().petPos].id.toString())
+                    petDetails(0,SharedPrefUtil.getInstance().petPos)
+                    SharedPrefUtil.getInstance().savePetId(dogArrayList[SharedPrefUtil.getInstance().petPos].id.toString())
                 }
             }
             it.status == Status.ERROR -> {
@@ -140,7 +150,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
         }
     }
 
-    override fun onItemClick(pos: Int, value: String) {
+    override fun onItemClick(selectedPos:Int,pos: Int, value: String) {
         when (value) {
             "cat" -> {
                 // name change by pardeep from weight chart to weight log.
@@ -155,28 +165,64 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBack {
                 }
             }
             "pet" -> {
-                SharedPrefUtil.getInstance().savePetId(arrayList[pos].id.toString())
+                if (selectedPos ==0)
+                SharedPrefUtil.getInstance().savePetId(dogArrayList[pos].id.toString())
+                else
+                    SharedPrefUtil.getInstance().savePetId(catArrayList[pos].id.toString())
                 SharedPrefUtil.getInstance().savePetPos(pos)
-                petDetails(pos)
+                petDetails(selectedPos,pos)
                 myPopupWindow?.dismiss()
             }
         }
     }
 
-    fun petDetails(position: Int) {
-        if (aboutResponse!!.body.pets[position].name.length > 12) {
-            tv_choose_dog.text = (aboutResponse!!.body.pets[position].name.replaceRange(
-                12,
-                aboutResponse!!.body.pets[position].name.length,
-                "..."
-            ))
-        } else {
-            tv_choose_dog.text = aboutResponse!!.body.pets[position].name
+    private fun petDetails(selectedPos: Int,position: Int) {
+      // selected position is 0 for dog and 1 for cat
+        if (selectedPos == 0) {
+            if (dogArrayList[position].name.length > 12) {
+                tv_choose_dog.text = (dogArrayList[position].name.replaceRange(
+                    12,
+                    dogArrayList[position].name.length,
+                    "..."
+                ))
+            } else {
+                tv_choose_dog.text = dogArrayList[position].name
+            }
+            Glide.with(requireContext())
+                .load(Constants.IMAGE_URL + dogArrayList[position].image)
+                .placeholder(R.drawable.place_holder).into(ivDogImg)
+        }else{
+            if (catArrayList[position].name.length > 12) {
+                tv_choose_dog.text = (catArrayList[position].name.replaceRange(
+                    12,
+                    catArrayList[position].name.length,
+                    "..."
+                ))
+            } else {
+                tv_choose_dog.text = catArrayList[position].name
+            }
+            Glide.with(requireContext())
+                .load(Constants.IMAGE_URL + catArrayList[position].image)
+                .placeholder(R.drawable.place_holder).into(ivDogImg)
         }
-        Glide.with(requireContext())
-            .load(Constants.IMAGE_URL + aboutResponse!!.body.pets[position].image)
-            .placeholder(R.drawable.place_holder).into(ivDogImg)
+    }
 
+    override fun onItemClick(pos: Int, value: String) {
+        when (value) {
+            "cat" -> {
+                // name change by pardeep from weight chart to weight log.
+                if (aboutResponse!!.body.category[pos].name == "Weight Log" ||
+                    aboutResponse!!.body.category[pos].name == "Weight Chart"
+                ) {
+                    startActivity(Intent(requireContext(), WeightChartActivity::class.java))
+                } else {
+                    val intent =
+                        Intent(requireContext(), CategoryDetailActivity::class.java)
+                            .putExtra("data", aboutResponse!!.body.category[pos])
+                    startActivity(intent)
+                }
+            }
+        }
     }
 }
 

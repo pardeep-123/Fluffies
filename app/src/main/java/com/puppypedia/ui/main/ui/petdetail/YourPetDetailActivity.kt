@@ -45,6 +45,7 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
     private lateinit var mValidationClass: ValidationsClass
     private var mAlbumFiles: java.util.ArrayList<AlbumFile> = java.util.ArrayList()
     var gender = ""
+    var petType = ""
     var image = ""
     var age = 0
     var auth = ""
@@ -76,6 +77,9 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         clicksHandle()
         //setSpinnerAge()
         setSpinnerGender()
+
+        // call type spinner
+        setSpinnerPetType()
         //  setSpinnerWeight()
     }
 
@@ -177,6 +181,49 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
+    // spinner for pet type
+    private fun setSpinnerPetType() {
+        val arrayList = arrayListOf("Pet Type", "Dog", "Cat")
+
+        val adapterGender = ArrayAdapter(this, R.layout.item_spinner, R.id.tvSpinner, arrayList)
+        spinnerType.adapter = adapterGender
+
+        spinnerType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onNothingSelected(parent: AdapterView<*>?) {}
+            override fun onItemSelected(
+                parent: AdapterView<*>?,
+                view: View?,
+                pos: Int,
+                id: Long
+            ) {
+                petType = pos.toString()
+                val v = (parent?.getChildAt(0) as View)
+                val tvSpinner = v.findViewById<TextView>(R.id.tvSpinner)
+                if (pos == 0) {
+                    tvSpinner.setTextColor(
+                        ContextCompat.getColor(
+                            this@YourPetDetailActivity,
+                            R.color.lightGrayA3A3A3
+                        )
+                    )
+                } else {
+                    tvSpinner.setTextColor(
+                        ContextCompat.getColor(
+                            this@YourPetDetailActivity,
+                            R.color.black
+                        )
+                    )
+
+                }
+
+                /*tvSpinner.setPadding(0, 0, 0, 0)*/
+                tvSpinner.typeface = ResourcesCompat.getFont(
+                    this@YourPetDetailActivity, R.font.opensans_regular
+                )
+            }
+        }
+    }
+
     private fun isValid(): Boolean {
         val name = etName.text.toString().trim()
         val about = etAbout.text.toString().trim()
@@ -191,10 +238,10 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
             Helper.showErrorAlert(this, resources.getString(R.string.error_name))
         else if (gender == "0")
             Helper.showErrorAlert(this, "Please select gender")
-        /*   else if (age == 0)
-               Helper.showErrorAlert(this, "Please select age")
-              else if (weight == 0)
-               Helper.showErrorAlert(this, "Please select weight")*/
+        else if (petType == "0")
+            Helper.showErrorAlert(this, "Please select pet Type")
+        /*   else if (weight == 0)
+            Helper.showErrorAlert(this, "Please select weight")*/
         else if (mValidationClass.checkStringNull(age))
             Helper.showErrorAlert(this, resources.getString(R.string.error_age))
 //        else if (mValidationClass.checkStringNull(weight))
@@ -247,7 +294,8 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
                     val about = etAbout.text.toString().trim()
                     val map = HashMap<String, String>()
                     map["name"] = name
-                    map["gender"] = if (gender.equals("1")) "0" else "1"
+                    map["gender"] = if (gender == "1") "0" else "1"
+                    map["type"] = petType
                     // map["age"] = ageArrayList[age]
                     map["weight"] = weight
                     map["age"] = age
@@ -268,7 +316,6 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         }
     }
 
-
     fun multipartImageGet(): MultipartBody.Part {
         val imageFile: MultipartBody.Part
         val options = Tiny.FileCompressOptions()
@@ -278,8 +325,8 @@ class YourPetDetailActivity : AppCompatActivity(), Observer<RestObservable> {
         imageFile =
             MultipartBody.Part.createFormData(
                 "image", System.currentTimeMillis().toString() + ".jpg",
-                fileReqBody
-            )
+                fileReqBody)
+
         return imageFile
     }
 
