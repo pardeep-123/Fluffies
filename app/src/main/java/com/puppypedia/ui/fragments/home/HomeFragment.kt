@@ -25,6 +25,7 @@ import com.puppypedia.ui.main.ui.AllViewModel
 import com.puppypedia.ui.main.ui.category.CategoryActivity
 import com.puppypedia.ui.main.ui.category_detail.CategoryDetailActivity
 import com.puppypedia.ui.main.ui.notification.NotificationActivity
+import com.puppypedia.ui.main.ui.petdetail.YourPetDetailActivity
 import com.puppypedia.ui.main.ui.weight_chart.WeightChartActivity
 import com.puppypedia.utils.helper.others.Constants
 import com.puppypedia.utils.helper.others.Helper
@@ -44,6 +45,8 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBackNew, Cli
 
     private var petNameList : ArrayList<PetNameModel> = ArrayList()
 
+    private var adapter : PetNameAdapter?=null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -59,8 +62,8 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBackNew, Cli
         //  etAddress.setText(addresses[0].locality)
         tv_choose_dog.text = ""
 
-        petNameList.add(PetNameModel("Dog"))
-        petNameList.add(PetNameModel("Cat"))
+        petNameList.add(PetNameModel("Dog",R.drawable.dog))
+        petNameList.add(PetNameModel("Cat",R.drawable.cat))
     }
 
     private fun clicksHandle() {
@@ -88,7 +91,14 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBackNew, Cli
         )
         val rvDogs = view.findViewById<RecyclerView>(R.id.rvDogs)
        // rvDogs.adapter = DogsAdapter(requireContext(), arrayList, this)
-        rvDogs.adapter = PetNameAdapter(petNameList,dogArrayList,catArrayList,this)
+        adapter = PetNameAdapter(petNameList,dogArrayList,catArrayList,this)
+        rvDogs.adapter = adapter
+
+        // send intent from add pet button
+        adapter?.onClickListener ={
+            val intent = Intent(requireContext(), YourPetDetailActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     fun apihome() {

@@ -156,4 +156,5 @@
     <string name="select_any_image">upload any image</string>
     <string name="petType">Pet Type</string>
     <string name="selectType">Select pet type</string>
+    <string name="addpet">Add Pet</string>
 </resources>
