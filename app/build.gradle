@@ -8,23 +8,37 @@ android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
     defaultConfig {
-        applicationId "com.puppypedia"
+        applicationId "com.fluffies"
         minSdkVersion 23
         targetSdkVersion 30
-        versionCode 2
-        versionName "1.2"
+        versionCode 8
+        versionName "1.7"
+
+        ndk {
+            abiFilters = []
+            abiFilters.addAll(PROP_APP_ABI.split(':').collect{it as String})
+        }
+
+      //  ndk.abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'
+
+        //  ndk.abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
+
 //        ndk {
 //            abiFilters  "armeabi-v7a", "arm64-v8a"
 //        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
-    splits {
+
+
+
+
+    /*splits {
         abi {
             enable false
             reset()
             include 'x86', 'armeabi-v7a'
             universalApk true
-        }    }
+        }    }*/
     buildTypes {
         release {
             minifyEnabled false

@@ -7,6 +7,43 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:41130870940:android:d0c241e6156ca35285c559",
+        "android_client_info": {
+          "package_name": "com.fluffies"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "41130870940-jtlru9as6cpef1nf8qfj28h9cr57aklr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.fluffies",
+            "certificate_hash": "89aabb2d699a4f2e099d4b609335de8b21105694"
+          }
+        },
+        {
+          "client_id": "41130870940-6iattal37hfj6q2jsfs1qcvp5se5dcp3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8kXOQmjDhvK5dk7PY-jtU61Qpai9k1oI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "41130870940-6iattal37hfj6q2jsfs1qcvp5se5dcp3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:41130870940:android:02f9f4f75f49268285c559",
         "android_client_info": {
           "package_name": "com.puppypedia"

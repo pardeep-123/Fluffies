@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.puppypedia">
+    package="com.fluffies">
 
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -14,7 +14,7 @@
     <uses-feature android:name="android.hardware.camera.autofocus" />
 
     <application
-        android:name=".utils.helper.MyApplication"
+        android:name="com.fluffies.utils.helper.MyApplication"
         android:allowBackup="true"
         android:icon="@drawable/puppypediamain"
         android:label="@string/app_name"
@@ -23,82 +23,82 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.fragments.profile.EditLifeEvent"></activity>
-        <activity android:name=".ui.fragments.profile.LifeEventDetailActivity" />
-        <activity android:name=".ui.main.ui.addhealthproblem.AddHealthDetails" />
+        <activity android:name="com.fluffies.ui.fragments.profile.EditLifeEvent"></activity>
+        <activity android:name="com.fluffies.ui.fragments.profile.LifeEventDetailActivity" />
+        <activity android:name="com.fluffies.ui.main.ui.addhealthproblem.AddHealthDetails" />
         <activity
-            android:name=".ui.main.ui.addhealthproblem.AddHealthProblemActivity"
+            android:name="com.fluffies.ui.main.ui.addhealthproblem.AddHealthProblemActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.main.ui.add_record.AddRecordActivity"
+            android:name="com.fluffies.ui.main.ui.add_record.AddRecordActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.add_weight.AddWeightActivity"
+            android:name="com.fluffies.ui.main.ui.add_weight.AddWeightActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.category.CategoryActivity"
+            android:name="com.fluffies.ui.main.ui.category.CategoryActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.weight_chart.WeightChartActivity"
+            android:name="com.fluffies.ui.main.ui.weight_chart.WeightChartActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.addremainder.AddRemainderActivity"
+            android:name="com.fluffies.ui.main.ui.addremainder.AddRemainderActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity
-            android:name=".ui.main.ui.category_detail.CategoryDetailActivity"
+            android:name="com.fluffies.ui.main.ui.category_detail.CategoryDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.about_us.AboutUsActivity"
+            android:name="com.fluffies.ui.main.ui.about_us.AboutUsActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.changepassword.ChangePasswordActivity"
+            android:name="com.fluffies.ui.main.ui.changepassword.ChangePasswordActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.editprofile.EditProfileActivity"
+            android:name="com.fluffies.ui.main.ui.editprofile.EditProfileActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.profile.ProfileActivity"
+            android:name="com.fluffies.ui.main.ui.profile.ProfileActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.petdetail.YourPetDetailActivity"
+            android:name="com.fluffies.ui.main.ui.petdetail.YourPetDetailActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.notification.NotificationActivity"
+            android:name="com.fluffies.ui.main.ui.notification.NotificationActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.home.HomeActivity"
+            android:name="com.fluffies.ui.main.ui.home.HomeActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
         <activity
-            android:name=".ui.auth.forgotpassword.ForgotPasswordActivity"
+            android:name="com.fluffies.ui.auth.forgotpassword.ForgotPasswordActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.auth.signup.SignUpActivity"
+            android:name="com.fluffies.ui.auth.signup.SignUpActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.auth.login.LoginActivity"
+            android:name="com.fluffies.ui.auth.login.LoginActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.SplashActivity"
+            android:name="com.fluffies.ui.main.SplashActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:screenOrientation="portrait">
@@ -109,11 +109,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.main.ui.editpetprofile.EditPetProfileActivity"
+            android:name="com.fluffies.ui.main.ui.editpetprofile.EditPetProfileActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ui.main.ui.mypetprofile.MyPetProfileActivity"
+            android:name="com.fluffies.ui.main.ui.mypetprofile.MyPetProfileActivity"
             android:launchMode="singleTop"
             android:screenOrientation="portrait" />
 
@@ -138,7 +138,7 @@ Set color used with incoming notification messages. This is used when no color i
         </provider>
 
         <service
-            android:name=".fcm.MyFirebaseMessagingService"
+            android:name="com.fluffies.fcm.MyFirebaseMessagingService"
             android:exported="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
