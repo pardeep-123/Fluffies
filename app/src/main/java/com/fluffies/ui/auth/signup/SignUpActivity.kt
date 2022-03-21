@@ -26,7 +26,6 @@ import com.fluffies.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_sign_up.*
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
@@ -175,11 +174,11 @@ class SignUpActivity : AppCompatActivity(), Observer<RestObservable> {
 
     fun multipartImageGet(): MultipartBody.Part {
         val imageFile: MultipartBody.Part
-        val options = Tiny.FileCompressOptions()
-        val result =
-            Tiny.getInstance().source(image).asFile().withOptions(options)
-                .compressSync()
-        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
+//        val options = Tiny.FileCompressOptions()
+//        val result =
+//            Tiny.getInstance().source(image).asFile().withOptions(options)
+//                .compressSync()
+        val fileReqBody = File(image).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
             MultipartBody.Part.createFormData(
                 "image",

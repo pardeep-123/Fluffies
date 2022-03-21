@@ -25,7 +25,7 @@ import com.fluffies.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import com.zxy.tiny.Tiny
+//import com.zxy.tiny.Tiny
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.android.synthetic.main.activity_add_health_details.*
 import kotlinx.android.synthetic.main.activity_my_pet_profile.tb
@@ -157,11 +157,11 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
     private fun multipartImageGet(): MultipartBody.Part {
         isEdit = true
         val imageFile: MultipartBody.Part
-        val options = Tiny.FileCompressOptions()
-        val result =
-            Tiny.getInstance().source(imageOne).asFile().withOptions(options)
-                .compressSync()
-        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
+//        val options = Tiny.FileCompressOptions()
+//        val result =
+//            Tiny.getInstance().source(imageOne).asFile().withOptions(options)
+//                .compressSync()
+        val fileReqBody = File(image).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
             MultipartBody.Part.createFormData(
                 "image",
@@ -177,11 +177,11 @@ class AddHealthDetails : AppCompatActivity(), Observer<RestObservable> {
     private fun multipartImageGet1(): MultipartBody.Part {
         isEdit = true
         val imageFile: MultipartBody.Part
-        val options = Tiny.FileCompressOptions()
-        val result =
-            Tiny.getInstance().source(imageTwo).asFile().withOptions(options)
-                .compressSync()
-        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
+//        val options = Tiny.FileCompressOptions()
+//        val result =
+//            Tiny.getInstance().source(imageTwo).asFile().withOptions(options)
+//                .compressSync()
+        val fileReqBody = File(image).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
             MultipartBody.Part.createFormData(
                 "image",

@@ -33,7 +33,7 @@ import com.fluffies.utils.helper.others.ValidationsClass
 import com.yanzhenjie.album.Album
 import com.yanzhenjie.album.AlbumFile
 import com.yanzhenjie.album.api.widget.Widget
-import com.zxy.tiny.Tiny
+//import com.zxy.tiny.Tiny
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.*
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.etAbout
 import kotlinx.android.synthetic.main.activity_edit_pet_profile.etAge
@@ -308,11 +308,11 @@ class EditPetProfileActivity : AppCompatActivity(), Observer<RestObservable> {
 
     fun multipartImageGet(): MultipartBody.Part {
         val imageFile: MultipartBody.Part
-        val options = Tiny.FileCompressOptions()
-        val result =
-            Tiny.getInstance().source(newImage).asFile().withOptions(options)
-                .compressSync()
-        val fileReqBody = File(result.outfile).asRequestBody("image/*".toMediaTypeOrNull())
+//        val options = Tiny.FileCompressOptions()
+//        val result =
+//            Tiny.getInstance().source(newImage).asFile().withOptions(options)
+//                .compressSync()
+        val fileReqBody = File(newImage).asRequestBody("image/*".toMediaTypeOrNull())
         imageFile =
             MultipartBody.Part.createFormData(
                 "image",
