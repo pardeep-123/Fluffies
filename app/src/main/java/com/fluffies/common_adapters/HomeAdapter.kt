@@ -1,5 +1,6 @@
 package com.fluffies.common_adapters
 
+import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,6 +13,9 @@ import com.fluffies.ui.fragments.home.HomeFragment
 import com.fluffies.ui.fragments.home.HomeFragmentResponse
 import com.fluffies.utils.helper.others.Constants.Companion.IMAGE_URL
 import kotlinx.android.synthetic.main.item_home.view.*
+import org.jsoup.Jsoup
+import org.jsoup.nodes.Document
+import org.jsoup.select.Elements
 
 
 class HomeAdapter(
@@ -29,6 +33,10 @@ class HomeAdapter(
         holder.itemView.tvDescription.text = HtmlCompat.fromHtml(
             datalist.body.banners[position].description, HtmlCompat.FROM_HTML_MODE_LEGACY
         )
+
+        holder.itemView.tvDescription.movementMethod = LinkMovementMethod.getInstance()
+
+
         Glide.with(context).load("$IMAGE_URL${datalist.body.banners[position].image}")
             .placeholder(R.drawable.dogsimg).into(holder.itemView.details_img)
     }

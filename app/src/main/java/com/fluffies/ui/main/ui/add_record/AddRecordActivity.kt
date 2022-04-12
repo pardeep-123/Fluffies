@@ -76,10 +76,10 @@ class AddRecordActivity : AppCompatActivity(), Observer<RestObservable>, View.On
             data = (intent.getSerializableExtra("data") as GetPetResponse.Body)
             petId = data!!.id.toString()
             edDescription.setText(data!!.description)
-            firstImage = data!!.petImages[0].petImage
+            firstImage = data!!.petImages!![0].petImage
             rv_img.adapter = ImageAdapter(
                 this,
-                data!!.petImages, this@AddRecordActivity
+                data?.petImages!!, this@AddRecordActivity
            ,"record" )
 
         }

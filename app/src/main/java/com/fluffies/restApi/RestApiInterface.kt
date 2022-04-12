@@ -193,6 +193,12 @@ interface RestApiInterface {
         @Field("petid") petid: String
     ): Observable<GetPetResponse>
 
+
+    @FormUrlEncoded
+    @POST(Constants.category_detail)
+    fun apiCategoryDetails(
+        @Field("id") id: String
+    ): Observable<CategoryModel>
     @GET(Constants.HomeApi)
     fun apiHome(): Observable<HomeFragmentResponse>
 

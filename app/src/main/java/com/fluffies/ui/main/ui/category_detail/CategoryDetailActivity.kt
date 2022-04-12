@@ -21,6 +21,7 @@ import com.fluffies.R
 import com.fluffies.common_adapters.AddRecordAdapter
 import com.fluffies.common_adapters.ClickCallBack
 import com.fluffies.common_adapters.ImagePagerAdapter
+import com.fluffies.model.CategoryModel
 import com.fluffies.restApi.RestObservable
 import com.fluffies.ui.fragments.home.HomeFragmentResponse
 import com.fluffies.ui.main.ui.AllViewModel
@@ -73,7 +74,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
         if (catgory.id == 34) {
             iv_addRecord.visibility = View.VISIBLE
             rv_addRecord.visibility = View.VISIBLE
-            apiPetData()
+            apiCategoryDetails()
 
         } else {
             iv_addRecord.visibility = View.GONE
@@ -87,6 +88,10 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
         viewModel.mResponse.observe(this, this)
     }
 
+    private fun apiCategoryDetails(){
+        viewModel.apiCategoryDetails(this,catgory.id.toString(),true)
+        viewModel.mResponse.observe(this,this)
+    }
     fun apiDeletePet(postId: String) {
         viewModel.apiDeletePet(this, sharedPrefUtil.petId.toString(), postId, true)
         viewModel.mResponse.observe(this, this)
@@ -97,11 +102,13 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
             it!!.status == Status.SUCCESS -> {
 
                 if (it.data is GetPetResponse) {
-                    aboutResponse?.body?.clear()
+
                     aboutResponse = it.data
 
                     if (aboutResponse?.body!!.isNotEmpty()) {
                         nodataFound.visibility = View.GONE
+                        aboutResponse?.body?.add(0,GetPetResponse.Body().also {it.description =description })
+
                         addRecordAdapter = AddRecordAdapter(this, aboutResponse!!, this)
                         rv_addRecord.adapter = addRecordAdapter
                     }else
@@ -109,6 +116,13 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
                    // rv_addRecord.visibility = View.GONE
                 }
                 if (it.data is DeleteResponse) {
+
+                    apiPetData()
+                } else if (it.data is CategoryModel){
+                    aboutResponse?.body?.clear()
+                    if (it.data.body!=null)
+                    description = it.data.body.description
+
                     apiPetData()
                 }
             }
@@ -124,7 +138,7 @@ class CategoryDetailActivity : AppCompatActivity(), Observer<RestObservable>, Cl
     override fun onItemClick(pos: Int, value: String) {
         when (value) {
             "3" -> {
-                deleteDialog(aboutResponse!!.body[pos].petImages[0].postId.toString())
+                deleteDialog(aboutResponse!!.body[pos].petImages!![0].postId.toString())
             }
             "2" -> {
                 val i = Intent(context, AddRecordActivity::class.java)

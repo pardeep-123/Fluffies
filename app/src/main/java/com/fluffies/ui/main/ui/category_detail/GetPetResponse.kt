@@ -11,16 +11,16 @@ class GetPetResponse(
     val body: ArrayList<Body>
 ) : Serializable {
     data class Body(
-        val id: Int, // 6
+        val id: Int?=null, // 6
         @SerializedName("user_id")
-        val userId: Int, // 187
-        val description: String, // dsaxz
+        val userId: Int?=null, // 187
+        var description: String?=null, // dsaxz
         @SerializedName("pet_id")
-        val petId: Int, // 161
-        val createdAt: String, // 2022-01-04T12:38:04.000Z
-        val updatedAt: String, // 2022-01-04T12:38:04.000Z
+        val petId: Int?=null, // 161
+        val createdAt: String?=null, // 2022-01-04T12:38:04.000Z
+        val updatedAt: String?=null, // 2022-01-04T12:38:04.000Z
         @SerializedName("pet_images")
-        val petImages: ArrayList<PetImage>
+        val petImages: ArrayList<PetImage>?=null
     ) : Serializable {
         data class PetImage(
             val id: Int, // 34

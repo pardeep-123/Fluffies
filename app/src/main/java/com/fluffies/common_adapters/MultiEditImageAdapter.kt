@@ -24,12 +24,12 @@ class MultiEditImageAdapter(
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 
-        Glide.with(context).load(list!!.petImages[position].petImage).placeholder(R.drawable.puppypediamain)
+        Glide.with(context).load(list?.petImages?.get(position)?.petImage).placeholder(R.drawable.puppypediamain)
             .into(holder.itemView.ivImage)
     }
 
     override fun getItemCount(): Int {
-        return list!!.petImages.size
+        return list?.petImages?.size!!
     }
 
     inner class MyViewHolder(itemView: View) :

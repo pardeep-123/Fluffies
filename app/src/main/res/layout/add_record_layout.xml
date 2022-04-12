@@ -85,6 +85,7 @@
                 android:layout_marginTop="@dimen/_2sdp"
                 android:padding="@dimen/_5sdp"
                 android:text=""
+                android:autoLink="web"
                 android:textColor="@color/black"
                 app:layout_constraintTop_toBottomOf="@+id/card"
                 app:layout_constraintStart_toStartOf="parent"

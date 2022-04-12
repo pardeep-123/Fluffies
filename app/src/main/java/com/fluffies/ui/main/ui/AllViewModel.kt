@@ -356,6 +356,21 @@ class AllViewModel : ViewModel() {
     }
 
     @SuppressLint("CheckResult")
+    fun apiCategoryDetails(
+        activity: Activity,
+        petId: String,
+        showLoader: Boolean
+    ) {
+        restApiInterface.apiCategoryDetails(petId)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .doOnSubscribe { mResponse.value = RestObservable.loading(activity, showLoader) }
+            .subscribe(
+                { mResponse.value = RestObservable.success(it) },
+                { mResponse.value = RestObservable.error(activity, it) }
+            )
+    }
+    @SuppressLint("CheckResult")
     fun getHomeDetails(activity: Activity, showLoader: Boolean) {
         restApiInterface.apiHome()
             .subscribeOn(Schedulers.io())

@@ -6,6 +6,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import androidx.cardview.widget.CardView
+import androidx.core.text.HtmlCompat
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.fluffies.R
@@ -35,36 +37,48 @@ class AddRecordAdapter(
 
     override fun onBindViewHolder(holder: ViewHolderGrid, position: Int) {
 
-        holder.itemView.tv_record.text = dataList.body[position].description
-        try {
-            holder.ivDelete.setOnClickListener {
-                clickCallBack.onItemClick(position, "3")
-            }
-
-        } catch (e: Exception) {
-        }
-
-        holder.ivEdit.setOnClickListener {
-            clickCallBack.onItemClick(position, "2")
-        }
+          if (position==0 && dataList.body[0].userId==null) {
+              holder.card.visibility = View.GONE
+              holder.itemView.tv_record.text = HtmlCompat.fromHtml(dataList.body[position].description!!,HtmlCompat.FROM_HTML_MODE_LEGACY).trim()
 
 
-        selectedArrayList.add(Color.parseColor("#10C7DF"))
-        unSelectedArrayList.add(Color.parseColor("#80000000"))
+          }else{
+              holder.card.visibility = View.VISIBLE
+              holder.itemView.tv_record.text = dataList.body[position].description
+              try {
+                  holder.ivDelete.setOnClickListener {
+                      clickCallBack.onItemClick(position, "3")
+                  }
 
-        holder.viewPagerIndicator.itemsCount = dataList.body[position].petImages.size
-        holder.viewPagerIndicator.itemType = PagerItemType.OVAL
-        holder. viewPagerIndicator.itemSelectedColors = selectedArrayList
-        holder.viewPagerIndicator.itemsUnselectedColors = unSelectedArrayList
-        holder.viewPagerIndicator.itemElevation = 1
-        holder.viewPagerIndicator.itemWidth = 9
-        holder.viewPagerIndicator.itemHeight = 9
-        holder.viewPagerIndicator.itemMargin = 6
-        holder.viewPagerIndicator.setBackgroundColor(Color.TRANSPARENT)
+              } catch (e: Exception) {
+              }
 
-        holder.rvAddRecord.adapter = ImagePagerAdapter(context, dataList.body[position].petImages,this,"category",this)
+              holder.ivEdit.setOnClickListener {
+                  clickCallBack.onItemClick(position, "2")
+              }
 
 
+              selectedArrayList.add(Color.parseColor("#10C7DF"))
+              unSelectedArrayList.add(Color.parseColor("#80000000"))
+
+              holder.viewPagerIndicator.itemsCount = dataList.body[position].petImages?.size!!
+              holder.viewPagerIndicator.itemType = PagerItemType.OVAL
+              holder.viewPagerIndicator.itemSelectedColors = selectedArrayList
+              holder.viewPagerIndicator.itemsUnselectedColors = unSelectedArrayList
+              holder.viewPagerIndicator.itemElevation = 1
+              holder.viewPagerIndicator.itemWidth = 9
+              holder.viewPagerIndicator.itemHeight = 9
+              holder.viewPagerIndicator.itemMargin = 6
+              holder.viewPagerIndicator.setBackgroundColor(Color.TRANSPARENT)
+
+              holder.rvAddRecord.adapter = ImagePagerAdapter(
+                  context,
+                  dataList.body!![position].petImages!!,
+                  this,
+                  "category",
+                  this
+              )
+          }
     }
     override fun getItemCount(): Int {
         return dataList.body.size
@@ -72,6 +86,7 @@ class AddRecordAdapter(
     class ViewHolderGrid(item1: View) : RecyclerView.ViewHolder(item1) {
         val ivDelete: ImageView = item1.findViewById(R.id.iv_delete)
         val ivEdit: ImageView = item1.findViewById(R.id.iv_edit)
+        val card: CardView = item1.findViewById(R.id.card)
         val rvAddRecord: ViewPager = item1.findViewById(R.id.rv_addRecord)
         val viewPagerIndicator: ViewPagerIndicator = item1.findViewById(R.id.viewPagerIndicator)
 
