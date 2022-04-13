@@ -114,15 +114,7 @@ class HomeFragment : Fragment(), Observer<RestObservable>, ClickCallBackNew, Cli
                 if (it.data is HomeFragmentResponse) {
                     val dogList = it.data.body.pets.filter { it.type==1 }
                     dogArrayList.addAll(dogList as ArrayList<HomeFragmentResponse.Body.Pet>)
-                    /*  if (arrayList.size == 0) {
-                          whitebackground.visibility = View.VISIBLE
-                          SharedPrefUtil.getInstance().clear()
-                         // startActivity(Intent(this, LoginActivity::class.java))
-                          startActivity(Intent(activity, LoginActivity::class.java))
-                          activity?.finishAffinity()
-                      } else {
-                          whitebackground.visibility = View.GONE
-                      }*/
+
                     val catList = it.data.body.pets.filter { it.type==2 }
                     catArrayList.addAll(catList as ArrayList<HomeFragmentResponse.Body.Pet>)
 
